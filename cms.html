@@ -1,0 +1,307 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CMS CRUD</title>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js" integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g==" crossorigin="anonymous" referrerpolicy="no-referrer"></script></head>
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+
+    <body>
+        <div class="container">
+            <div class="row">
+                <div class="col mt-4 mb-4">
+                        <h1 class="mt-4 d-inline" >CMS CRUD</h1>
+                        <button type="button" class="btn btn-primary float-right" data-toggle="modal" data-target="#uploadModal">
+                            Add Record
+                        </button>
+                </div>
+                <div class="table-responsive">
+
+                    <table id="records" class="table table-striped">
+                        <thead>
+                            <tr>
+                                <th>Type</th>
+                                <th>Key</th>
+                                <th>Value</th>
+                                <th>Actions</th>
+
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- Bootstrap modal fo adding record-->
+        <div class="modal" id="uploadModal">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h4 class="modal-title">Add Record</h4>
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    </div>
+
+                    <div class="modal-body">
+
+                        <form id="cmsForm">
+                            <label for="cmskey">Key:</label>
+                            <input type="text" id="cmskey" name="cmskey" class="form-control" required>
+        
+                            
+                            <label for="type">Type:</label>
+                            <select id="type" class="form-control" required>
+                                <option value="text">Text</option>
+                                <option value="image">Image</option>
+                            </select>
+                    
+                    
+                            <div id="valueField">
+                                <label for="value">Value:</label>
+                                <textarea id="value" name="value" class="form-control" required></textarea>
+                            </div>
+                    
+                    
+                            <div id="fileInputField" style="display: none;">
+                                <label for="image">Image:</label>
+                                <input type="file" id="image" class="form-control-file"><br>
+                            </div>
+                            
+                    
+                            <button type="submit" class="btn btn-primary">Submit</button>
+                        </form>
+                    
+
+                </div>
+            </div>
+        </div>
+
+
+    <!-- Bootstrap modal for editing record -->
+    <div class="modal" id="editModal">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title">Edit Record</h4>
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                </div>
+
+                <input type="hidden" id="key" name="key">
+
+                <div class="modal-body">
+
+
+                    <label for="editKey">Key:</label>
+                    <input type="text" id="editKey" class="form-control" required><br>
+
+                
+                    <label for="editType">Type:</label>
+                    <select id="editType" class="form-control" required>
+                        <option value="text">Text</option>
+                        <option value="image">Image</option>
+                    </select><br>
+
+                    
+                    <div id="editValueField" style="display: none;">
+                        <label for="value">Value:</label>
+                        <textarea id="editValue" class="form-control" required></textarea>
+                    </div>
+
+                    <div id="editFileInputField" style="display: none;">
+                        <label for="editImage">Image:</label>
+                        <input type="file" id="editImage" class="form-control-file"><br>
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="updateBtn">Update</button>
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    
+
+    <div id="message"></div>
+
+
+
+     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+     
+    <script>
+        $(document).ready(function() {
+
+
+            $('#type').change(function() {
+                const selectedType = $(this).val();
+                if (selectedType === 'text') {
+                    $('#valueField').show();
+                    $('#fileInputField').hide();
+                } else if (selectedType === 'image') {
+                    $('#valueField').hide();
+                    $('#fileInputField').show();
+                }
+            });
+
+
+
+            $.ajax({
+                type: 'GET',
+                url: '/cms',
+                success: function(response){
+                    const cms = response.cms;
+                    if(cms){
+                        Object.keys(cms).forEach(key => {
+                            $('#records tbody').append(`
+                                <tr>
+                                    <td>${cms[key].type}</td>
+                                    <td>${cms[key].key}</td>
+                                    <td>${cms[key].value}</td>
+                                    <td><button class="edit-btn" data-key="${key}">Edit</button></td>
+                                    <td><button class="delete-btn" data-key="${key}">Del</button></td>
+                                </tr>
+                            `);
+                        });
+                    }
+                },
+                error: function(err) {
+                    console.log('Error fetching records:', err);
+                }
+            });
+
+  
+            $('#cmsForm').submit(function(e){
+                e.preventDefault();
+                console.log("data", $('#cmskey').val());
+
+                var formData = {
+                    cmskey: $('#cmskey').val(),
+                    value: $('#value').val(),
+                    type: $('#type').val()
+                };
+                console.log("Form Data:", formData);
+
+                $.ajax({
+                    type: 'POST',
+                    url: '/cms',
+                    data: formData,
+                    success: function(response)
+                    {
+                        $('#message').text(response.message);
+                        location.reload();
+                    },
+                    error: function(err)
+                    {
+                        $('#message').text('Error: ' + err.responseText);
+                    },
+                    complete: function(){
+                        $('#uploadModal').modal('hide');
+                    }
+                });
+
+            });
+
+
+
+            $(document).on('click', '.edit-btn', function() {
+                const key = $(this).data('key');
+
+                $.ajax({
+                    type: 'GET',
+                    url: `/cms/${key}`,
+                    success: function(response) {
+                        const cms = response.cms;
+                        if (cms) {
+                            $('#key').val(key);
+                            $('#editKey').val(cms.key);
+                            $('#editValue').val(cms.value);
+                            $('#editType').val(cms.type);
+
+                            if(cms.type === 'image'){
+                                $('#editFileInputField').show();
+                            } 
+                            else{
+                                $('#editValueField').show();
+                            }
+
+                            $('#editType').change(function() {
+                                const newType = $(this).val();
+                                if(newType === 'image'){
+                                    $('#editFileInputField').show();
+                                } 
+                                else if(newType === 'text'){
+                                    $('#editValueField').show();
+                                }
+                            });
+
+                            $('#editModal').modal('show');
+                        }
+                    },
+                    error: function(err) {
+                        console.log('Error fetching record:', err);
+                    }
+                });
+            });
+
+
+
+            $('#updateBtn').click(function() {
+                const key = $('#key').val();
+                const newCmskey = $('#editKey').val();
+                const newValue = $('#editValue').val();
+                const newType = $('#editType').val();
+
+                $.ajax({
+                    type: 'PUT',
+                    url: `/cms/${key}`,
+                    data: { key: newCmskey, value: newValue, type: newType },
+                    success: function(response) {
+                        $('#message').text(response.message);
+                        $('#editModal').modal('hide');
+                    },
+                    error: function(err) {
+                        $('#message').text('Error: ' + err.responseText);
+                    }
+                });
+            });
+
+
+
+
+            $(document).on('click', '.delete-btn', function() {
+                const key = $(this).data('key');
+
+                if (confirm('Are you sure you want to delete this record?')) {
+                    $.ajax({
+                        type: 'DELETE',
+                        url: `/cms/${key}`,
+                        success: function(response) {
+                            $('#message').text(response.message);
+                            location.reload();
+                        },
+                        error: function(err) {
+                            $('#message').text('Error: ' + err.responseText);
+                        }
+                    });
+                }
+            });
+
+
+
+
+
+
+
+        });
+    </script>
+</body>
+</html>
