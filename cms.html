@@ -17,6 +17,11 @@
                             Add Record
                         </button>
                 </div>
+            </div>
+
+
+            <div class="row">
+
                 <div class="table-responsive">
 
                     <table id="records" class="table table-striped">
@@ -38,10 +43,10 @@
 
     <!-- Modal -->
     <div class="modal fade" id="uploadModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-        <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
         <div class="modal-content">
             <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLongTitle">Modal title</h5>
+            <h5 class="modal-title" id="exampleModalLongTitle">Add Record</h5>
             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                 <span aria-hidden="true">&times;</span>
             </button>
@@ -49,11 +54,11 @@
             <div class="modal-body">
                 <form id="cmsForm">
                     <label for="cmskey">Key:</label>
-                    <input type="text" id="cmskey" name="cmskey" class="form-control" required>
+                    <input type="text" id="cmskey" name="cmskey" class="form-control" >
 
                     
                     <label for="type">Type:</label>
-                    <select id="type" class="form-control" required>
+                    <select id="type" class="form-control"  >
                         <option value="text">Text</option>
                         <option value="image">Image</option>
                     </select>
@@ -61,13 +66,13 @@
             
                     <div id="valueField">
                         <label for="value">Value:</label>
-                        <textarea id="value" name="value" class="form-control" required></textarea>
+                        <textarea id="value" name="value" class="form-control"></textarea>
                     </div>
             
             
                     <div id="fileInputField" style="display: none;">
                         <label for="image">Image:</label>
-                        <input type="file" id="image" class="form-control-file"><br>
+                        <input type="file" id="image" name="image" class="form-control-file"><br>
                     </div>
                     
             
@@ -82,7 +87,7 @@
 
     <!-- Bootstrap modal for editing record -->
     <div class="modal" id="editModal">
-        <div class="modal-dialog">
+        <div class="modal-dialog modal-lg">
             <div class="modal-content">
                 <div class="modal-header">
                     <h4 class="modal-title">Edit Record</h4>
@@ -95,11 +100,11 @@
 
 
                     <label for="editKey">Key:</label>
-                    <input type="text" id="editKey" class="form-control" required><br>
+                    <input type="text" id="editKey" class="form-control" ><br>
 
                 
                     <label for="editType">Type:</label>
-                    <select id="editType" class="form-control" required>
+                    <select id="editType" class="form-control" >
                         <option value="text">Text</option>
                         <option value="image">Image</option>
                     </select><br>
@@ -107,12 +112,16 @@
                     
                     <div id="editValueField" style="display: none;">
                         <label for="value">Value:</label>
-                        <textarea id="editValue" class="form-control" required></textarea>
+                        <textarea id="editValue" class="form-control" ></textarea>
                     </div>
 
                     <div id="editFileInputField" style="display: none;">
                         <label for="editImage">Image:</label>
-                        <input type="file" id="editImage" class="form-control-file"><br>
+                        <input type="file" id="editImage" name="editImage"  class="form-control-file"><br>
+                    </div>
+
+                    <div id="currentImage" style="display: none;">
+                        <img src="" id="displayCurrentImage" alt="no-image" width="200" height="200" />
                     </div>
 
                 </div>
@@ -131,10 +140,39 @@
 
 
 
-     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
+    <script
+        type="text/javascript"
+        src='https://cdn.tiny.cloud/1/fge66p60nzrcg97eosvndgpcz5th7jijtev7yie4h2mbvmz8/tinymce/6/tinymce.min.js'
+        referrerpolicy="origin">
+    </script>
+    
+    <script>
+        tinymce.init({
+            selector: '#value',
+            plugins: 'advlist autolink lists link image charmap print preview hr anchor pagebreak',
+            toolbar_mode: 'floating',
+            toolbar: 'undo redo | formatselect | bold italic underline strikethrough | link image | alignleft aligncenter alignright alignjustify | outdent indent | numlist bullist | removeformat | help',
+            menubar: 'file edit view insert format tools table help',
+            toolbar_sticky: true,
+            height: 400
+        });
+    
+        tinymce.init({
+            selector: '#editValue',
+            plugins: 'advlist autolink lists link image charmap print preview hr anchor pagebreak',
+            toolbar_mode: 'floating',
+            toolbar: 'undo redo | formatselect | bold italic underline strikethrough | link image | alignleft aligncenter alignright alignjustify | outdent indent | numlist bullist | removeformat | help',
+            menubar: 'file edit view insert format tools table help',
+            toolbar_sticky: true,
+            height: 400
+        });
+
+    </script>
+    
      
     <script>
         $(document).ready(function() {
@@ -160,13 +198,21 @@
                     const cms = response.cms;
                     if(cms){
                         Object.keys(cms).forEach(key => {
+                            let valueHtml = '';
+                            if(cms[key].type === 'text'){
+                                valueHtml = cms[key].value;
+                            }
+                            else if(cms[key].type === 'image'){
+                                valueHtml = `<img src="${cms[key].value}" alt="no-image" width=100 height=100/>`
+                            }
+
                             $('#records tbody').append(`
                                 <tr>
                                     <td>${cms[key].type}</td>
                                     <td>${cms[key].key}</td>
-                                    <td>${cms[key].value}</td>
-                                    <td><button class="edit-btn" data-key="${key}">Edit</button></td>
-                                    <td><button class="delete-btn" data-key="${key}">Del</button></td>
+                                    <td>${valueHtml}</td>
+                                    <td><button class="btn btn-sm btn-primary edit-btn" data-key="${key}">Edit</button>
+                                    <button class="btn btn-sm btn-danger delete-btn" data-key="${key}">Del</button></td>
                                 </tr>
                             `);
                         });
@@ -176,31 +222,34 @@
                     console.log('Error fetching records:', err);
                 }
             });
+            
 
-  
+
             $('#cmsForm').submit(function(e){
                 e.preventDefault();
-                console.log("data", $('#cmskey').val());
 
-                var formData = {
-                    cmskey: $('#cmskey').val(),
-                    value: $('#value').val(),
-                    type: $('#type').val()
-                };
+                var formData = new FormData();
+                formData.append('cmskey', $('#cmskey').val());
+                formData.append('value', $('#value').val());
+                formData.append('type', $('#type').val());
+                formData.append('image', $('#image')[0].files[0]);
+
                 console.log("Form Data:", formData);
 
                 $.ajax({
                     type: 'POST',
                     url: '/cms',
                     data: formData,
+                    processData: false,  
+                    contentType: false, 
                     success: function(response)
                     {
-                        $('#message').text(response.message);
+                        $('.alert-success').text(response.message);
                         location.reload();
                     },
                     error: function(err)
                     {
-                        $('#message').text('Error: ' + err.responseText);
+                        $('.alert-success').text('Error: ' + err.responseText);
                     },
                     complete: function(){
                         $('#uploadModal').modal('hide');
@@ -222,26 +271,37 @@
                         if (cms) {
                             $('#key').val(key);
                             $('#editKey').val(cms.key);
-                            $('#editValue').val(cms.value);
                             $('#editType').val(cms.type);
+                            $('#editValue').val(cms.value);
 
                             if(cms.type === 'image'){
+                                $('#displayCurrentImage').attr('src', cms.value);
                                 $('#editFileInputField').show();
+                                $('#currentImage').show();
                             } 
                             else{
+                                
+                                $('#editValue').val(cms.value);
+                                tinymce.get('editValue').setContent(cms.value);
                                 $('#editValueField').show();
                             }
 
                             $('#editType').change(function() {
                                 const newType = $(this).val();
                                 if(newType === 'image'){
+                                    $('#displayCurrentImage').attr('src', cms.value);
+                                    $('#currentImage').show();
                                     $('#editFileInputField').show();
                                     $('#editValueField').hide();
 
                                 } 
                                 else if(newType === 'text'){
+
+                                    tinymce.get('editValue').setContent(cms.value);
+                                    $('#editValue').val('');
                                     $('#editValueField').show();
                                     $('#editFileInputField').hide();
+                                    $('#currentImage').hide();
 
                                 }
                             });
@@ -257,28 +317,68 @@
 
 
 
+            // $('#updateBtn').click(function() {
+            //     const key = $('#key').val();
+            //     const newCmskey = $('#editKey').val();
+            //     const newValue = $('#editValue').val();
+            //     const newType = $('#editType').val();
+
+            //     $.ajax({
+            //         type: 'PUT',
+            //         url: `/cms/${key}`,
+            //         data: { key: newCmskey, value: newValue, type: newType },
+            //         success: function(response) {
+            //             $('#message').text(response.message);
+            //             location.reload();
+            //         },
+            //         error: function(err) {
+            //             $('#message').text('Error: ' + err.responseText);
+            //         },
+            //         complete: function(){
+            //             $('#editModal').modal('hide');
+            //         }
+            //     });
+            // });
+
+            
+
             $('#updateBtn').click(function() {
                 const key = $('#key').val();
                 const newCmskey = $('#editKey').val();
                 const newValue = $('#editValue').val();
                 const newType = $('#editType').val();
 
+                const formData = new FormData();
+                formData.append('key', newCmskey);
+                formData.append('value', newValue);
+                formData.append('type', newType);
+
+                const editImage = $('#editImage')[0].files[0];
+                if (editImage) {
+                    formData.append('editImage', editImage);
+                }
+                console.log(formData);
+
                 $.ajax({
                     type: 'PUT',
                     url: `/cms/${key}`,
-                    data: { key: newCmskey, value: newValue, type: newType },
+                    data: formData,
+                    processData: false,
+                    contentType: false,
                     success: function(response) {
-                        $('#message').text(response.message);
+                        $('.alert-success').text(response.message);
+                        console.log(response);
                         location.reload();
                     },
                     error: function(err) {
-                        $('#message').text('Error: ' + err.responseText);
+                        $('.alert-success').text('Error: ' + err.responseText);
                     },
                     complete: function(){
                         $('#editModal').modal('hide');
                     }
                 });
             });
+
 
 
 
@@ -291,11 +391,11 @@
                         type: 'DELETE',
                         url: `/cms/${key}`,
                         success: function(response) {
-                            $('#message').text(response.message);
+                            $('.alert-success').text(response.message);
                             location.reload();
                         },
                         error: function(err) {
-                            $('#message').text('Error: ' + err.responseText);
+                            $('.alert-success').text('Error: ' + err.responseText);
                         }
                     });
                 }
