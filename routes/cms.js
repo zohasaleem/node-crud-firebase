@@ -22,7 +22,7 @@ module.exports = (cmsRef, admin) => {
            
             
             if (req.files && req.files.image){
-
+                const file = req.files.image;
                 const fileName = file.name;
         
                 const storageRef = admin.storage().bucket();
