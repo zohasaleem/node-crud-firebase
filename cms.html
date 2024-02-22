@@ -343,13 +343,14 @@
             $('#updateBtn').click(function() {
                 const key = $('#key').val();
                 const newCmskey = $('#editKey').val();
-                const newValue = $('#editValue').val();
+                const newValue = tinymce.get('editValue').getContent();
                 const newType = $('#editType').val();
 
                 const formData = new FormData();
                 formData.append('key', newCmskey);
                 formData.append('value', newValue);
                 formData.append('type', newType);
+                formData.append('editValue', newValue);
 
                 const editImage = $('#editImage')[0].files[0];
                 if (editImage) {
