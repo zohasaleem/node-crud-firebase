@@ -3,6 +3,34 @@ const express = require('express');
 const router = express.Router();
 
 module.exports = (cmsRef, admin) => {
+
+
+    //For get API
+
+    router.get('/api/cms', (req, res) => {
+        cmsRef.once('value')
+            .then(snapshot => {
+                const cms = [];
+                snapshot.forEach(childSnapshot => {
+                    cms.push({
+                        id: childSnapshot.key,
+                        key: childSnapshot.val().key,
+                        type: childSnapshot.val().type,
+                        value: childSnapshot.val().value
+                    });
+                });
+                res.status(200).json({cms});
+            })
+            .catch(error => {
+                res.status(500).json({error: error.message})
+            });
+    });
+
+
+
+
+
+    //fetch all records - table
     router.get('/', async(req, res) => {
         try {
             const snapshot = await cmsRef.once('value');
@@ -13,10 +41,7 @@ module.exports = (cmsRef, admin) => {
         }
     });
 
-
-
-
-
+    //add record
     router.post('/', async(req, res) => {
         try {
            
@@ -58,13 +83,6 @@ module.exports = (cmsRef, admin) => {
     });
     
 
-
-
-
-
-
-
-
     // router.post('/', async(req, res) => {
     //     try {
     //         console.log(req.body);
@@ -81,6 +99,7 @@ module.exports = (cmsRef, admin) => {
     // });
 
 
+    //fetch record by id
     router.get('/:id', async (req, res) => {
         try {
             const snapshot = await cmsRef.child(req.params.id).once('value');
@@ -91,6 +110,8 @@ module.exports = (cmsRef, admin) => {
         }
     });
 
+
+    //update record by id
     router.put('/:id', async (req, res) => {
         try {
             let downloadURL = '';
@@ -125,6 +146,7 @@ module.exports = (cmsRef, admin) => {
     });
     
 
+    //delete record by id
     router.delete('/:id', async (req, res) => {
         try {
             await cmsRef.child(req.params.id).remove();

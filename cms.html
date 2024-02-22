@@ -296,6 +296,7 @@
                                 else if(newType === 'text'){
 
                                     tinymce.get('editValue').setContent(cms.value);
+                                    tinymce.get('editValue').getContent();
                                     $('#editValue').val('');
                                     $('#editValueField').show();
                                     $('#editFileInputField').hide();
