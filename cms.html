@@ -224,7 +224,8 @@
 
                 var formData = new FormData();
                 formData.append('cmskey', $('#cmskey').val());
-                formData.append('value', $('#value').val());
+                formData.append('value', tinymce.get('value').getContent());
+                // formData.append('value', $('#value').val());
                 formData.append('type', $('#type').val());
                 formData.append('image', $('#image')[0].files[0]);
 
@@ -271,6 +272,7 @@
                             if(cms.type === 'image'){
                                 $('#displayCurrentImage').attr('src', cms.value);
                                 $('#editFileInputField').show();
+                                $('#editValueField').hide();
                                 $('#currentImage').show();
                             } 
                             else{
