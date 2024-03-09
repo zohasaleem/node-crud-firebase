@@ -32,6 +32,9 @@ app.get('/cms.html', (req, res) => {
   res.sendFile(__dirname + '/cms.html');
 });
 
+app.get('/slider.html', (req, res) => {
+  res.sendFile(__dirname + '/slider.html');
+});
 
 app.listen(9000, () => {
     console.log("Server started..");
