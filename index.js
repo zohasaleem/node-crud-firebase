@@ -41,7 +41,7 @@ app.get('/horizontalSlider', (req, res) => {
 });
 
 app.get('/verticalSlider', (req, res) => {
-  res.sendFile(__dirname + '/horizontalSlider.html');
+  res.sendFile(__dirname + '/verticalSlider.html');
 });
 
 app.listen(9000, () => {
