@@ -36,6 +36,14 @@ app.get('/slider.html', (req, res) => {
   res.sendFile(__dirname + '/slider.html');
 });
 
+app.get('/horizontalSlider', (req, res) => {
+  res.sendFile(__dirname + '/horizontalSlider.html');
+});
+
+app.get('/verticalSlider', (req, res) => {
+  res.sendFile(__dirname + '/horizontalSlider.html');
+});
+
 app.listen(9000, () => {
     console.log("Server started..");
 });
