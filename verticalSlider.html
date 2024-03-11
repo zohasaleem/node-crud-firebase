@@ -15,10 +15,10 @@
             font-family: 'Montserrat', sans-serif;
             background-color: transparent;
             height: 100vh;
-            display: flex;
+            /* display: flex;
             justify-content: center;
-            align-items: flex-end;
-            overflow: hidden; /* Hide vertical scrollbar */
+            align-items: flex-end; */
+            overflow: hidden;
         }
         :root {
             --marquee-width: 25vw;
@@ -34,9 +34,9 @@
             background-color: transparent;
             color: #eee;
             overflow: hidden;
-            position: fixed;
+            /* position: fixed;
             top: 0;
-            right: 0; /* Position on the right side of the viewport */
+            right: 0;  */
         }
 
         .marquee-content {
@@ -61,11 +61,10 @@
             100% { transform: translateY(calc(-1 * var(--marquee-element-width) * var(--marquee-elements))); }
         }
 
-        @media (max-width: 600px) {
-            html { font-size: 12px; }
+        @media (max-width: 500px) {
+            
             .marquee {
-                width: 100vw;
-                height: 16vh;
+               display: none;
             }
         }
     </style>
@@ -73,7 +72,7 @@
 <body>
 
     <div class="marquee">
-        <ul class="marquee-content">
+        <ul class="marquee-content" id="advertsVerticalSlider">
             <video controls src="https://firebasestorage.googleapis.com/v0/b/ztfr-ff6ab.appspot.com/o/advertVideos%2FZG%20-%20Introducing%20the%20Q65C%20QLED%204K%20HDR%20Smart%20TV.mp4?alt=media&token=56fcf1d3-986b-457e-aaaf-0454fae7e062" type="video/mp4" autoplay muted loop></video>
             <video controls src="https://firebasestorage.googleapis.com/v0/b/ztfr-ff6ab.appspot.com/o/advertVideos%2FZG%20-%20Introducing%20iPhone%2015%20Pro%20_%20Apple.mp4?alt=media&token=6f67ec2d-60b4-4aa2-82d2-0b3233d9c4a9" type="video/mp4" autoplay muted loop></video>
             <video controls src="https://firebasestorage.googleapis.com/v0/b/ztfr-ff6ab.appspot.com/o/advertVideos%2FZG%20-%20iPhone%2015%20Pro%20Titanium%20Apple%20AT%26T.mp4?alt=media&token=a426d055-566b-46a6-b76c-c6b581eff0b2" type="video/mp4" autoplay muted loop></video>
@@ -96,6 +95,15 @@
        
         for(let i=0; i<marqueeElementsDisplayed; i++) {
         marqueeContent.appendChild(marqueeContent.children[i].cloneNode(true));
+        }
+
+        function isMobileDevice() {
+            return /Mobi/i.test(navigator.userAgent);
+        }
+        if (isMobile) {
+            var advertSlider = document.getElementById('advertsVerticalSlider');
+            advertSlider.style.display = 'none';
+            console.log("User is on a mobile device");
         }
 
     </script>
