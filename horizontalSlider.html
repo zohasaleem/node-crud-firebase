@@ -1,0 +1,190 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vertical Advert Slider</title>
+
+</head>
+
+<style>
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+body {
+  font-family: 'Montserrat', sans-serif;
+  background-color: #eee;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+:root {
+  --marquee-width: 100vw;
+  --marquee-height: 25vh;
+  --marquee-elements-displayed: 5;
+  --marquee-element-width: calc(var(--marquee-width) / var(--marquee-elements-displayed));
+  --marquee-animation-duration: calc(var(--marquee-elements) * 3s);
+}
+
+.marquee {
+  width: var(--marquee-width);
+  height: var(--marquee-height);
+  background-color: transparent;
+  color: #eee;
+  overflow: hidden;
+  position: fixed;
+  top: 0;
+}
+
+.marquee-content {
+  list-style: none;
+  height: 100%;
+  display: flex;
+  animation: scrolling var(--marquee-animation-duration) linear infinite;
+}
+video {
+    margin: 10px;
+    border-radius: 1rem;
+}
+
+.marquee-content:hover {
+  animation-play-state: paused;
+}
+@keyframes scrolling {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(calc(-1 * var(--marquee-element-width) * var(--marquee-elements))); }
+}
+
+
+@media (max-width: 600px) {
+  html { font-size: 12px; }
+  :root {
+    --marquee-width: 100vw;
+    --marquee-height: 16vh;
+    --marquee-elements-displayed: 3;
+  }
+}
+</style>
+<body>
+    
+
+
+    <div class="marquee">
+        <ul class="marquee-content">
+            <video controls src="https://firebasestorage.googleapis.com/v0/b/ztfr-ff6ab.appspot.com/o/advertVideos%2FZG%20-%20Introducing%20the%20Q65C%20QLED%204K%20HDR%20Smart%20TV.mp4?alt=media&token=56fcf1d3-986b-457e-aaaf-0454fae7e062" type="video/mp4" autoplay muted loop></video>
+            <video controls src="https://firebasestorage.googleapis.com/v0/b/ztfr-ff6ab.appspot.com/o/advertVideos%2FZG%20-%20Introducing%20iPhone%2015%20Pro%20_%20Apple.mp4?alt=media&token=6f67ec2d-60b4-4aa2-82d2-0b3233d9c4a9" type="video/mp4" autoplay muted loop></video>
+            <video controls src="https://firebasestorage.googleapis.com/v0/b/ztfr-ff6ab.appspot.com/o/advertVideos%2FZG%20-%20iPhone%2015%20Pro%20Titanium%20Apple%20AT%26T.mp4?alt=media&token=a426d055-566b-46a6-b76c-c6b581eff0b2" type="video/mp4" autoplay muted loop></video>
+            <video controls src="https://firebasestorage.googleapis.com/v0/b/ztfr-ff6ab.appspot.com/o/advertVideos%2FZG%20-%20Galaxy%20Z%20Fold5%20Official%20Film%20Samsung%20JP.mp4?alt=media&token=24e96a3c-0cde-4313-907c-92f99f321182" type="video/mp4" autoplay muted loop></video>
+            <video controls src="https://firebasestorage.googleapis.com/v0/b/ztfr-ff6ab.appspot.com/o/advertVideos%2FZG%20-%20Warner%20Bros.%20Studio%20Tour%20London%20-%20The%20Making%20of%20Harry%20Potter.mp4?alt=media&token=bb53c777-1f04-4e28-b308-80b26a3a85e3" type="video/mp4" autoplay muted loop></video>
+            <video controls src="https://firebasestorage.googleapis.com/v0/b/ztfr-ff6ab.appspot.com/o/advertVideos%2FZG%20-%20Unboxing%20Galaxy%20S24%2C%20S24%20Plus%20%26%20S24%20Ultra%20Official%20Video%20Samsung%20UK.mp4?alt=media&token=763f6e5c-4d1b-4d4a-a020-0aa6b3be051e" type="video/mp4" autoplay muted loop></video>
+            <video controls src="https://firebasestorage.googleapis.com/v0/b/ztfr-ff6ab.appspot.com/o/advertVideos%2FZG%2092624%20Coca-Cola%20Masterpiece.mp4?alt=media&token=4b3f4931-7e49-40e4-8c37-1a067714d187" type="video/mp4" autoplay muted loop></video>
+            <video controls src="https://firebasestorage.googleapis.com/v0/b/ztfr-ff6ab.appspot.com/o/advertVideos%2FZG%20-%20iPhone%2015%20Pro%20Titanium%20Apple%20AT%26T.mp4?alt=media&token=a426d055-566b-46a6-b76c-c6b581eff0b2" type="video/mp4" autoplay muted loop></video>
+            <video controls src="https://firebasestorage.googleapis.com/v0/b/ztfr-ff6ab.appspot.com/o/advertVideos%2FZG%20-%20Galaxy%20Z%20Fold5%20Official%20Film%20Samsung%20JP.mp4?alt=media&token=24e96a3c-0cde-4313-907c-92f99f321182" type="video/mp4" autoplay muted loop></video>
+            <video controls src="https://firebasestorage.googleapis.com/v0/b/ztfr-ff6ab.appspot.com/o/advertVideos%2FZG%20-%20Warner%20Bros.%20Studio%20Tour%20London%20-%20The%20Making%20of%20Harry%20Potter.mp4?alt=media&token=bb53c777-1f04-4e28-b308-80b26a3a85e3" type="video/mp4" autoplay muted loop></video>
+            <video controls src="https://firebasestorage.googleapis.com/v0/b/ztfr-ff6ab.appspot.com/o/advertVideos%2FZG%20-%20Unboxing%20Galaxy%20S24%2C%20S24%20Plus%20%26%20S24%20Ultra%20Official%20Video%20Samsung%20UK.mp4?alt=media&token=763f6e5c-4d1b-4d4a-a020-0aa6b3be051e" type="video/mp4" autoplay muted loop></video>
+            
+            
+        </ul>
+      </div>
+
+
+    <script>
+        const root = document.documentElement;
+        const marqueeElementsDisplayed = getComputedStyle(root).getPropertyValue("--marquee-elements-displayed");
+        const marqueeContent = document.querySelector("ul.marquee-content");
+
+        root.style.setProperty("--marquee-elements", marqueeContent.children.length);
+
+        for(let i=0; i<marqueeElementsDisplayed; i++) {
+        marqueeContent.appendChild(marqueeContent.children[i].cloneNode(true));
+        }
+    </script>
+
+</body>
+</html>
+
+
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Vertical Advert Slider</title>
+<style>
+
+    body{
+        margin: 0;
+        overflow: hidden;
+    }
+    .video-container{
+        height: 100vh;
+        display: flex;
+        overflow: hidden;
+    }
+    .video-scrolling{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-end;
+        animation: verticalScroll 600s linear infinite;
+    }
+
+    
+    .video-scrolling video{
+        display: block;
+        width: 20%;
+        margin: 5px 0;
+        border-radius: 1rem;
+    }
+
+    @keyframes verticalScroll {
+        0%{ transform: translateY(0);}
+        100%{transform: translateY(-2000%);}
+    }
+    /* .video-scrolling {
+        display: flex;
+        flex-direction: column;
+        overflow: hidden;
+        width: 100%;
+    } */
+/* 
+    .video-scrolling video {
+        width: 250px; 
+        height: auto; 
+        margin: 0px 12px;
+        animation: scroll 30s linear infinite; 
+        border-radius: 1rem;
+    } */
+
+    @keyframes scroll {
+        0% {
+            transform: translateX(0);
+        }
+        100% {
+            transform: translateX(-500px);
+        }
+    }
+</style>
+</head>
+<body>
+    <div class="video-container">
+        <div class="video-scrolling">
+            <video controls src="https://firebasestorage.googleapis.com/v0/b/ztfr-ff6ab.appspot.com/o/advertVideos%2FZG%20-%20Introducing%20the%20Q65C%20QLED%204K%20HDR%20Smart%20TV.mp4?alt=media&token=56fcf1d3-986b-457e-aaaf-0454fae7e062" type="video/mp4" autoplay muted loop></video>
+            <video controls src="https://firebasestorage.googleapis.com/v0/b/ztfr-ff6ab.appspot.com/o/advertVideos%2FZG%20-%20Introducing%20iPhone%2015%20Pro%20_%20Apple.mp4?alt=media&token=6f67ec2d-60b4-4aa2-82d2-0b3233d9c4a9" type="video/mp4" autoplay muted loop></video>
+            <video controls src="https://firebasestorage.googleapis.com/v0/b/ztfr-ff6ab.appspot.com/o/advertVideos%2FZG%20-%20iPhone%2015%20Pro%20Titanium%20Apple%20AT%26T.mp4?alt=media&token=a426d055-566b-46a6-b76c-c6b581eff0b2" type="video/mp4" autoplay muted loop></video>
+            <video controls src="https://firebasestorage.googleapis.com/v0/b/ztfr-ff6ab.appspot.com/o/advertVideos%2FZG%20-%20Galaxy%20Z%20Fold5%20Official%20Film%20Samsung%20JP.mp4?alt=media&token=24e96a3c-0cde-4313-907c-92f99f321182" type="video/mp4" autoplay muted loop></video>
+            <video controls src="https://firebasestorage.googleapis.com/v0/b/ztfr-ff6ab.appspot.com/o/advertVideos%2FZG%20-%20Warner%20Bros.%20Studio%20Tour%20London%20-%20The%20Making%20of%20Harry%20Potter.mp4?alt=media&token=bb53c777-1f04-4e28-b308-80b26a3a85e3" type="video/mp4" autoplay muted loop></video>
+            <video controls src="https://firebasestorage.googleapis.com/v0/b/ztfr-ff6ab.appspot.com/o/advertVideos%2FZG%20-%20Unboxing%20Galaxy%20S24%2C%20S24%20Plus%20%26%20S24%20Ultra%20Official%20Video%20Samsung%20UK.mp4?alt=media&token=763f6e5c-4d1b-4d4a-a020-0aa6b3be051e" type="video/mp4" autoplay muted loop></video>
+            <video controls src="https://firebasestorage.googleapis.com/v0/b/ztfr-ff6ab.appspot.com/o/advertVideos%2FZG%2092624%20Coca-Cola%20Masterpiece.mp4?alt=media&token=4b3f4931-7e49-40e4-8c37-1a067714d187" type="video/mp4" autoplay muted loop></video>
+
+        </div>
+    </div>
+
+</body>
+</html>
+
+ -->
