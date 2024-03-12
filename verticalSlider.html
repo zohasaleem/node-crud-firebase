@@ -124,8 +124,10 @@
                     video.src = advertisement.url;
                     video.controls = true; 
                     video.setAttribute('controlsList', 'nodownload'); 
-                    video.muted = true; 
+                    video.muted = true;
+                    video.autoplay = true;  
                     video.loop = true; 
+
 
                     videosContainer.appendChild(video);
                 });
