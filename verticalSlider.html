@@ -126,10 +126,10 @@
         const observer = new IntersectionObserver(entries => {
         entries.forEach(entry => {
             const video = entry.target.querySelector("video");
-            if (entry.isIntersecting && !video.dataset.userInteracted) {
-            video.muted = true;
+            if (entry.intersectionRatio < 0.5 && !video.dataset.userInteracted) {
+                video.muted = true; 
             } else {
-            video.muted = false; 
+                video.muted = false; 
             }
         });
         }, { threshold: 0.5 }); 
