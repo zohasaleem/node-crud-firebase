@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Vertical Advert Slider</title>
+    
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <style>
         * {
@@ -73,64 +75,155 @@
             }
         } */
     </style>
+
 </head>
 <body id="advertsVerticalSlider">
 
     <div class="marquee">
-        <ul class="marquee-content" >
-            <video controls controlsList="nodownload" src="https://firebasestorage.googleapis.com/v0/b/ztfr-ff6ab.appspot.com/o/advertVideos%2FZG%20-%20Introducing%20the%20Q65C%20QLED%204K%20HDR%20Smart%20TV.mp4?alt=media&token=56fcf1d3-986b-457e-aaaf-0454fae7e062" type="video/mp4" autoplay muted loop></video>
+        <ul class="marquee-content" id="marqueeContent" >
+            <!-- <video controls controlsList="nodownload" src="https://firebasestorage.googleapis.com/v0/b/ztfr-ff6ab.appspot.com/o/advertVideos%2FZG%20-%20Introducing%20the%20Q65C%20QLED%204K%20HDR%20Smart%20TV.mp4?alt=media&token=56fcf1d3-986b-457e-aaaf-0454fae7e062" type="video/mp4" autoplay muted loop></video>
             <video controls controlsList="nodownload" src="https://firebasestorage.googleapis.com/v0/b/ztfr-ff6ab.appspot.com/o/advertVideos%2FZG%20-%20Introducing%20iPhone%2015%20Pro%20_%20Apple.mp4?alt=media&token=6f67ec2d-60b4-4aa2-82d2-0b3233d9c4a9" type="video/mp4" autoplay muted loop></video>
             <video controls controlsList="nodownload" src="https://firebasestorage.googleapis.com/v0/b/ztfr-ff6ab.appspot.com/o/advertVideos%2FZG%20-%20iPhone%2015%20Pro%20Titanium%20Apple%20AT%26T.mp4?alt=media&token=a426d055-566b-46a6-b76c-c6b581eff0b2" type="video/mp4" autoplay muted loop></video>
             <video controls controlsList="nodownload" src="https://firebasestorage.googleapis.com/v0/b/ztfr-ff6ab.appspot.com/o/advertVideos%2FZG%20-%20Galaxy%20Z%20Fold5%20Official%20Film%20Samsung%20JP.mp4?alt=media&token=24e96a3c-0cde-4313-907c-92f99f321182" type="video/mp4" autoplay muted loop></video>
             <video controls controlsList="nodownload" src="https://firebasestorage.googleapis.com/v0/b/ztfr-ff6ab.appspot.com/o/advertVideos%2FZG%20-%20Warner%20Bros.%20Studio%20Tour%20London%20-%20The%20Making%20of%20Harry%20Potter.mp4?alt=media&token=bb53c777-1f04-4e28-b308-80b26a3a85e3" type="video/mp4" autoplay muted loop></video>
             <video controls controlsList="nodownload" src="https://firebasestorage.googleapis.com/v0/b/ztfr-ff6ab.appspot.com/o/advertVideos%2FZG%20-%20Unboxing%20Galaxy%20S24%2C%20S24%20Plus%20%26%20S24%20Ultra%20Official%20Video%20Samsung%20UK.mp4?alt=media&token=763f6e5c-4d1b-4d4a-a020-0aa6b3be051e" type="video/mp4" autoplay muted loop></video>
             <video controls controlsList="nodownload" src="https://firebasestorage.googleapis.com/v0/b/ztfr-ff6ab.appspot.com/o/advertVideos%2FZG%2092624%20Coca-Cola%20Masterpiece.mp4?alt=media&token=4b3f4931-7e49-40e4-8c37-1a067714d187" type="video/mp4" autoplay muted loop></video>
-            <!--  -->
+            
             <video controls controlsList="nodownload" src="https://firebasestorage.googleapis.com/v0/b/ztfr-ff6ab.appspot.com/o/advertVideos%2FZG%20-%20Introducing%20the%20Q65C%20QLED%204K%20HDR%20Smart%20TV.mp4?alt=media&token=56fcf1d3-986b-457e-aaaf-0454fae7e062" type="video/mp4" autoplay muted loop></video>
             <video controls controlsList="nodownload" src="https://firebasestorage.googleapis.com/v0/b/ztfr-ff6ab.appspot.com/o/advertVideos%2FZG%20-%20Introducing%20iPhone%2015%20Pro%20_%20Apple.mp4?alt=media&token=6f67ec2d-60b4-4aa2-82d2-0b3233d9c4a9" type="video/mp4" autoplay muted loop></video>
             <video controls controlsList="nodownload" src="https://firebasestorage.googleapis.com/v0/b/ztfr-ff6ab.appspot.com/o/advertVideos%2FZG%20-%20iPhone%2015%20Pro%20Titanium%20Apple%20AT%26T.mp4?alt=media&token=a426d055-566b-46a6-b76c-c6b581eff0b2" type="video/mp4" autoplay muted loop></video>
             <video controls controlsList="nodownload" src="https://firebasestorage.googleapis.com/v0/b/ztfr-ff6ab.appspot.com/o/advertVideos%2FZG%20-%20Galaxy%20Z%20Fold5%20Official%20Film%20Samsung%20JP.mp4?alt=media&token=24e96a3c-0cde-4313-907c-92f99f321182" type="video/mp4" autoplay muted loop></video>
             <video controls controlsList="nodownload" src="https://firebasestorage.googleapis.com/v0/b/ztfr-ff6ab.appspot.com/o/advertVideos%2FZG%20-%20Warner%20Bros.%20Studio%20Tour%20London%20-%20The%20Making%20of%20Harry%20Potter.mp4?alt=media&token=bb53c777-1f04-4e28-b308-80b26a3a85e3" type="video/mp4" autoplay muted loop></video>
             <video controls controlsList="nodownload" src="https://firebasestorage.googleapis.com/v0/b/ztfr-ff6ab.appspot.com/o/advertVideos%2FZG%20-%20Unboxing%20Galaxy%20S24%2C%20S24%20Plus%20%26%20S24%20Ultra%20Official%20Video%20Samsung%20UK.mp4?alt=media&token=763f6e5c-4d1b-4d4a-a020-0aa6b3be051e" type="video/mp4" autoplay muted loop></video>
-            <video controls controlsList="nodownload" src="https://firebasestorage.googleapis.com/v0/b/ztfr-ff6ab.appspot.com/o/advertVideos%2FZG%2092624%20Coca-Cola%20Masterpiece.mp4?alt=media&token=4b3f4931-7e49-40e4-8c37-1a067714d187" type="video/mp4" autoplay muted loop></video>
+            <video controls controlsList="nodownload" src="https://firebasestorage.googleapis.com/v0/b/ztfr-ff6ab.appspot.com/o/advertVideos%2FZG%2092624%20Coca-Cola%20Masterpiece.mp4?alt=media&token=4b3f4931-7e49-40e4-8c37-1a067714d187" type="video/mp4" autoplay muted loop></video> -->
             
         </ul>
     </div>
 
     <script>
-        const root = document.documentElement;
-        const marqueeElementsDisplayed = getComputedStyle(root).getPropertyValue("--marquee-elements-displayed");
-        const marqueeContent = document.querySelector("ul.marquee-content");
 
-        root.style.setProperty("--marquee-elements", marqueeContent.children.length);
+        $.ajax({
+            url: 'https://zimogroup.co.uk/backend-zitransfer/src/public/api/advert-by-user-country',
+            type: 'GET',
+            contentType: 'application/json',
+            headers: {
+                'API-Key': '$786MZ786$' // Replace 'your_api_key_here' with your actual API key
+            },
+            success: function(response) {
+                var advertisements = response.adverisements; 
 
-        for (let i = 0; i < marqueeElementsDisplayed; i++) {
-        marqueeContent.appendChild(marqueeContent.children[i].cloneNode(true));
-        }
+                var videoAdvertisements = advertisements.filter(function(advertisement) {
+                    return advertisement.type == 'video';
+                });     
 
-        // Reset the animation when all elements have scrolled 
-        marqueeContent.addEventListener("animationiteration", () => {
-            const firstElement = marqueeContent.children[0];
-            marqueeContent.appendChild(firstElement.cloneNode(true));
-            marqueeContent.removeChild(firstElement);
+                var videosContainer = document.getElementById('marqueeContent');
+
+                videoAdvertisements.forEach(function(advertisement) {
+                    // Create a video element
+                    var video = document.createElement('video');
+                    video.src = advertisement.url;
+                    video.controls = true; 
+                    video.setAttribute('controlsList', 'nodownload'); 
+                    video.muted = true; 
+                    video.loop = true; 
+
+                    videosContainer.appendChild(video);
+                });
+                console.log(videoAdvertisements)    
+
+                const root = document.documentElement;
+                const marqueeElementsDisplayed = getComputedStyle(root).getPropertyValue("--marquee-elements-displayed");
+                const marqueeContent = document.querySelector("ul.marquee-content");
+
+                root.style.setProperty("--marquee-elements", marqueeContent.children.length);
+
+                for (let i = 0; i < marqueeElementsDisplayed; i++) {
+                marqueeContent.appendChild(marqueeContent.children[i].cloneNode(true));
+                }
+
+                // Reset the animation when all elements have scrolled 
+                marqueeContent.addEventListener("animationiteration", () => {
+                    const firstElement = marqueeContent.children[0];
+                    marqueeContent.appendChild(firstElement.cloneNode(true));
+                    marqueeContent.removeChild(firstElement);
+                });
+
+                // //mute videos which aren't on view
+                const videos = document.querySelectorAll('video');
+                const observer = new IntersectionObserver(entries => {
+                    entries.forEach(entry => {
+                        const video = entry.target;
+
+                        if (!entry.isIntersecting) {
+                            video.muted = true;
+                        } 
+                    
+                    });
+                });
+
+                videos.forEach(video => {
+                    observer.observe(video);
+                }); 
+
+
+
+
+                
+                function isMobileDevice() {
+                    return /Mobi/i.test(navigator.userAgent);
+                }
+                if (isMobileDevice()) {
+                    var advertSlider = document.getElementById('advertsVerticalSlider');
+                    advertSlider.style.display = 'none';
+                    console.log("User is on a mobile device"); 
+                }
+                
+                
+
+
+
+
+
+
+            },
+            error: function(error) {
+                console.error(error);
+                // Handle the error here
+            }
         });
+        // const root = document.documentElement;
+        // const marqueeElementsDisplayed = getComputedStyle(root).getPropertyValue("--marquee-elements-displayed");
+        // const marqueeContent = document.querySelector("ul.marquee-content");
 
-        // //mute videos which aren't on view
-        const videos = document.querySelectorAll('video');
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                const video = entry.target;
+        // root.style.setProperty("--marquee-elements", marqueeContent.children.length);
 
-                if (!entry.isIntersecting) {
-                    video.muted = true;
-                } 
+        // for (let i = 0; i < marqueeElementsDisplayed; i++) {
+        // marqueeContent.appendChild(marqueeContent.children[i].cloneNode(true));
+        // }
+
+        // // Reset the animation when all elements have scrolled 
+        // marqueeContent.addEventListener("animationiteration", () => {
+        //     const firstElement = marqueeContent.children[0];
+        //     marqueeContent.appendChild(firstElement.cloneNode(true));
+        //     marqueeContent.removeChild(firstElement);
+        // });
+
+        // // //mute videos which aren't on view
+        // const videos = document.querySelectorAll('video');
+        // const observer = new IntersectionObserver(entries => {
+        //     entries.forEach(entry => {
+        //         const video = entry.target;
+
+        //         if (!entry.isIntersecting) {
+        //             video.muted = true;
+        //         } 
             
-            });
-        });
+        //     });
+        // });
 
-        videos.forEach(video => {
-            observer.observe(video);
-        }); 
+        // videos.forEach(video => {
+        //     observer.observe(video);
+        // }); 
 
 
         // Intersection Observer to detect when videos are in view
@@ -159,14 +252,14 @@
 
 
 
-        function isMobileDevice() {
-            return /Mobi/i.test(navigator.userAgent);
-        }
-        if (isMobileDevice()) {
-            var advertSlider = document.getElementById('advertsVerticalSlider');
-            advertSlider.style.display = 'none';
-            console.log("User is on a mobile device"); 
-        }
+        // function isMobileDevice() {
+        //     return /Mobi/i.test(navigator.userAgent);
+        // }
+        // if (isMobileDevice()) {
+        //     var advertSlider = document.getElementById('advertsVerticalSlider');
+        //     advertSlider.style.display = 'none';
+        //     console.log("User is on a mobile device"); 
+        // }
 
     </script>
 
