@@ -97,6 +97,25 @@
         marqueeContent.appendChild(marqueeContent.children[i].cloneNode(true));
         }
 
+        const videos = document.querySelectorAll('video');
+        const observer = new IntersectionObserver(entries => {
+            entries.forEach(entry => {
+                const video = entry.target;
+
+                if (!entry.isIntersecting) {
+                    video.muted = true;
+                } 
+            
+            });
+        });
+
+        videos.forEach(video => {
+        observer.observe(video);
+        });
+
+
+
+
         function isMobileDevice() {
             return /Mobi/i.test(navigator.userAgent);
         }
