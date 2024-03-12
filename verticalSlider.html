@@ -97,6 +97,7 @@
         marqueeContent.appendChild(marqueeContent.children[i].cloneNode(true));
         }
 
+        //mute videos which aren't on view port
         const videos = document.querySelectorAll('video');
         const observer = new IntersectionObserver(entries => {
             entries.forEach(entry => {
@@ -111,7 +112,7 @@
 
         videos.forEach(video => {
         observer.observe(video);
-        });
+        }); 
 
 
 
