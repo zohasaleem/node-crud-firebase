@@ -104,22 +104,46 @@
             marqueeContent.removeChild(firstElement);
         });
 
-        //mute videos which aren't on view
-        const videos = document.querySelectorAll('video');
-        const observer = new IntersectionObserver(entries => {
-            entries.forEach(entry => {
-                const video = entry.target;
+        // //mute videos which aren't on view
+        // const videos = document.querySelectorAll('video');
+        // const observer = new IntersectionObserver(entries => {
+        //     entries.forEach(entry => {
+        //         const video = entry.target;
 
-                if (!entry.isIntersecting) {
-                    video.muted = true;
-                } 
+        //         if (!entry.isIntersecting) {
+        //             video.muted = true;
+        //         } 
             
-            });
+        //     });
+        // });
+
+        // videos.forEach(video => {
+        //     observer.observe(video);
+        // }); 
+
+
+        // Intersection Observer to detect when videos are in view
+        const observer = new IntersectionObserver(entries => {
+        entries.forEach(entry => {
+            const video = entry.target.querySelector("video");
+            if (entry.isIntersecting && !video.dataset.userInteracted) {
+            video.muted = true;
+            } else {
+            video.muted = false; 
+            }
+        });
+        }, { threshold: 0.5 }); 
+
+        document.querySelectorAll(".marquee-content video").forEach(video => {
+        observer.observe(video);
         });
 
-        videos.forEach(video => {
-        observer.observe(video);
-        }); 
+        document.querySelectorAll(".marquee-content video").forEach(video => {
+        video.addEventListener("click", () => {
+            video.dataset.userInteracted = true;
+            video.muted = false;
+        });
+        });
 
 
 
