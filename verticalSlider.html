@@ -158,7 +158,7 @@
         function isMobileDevice() {
             return /Mobi/i.test(navigator.userAgent);
         }
-        if (isMobile()) {
+        if (isMobileDevice()) {
             var advertSlider = document.getElementById('advertsVerticalSlider');
             advertSlider.style.display = 'none';
             console.log("User is on a mobile device");
