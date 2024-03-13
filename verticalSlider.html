@@ -135,7 +135,7 @@
                     video.setAttribute('controlsList', 'nodownload nofullscreen'); 
                     video.setAttribute('muted', 'muted'); 
                     video.setAttribute('loop', 'loop'); 
-                    video.setAttribute('preload', 'none'); 
+                    // video.setAttribute('preload', 'none'); 
                     video.setAttribute('poster', advertisement.video_poster); 
 
                     video.addEventListener('click', function() {
@@ -179,7 +179,7 @@
                             video.pause();
                             video.currentTime = 0;
                             video.controls = false; 
-                            video.setAttribute('preload', 'none');
+                            // video.setAttribute('preload', 'none');
                             video.setAttribute('poster', response.advertisement.video_poster);
                         } 
                     
