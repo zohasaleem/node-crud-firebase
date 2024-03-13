@@ -176,6 +176,9 @@
 
                         if (!entry.isIntersecting) {
                             video.muted = true;
+                            video.pause();
+                            video.currentTime = 0;
+                            video.controls = false; 
                         } 
                     
                     });
