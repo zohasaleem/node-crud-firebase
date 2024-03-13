@@ -59,6 +59,14 @@
             display: none;
         }
 
+        video {
+            pointer-events: none;
+        }
+
+        video.controls {
+            pointer-events: auto; 
+        }
+
         .marquee-content:hover {
             animation-play-state: paused;
         }
@@ -128,14 +136,11 @@
                     video.setAttribute('muted', 'muted'); 
                     video.setAttribute('loop', 'loop'); 
                     video.setAttribute('preload', 'none'); 
-                    video.setAttribute('poster', advertisement.video_poster_300); 
+                    video.setAttribute('poster', advertisement.video_poster); 
 
                     video.addEventListener('click', function() {
-                        if (video.paused) {
-                            video.play();
-                        } else {
-                            video.pause();
-                        }
+                        video.controls = true; 
+                        video.play(); 
                     });
                     // video.muted = true;
                     // video.setAttribute('autoplay', '');
