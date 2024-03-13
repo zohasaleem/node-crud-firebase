@@ -127,7 +127,7 @@
                 var videosContainer = document.getElementById('marqueeContent');
 
                 videoAdvertisements.forEach(function(advertisement) {
-                    // Create a video element
+
                     var video = document.createElement('video');
                     video.src = advertisement.url;
                     // video.controls = true; 
@@ -179,7 +179,7 @@
                             video.pause();
                             video.currentTime = 0;
                             video.controls = false; 
-                            video.setAttribute('preload', '');
+                            video.setAttribute('preload', 'none');
                             video.setAttribute('poster', response.advertisement.video_poster);
                         } 
                     
