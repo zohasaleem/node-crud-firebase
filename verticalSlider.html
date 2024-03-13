@@ -55,9 +55,13 @@
             border-radius: 1rem;
         }
 
-        /* video::-webkit-media-controls-fullscreen-button {
+        video::-webkit-media-controls-fullscreen-button {
             display: none;
-        } */
+        }
+        /* Hide default play button overlay */
+        video::-webkit-media-controls-start-playback-button {
+            display: none !important;
+        }
 
         .marquee-content:hover {
             animation-play-state: paused;
@@ -123,13 +127,19 @@
                     var video = document.createElement('video');
                     video.src = advertisement.url;
                     video.controls = true; 
-                    video.setAttribute('controlsList', 'nodownload nofullscreen'); 
+                    video.setAttribute('controlsList', 'nodownload'); 
                     video.muted = true;
                     video.setAttribute('poster', advertisement.video_poster);
                     video.setAttribute('preload', 'none');
                     // video.setAttribute('autoplay', '');
                     // video.loop = true; 
-
+                    video.addEventListener('click', function() {
+                        if (video.paused) {
+                            video.play();
+                        } else {
+                            video.pause();
+                        }
+                    });
 
                     videosContainer.appendChild(video);
                 });
