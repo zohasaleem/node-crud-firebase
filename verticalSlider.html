@@ -179,6 +179,8 @@
                             video.pause();
                             video.currentTime = 0;
                             video.controls = false; 
+                            video.setAttribute('preload', '');
+                            video.setAttribute('poster', response.advertisement.video_poster);
                         } 
                     
                     });
