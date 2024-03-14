@@ -20,7 +20,7 @@
                 overflow: hidden;
             }
             :root {
-                --marquee-width: 100vw;
+                --marquee-width: 50vw;
                 --marquee-height: 100vh;
                 --marquee-elements: 12; 
                 --marquee-elements-displayed: 5; 
@@ -97,11 +97,13 @@
 
                         var video = document.createElement('video');
                         video.src = advertisement.url;
-                        video.setAttribute('controlsList', 'nodownload nofullscreen'); 
+                        video.setAttribute('controlsList', 'nodownload nofullscreen noplaybackrate'); 
                         video.setAttribute('muted', 'muted'); 
                         video.setAttribute('loop', 'loop'); 
                         video.setAttribute('preload', 'none'); 
                         video.setAttribute('poster', advertisement.video_poster); 
+                        video.disablePictureInPicture = true;
+
 
                         video.addEventListener('click', function() {
                             console.log("1st click" + JSON.stringify(videoClicks))
