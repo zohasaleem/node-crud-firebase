@@ -75,7 +75,7 @@
 
         <script>
 
-            let videoClicks = 0;
+            let videoClicks = 1;
 
             $.ajax({
                 url: 'https://zimogroup.co.uk/backend-zitransfer/src/public/api/advert-by-user-country',
@@ -103,19 +103,21 @@
                         video.setAttribute('preload', 'none'); 
                         video.setAttribute('poster', advertisement.video_poster); 
 
-                        video.addEventListener('click', function() {
-                            if(videoClicks == 0){
+                        var videoContainer = document.createElement('div');
+                        videoContainer.appendChild(video);
+                        videoContainer.addEventListener('click', function() {
+                            if (videoClicks == 1){
                                 video.controls = true; 
                                 video.play(); 
                                 videoClicks++;
                             }
-                            else if (videoClicks == 1){
+                            else if (videoClicks == 2){
                                 const videoId = btoa(advertisement.id);
                                 video.muted = true;
                                 video.pause();
                                 const ztfrUrl = "https://zitransfer.com?videoId=" + videoId;
                                 window.open(ztfrUrl, "_blank");
-                                videoClicks = 0;
+                                videoClicks = 1;
                             }
                         });
                         
