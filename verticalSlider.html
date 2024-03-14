@@ -20,7 +20,7 @@
                 overflow: hidden;
             }
             :root {
-                --marquee-width: 100vw;
+                --marquee-width: 50vw;
                 --marquee-height: 100vh;
                 --marquee-elements: 12; 
                 --marquee-elements-displayed: 5; 
@@ -75,7 +75,7 @@
 
         <script>
 
-            let videoClicks = 1;
+            let videoClicks = {};
 
             $.ajax({
                 url: 'https://zimogroup.co.uk/backend-zitransfer/src/public/api/advert-by-user-country',
@@ -104,18 +104,24 @@
                         video.setAttribute('poster', advertisement.video_poster); 
 
                         video.addEventListener('click', function() {
-                            if (videoClicks == 1){
-                                video.controls = true; 
+                            console.log("1st click" + JSON.stringify(videoClicks))
+                                video.controls = true;
+                            const videoId = advertisement.id;
+                            if (!videoClicks[videoId]){
+                                videoClicks[videoId] = 1; 
                                 video.play(); 
-                                videoClicks++;
+                                console.log("after 1st click " + JSON.stringify(videoClicks))
                             }
-                            else if (videoClicks == 2){
+                            else{
+                                console.log("2nd click " + JSON.stringify(videoClicks))
+
                                 const videoId = btoa(advertisement.id);
                                 video.muted = true;
                                 video.pause();
                                 const ztfrUrl = "https://zitransfer.com?videoId=" + videoId;
                                 window.open(ztfrUrl, "_blank");
-                                videoClicks = 1;
+                                console.log("set to 1 again " + JSON.stringify(videoClicks))
+
                             }
                         });
                         
