@@ -103,9 +103,7 @@
                         video.setAttribute('preload', 'none'); 
                         video.setAttribute('poster', advertisement.video_poster); 
 
-                        var videoContainer = document.createElement('div');
-                        videoContainer.appendChild(video);
-                        videoContainer.addEventListener('click', function() {
+                        video.addEventListener('click', function() {
                             if (videoClicks == 1){
                                 video.controls = true; 
                                 video.play(); 
