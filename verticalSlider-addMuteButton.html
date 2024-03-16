@@ -6,23 +6,87 @@
         <title>Vertical Advert Slider</title>
         
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
-
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
         <style>
 
+        /* video::-webkit-media-controls-enclosure {
+            width:100%;
+            background-color:transparent;
+            -moz-border-radius: 1px !important;
+            -webkit-border-radius: 1px !important;
+            border-radius: 1px !important;
+            filter: alpha(opacity=80);
+            opacity: 0.8;
+            margin-bottom:-20px;
+            overflow: hidden;
+        }
+        video::-webkit-media-controls-panel {
+            background-color: #eee;
+            height:35px !important;
+        } */
 
-            video::-webkit-media-controls-panel {
-                max-height: 50px !important;
-                background: none !important; 
-            }
+        /* Hide default play button overlay */
+/* video::-webkit-media-controls-start-playback-button {
+    display: inline-block !important;
+    background-color: transparent !important;
+    color: white !important;
+    width: 30px;
+    height: 30px;
+    font-size: 20px;
+} */
 
-            video::-webkit-media-controls-timeline,
-            video::-webkit-media-controls-fullscreen-button,
-            video::-webkit-media-controls-play-button,
-            video::-webkit-media-controls-current-time-display,
-            video::-webkit-media-controls-time-remaining-display{
-                display: none !important;   
+/* Show mute button */
+/* video::-webkit-media-controls-mute-button,
+video::-webkit-media-controls-play-button {
+    height: 10px !important;
+    margin-bottom: 10px !important;
+    background-color: transparent !important;
 
-            }
+} */
+/* Hide the circle behind the play button */
+/* video::-webkit-media-controls-start-playback-button {
+    background-color: transparent !important;
+    background: transparent !important;
+    background-image: none !important;
+
+} */
+
+/* Hide the circle behind the play button on hover */
+/* video::-webkit-media-controls-start-playback-button:hover {
+    background-color: transparent !important;
+    background: transparent !important;
+
+} */
+
+
+/* video::-webkit-media-controls-enclosure {
+    height: 20px !important; 
+} */
+video::-webkit-media-controls-panel {
+    /* height: 50px !important;
+    max-height: 50px !important; */
+    /* background-color: none !important;
+    background: none !important; */
+}
+
+/* Hide other controls */
+/* video::-webkit-media-controls-enclosure {
+    display: flex !important;
+    justify-content: space-between;
+    align-items:last baseline;
+    background-color: transparent !important;
+    height: 10px !important;
+} */
+/* video::-webkit-media-controls-enclosure {
+    max-height: 25px !important;
+    background: transparent !important;
+} */
+
+/* Hide timeline and fullscreen button */
+/* video::-webkit-media-controls-timeline,
+video::-webkit-media-controls-fullscreen-button {
+    display: none !important;
+} */
 
 
             * {
@@ -37,7 +101,7 @@
                 overflow: hidden;
             }
             :root {
-                --marquee-width: 100vw;
+                --marquee-width: 45vw;
                 --marquee-height: 100vh;
                 --marquee-elements: 12; 
                 --marquee-elements-displayed: 5; 
@@ -49,21 +113,40 @@
                 width: var(--marquee-width);
                 height: var(--marquee-height);
                 background-color: transparent;
-                color: #eee;
                 overflow: hidden;
+                position: relative; /* added */
             }
 
             .marquee-content {
                 list-style: none;
                 height: var(--marquee-element-height);
+                /* height: calc(var(--marquee-element-height) * var(--marquee-elements));  */
                 display: flex;
                 flex-direction: column;
                 animation: scrolling var(--marquee-animation-duration) linear infinite;
             }
+            
 
             video {
                 margin: 10px;
                 border-radius: 1rem;
+                width: 100%; /* Added */
+                height: 100%; /* Added */
+                object-fit: cover; /* Added */
+            }
+
+
+            .mute-button {
+                position: absolute;
+                top: 10px;
+                right: 10px;
+                z-index: 1; /* Ensure button is above video */
+                background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
+                color: white;
+                padding: 5px 10px;
+                border: none;
+                border-radius: 5px;
+                cursor: pointer;
             }
 
             /* full screen button */
@@ -114,7 +197,11 @@
 
                     videoAdvertisements.forEach(function(advertisement) {
 
+                        var videoWrapper = document.createElement('div');
+                        videoWrapper.className = "video-wrapper";
+
                         var video = document.createElement('video');
+
                         video.src = advertisement.url;
                         video.setAttribute('controlsList', 'nodownload nofullscreen noplaybackrate'); 
                         video.setAttribute('muted', 'muted'); 
@@ -122,7 +209,35 @@
                         video.setAttribute('preload', 'none'); 
                         video.setAttribute('poster', advertisement.video_poster); 
                         video.disablePictureInPicture = true;
+                        
+                        var muteButton = document.createElement('i');
+                        muteButton.className ="mute-button";
+                        muteButton.textContent = "Mute";
+                        
+                        muteButton.addEventListener('mouseenter', function(){
+                            if (video.muted){
+                                video.muted = false;
+                                muteButton.textContent = 'Mute';
+                            } 
+                            else{
+                                video.muted = true;
+                                muteButton.textContent = 'Unmute';
+                            }
+                        });
 
+                        videoWrapper.appendChild(video);
+                        videoWrapper.appendChild(muteButton);
+
+                        videosContainer.appendChild(videoWrapper)
+
+
+                        video.addEventListener('mouseenter', function(){
+                            video.play();
+                        });
+
+                        video.addEventListener('mouseout', function() {
+                            video.pause();
+                        });
 
                         // video.addEventListener('click', function() {
                         //     console.log("1st click" + JSON.stringify(videoClicks))
@@ -144,36 +259,12 @@
                         //         console.log("set to 1 again " + JSON.stringify(videoClicks))
                         //     }
                         // });
-                        
-                        videosContainer.appendChild(video);
 
-                        video.addEventListener('mouseenter', function () {
-                            // video.setAttribute('preload', 'auto');
+                        // videosContainer.appendChild(video);
 
-                            video.play();
-                            video.controls = true;
-                            video.muted = true;
-                        });
-
-                        video.addEventListener('mouseout', function () {
-                            video.pause();
-                        });
-
-                        video.addEventListener('click', function() {
-                        
-                            const videoId = btoa(advertisement.id);
-                            video.muted = true;
-                            video.pause();
-                            const ztfrUrl = "https://zitransfer.com?videoId=" + videoId;
-                            window.open(ztfrUrl, "_blank");
-
-                        });
+    
 
                     });
-
-
-
-
 
                     console.log(videoAdvertisements)    
 
