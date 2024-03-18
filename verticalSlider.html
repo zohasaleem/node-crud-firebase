@@ -65,6 +65,7 @@
                 width: 180px;
                 margin: 8px 21px;
                 border-radius: 15px;
+                opacity: 75%;
                 /* height: 107px; */
             }
 
@@ -152,7 +153,7 @@
                         video.addEventListener('mouseenter', function () {
                             // video.setAttribute('preload', 'auto');
                             video.setAttribute('preload', 'none'); 
-
+                            video.style.opacity = '100%',
                             video.play();
                             video.controls = true;
                             video.muted = true;
