@@ -42,7 +42,7 @@
                 --marquee-elements: 12;  
                 --marquee-elements-displayed: 5; 
                 --marquee-element-height: calc(var(--marquee-height) / var(--marquee-elements-displayed));
-                --marquee-animation-duration: calc(var(--marquee-elements) * 3s);
+                --marquee-animation-duration: calc(var(--marquee-elements) * 4s);
             }
 
             .marquee {
@@ -58,7 +58,7 @@
                 height: var(--marquee-element-height);
                 display: flex;
                 flex-direction: column;
-                animation: scrolling var(--marquee-animation-duration) linear infinite;
+                animation: scrolling var(--marquee-animation-duration) linear 0s infinite normal;
             }
 
             video {
