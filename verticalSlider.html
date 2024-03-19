@@ -191,11 +191,11 @@
 
                         video.addEventListener('mouseout', function () {
                             video.pause();
-                            // const videoWrapper = video.parentElement;
-                            // const muteButton = videoWrapper.querySelector('.volume');
-                            // if(muteButton){
-                            //     muteButton.innerHTML = muteIcon;
-                            // }
+                            const videoWrapper = video.parentElement;
+                            const muteButton = videoWrapper.querySelector('.volume');
+                            if(muteButton){
+                                muteButton.innerHTML = muteIcon;
+                            }
                         });
 
                         // redirect user to ztfr playing the clicked video
