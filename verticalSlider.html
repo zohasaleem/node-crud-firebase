@@ -100,7 +100,8 @@
         <script>
 
             let videoClicks = {};
-
+            var muteIcon = '<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 72.67 61.59"><defs><style>.cls-1 {fill: #fff;}</style></defs><g><path class="cls-1" d="M14.9,20.02H4.16c-2.3,0-4.16,1.86-4.16,4.16v16.63c0,2.3,1.86,4.16,4.16,4.16H14.9l15.41,15.41c1.19,1.19,2.98,1.54,4.53,.9,1.55-.64,2.57-2.16,2.57-3.84v-21.64L18.27,16.65l-3.37,3.37Z"/><path class="cls-1" d="M38.02,6.22c0-1.56-.94-2.96-2.38-3.56s-3.09-.27-4.2,.83l-8.09,8.09,14.66,14.66V6.22Z"/><path class="cls-1" d="M72.67,29.31c0-10.63-4.31-20.26-11.27-27.22-1.5-1.5-3.94-1.5-5.44,0-1.5,1.5-1.5,3.94,0,5.44,5.58,5.58,9.02,13.27,9.02,21.78,0,6.74-2.17,12.97-5.84,18.04l5.5,5.5c5.04-6.51,8.05-14.67,8.05-23.54Z"/><path class="cls-1" d="M57.27,29.31c0-3.28-.69-6.41-1.92-9.24-1.17-2.67-2.82-5.07-4.84-7.09-1.5-1.5-3.94-1.5-5.44,0-1.5,1.5-1.5,3.94,0,5.44,1.35,1.35,2.46,2.96,3.23,4.73,.82,1.88,1.28,3.96,1.28,6.16,0,2.47-.59,4.79-1.63,6.86l5.64,5.64c2.33-3.6,3.68-7.9,3.68-12.5Z"/><path class="cls-1" d="M43.06,42.36c-1.5,1.5-1.5,3.94,0,5.44s3.94,1.5,5.44,0c.13-.13,.26-.27,.39-.4l-5.45-5.45c-.13,.14-.24,.28-.38,.41Z"/><path class="cls-1" d="M53.95,53.25c-1.5,1.5-1.5,3.94,0,5.44,1.5,1.5,3.94,1.5,5.44,0,.13-.13,.26-.27,.39-.4l-5.44-5.44c-.13,.13-.25,.27-.39,.4Z"/></g><path class="cls-1" d="M65.46,55.48l-5.88-5.88-5.92-5.92-6.03-6.03-10.61-10.61-15.68-15.68L10.66,.68c-.9-.9-2.37-.9-3.27,0-.9,.9-.9,2.37,0,3.27l10.68,10.68,18.95,18.95,7.93,7.93,5.83,5.83,5.82,5.82,5.82,5.82,.96,.96c.9,.9,2.37,.9,3.27,0s.9-2.37,0-3.27l-1.19-1.19Z"/></svg>';
+            var unMuteIcon = '<svg id="Layer_1" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 69.29 56.69"><defs><style>.cls-1 {fill: #fff;fill-rule: evenodd;}</style></defs><path class="cls-1" d="M32.27,1.69c1.44,.6,2.38,2,2.38,3.56V51.44c0,1.56-.94,2.96-2.38,3.56-1.44,.6-3.09,.27-4.19-.83l-14.27-14.27H3.85c-2.13,0-3.85-1.72-3.85-3.85v-15.4c0-2.13,1.72-3.85,3.85-3.85H13.8L28.07,2.53c1.1-1.1,2.76-1.43,4.19-.83Z"/><path class="cls-1" d="M52.57,1.13c1.5-1.5,3.94-1.5,5.44,0,6.96,6.96,11.27,16.59,11.27,27.22s-4.31,20.26-11.27,27.22c-1.5,1.5-3.94,1.5-5.44,0-1.5-1.5-1.5-3.94,0-5.44,5.58-5.58,9.02-13.27,9.02-21.78s-3.44-16.2-9.02-21.78c-1.5-1.5-1.5-3.94,0-5.44Zm-10.89,10.89c1.5-1.5,3.94-1.5,5.44,0,2.02,2.02,3.68,4.43,4.84,7.09,1.24,2.83,1.92,5.96,1.92,9.24,0,6.38-2.59,12.16-6.76,16.33-1.5,1.5-3.94,1.5-5.44,0-1.5-1.5-1.5-3.94,0-5.44,2.79-2.79,4.51-6.63,4.51-10.89,0-2.2-.46-4.28-1.28-6.16-.77-1.77-1.88-3.38-3.23-4.73-1.5-1.5-1.5-3.94,0-5.44Z"/></svg>';
             $.ajax({
                 url: 'https://zimogroup.co.uk/backend-zitransfer/src/public/api/advert-by-user-country',
                 type: 'GET',
@@ -131,9 +132,9 @@
                         video.setAttribute('poster', advertisement.video_poster_300); 
 
                         //dynamic mute/unmute icon
-                        var muteButton = document.createElement('img');
+                        var muteButton = document.createElement('div');
                         muteButton.className ="volume";
-                        muteButton.src ="images/Mute Volume.svg";
+                        muteButton.innerHTML = muteIcon;
                         
 
                         //on click mute/unmute functionality
@@ -143,11 +144,11 @@
                             if (video.muted){
                                 console.log(true)
                                 video.muted = false;
-                                muteButton.src ="images/Unmute Volume.svg";
+                                muteButton.innerHTML = unMuteIcon;
                             } 
                             else{
                                 video.muted = true;
-                                muteButton.src ="images/Mute Volume.svg";
+                                muteButton.innerHTML = muteIcon;
                             }
                         });
 
@@ -193,7 +194,7 @@
                             const videoWrapper = video.parentElement;
                             const muteButton = videoWrapper.querySelector('.volume');
                             if(muteButton){
-                                muteButton.src = "images/Mute Volume.svg";
+                                muteButton.innerHTML = muteIcon;
                             }
                         });
 
@@ -246,7 +247,7 @@
 
                                 const muteButton = videoWrapper.querySelector('.volume');
                                 if(muteButton){
-                                    muteButton.src = "images/Mute Volume.svg";
+                                    muteButton.innerHTML = muteIcon;
                                 }
                             } 
                             
