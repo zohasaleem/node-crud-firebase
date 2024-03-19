@@ -5,89 +5,35 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Vertical Advert Slider</title>
         
-        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
         <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
         <style>
 
-        /* video::-webkit-media-controls-enclosure {
-            width:100%;
-            background-color:transparent;
-            -moz-border-radius: 1px !important;
-            -webkit-border-radius: 1px !important;
-            border-radius: 1px !important;
-            filter: alpha(opacity=80);
-            opacity: 0.8;
-            margin-bottom:-20px;
-            overflow: hidden;
-        }
-        video::-webkit-media-controls-panel {
-            background-color: #eee;
-            height:35px !important;
-        } */
+            /*video::-webkit-media-controls-volume-slider {
+                display: none;
+                background-color: none !important;
+                background: none !important;
+            }
 
-        /* Hide default play button overlay */
-/* video::-webkit-media-controls-start-playback-button {
-    display: inline-block !important;
-    background-color: transparent !important;
-    color: white !important;
-    width: 30px;
-    height: 30px;
-    font-size: 20px;
-} */
+             video::-webkit-media-controls-panel {
+                max-height: 50px !important;
+                background: none !important; 
+            }
 
-/* Show mute button */
-/* video::-webkit-media-controls-mute-button,
-video::-webkit-media-controls-play-button {
-    height: 10px !important;
-    margin-bottom: 10px !important;
-    background-color: transparent !important;
+            video::-webkit-media-controls-timeline,
+            video::-webkit-media-controls-fullscreen-button,
+            video::-webkit-media-controls-play-button,
+            video::-webkit-media-controls-current-time-display,
+            video::-webkit-media-controls-time-remaining-display{
+                display: none !important;   
 
-} */
-/* Hide the circle behind the play button */
-/* video::-webkit-media-controls-start-playback-button {
-    background-color: transparent !important;
-    background: transparent !important;
-    background-image: none !important;
+            } */
 
-} */
-
-/* Hide the circle behind the play button on hover */
-/* video::-webkit-media-controls-start-playback-button:hover {
-    background-color: transparent !important;
-    background: transparent !important;
-
-} */
-
-
-/* video::-webkit-media-controls-enclosure {
-    height: 20px !important; 
-} */
-video::-webkit-media-controls-panel {
-    /* height: 50px !important;
-    max-height: 50px !important; */
-    /* background-color: none !important;
-    background: none !important; */
-}
-
-/* Hide other controls */
-/* video::-webkit-media-controls-enclosure {
-    display: flex !important;
-    justify-content: space-between;
-    align-items:last baseline;
-    background-color: transparent !important;
-    height: 10px !important;
-} */
-/* video::-webkit-media-controls-enclosure {
-    max-height: 25px !important;
-    background: transparent !important;
-} */
-
-/* Hide timeline and fullscreen button */
-/* video::-webkit-media-controls-timeline,
-video::-webkit-media-controls-fullscreen-button {
-    display: none !important;
-} */
-
+            video::-webkit-media-controls {
+                display: none !important;
+            }
 
             * {
                 margin: 0;
@@ -101,58 +47,42 @@ video::-webkit-media-controls-fullscreen-button {
                 overflow: hidden;
             }
             :root {
-                --marquee-width: 45vw;
+                --marquee-width: 220px;
                 --marquee-height: 100vh;
-                --marquee-elements: 12; 
+                --marquee-elements: 12;  
                 --marquee-elements-displayed: 5; 
                 --marquee-element-height: calc(var(--marquee-height) / var(--marquee-elements-displayed));
-                --marquee-animation-duration: calc(var(--marquee-elements) * 3s);
+                --marquee-animation-duration: calc(var(--marquee-elements) * 4s);
             }
 
             .marquee {
                 width: var(--marquee-width);
                 height: var(--marquee-height);
                 background-color: transparent;
+                color: #eee;
                 overflow: hidden;
-                position: relative; /* added */
             }
 
             .marquee-content {
                 list-style: none;
                 height: var(--marquee-element-height);
-                /* height: calc(var(--marquee-element-height) * var(--marquee-elements));  */
                 display: flex;
                 flex-direction: column;
-                animation: scrolling var(--marquee-animation-duration) linear infinite;
+                animation: scrolling var(--marquee-animation-duration) linear 0s infinite normal;
             }
-            
 
             video {
-                margin: 10px;
-                border-radius: 1rem;
-                width: 100%; /* Added */
-                height: 100%; /* Added */
-                object-fit: cover; /* Added */
-            }
-
-
-            .mute-button {
-                position: absolute;
-                top: 10px;
-                right: 10px;
-                z-index: 1; /* Ensure button is above video */
-                background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent background */
-                color: white;
-                padding: 5px 10px;
-                border: none;
-                border-radius: 5px;
-                cursor: pointer;
+                width: 180px;
+                margin: 8px 21px;
+                border-radius: 15px;
+                opacity: 75%;
+                /* height: 107px; */
             }
 
             /* full screen button */
-            video::-webkit-media-controls-fullscreen-button {
+            /* video::-webkit-media-controls-fullscreen-button {
                 display: none;
-            }
+            } */
 
             /* pause animation on hover */
             .marquee-content:hover {
@@ -164,6 +94,24 @@ video::-webkit-media-controls-fullscreen-button {
                 0% { transform: translateY(0); }
                 100% { transform: translateY(calc(-1 * var(--marquee-element-height) * var(--marquee-elements))); }
             }
+
+            .video-wrapper {
+                position: relative;
+                display: inline-block; 
+            }
+
+            .video-wrapper .volume {
+                position: absolute;
+                top: 20px;
+                right: 30px;
+                width: 14px;
+                height: 14px;
+                /* color: white; */
+                /* font-size: 12px; */
+                cursor: pointer;
+                z-index: 1;
+            }
+
 
         </style>
 
@@ -201,27 +149,36 @@ video::-webkit-media-controls-fullscreen-button {
                         videoWrapper.className = "video-wrapper";
 
                         var video = document.createElement('video');
-
                         video.src = advertisement.url;
-                        video.setAttribute('controlsList', 'nodownload nofullscreen noplaybackrate'); 
+                        video.controls = false;
+                        // video.setAttribute('controlsList', 'nodownload nofullscreen noplaybackrate'); 
                         video.setAttribute('muted', 'muted'); 
                         video.setAttribute('loop', 'loop'); 
                         video.setAttribute('preload', 'none'); 
-                        video.setAttribute('poster', advertisement.video_poster); 
-                        video.disablePictureInPicture = true;
+                        video.setAttribute('poster', advertisement.video_poster_300); 
+                        // video.disablePictureInPicture = true;
+
+                        // var muteButton = document.createElement('i');
+                        // muteButton.className ="fas fa-volume-xmark";
+                        var muteButton = document.createElement('img');
+                        muteButton.className ="volume";
+                        muteButton.src ="images/Mute Volume.svg";
                         
-                        var muteButton = document.createElement('i');
-                        muteButton.className ="mute-button";
-                        muteButton.textContent = "Mute";
-                        
-                        muteButton.addEventListener('mouseenter', function(){
+
+                        muteButton.addEventListener('click', function(){
+
+                            var video = videoWrapper.querySelector('video')
                             if (video.muted){
+                                console.log(true)
                                 video.muted = false;
-                                muteButton.textContent = 'Mute';
+                                muteButton.src ="images/Unmute Volume.svg";
+
+                                // muteButton.className ="fas fa-volume-high";
                             } 
                             else{
                                 video.muted = true;
-                                muteButton.textContent = 'Unmute';
+                                muteButton.src ="images/Mute Volume.svg";
+                                // muteButton.className ="fas fa-volume-xmark";
                             }
                         });
 
@@ -231,13 +188,6 @@ video::-webkit-media-controls-fullscreen-button {
                         videosContainer.appendChild(videoWrapper)
 
 
-                        video.addEventListener('mouseenter', function(){
-                            video.play();
-                        });
-
-                        video.addEventListener('mouseout', function() {
-                            video.pause();
-                        });
 
                         // video.addEventListener('click', function() {
                         //     console.log("1st click" + JSON.stringify(videoClicks))
@@ -259,12 +209,42 @@ video::-webkit-media-controls-fullscreen-button {
                         //         console.log("set to 1 again " + JSON.stringify(videoClicks))
                         //     }
                         // });
-
+                        
                         // videosContainer.appendChild(video);
 
-    
+                        video.addEventListener('mouseenter', function () {
+                            // video.setAttribute('preload', 'auto');
+                            video.setAttribute('preload', 'none'); 
+                            video.style.opacity = '100%',
+                            video.play();
+                            // video.controls = true;
+                            // video.muted = true;
+                        });
+
+                        video.addEventListener('mouseout', function () {
+                            video.pause();
+                            const videoWrapper = video.parentElement;
+                            const muteButton = videoWrapper.querySelector('.volume');
+                            if(muteButton){
+                                muteButton.src = "images/Mute Volume.svg";
+                            }
+                        });
+
+                        video.addEventListener('click', function() {
+                        
+                            const videoId = btoa(advertisement.id);
+                            video.muted = true;
+                            video.pause();
+                            const ztfrUrl = "https://zitransfer.com?videoId=" + videoId;
+                            window.open(ztfrUrl, "_blank");
+
+                        });
 
                     });
+
+
+
+
 
                     console.log(videoAdvertisements)    
 
@@ -290,15 +270,22 @@ video::-webkit-media-controls-fullscreen-button {
                     const observer = new IntersectionObserver(entries => {
                         entries.forEach(entry => {
                             const video = entry.target;
-                            // const advertisement = videoAdvertisements.find(ad => ad.url === video.src);
+                            const advertisement = videoAdvertisements.find(ad => ad.url === video.src);
+                            const videoWrapper = video.parentElement;
 
                             if (!entry.isIntersecting) {
                                 video.muted = true;
+
                                 video.pause();
                                 video.currentTime = 0;
-                                video.controls = false; 
+                                // video.controls = false; 
                                 video.setAttribute('preload', 'none');
-                                // video.setAttribute('poster', advertisement.video_poster);
+                                video.setAttribute('poster', advertisement.video_poster);
+
+                                const muteButton = videoWrapper.querySelector('.volume');
+                                if(muteButton){
+                                    muteButton.src = "images/Mute Volume.svg";
+                                }
                             } 
                             
                         
@@ -332,27 +319,30 @@ video::-webkit-media-controls-fullscreen-button {
 
 <script>
     var element = document.querySelector('.participants_pane'); 
-    element.setAttribute('id', 'participantsPane');
-    var pane = document.getElementById('participantsPane');
-    
-    var imageUrls = [
-        'https://firebasestorage.googleapis.com/v0/b/ztfr-ff6ab.appspot.com/o/country%2Fhomepageimages%2F79.png?alt=media&token=a1953f1b-9064-4c94-ab99-8dcc4f7d651a',
-        'https://firebasestorage.googleapis.com/v0/b/ztfr-ff6ab.appspot.com/o/country%2Fhomepageimages%2F15.png?alt=media&token=33c60f2b-8255-4343-aa67-d67da449f481',
-        'https://firebasestorage.googleapis.com/v0/b/ztfr-ff6ab.appspot.com/o/country%2Fhomepageimages%2F164.png?alt=media&token=b7aa8f7f-fdce-4915-b897-894a8d51dfb2',
-        'https://firebasestorage.googleapis.com/v0/b/ztfr-ff6ab.appspot.com/o/country%2Fhomepageimages%2F106.png?alt=media&token=6b275df3-3039-4fff-88e7-e1b04bcc9194',
-        'https://firebasestorage.googleapis.com/v0/b/ztfr-ff6ab.appspot.com/o/country%2Fhomepageimages%2F135.png?alt=media&token=39b1b188-6b08-466b-a7b0-daff06a4a37f'
+    if(element){
 
-    ];
+        element.setAttribute('id', 'participantsPane');
+        var pane = document.getElementById('participantsPane');
     
-    var currentIndex = 0;
-    
-    function changeBackgroundImage() {
-        pane.style.backgroundImage = 'url(' + imageUrls[currentIndex] + ')';
-        currentIndex = (currentIndex + 1) % imageUrls.length;
-        pane.style.backgroundSize = 'cover',
-        pane.style.backgroundPosition = 'center';
-        pane.style.backgroundRepeat = 'norepeat';
+        var imageUrls = [
+            'https://firebasestorage.googleapis.com/v0/b/ztfr-ff6ab.appspot.com/o/country%2Fhomepageimages%2F79.png?alt=media&token=a1953f1b-9064-4c94-ab99-8dcc4f7d651a',
+            'https://firebasestorage.googleapis.com/v0/b/ztfr-ff6ab.appspot.com/o/country%2Fhomepageimages%2F15.png?alt=media&token=33c60f2b-8255-4343-aa67-d67da449f481',
+            'https://firebasestorage.googleapis.com/v0/b/ztfr-ff6ab.appspot.com/o/country%2Fhomepageimages%2F164.png?alt=media&token=b7aa8f7f-fdce-4915-b897-894a8d51dfb2',
+            'https://firebasestorage.googleapis.com/v0/b/ztfr-ff6ab.appspot.com/o/country%2Fhomepageimages%2F106.png?alt=media&token=6b275df3-3039-4fff-88e7-e1b04bcc9194',
+            'https://firebasestorage.googleapis.com/v0/b/ztfr-ff6ab.appspot.com/o/country%2Fhomepageimages%2F135.png?alt=media&token=39b1b188-6b08-466b-a7b0-daff06a4a37f'
+
+        ];
+        
+        var currentIndex = 0;
+        
+        function changeBackgroundImage() {
+            pane.style.backgroundImage = 'url(' + imageUrls[currentIndex] + ')';
+            currentIndex = (currentIndex + 1) % imageUrls.length;
+            pane.style.backgroundSize = 'cover',
+            pane.style.backgroundPosition = 'center';
+            pane.style.backgroundRepeat = 'norepeat';
+        }
+        setInterval(changeBackgroundImage, 5000)
     }
-    setInterval(changeBackgroundImage, 3000);
    </script>
     

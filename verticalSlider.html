@@ -5,25 +5,11 @@
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <title>Vertical Advert Slider</title>
         
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-DTOQO9RWCH3ppGqcWaEA1BIZOC6xxalwEsw9c2QQeAIftl+Vegovlnee1c9QX4TctnWMn13TZye+giMm8e2LwA==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
         <style>
-
-
-            video::-webkit-media-controls-panel {
-                max-height: 50px !important;
-                background: none !important; 
-            }
-
-            video::-webkit-media-controls-timeline,
-            video::-webkit-media-controls-fullscreen-button,
-            video::-webkit-media-controls-play-button,
-            video::-webkit-media-controls-current-time-display,
-            video::-webkit-media-controls-time-remaining-display{
-                display: none !important;   
-
-            }
-
 
             * {
                 margin: 0;
@@ -69,11 +55,11 @@
                 /* height: 107px; */
             }
 
-            /* full screen button */
-            video::-webkit-media-controls-fullscreen-button {
-                display: none;
+            /* disable video controls */
+            video::-webkit-media-controls {
+                display: none !important;
             }
-
+           
             /* pause animation on hover */
             .marquee-content:hover {
                 animation-play-state: paused;
@@ -84,6 +70,22 @@
                 0% { transform: translateY(0); }
                 100% { transform: translateY(calc(-1 * var(--marquee-element-height) * var(--marquee-elements))); }
             }
+
+            .video-wrapper {
+                position: relative;
+                display: inline-block; 
+            }
+
+            .video-wrapper .volume {
+                position: absolute;
+                top: 20px;
+                right: 30px;
+                width: 14px;
+                height: 14px;
+                cursor: pointer;
+                z-index: 1;
+            }
+
 
         </style>
 
@@ -117,14 +119,45 @@
 
                     videoAdvertisements.forEach(function(advertisement) {
 
+                        var videoWrapper = document.createElement('div');
+                        videoWrapper.className = "video-wrapper";
+
                         var video = document.createElement('video');
                         video.src = advertisement.url;
-                        video.setAttribute('controlsList', 'nodownload nofullscreen noplaybackrate'); 
+                        video.controls = false;
                         video.setAttribute('muted', 'muted'); 
                         video.setAttribute('loop', 'loop'); 
                         video.setAttribute('preload', 'none'); 
                         video.setAttribute('poster', advertisement.video_poster_300); 
-                        video.disablePictureInPicture = true;
+
+                        //dynamic mute/unmute icon
+                        var muteButton = document.createElement('img');
+                        muteButton.className ="volume";
+                        muteButton.src ="images/Mute Volume.svg";
+                        
+
+                        //on click mute/unmute functionality
+                        muteButton.addEventListener('click', function(){
+
+                            var video = videoWrapper.querySelector('video')
+                            if (video.muted){
+                                console.log(true)
+                                video.muted = false;
+                                muteButton.src ="images/Unmute Volume.svg";
+                            } 
+                            else{
+                                video.muted = true;
+                                muteButton.src ="images/Mute Volume.svg";
+                            }
+                        });
+
+                        // appended video & button in video-wrapper
+                        videoWrapper.appendChild(video);
+                        videoWrapper.appendChild(muteButton);
+
+                        // appended video-wrapper in video container
+                        videosContainer.appendChild(videoWrapper)
+
 
 
                         // video.addEventListener('click', function() {
@@ -148,21 +181,23 @@
                         //     }
                         // });
                         
-                        videosContainer.appendChild(video);
-
+                        // on hover play/pause video functionality
                         video.addEventListener('mouseenter', function () {
-                            // video.setAttribute('preload', 'auto');
                             video.setAttribute('preload', 'none'); 
                             video.style.opacity = '100%',
                             video.play();
-                            video.controls = true;
-                            video.muted = true;
                         });
 
                         video.addEventListener('mouseout', function () {
                             video.pause();
+                            const videoWrapper = video.parentElement;
+                            const muteButton = videoWrapper.querySelector('.volume');
+                            if(muteButton){
+                                muteButton.src = "images/Mute Volume.svg";
+                            }
                         });
 
+                        // redirect user to ztfr playing the clicked video
                         video.addEventListener('click', function() {
                         
                             const videoId = btoa(advertisement.id);
@@ -175,11 +210,6 @@
 
                     });
 
-
-
-
-
-                    console.log(videoAdvertisements)    
 
                     const root = document.documentElement;
                     const marqueeElementsDisplayed = getComputedStyle(root).getPropertyValue("--marquee-elements-displayed");
@@ -198,20 +228,26 @@
                         marqueeContent.removeChild(firstElement);
                     });
 
-                    // Mute videos which aren't on view
+                    // Mute videos which aren't in view
                     const videos = document.querySelectorAll('video');
                     const observer = new IntersectionObserver(entries => {
                         entries.forEach(entry => {
                             const video = entry.target;
-                            // const advertisement = videoAdvertisements.find(ad => ad.url === video.src);
+                            const advertisement = videoAdvertisements.find(ad => ad.url === video.src);
+                            const videoWrapper = video.parentElement;
 
                             if (!entry.isIntersecting) {
                                 video.muted = true;
+
                                 video.pause();
                                 video.currentTime = 0;
-                                video.controls = false; 
                                 video.setAttribute('preload', 'none');
-                                // video.setAttribute('poster', advertisement.video_poster);
+                                video.setAttribute('poster', advertisement.video_poster);
+
+                                const muteButton = videoWrapper.querySelector('.volume');
+                                if(muteButton){
+                                    muteButton.src = "images/Mute Volume.svg";
+                                }
                             } 
                             
                         
@@ -245,27 +281,30 @@
 
 <script>
     var element = document.querySelector('.participants_pane'); 
-    element.setAttribute('id', 'participantsPane');
-    var pane = document.getElementById('participantsPane');
-    
-    var imageUrls = [
-        'https://firebasestorage.googleapis.com/v0/b/ztfr-ff6ab.appspot.com/o/country%2Fhomepageimages%2F79.png?alt=media&token=a1953f1b-9064-4c94-ab99-8dcc4f7d651a',
-        'https://firebasestorage.googleapis.com/v0/b/ztfr-ff6ab.appspot.com/o/country%2Fhomepageimages%2F15.png?alt=media&token=33c60f2b-8255-4343-aa67-d67da449f481',
-        'https://firebasestorage.googleapis.com/v0/b/ztfr-ff6ab.appspot.com/o/country%2Fhomepageimages%2F164.png?alt=media&token=b7aa8f7f-fdce-4915-b897-894a8d51dfb2',
-        'https://firebasestorage.googleapis.com/v0/b/ztfr-ff6ab.appspot.com/o/country%2Fhomepageimages%2F106.png?alt=media&token=6b275df3-3039-4fff-88e7-e1b04bcc9194',
-        'https://firebasestorage.googleapis.com/v0/b/ztfr-ff6ab.appspot.com/o/country%2Fhomepageimages%2F135.png?alt=media&token=39b1b188-6b08-466b-a7b0-daff06a4a37f'
+    if(element){
 
-    ];
+        element.setAttribute('id', 'participantsPane');
+        var pane = document.getElementById('participantsPane');
     
-    var currentIndex = 0;
-    
-    function changeBackgroundImage() {
-        pane.style.backgroundImage = 'url(' + imageUrls[currentIndex] + ')';
-        currentIndex = (currentIndex + 1) % imageUrls.length;
-        pane.style.backgroundSize = 'cover',
-        pane.style.backgroundPosition = 'center';
-        pane.style.backgroundRepeat = 'norepeat';
+        var imageUrls = [
+            'https://firebasestorage.googleapis.com/v0/b/ztfr-ff6ab.appspot.com/o/country%2Fhomepageimages%2F79.png?alt=media&token=a1953f1b-9064-4c94-ab99-8dcc4f7d651a',
+            'https://firebasestorage.googleapis.com/v0/b/ztfr-ff6ab.appspot.com/o/country%2Fhomepageimages%2F15.png?alt=media&token=33c60f2b-8255-4343-aa67-d67da449f481',
+            'https://firebasestorage.googleapis.com/v0/b/ztfr-ff6ab.appspot.com/o/country%2Fhomepageimages%2F164.png?alt=media&token=b7aa8f7f-fdce-4915-b897-894a8d51dfb2',
+            'https://firebasestorage.googleapis.com/v0/b/ztfr-ff6ab.appspot.com/o/country%2Fhomepageimages%2F106.png?alt=media&token=6b275df3-3039-4fff-88e7-e1b04bcc9194',
+            'https://firebasestorage.googleapis.com/v0/b/ztfr-ff6ab.appspot.com/o/country%2Fhomepageimages%2F135.png?alt=media&token=39b1b188-6b08-466b-a7b0-daff06a4a37f'
+
+        ];
+        
+        var currentIndex = 0;
+        
+        function changeBackgroundImage() {
+            pane.style.backgroundImage = 'url(' + imageUrls[currentIndex] + ')';
+            currentIndex = (currentIndex + 1) % imageUrls.length;
+            pane.style.backgroundSize = 'cover',
+            pane.style.backgroundPosition = 'center';
+            pane.style.backgroundRepeat = 'norepeat';
+        }
+        setInterval(changeBackgroundImage, 5000)
     }
-    setInterval(changeBackgroundImage, 3000);
    </script>
     
