@@ -133,7 +133,7 @@
                         //dynamic mute/unmute icon
                         var muteButton = document.createElement('img');
                         muteButton.className ="volume";
-                        muteButton.src ="./images/Mute Volume.svg";
+                        muteButton.src ="images/Mute Volume.svg";
                         
 
                         //on click mute/unmute functionality
@@ -143,11 +143,11 @@
                             if (video.muted){
                                 console.log(true)
                                 video.muted = false;
-                                muteButton.src ="./images/Unmute Volume.svg";
+                                muteButton.src ="images/Unmute Volume.svg";
                             } 
                             else{
                                 video.muted = true;
-                                muteButton.src ="./images/Mute Volume.svg";
+                                muteButton.src ="images/Mute Volume.svg";
                             }
                         });
 
@@ -193,7 +193,7 @@
                             const videoWrapper = video.parentElement;
                             const muteButton = videoWrapper.querySelector('.volume');
                             if(muteButton){
-                                muteButton.src = "./images/Mute Volume.svg";
+                                muteButton.src = "images/Mute Volume.svg";
                             }
                         });
 
@@ -246,7 +246,7 @@
 
                                 const muteButton = videoWrapper.querySelector('.volume');
                                 if(muteButton){
-                                    muteButton.src = "./images/Mute Volume.svg";
+                                    muteButton.src = "images/Mute Volume.svg";
                                 }
                             } 
                             
