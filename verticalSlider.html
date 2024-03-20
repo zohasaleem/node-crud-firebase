@@ -185,12 +185,28 @@
                         // on hover play/pause video functionality
                         video.addEventListener('mouseenter', function () {
                             video.setAttribute('preload', 'none'); 
-                            video.style.opacity = '100%',
+                            video.style.opacity = '100%';
+
+                            // const videoWrapper = video.parentElement;
+                            // const muteButton = videoWrapper.querySelector('.volume');
+                            // if(video.muted == false){
+                            //     video.muted = false;
+                            // }
                             video.play();
                         });
 
                         video.addEventListener('mouseout', function () {
+
+                            const videoWrapper = video.parentElement;
+                            const muteButton = videoWrapper.querySelector('.volume');
+                            muteButton.addEventListener("mouseover", function() {
+                                video.play();
+                                
+                            });
+                            // video.muted = true;
                             video.pause();
+
+                            // video.pause();
                             // const videoWrapper = video.parentElement;
                             // const muteButton = videoWrapper.querySelector('.volume');
                             // if(muteButton){
@@ -305,7 +321,67 @@
             pane.style.backgroundPosition = 'center';
             pane.style.backgroundRepeat = 'norepeat';
         }
-        setInterval(changeBackgroundImage, 5000)
+        setInterval(changeBackgroundImage, 6000)
+        document.querySelector('.participants_pane').addEventListener('click', function() {
+            if (!pane.style.backgroundImage) {
+                changeBackgroundImage();
+            }
+        });
     }
    </script>
     
+
+
+    <script>
+        const toolbarButtons = document.querySelectorAll('.toolbar-button-with-badge');
+        const lastToolbarButton = toolbarButtons[toolbarButtons.length - 1];
+        const childButton = lastToolbarButton.querySelector('.toolbox-button');
+
+        lastToolbarButton.addEventListener('click', function() {
+            var isOpen = childButton.getAttribute('aria-pressed');
+            console.log("aria-pressed: " + isOpen);
+            if(isOpen == false){
+
+                $.ajax({
+                    url: 'https://zimogroup.co.uk/backend-zitransfer/src/public/api/advert-by-user-country',
+                    type: 'GET',
+                    contentType: 'application/json',
+                    headers: {
+                        'API-Key': '$786MZ786$'
+                    },
+                    success: function(response) {
+                        var advertisements = response.adverisements; 
+
+                        var imageAdvertisements = advertisements.filter(function(advertisement) {
+                            return advertisement.type == 'image';
+                        });     
+                        
+                        var element = document.querySelector('.participants_pane'); 
+                        if(element){
+
+                            element.setAttribute('id', 'participantsPane');
+                            var pane = document.getElementById('participantsPane');
+                        
+
+                            var imageUrls = JSON.stringify(imageAdvertisements);
+                            var imageUrls = imageAdvertisements.map(function(advertisement) {
+                                return advertisement.url;
+                            });
+                            
+                            var currentIndex = 0;
+                        
+                            function changeBackgroundImage() {
+                                pane.style.backgroundImage = 'url(' + imageUrls[currentIndex] + ')';
+                                currentIndex = (currentIndex + 1) % imageUrls.length;
+                                pane.style.backgroundSize = 'cover',
+                                pane.style.backgroundPosition = 'center';
+                                pane.style.backgroundRepeat = 'norepeat';
+                            }
+
+                            setInterval(changeBackgroundImage, 6000)
+                        }
+                    }
+                });
+            }
+       });
+    </script>
