@@ -125,8 +125,8 @@
 
                         var video = document.createElement('video');
                         video.src = advertisement.url;
-                        video.controls = false;
-                        video.setAttribute('muted', 'muted'); 
+                        // video.controls = false;
+                        video.setAttribute('muted', 'true'); 
                         video.setAttribute('loop', 'loop'); 
                         video.setAttribute('preload', 'none'); 
                         video.setAttribute('poster', advertisement.video_poster_300); 
@@ -182,32 +182,57 @@
                         //     }
                         // });
                         
+
+
+
+                        // Initializing values
+                        var isPlaying = false;
+
+                        // On video playing toggle values
+                        video.onplaying = function() {
+                            isPlaying = true;
+                        };
+
+                        // On video pause toggle values
+                        video.onpause = function() {
+                            isPlaying = false;
+                        };
+
                         // on hover play/pause video functionality
-                        video.addEventListener('mouseenter', function () {
+                        video.addEventListener('mouseover', function () {
                             video.setAttribute('preload', 'none'); 
                             video.style.opacity = '100%';
                             
-                            const videoWrapper = video.parentElement;
-                            const muteButton = videoWrapper.querySelector('.volume');
-                            const isMute = muteButton.querySelector('svg').getAttribute('data-state');
-                            console.log("isMute " +isMute)
-                            if(isMute == 'unmute'){
-                                video.muted = false;
-                                video.play();
-                                
-                            }
-                            else{
-                                const promise = video.play(); 
-                                if(promise !== undefined){
-                                    promise.then(() => {
-                                        // Autoplay started
-                                    }).catch(error => {
-                                        // Autoplay was prevented.
+                            // const videoWrapper = video.parentElement;
+                            // const muteButton = videoWrapper.querySelector('.volume');
+                            // const isMute = muteButton.querySelector('svg').getAttribute('data-state');
+                            // console.log("isMute " +isMute)
+                            // if(isMute == 'unmute'){
+
+
+                                    // video.muted = true;
+                                    // video.play();
+
+                                    if (!isPlaying) {
                                         video.muted = true;
-                                        video.play();
-                                    });
-                                } 
-                            }
+                                        playVid();
+                                    }
+                                
+                                
+                                
+                            // }
+                            // else{
+                            // const promise = video.play(); 
+                            // if(promise !== undefined){
+                            //     promise.then(() => {
+                            //         // Autoplay started
+                            //     }).catch(error => {
+                            //         // Autoplay was prevented.
+                            //         video.muted = true;
+                            //         video.play();
+                                // });
+                                // } 
+                            // }
                             
 
                         });
@@ -217,11 +242,17 @@
                             const videoWrapper = video.parentElement;
                             const muteButton = videoWrapper.querySelector('.volume');
                             muteButton.addEventListener("mouseover", function() {
-                                video.play();
+                                playVid();
                                 
                             });
-                            // video.muted = true;
-                            video.pause();
+                            video.muted = true;
+                            muteButton.innerHTML = muteIcon;
+
+                            // this.pause();
+                        //    video.pause();
+                            if (isPlaying) {
+                                pauseVid();
+                            }
 
                             // video.pause();
                             // const videoWrapper = video.parentElement;
@@ -231,6 +262,19 @@
                             // }
                         });
 
+                        // Play video function
+                        async function playVid() {      
+                            if (video.paused && !isPlaying) {
+                                return video.play();
+                            }
+                        } 
+
+                        // Pause video function
+                        function pauseVid() {     
+                            if (!video.paused && isPlaying) {
+                                video.pause();
+                            }
+                        }
                         // redirect user to ztfr playing the clicked video
                         video.addEventListener('click', function() {
                         
@@ -313,7 +357,7 @@
     </body>
 </html>
 
-<script>
+<!-- <script>
     var element = document.querySelector('.participants_pane'); 
     if(element){
 
@@ -346,10 +390,10 @@
         });
     }
    </script>
-    
+     -->
 
 
-    <script>
+    <!-- <script>
         const toolbarButtons = document.querySelectorAll('.toolbar-button-with-badge');
         const lastToolbarButton = toolbarButtons[toolbarButtons.length - 1];
         const childButton = lastToolbarButton.querySelector('.toolbox-button');
@@ -401,4 +445,30 @@
                 });
             }
        });
-    </script>
+    </script> -->
+
+    <!-- <script>
+
+        const logoContainer = document.createElement('div');
+        logoContainer.style.display = "flex";
+        logoContainer.style.justifyContent = "space-between"
+        logoContainer.style.padding = "5px 0px 20px 5px";
+
+        const leftLogo = document.createElement('img');
+        leftLogo.className = 'leftLogo';
+        leftLogo.src = "https://firebasestorage.googleapis.com/v0/b/zimo-b9759.appspot.com/o/zimomeet_logo%2FappLogo%2Fzimogroup.svg?alt=media&token=3af04bde-5be3-4509-86e7-05ab2af0adc3";
+        leftLogo.style.width = "130px";
+        leftLogo.style.height = "26px";
+
+        const rightLogo = document.createElement('img');
+        rightLogo.className = 'rightLogo';
+        rightLogo.src = "https://firebasestorage.googleapis.com/v0/b/zimo-b9759.appspot.com/o/zimomeet_logo%2FappLogo%2FZTFR%20w.svg?alt=media&token=a2b43397-c28f-43a1-bf62-5d1fd1bed94a"; 
+        rightLogo.style.width = "120px";
+        rightLogo.style.height = "22px";
+
+        const participantsPaneContainer = document.querySelector('.participants_pane-content');
+        logoContainer.appendChild(leftLogo);
+        logoContainer.appendChild(rightLogo);
+        participantsPaneContainer.appendChild(logoContainer);
+
+    </script> -->
