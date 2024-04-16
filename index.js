@@ -1,6 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const app = express();
+const FastSpeedtest = require("fast-speedtest-api");
 
 const fileUpload = require('express-fileupload');
 app.use(fileUpload());
@@ -21,8 +22,36 @@ const cmsRef = db.ref('cms');
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+
+// Define function for internet speed test
+async function performSpeedTest() {
+  let speedtest = new FastSpeedtest({
+    token: "YXNkZmFzZGxmbnNkYWZoYXNkZmhrYWxm", //**** required
+    verbose: false, // default: false
+    timeout: 5000, // default: 5000
+    https: true, // default: true
+    urlCount: 5, // default: 5 
+    bufferSize: 8, // default: 8 
+    unit: FastSpeedtest.UNITS.Mbps // default: Bps
+  });
+
+  return speedtest.getSpeed();
+}
+
+
+app.get('/api/get-download-speed', async (req, res) => {
+  try {
+    const speed = await performSpeedTest();
+    res.status(200).json({ speed: speed });
+  } catch (error) {
+    res.status(500).json({ message: error.message });
+  }
+});
+
 const cmsRouter = require('./routes/cms');
 app.use('/cms', cmsRouter(cmsRef, admin));
+
+
 
 app.use(express.json());
 
