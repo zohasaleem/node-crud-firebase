@@ -32,7 +32,7 @@ async function performSpeedTest() {
     https: true, // default: true
     urlCount: 5, // default: 5 
     bufferSize: 8, // default: 8 
-    unit: FastSpeedtest.UNITS.Kbps // default: Bps
+    unit: FastSpeedtest.UNITS.Mbps // default: Bps
   });
 
   return speedtest.getSpeed();
