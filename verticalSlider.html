@@ -199,7 +199,7 @@
                         };
 
                         // on hover play/pause video functionality
-                        video.addEventListener('mouseover', function () {
+                        video.addEventListener('mouseenter', function () {
                             video.setAttribute('preload', 'none'); 
                             video.style.opacity = '100%';
                             
@@ -237,11 +237,11 @@
 
                         });
 
-                        video.addEventListener('mouseout', function () {
+                        video.addEventListener('mouseleave', function () {
 
                             const videoWrapper = video.parentElement;
                             const muteButton = videoWrapper.querySelector('.volume');
-                            muteButton.addEventListener("mouseover", function() {
+                            muteButton.addEventListener("mouseenter", function() {
                                 playVid();
                                 
                             });
