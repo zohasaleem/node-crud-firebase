@@ -129,7 +129,7 @@
                         video.setAttribute('muted', 'true'); 
                         video.setAttribute('loop', 'loop'); 
                         video.setAttribute('preload', 'none'); 
-                        video.setAttribute('poster', advertisement.video_poster_200); 
+                        video.setAttribute('poster', advertisement.video_poster_300); 
 
                         //dynamic mute/unmute icon
                         var muteButton = document.createElement('div');
@@ -320,7 +320,7 @@
                                 video.pause();
                                 video.currentTime = 0;
                                 video.setAttribute('preload', 'none');
-                                video.setAttribute('poster', advertisement.video_poster_200);
+                                video.setAttribute('poster', advertisement.video_poster);
 
                                 const muteButton = videoWrapper.querySelector('.volume');
                                 if(muteButton){
