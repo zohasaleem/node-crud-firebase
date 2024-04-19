@@ -159,32 +159,6 @@
                         // appended video-wrapper in video container
                         videosContainer.appendChild(videoWrapper)
 
-
-
-                        // video.addEventListener('click', function() {
-                        //     console.log("1st click" + JSON.stringify(videoClicks))
-                        //         video.controls = true;
-                        //     const videoId = advertisement.id;
-                        //     if (!videoClicks[videoId]){
-                        //         videoClicks[videoId] = 1; 
-                        //         video.play(); 
-                        //         console.log("after 1st click " + JSON.stringify(videoClicks))
-                        //     }
-                        //     else{
-                        //         console.log("2nd click " + JSON.stringify(videoClicks))
-
-                        //         const videoId = btoa(advertisement.id);
-                        //         video.muted = true;
-                        //         video.pause();
-                        //         const ztfrUrl = "https://zitransfer.com?videoId=" + videoId;
-                        //         window.open(ztfrUrl, "_blank");
-                        //         console.log("set to 1 again " + JSON.stringify(videoClicks))
-                        //     }
-                        // });
-                        
-
-
-
                         // Initializing values
                         var isPlaying = false;
 
@@ -203,63 +177,25 @@
                             video.setAttribute('preload', 'none'); 
                             video.style.opacity = '100%';
                             
-                            // const videoWrapper = video.parentElement;
-                            // const muteButton = videoWrapper.querySelector('.volume');
-                            // const isMute = muteButton.querySelector('svg').getAttribute('data-state');
-                            // console.log("isMute " +isMute)
-                            // if(isMute == 'unmute'){
-
-
-                                    // video.muted = true;
-                                    // video.play();
-
-                                    if (!isPlaying) {
-                                        video.muted = true;
-                                        playVid();
-                                    }
+                            if (!isPlaying) {
+                                video.muted = true;
+                                playVid();
+                            }
                                 
-                                
-                                
-                            // }
-                            // else{
-                            // const promise = video.play(); 
-                            // if(promise !== undefined){
-                            //     promise.then(() => {
-                            //         // Autoplay started
-                            //     }).catch(error => {
-                            //         // Autoplay was prevented.
-                            //         video.muted = true;
-                            //         video.play();
-                                // });
-                                // } 
-                            // }
-                            
-
                         });
 
                         video.addEventListener('mouseleave', function () {
 
                             const videoWrapper = video.parentElement;
                             const muteButton = videoWrapper.querySelector('.volume');
-                            muteButton.addEventListener("mouseenter", function() {
-                                playVid();
-                                
-                            });
+                            // muteButton.addEventListener("mouseenter", function() {
+                            //     playVid();
+                            // });
                             video.muted = true;
                             muteButton.innerHTML = muteIcon;
-
-                            // this.pause();
-                        //    video.pause();
                             if (isPlaying) {
                                 pauseVid();
                             }
-
-                            // video.pause();
-                            // const videoWrapper = video.parentElement;
-                            // const muteButton = videoWrapper.querySelector('.volume');
-                            // if(muteButton){
-                            //     muteButton.innerHTML = muteIcon;
-                            // }
                         });
 
                         // Play video function
