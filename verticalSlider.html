@@ -86,6 +86,26 @@
                 z-index: 1;
             }
 
+            @media only screen and (min-width: 1980px) {
+                :root {
+                    --marquee-width: 300px;
+                }
+
+                video {
+                    width: 270px;
+                }
+            }
+
+            @media only screen and (min-width: 1680px) {
+                :root {
+                    --marquee-width: 280px;
+                }
+
+                video {
+                    width: 250px;
+                }
+            }
+
 
         </style>
 
@@ -230,11 +250,8 @@
 
 
                         const root = document.documentElement;
-                        console.log(root);
                         const marqueeElementsDisplayed = getComputedStyle(root).getPropertyValue("--marquee-elements-displayed");
-                        console.log(marqueeElementsDisplayed);
                         const marqueeContent = document.querySelector("ul.marquee-content");
-                        console.log(marqueeContent);
 
                         root.style.setProperty("--marquee-elements", marqueeContent.children.length);
 
