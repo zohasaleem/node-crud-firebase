@@ -23,7 +23,7 @@
                 overflow: hidden;
             }
             :root {
-                --marquee-width: 220px;
+                /* --marquee-width: 220px; */
                 --marquee-height: 100vh;
                 /* --marquee-elements: 12;       */
                 --marquee-elements-displayed: 10; 
@@ -32,7 +32,8 @@
             }
 
             .marquee {
-                width: var(--marquee-width);
+                /* width: var(--marquee-width); */
+                width: 220px;
                 height: var(--marquee-height);
                 background-color: transparent;
                 color: #eee;
@@ -87,8 +88,8 @@
             }
 
             @media only screen and (min-width: 1440px) {
-                :root {
-                    --marquee-width: 300px !important;
+                .marquee {
+                    width: 300px !important;
                 }
 
                 video {
