@@ -73,7 +73,7 @@ app.get('/verticalSlider', (req, res) => {
   res.sendFile(__dirname + '/verticalSlider.html');
 });
 
-app.get('/verticalSlider', (req, res) => {
+app.get('/testing', (req, res) => {
   res.sendFile(__dirname + '/testing.html');
 });
 
