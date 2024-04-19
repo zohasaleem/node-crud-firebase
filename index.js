@@ -73,6 +73,10 @@ app.get('/verticalSlider', (req, res) => {
   res.sendFile(__dirname + '/verticalSlider.html');
 });
 
+app.get('/verticalSlider', (req, res) => {
+  res.sendFile(__dirname + '/testing.html');
+});
+
 app.listen(9000, () => {
     console.log("Server started..");
 });
