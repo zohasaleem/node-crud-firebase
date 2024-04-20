@@ -97,6 +97,24 @@
                 }
             }
 
+            
+            @media only screen and (max-width: 1024px) {
+                .marquee {
+                    width: 175px !important;
+                }
+
+                video {
+                    width: 140px !important;
+                }
+                .video-wrapper .volume{
+                    top: 12px !important;
+                    width: 12px !important;
+                    height: 12px !important;
+                }
+            }
+
+            
+
 
 
         </style>
@@ -230,10 +248,11 @@
                             // redirect user to ztfr playing the clicked video
                             video.addEventListener('click', function() {
                             
-                                const videoId = btoa(advertisement.id);
+                                // const videoId = btoa(advertisement.id);
                                 video.muted = true;
                                 video.pause();
-                                const ztfrUrl = "https://zitransfer.com?videoId=" + videoId;
+                                const ztfrUrl = "https://zitransfer.com/";                                
+                                // const ztfrUrl = "https://zitransfer.com?videoId=" + videoId;
                                 window.open(ztfrUrl, "_blank");
 
                             });
