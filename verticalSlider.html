@@ -161,7 +161,7 @@
                             video.src = advertisement.url;
                             video.controls = false;
                             video.setAttribute('muted', 'true'); 
-                            video.setAttribute('loop', 'loop'); 
+                            // video.setAttribute('loop', 'loop'); 
                             video.setAttribute('preload', 'none'); 
                             video.setAttribute('poster', advertisement.video_poster_300); 
 
@@ -208,7 +208,7 @@
 
                             // on hover play/pause video functionality
                             video.addEventListener('mouseenter', function () {
-                                video.setAttribute('preload', 'none'); 
+                                // video.setAttribute('preload', 'none'); 
                                 video.style.opacity = '100%';
                                 if (!isPlaying) {
                                     video.muted = true;
@@ -217,7 +217,12 @@
                             });
 
                             video.addEventListener('mouseleave', function () {
+                                video.pause();
 
+                                if (isPlaying) {
+                                    console.log("pause: " + isPlaying);
+                                    pauseVid();
+                                }
                                 const videoWrapper = video.parentElement;
                                 const muteButton = videoWrapper.querySelector('.volume');
                                 muteButton.addEventListener("mouseenter", function() {
@@ -227,10 +232,21 @@
                                 video.muted = true;
                                 muteButton.innerHTML = muteIcon;
 
-                                if (isPlaying) {
-                                    pauseVid();
-                                }
                             });
+
+                            // video.addEventListener('preload', function() {
+                            //     if (!isCursorOverVideo()) {
+                            //         console.log(pause);
+                            //         video.pause();
+                            //     }
+                            // });
+
+                            function isCursorOverVideo() {
+                                const rect = video.getBoundingClientRect();
+                                const mouseX = event.clientX;
+                                const mouseY = event.clientY;
+                                return (mouseX >= rect.left && mouseX <= rect.right && mouseY >= rect.top && mouseY <= rect.bottom);
+                            }
 
                             // Play video function
                             async function playVid() {      
@@ -245,14 +261,12 @@
                                     video.pause();
                                 }
                             }
-                            // redirect user to ztfr playing the clicked video
-                            video.addEventListener('click', function() {
                             
-                                // const videoId = btoa(advertisement.id);
+                            // redirect user to ztfr playing the clicked video
+                            video.addEventListener('click', function() {                            
                                 video.muted = true;
                                 video.pause();
                                 const ztfrUrl = "https://zitransfer.com/";                                
-                                // const ztfrUrl = "https://zitransfer.com?videoId=" + videoId;
                                 window.open(ztfrUrl, "_blank");
 
                             });
@@ -267,7 +281,7 @@
                         root.style.setProperty("--marquee-elements", marqueeContent.children.length);
 
                         for (let i = 0; i < marqueeElementsDisplayed; i++) {
-                            console.log(marqueeContent.children.length)
+                            // console.log(marqueeContent.children.length)
                             marqueeContent.appendChild(marqueeContent.children[i].cloneNode(true));
                         }
 
