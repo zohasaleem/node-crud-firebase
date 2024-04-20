@@ -176,7 +176,7 @@
 
                                 var video = videoWrapper.querySelector('video')
                                 if (video.muted){
-                                    console.log(true)
+                                    // console.log(true)
                                     video.muted = false;
                                     muteButton.innerHTML = unMuteIcon;
                                 } 
@@ -220,7 +220,7 @@
                                 video.pause();
 
                                 if (isPlaying) {
-                                    console.log("pause: " + isPlaying);
+                                    // console.log("pause: " + isPlaying);
                                     pauseVid();
                                 }
                                 const videoWrapper = video.parentElement;
@@ -234,19 +234,7 @@
 
                             });
 
-                            // video.addEventListener('preload', function() {
-                            //     if (!isCursorOverVideo()) {
-                            //         console.log(pause);
-                            //         video.pause();
-                            //     }
-                            // });
-
-                            function isCursorOverVideo() {
-                                const rect = video.getBoundingClientRect();
-                                const mouseX = event.clientX;
-                                const mouseY = event.clientY;
-                                return (mouseX >= rect.left && mouseX <= rect.right && mouseY >= rect.top && mouseY <= rect.bottom);
-                            }
+                    
 
                             // Play video function
                             async function playVid() {      
