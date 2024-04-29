@@ -81,6 +81,10 @@ app.get('/meetingNotes.js', (req, res) => {
   res.sendFile(__dirname + '/meetingNotes.js');
 });
 
+app.get('/meetingNotesCSS', (req, res) => {
+  res.sendFile(__dirname + '/meetingNotesStyle.css');
+});
+
 app.listen(9000, () => {
     console.log("Server started..");
 });
