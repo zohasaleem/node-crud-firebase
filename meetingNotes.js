@@ -158,7 +158,7 @@ button.setAttribute('id', 'firstModalBtn');
                                          class="camIcon"
                                          style="display: inline-block; color:black;"
                                      />
-                                     <p style="display: inline-block; vertical-align: super;">
+                                     <p style="display: inline-block; vertical-align: super; color:black;">
                                          ${meetingRoomName}
                                      </p>
                                  </a>

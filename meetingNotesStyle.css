@@ -95,29 +95,29 @@
 .table-container::-webkit-scrollbar,
 .createModalContainer::-webkit-scrollbar,
 .detailsNotesContainer::-webkit-scrollbar{
-    width: 2px;
+    width: 2px !important;
 }
 
 .table-container::-webkit-scrollbar-track,
 .createModalContainer::-webkit-scrollbar-track,
 .detailsNotesContainer::-webkit-scrollbar-track{
-    background-color: #ffffff; 
+    background-color: #ffffff !important; 
 }
 
 /* Handle */
 ::-webkit-scrollbar-thumb,
 .createModalContainer::-webkit-scrollbar-thumb,
 .detailsNotesContainer::-webkit-scrollbar-thumb{
-    background-color: #090909; 
-    border-radius: 4px; 
-    height: 30px;
+    background-color: #090909 !important; 
+    border-radius: 4px !important; 
+    height: 30px !important;
 }
 
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover,
 .createModalContainer::-webkit-scrollbar-thumb:hover,
 .detailsNotesContainer::-webkit-scrollbar-thumb:hover{
-    background-color: #555; 
+    background-color: #555 !important; 
 }
 
 table {
