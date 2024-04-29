@@ -88,6 +88,8 @@
     max-height: 275px;
     overflow: auto;
     padding-right: 20px;
+    scrollbar-color: auto !important;
+    scrollbar-width: auto !important;
 }
 
 
