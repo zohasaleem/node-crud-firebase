@@ -152,17 +152,17 @@ button.setAttribute('id', 'firstModalBtn');
                              <td>${meeting_note.title}</td>
                              <td>
 
-                                 <a href="${meeting_note.meeting_link}" tagert="_blank" style="text-decoration:none; text-transform:capitalize;">
-                                     <img src="https://firebasestorage.googleapis.com/v0/b/zimo-b9759.appspot.com/o/zimomeet_live%2Fmeeting_notes%2Flogos%2FZIMO%20MEET.png?alt=media&token=5d68415d-17b6-40e0-805a-338590ec4ae4"
-                                         alt="CAM_ICON"
-                                         class="camIcon"
-                                         style="display: inline-block; color:black;"
-                                     />
-                                     <p style="display: inline-block; vertical-align: super; color:black;">
-                                         ${meetingRoomName}
-                                     </p>
-                                 </a>
-                                 
+                                <a href="${meeting_note.meeting_link}" target="_blank" style="text-decoration:none; text-transform:capitalize;">
+                                    <img src="https://firebasestorage.googleapis.com/v0/b/zimo-b9759.appspot.com/o/zimomeet_live%2Fmeeting_notes%2Flogos%2FZIMO%20MEET.png?alt=media&token=5d68415d-17b6-40e0-805a-338590ec4ae4"
+                                        alt="CAM_ICON"
+                                        class="camIcon"
+                                        style="display: inline-block; color:black;"
+                                    />
+                                    <p style="display: inline-block; vertical-align: super; color:black;">
+                                        ${meetingRoomName}
+                                    </p>
+                                </a>
+                                
                              </td>
                              <td>${meeting_note.meeting_subject}</td>
                              <td class="notes">${meeting_note.notes}</td>
