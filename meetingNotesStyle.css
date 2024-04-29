@@ -295,6 +295,8 @@ p{
     max-height: 220px;
     overflow: auto;
     padding-right: 20px;
+    scrollbar-color: auto !important;
+    scrollbar-width: auto !important;
 }
 .notes-container {
     width: 455px;
