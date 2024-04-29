@@ -4,9 +4,12 @@
  button.style.margin = '0px';
  button.style.padding = '0px';
  button.style.cursor = 'pointer';
- button.style.zIndex = '1';
- button.style.top = '-300px';
- button.setAttribute('id', 'firstModalBtn');
+//  button.style.zIndex = '1';
+//  button.style.top = '-300px';
+button.style.top = "-285px";
+button.style.left= "-15px";
+button.style.position= "relative";
+button.setAttribute('id', 'firstModalBtn');
 
  const btnImage = document.createElement('img');
  btnImage.setAttribute("src", "https://firebasestorage.googleapis.com/v0/b/zimo-b9759.appspot.com/o/zimomeet_live%2Fmeeting_notes%2Flogos%2FZM%20Notes%20W.png?alt=media&token=8a571dcc-e3c1-4796-bd2f-f6593c991a84");
@@ -206,13 +209,13 @@
  
 
 $(document).on('click', '#firstModalBtn', function(event){
-event.preventDefault();
-console.log('Modal Open');
+    event.preventDefault();
+    console.log('Modal Open');
 
-const firstModal = document.getElementById('firstModal');
-firstModal.style.display = "block";
+    const firstModal = document.getElementById('firstModal');
+    firstModal.style.display = "block";
     
-loadTable();  
+    loadTable();  
 });
 
 
