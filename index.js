@@ -77,6 +77,10 @@ app.get('/testing', (req, res) => {
   res.sendFile(__dirname + '/testing.html');
 });
 
+app.get('/meetingNotes.js', (req, res) => {
+  res.sendFile(__dirname + '/meetingNotes.js');
+});
+
 app.listen(9000, () => {
     console.log("Server started..");
 });
