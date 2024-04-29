@@ -156,7 +156,7 @@ button.setAttribute('id', 'firstModalBtn');
                                      <img src="https://firebasestorage.googleapis.com/v0/b/zimo-b9759.appspot.com/o/zimomeet_live%2Fmeeting_notes%2Flogos%2FZIMO%20MEET.png?alt=media&token=5d68415d-17b6-40e0-805a-338590ec4ae4"
                                          alt="CAM_ICON"
                                          class="camIcon"
-                                         style="display: inline-block;"
+                                         style="display: inline-block; color:black;"
                                      />
                                      <p style="display: inline-block; vertical-align: super;">
                                          ${meetingRoomName}
@@ -286,23 +286,23 @@ container.appendChild(button);
 
                      <div style="display:flex; align-items: flex-start;">
                          <label for="creator_name"> NAME:</label>
-                         <input type="text"  class="inputField" id="creator_name" name="creator_name" placeholder="NAME">
+                         <input type="text"  class="inputField" id="creator_name" name="creator_name" placeholder="NAME" required>
                      </div>
 
                      <div style="display:flex; align-items: flex-start; margin-top: 20px;">
                          <label for="title" >TITLE:</label>
-                         <input type="text"  class="inputField" id="title" name="title"  placeholder="TITLE">
+                         <input type="text"  class="inputField" id="title" name="title"  placeholder="TITLE" required>
                      </div>
 
                      <div style="display:flex; align-items: flex-start; margin-top: 20px;">
                          <label for="meetingSubject" >MEETING SUBJECT:</label>
-                         <input type="text"  class="inputField" id="meeting_subject" name="meeting_subject"  placeholder="MEETING SUBJECT">
+                         <input type="text"  class="inputField" id="meeting_subject" name="meeting_subject"  placeholder="MEETING SUBJECT" required>
                      </div>
 
                      <div style="display:flex; align-items: flex-start; margin-top: 20px;">
 
                          <label for="notes">NOTES:</label>                        
-                         <input type=text id="notes" class="inputField" name="notes"  placeholder="NOTES..." style="border:none;">
+                         <input type=text id="notes" class="inputField" name="notes"  placeholder="NOTES..." style="border:none;" required>
                      </div>
                      <div class="notes-container">
                          <label for="notesContainer"></label>                        
@@ -409,6 +409,7 @@ $(document).on('click', '#submit', function(event){
         notes.push(note.textContent);
     });
 
+    console.log(notes);
 
         // console.log(date + " " + day + meetingLink + " " + pointName + " "+ pointDescription);
     $.ajax({
