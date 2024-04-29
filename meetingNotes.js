@@ -276,7 +276,7 @@ container.appendChild(button);
                      <img src="https://firebasestorage.googleapis.com/v0/b/uploadimage-6caaa.appspot.com/o/ZM%20Live%20Meeting%20Notes%20Icons%2FZIMO%20MEET.png?alt=media&amp;token=7425f0b8-b4c9-4244-ba0d-1dfccc164154" 
                          alt="CAM_ICON" 
                          class="camIcon"/>
-                     <p class="createModalLink" id="meetingLink"></p>
+                     <p class="createModalLink" id="meetingLink" style="color:black;"></p>
 
                  </div>
              </div>
