@@ -379,7 +379,7 @@ $(document).on('click', '#detailsModalBtn', function(event){
             const topUpdateButton = document.getElementById('topUpdateBtn');
 
             var lastBulletNumber = 1;
-            var lastNoteElement = editNotesContainer.querySelector('.detailsNotes:last-child');
+            var lastNoteElement = deatilsNotesContainer.querySelector('.detailsNotes:last-child');
             
             if(lastNoteElement){
                 var lastNoteContent = lastNoteElement.textContent;
