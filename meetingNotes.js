@@ -4,7 +4,7 @@
  button.style.margin = '0px';
  button.style.padding = '0px';
  button.style.cursor = 'pointer';
-//  button.style.zIndex = '1';
+ button.style.zIndex = '9999';
 //  button.style.top = '-300px';
 button.style.top = "-285px";
 button.style.left= "-15px";
