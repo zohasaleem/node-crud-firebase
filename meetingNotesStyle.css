@@ -270,7 +270,7 @@ p{
 }
 
 .camIcon{
-    width: 35px;
+    width: 45px;
     margin-right: 5px;
 }
 
@@ -286,6 +286,14 @@ p{
     line-height: 5px;
     font-family: "Lato";
 
+}
+
+.detailsModalMeetingLink{
+    font-size: 10px;
+    letter-spacing: 1px;
+    font-family: "Lato";
+    color: black;
+    margin-left: 10px;
 }
 
 .createModalLink{
@@ -319,7 +327,6 @@ p{
     font-family: "Lato";
     text-transform: uppercase;
     color: black;
-
 }
 .bullets{
     margin-right: 5px;
@@ -331,12 +338,12 @@ p{
 }
 .detailsHeading{
     margin: 0;
-    font-size: 19px;
-    letter-spacing: 2.2px;
+    font-size: 15px;
+    letter-spacing: 1.5px;
     padding: 0px 10px;
-    font-weight: 500;
+    font-weight: 600;
     font-family: "Lato";
-
+    text-transform: uppercase;
 }
 
 .detailsCreator{
@@ -347,7 +354,7 @@ p{
     font-weight: 500;
     padding: 0px 10px;
     font-family: "Lato";
-
+    text-transform: uppercase;
 }
 
 .detailsModalDate{
@@ -361,23 +368,23 @@ p{
 
 }
 
-.detailsTitle{
+.detailsSubject{
     font-size: 12px;
     text-decoration: underline;
     letter-spacing: 1px;
     font-weight: 600;
-    margin: 20px 0px 10px 0px;
+    margin: 20px 0px 30px 0px;
     font-family: "Lato";
-
+    text-transform: uppercase;
 }
 
 .detailsNotes{
     font-size: 10px;
     text-transform: uppercase;
-    letter-spacing: 0.8px;
-    line-height: 15px;
+    letter-spacing: 1.5px;
+    line-height: 16px;
     font-family: "Lato";
-
+    color: black;
 }
 
 .addModalDate{
@@ -386,4 +393,14 @@ p{
 
 .placeholder-red::placeholder{
     color: #900000;
+}
+
+#detailsModalBtn{
+    cursor: pointer;
+}
+.detailsDataModalClose{
+    width: 18px; 
+    margin-top: 10px; 
+    margin-left:30px; 
+    cursor:pointer;
 }
