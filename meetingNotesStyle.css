@@ -92,7 +92,7 @@
     scrollbar-width: auto !important;
 }
 
-#detailsNotesContainer{
+.detailsNotesContainer{
     scrollbar-color: auto !important;
     scrollbar-width: auto !important;
 }
