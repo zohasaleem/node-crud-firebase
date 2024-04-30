@@ -270,7 +270,12 @@ p{
 }
 
 .camIcon{
-    width: 45px;
+    width: 35px;
+    margin-right: 5px;
+}
+
+.detailsCamIcon{
+    width: 46px;
     margin-right: 5px;
 }
 
@@ -391,7 +396,7 @@ p{
     color:black;
 }
 
-.placeholder-red::placeholder{
+.placeholder-red::placeholder, .delIconRed{
     color: #900000;
 }
 

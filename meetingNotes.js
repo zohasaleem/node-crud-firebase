@@ -159,6 +159,7 @@ function loadTable(){
                             
                             <td>
                                 <a href="${meeting_note.meeting_link}" target="_blank" style="text-decoration:none; text-transform:capitalize;">
+                                    
                                     <img src="https://firebasestorage.googleapis.com/v0/b/zimo-b9759.appspot.com/o/zimomeet_live%2Fmeeting_notes%2Flogos%2FZIMO%20MEET.png?alt=media&token=5d68415d-17b6-40e0-805a-338590ec4ae4"
                                         alt="CAM_ICON"
                                         class="camIcon"
@@ -177,19 +178,28 @@ function loadTable(){
                                 <div style="display: flex; flex-direction: column; align-items: flex-end;">
                                     <p style="color: #545353;">${meeting_note.creator_name}</p>
                                     <div class="actionBtn">                                
-                                        <img src="https://firebasestorage.googleapis.com/v0/b/uploadimage-6caaa.appspot.com/o/ZM%20Live%20Meeting%20Notes%20Icons%2FZM%20Notes%20Edit.png?alt=media&token=ed97f302-c446-4ef2-8dfe-0d474cfbe7ce" 
-                                            alt="Edit" 
-                                            data-id="${meeting_note.id}" 
-                                            class="editBtn"
-                                        />
-                                        <img src="https://firebasestorage.googleapis.com/v0/b/zimo-b9759.appspot.com/o/zimomeet_live%2Fmeeting_notes%2Flogos%2FZM%20Notes%20Delete.svg?alt=media&token=40c37524-a071-4948-99d9-6b0e04ef4f6a" 
-                                            alt="Delete" 
-                                            data-id="${meeting_note.id}" 
-                                            class="delBtn"
-                                        />
+                                        <svg id="editIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 48.82 74.5" 
+                                            width="24" height="24" 
+                                            class="editBtn" data-id="${meeting_note.id}">
+                                            <path d="M45.95,3.65l-4.99-2.88c-2.75-1.59-6.27-.64-7.86,2.11l-5.75,9.96,14.94,8.63,5.75-9.96c1.59-2.75,.65-6.26-2.09-7.85Z"/>
+                                            <polygon points="0 60.21 1.72 74.5 14.94 68.84 40.85 23.97 25.91 15.34 0 60.21"/>
+                                        </svg>
+                                        <svg id="deleteIcon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 56.69 72.16" 
+                                            width="24" height="24" 
+                                            class="delBtn" 
+                                            data-id="${meeting_note.id}">
+                                            <defs>
+                                                <style>
+                                                    .cls-1 {
+                                                        fill-rule: #900000;
+                                                    }
+                                                </style>
+                                            </defs>
+                                            <path id="bin" class="cls-1" d="M4.72,66.43c.61,2.94,2.95,5.21,5.91,5.73H46.07c2.96-.52,5.3-2.79,5.91-5.73V20.61H4.72v45.81ZM56.69,7.55h-12.6L37.79,0H18.87l-6.27,7.55H0v7.55H56.69V7.55Z"/>
+                                        </svg>
                                     </div>
                                 </div>
-                        </td>
+                            </td>
 
                         </tr>
                     `;
@@ -283,7 +293,8 @@ function showDetailsDataModal() {
                 <div style="display: flex; align-items: center; margin: 15px 0px;">
                     <img src="https://firebasestorage.googleapis.com/v0/b/uploadimage-6caaa.appspot.com/o/ZM%20Live%20Meeting%20Notes%20Icons%2FZIMO%20MEET.png?alt=media&amp;token=7425f0b8-b4c9-4244-ba0d-1dfccc164154" 
                         alt="CAM_ICON" 
-                        class="camIcon"/>
+                        class="camIcon"
+                    />
                     <p class="detailsModalMeetingLink" id="detailsMeetingLink"></p>
 
                 </div>
@@ -830,7 +841,7 @@ $(document).on('click', '.editBtn', function(event){
     const editModal = document.getElementById('editModal');
     editModal.style.display = "block";
     var pointId = $(this).attr('data-id');
-    console.log('edit' + " & id " + pointId);
+    // console.log('edit' + " & id " + pointId);
     
     $.ajax({
         url: 'https://backend.zimomeet.com/api/get-meeting-note?id='+pointId,
@@ -980,16 +991,21 @@ $(document).on('click', '.delBtn', function(event){
 
     var pointId = $(this).attr('data-id');
 
-    $row.find('td, td p').css('color', '#900000');
+    var editIcon = $row.find('#editIcon')[0];
+    var deleteIcon = $row.find('#deleteIcon')[0];
 
+    $row.find('td, td p, td div').css('color', '#900000');
+    editIcon.style.fill = '#900000';
+    deleteIcon.style.fill = '#900000';
+  
     $.ajax({
-        url: 'https://backend.zimomeet.com/api/delete-meeting-note/?id='+ pointId,
-        type: 'GET',
+        url: 'https://backend.zimomeet.com/api/delete-meeting-note?id='+ pointId,
+        type: 'DELETE',
         headers:{
             "api-key" : "786ZM786"
         },
         success: function(response){
-
+            console.log(response)
         },
         error: function(xhr, status, error){
             console.error(error);
@@ -997,13 +1013,17 @@ $(document).on('click', '.delBtn', function(event){
         complete: function(){
             
             setTimeout(function(){
-                $row.find('td, td p').css('color', '#707070');
+                $row.find('td, td p, td div').css('color', '#505050a1');
+                editIcon.style.fill = '#505050a1';
+                deleteIcon.style.fill = '#505050a1';
+            
         
                 setTimeout(function(){
                     $row.remove();
-                }, 1000); 
-            }, 1000); 
-            loadTable();
+                    loadTable();
+                }, 2000); 
+            }, 2000); 
+
         }
 
     });
