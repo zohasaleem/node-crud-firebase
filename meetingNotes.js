@@ -16,7 +16,7 @@ button.setAttribute('id', 'firstModalBtn');
  btnImage.style.width ="30px";
 
  
-
+ 
 
  function showFirstModal() {
 
