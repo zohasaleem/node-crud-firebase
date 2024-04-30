@@ -349,6 +349,7 @@ p{
     font-weight: 600;
     font-family: "Lato";
     text-transform: uppercase;
+    color: black;
 }
 
 .detailsCreator{
@@ -360,6 +361,7 @@ p{
     padding: 0px 10px;
     font-family: "Lato";
     text-transform: uppercase;
+    color: black;
 }
 
 .detailsModalDate{
@@ -370,6 +372,7 @@ p{
     line-height: 4px;
     font-weight: 600;
     font-family: "Lato";
+    color: black;
 
 }
 
@@ -381,6 +384,7 @@ p{
     margin: 20px 0px 30px 0px;
     font-family: "Lato";
     text-transform: uppercase;
+    color: black;
 }
 
 .detailsNotes{
