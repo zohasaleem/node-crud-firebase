@@ -377,3 +377,7 @@ p{
 .addModalDate{
     color:black;
 }
+
+.placeholder-red::placeholder{
+    color: #900000;
+}
