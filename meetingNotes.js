@@ -323,6 +323,9 @@ function showDetailsDataModal() {
     closeButton.addEventListener('click', function() {
         modal.style.display = 'none';
 
+        document.getElementById("details-notes-container").innerHTML = " ";
+
+
     });
 
 }
