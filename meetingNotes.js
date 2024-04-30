@@ -519,7 +519,7 @@ $(document).on('click', '.delBtn', function(event){
 
     var pointId = $(this).attr('data-id');
 
-    $row.find('td').css('color', '#900000');
+    $row.find('td, td p').css('color', '#900000');
 
     $.ajax({
         url: 'https://backend.zimomeet.com/api/delete-meeting-note/?id='+ pointId,
@@ -536,7 +536,7 @@ $(document).on('click', '.delBtn', function(event){
         complete: function(){
             
             setTimeout(function(){
-                $row.find('td').css('color', '#707070');
+                $row.find('td, td p').css('color', '#707070');
         
                 setTimeout(function(){
                     $row.remove();
