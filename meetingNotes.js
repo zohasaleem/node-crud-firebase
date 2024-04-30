@@ -379,7 +379,7 @@ $(document).on('click', '#detailsModalBtn', function(event){
             const topUpdateButton = document.getElementById('topUpdateBtn');
 
             var lastBulletNumber = 1;
-            var lastNoteElement = editNotesContainer.querySelector('.editNotePoints:last-child');
+            var lastNoteElement = editNotesContainer.querySelector('.detailsNotes:last-child');
             
             if(lastNoteElement){
                 var lastNoteContent = lastNoteElement.textContent;
@@ -397,7 +397,7 @@ $(document).on('click', '#detailsModalBtn', function(event){
                     const text = inputField.value.trim();
                     if(text){
                         const note = document.createElement('p');
-                        note.classList.add('editNotePoints')
+                        note.classList.add('detailsNotes')
                         note.innerHTML = `<span class="bullets">${noteBullets}.</span>${text}`;
                         notesContainer.appendChild(note);
                         inputField.value = '';  

@@ -92,7 +92,8 @@
     scrollbar-width: auto !important;
 }
 
-.detailsNotesContainer{
+.detailsNotesContainer,
+#details-notes-container{
     scrollbar-color: auto !important;
     scrollbar-width: auto !important;
 }
@@ -100,14 +101,16 @@
 /* Track */
 .table-container::-webkit-scrollbar,
 .createModalContainer::-webkit-scrollbar,
-#detailsNotesContainer::-webkit-scrollbar,
+#details-notes-container::-webkit-scrollbar,
+.detailsNotesContainer::-webkit-scrollbar,
 .editModalContainer::-webkit-scrollbar{
     width: 2px !important;
 }
 
 .table-container::-webkit-scrollbar-track,
 .createModalContainer::-webkit-scrollbar-track,
-#detailsNotesContainer::-webkit-scrollbar-track,
+#details-notes-container::-webkit-scrollbar-track,
+.detailsNotesContainer::-webkit-scrollbar-track,
 .editModalContainer::-webkit-scrollbar-track{
     background-color: #ffffff !important; 
 }
@@ -115,7 +118,8 @@
 /* Handle */
 ::-webkit-scrollbar-thumb,
 .createModalContainer::-webkit-scrollbar-thumb,
-#detailsNotesContainer::-webkit-scrollbar-thumb,
+#details-notes-container::-webkit-scrollbar-thumb,
+.detailsNotesContainer::-webkit-scrollbar-thumb,
 .editModalContainer::-webkit-scrollbar-thumb{
     background-color: #090909 !important; 
     border-radius: 4px !important; 
@@ -125,7 +129,8 @@
 /* Handle on hover */
 ::-webkit-scrollbar-thumb:hover,
 .createModalContainer::-webkit-scrollbar-thumb:hover,
-#detailsNotesContainer::-webkit-scrollbar-thumb:hover,
+#details-notes-container::-webkit-scrollbar-thumb:hover,
+.detailsNotesContainer::-webkit-scrollbar-thumb:hover,
 .editModalContainer::-webkit-scrollbar-thumb:hover{
     background-color: #555 !important; 
 }
