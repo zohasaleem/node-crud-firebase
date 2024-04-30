@@ -409,43 +409,107 @@ $(document).on('click', '#submit', function(event){
         notes.push(note.textContent);
     });
 
-    console.log(notes);
 
-        // console.log(date + " " + day + meetingLink + " " + pointName + " "+ pointDescription);
-    $.ajax({
-        url: 'https://backend.zimomeet.com/api/save-meeting-notes',
-        type: 'POST',
-        headers:{
-            "api-key" : "786ZM786"
-        },
-        data: {
-            date: date,
-            day: currentDay,
-            time: time,
-            title: title,
-            creator_name:creator_name,
-            meetingLink: meetingLink,
-            meeting_subject: meeting_subject,
-            notes: notes.join('\n')
-        },
-        success: function(response){
-            console.log(response);
-        },
-        error: function(xhr, status, error){
-            console.error(error);
-        },
-        complete: function(){
-            document.getElementById("title").value = '';
-            document.getElementById("notes").value = '';
-            document.getElementById("meeting_subject").value = '';
-            document.getElementById("creator_name").value = '';
-            document.getElementById("notesContainer").innerHTML = '';
+    var isValid = true;
+    var creatorNameInput = document.getElementById('creator_name');
+    var titleInput = document.getElementById('title');
+    var meetingSubjectInput = document.getElementById('meeting_subject');
+    var notesInput = document.getElementById('notes');
 
-            $('#newDataModal').css('display', 'none');
-
-            loadTable();
+    creatorNameInput.addEventListener('input', function() {
+        if (creatorNameInput.value.trim()) {
+            creatorNameInput.classList.remove('placeholder-red');
+            creatorNameInput.placeholder = 'NAME';
         }
     });
+    
+    titleInput.addEventListener('input', function() {
+        if (titleInput.value.trim()) {
+            titleInput.classList.remove('placeholder-red');
+            titleInput.placeholder = 'TITLE';
+        }
+    });
+    
+    meetingSubjectInput.addEventListener('input', function() {
+        if (meetingSubjectInput.value.trim()) {
+            meetingSubjectInput.classList.remove('placeholder-red');
+            meetingSubjectInput.placeholder = 'MEETING SUBJECT';
+        }
+    });
+    
+    notesInput.addEventListener('input', function() {
+        if (notesInput.value.trim()) {
+            notesInput.classList.remove('placeholder-red');
+            notesInput.placeholder = 'NOTES...';
+        }
+    });
+    
+
+   // Validate required fields
+    if (!creator_name.trim()) {
+        creatorNameInput.placeholder = 'NAME IS REQUIRED.';
+        creatorNameInput.classList.add('placeholder-red');
+        isValid = false;
+    } 
+    
+    if (!title.trim()) {
+        titleInput.placeholder = 'TITLE IS REQUIRED.';
+        titleInput.classList.add('placeholder-red');  
+        isValid = false;
+    }
+
+    if (!meeting_subject.trim()) {
+        meetingSubjectInput.placeholder = 'MEETING SUBJECT IS REQUIRED.';
+        meetingSubjectInput.classList.add('placeholder-red');  
+        isValid = false;
+
+    }
+
+    if (notes.length == 0) {
+        notesInput.placeholder = 'NOTES ARE REQUIRED.';
+        notesInput.classList.add('placeholder-red');  
+        isValid = false;
+
+    } 
+
+    if(isValid){
+
+        // console.log(date + " " + day + meetingLink + " " + pointName + " "+ pointDescription);
+        $.ajax({
+            url: 'https://backend.zimomeet.com/api/save-meeting-notes',
+            type: 'POST',
+            headers:{
+                "api-key" : "786ZM786"
+            },
+            data: {
+                date: date,
+                day: currentDay,
+                time: time,
+                title: title,
+                creator_name:creator_name,
+                meetingLink: meetingLink,
+                meeting_subject: meeting_subject,
+                notes: notes.join('\n')
+            },
+            success: function(response){
+                console.log(response);
+            },
+            error: function(xhr, status, error){
+                console.error(error);
+            },
+            complete: function(){
+                document.getElementById("title").value = '';
+                document.getElementById("notes").value = '';
+                document.getElementById("meeting_subject").value = '';
+                document.getElementById("creator_name").value = '';
+                document.getElementById("notesContainer").innerHTML = '';
+
+                $('#newDataModal').css('display', 'none');
+
+                loadTable();
+            }
+        });
+    }
 });
 
 $(document).on('click', '.delBtn', function(event){
