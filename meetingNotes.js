@@ -4,9 +4,9 @@ button.style.float = 'right';
 button.style.margin = '0px';
 button.style.padding = '0px';
 button.style.cursor = 'pointer';
-// button.style.zIndex = '9999';
-// button.style.top = "-285px";
-// button.style.left= "-15px";
+button.style.zIndex = '9999';
+button.style.top = "-285px";
+button.style.left= "-15px";
 button.style.position= "relative";
 button.setAttribute('id', 'firstModalBtn');
 
