@@ -87,7 +87,7 @@
 .table-container {
     max-height: 275px;
     overflow: auto;
-    padding-right: 15px;
+    padding-right: 20px;
     scrollbar-color: auto !important;
     scrollbar-width: auto !important;
 }
@@ -152,8 +152,8 @@ th {
     font-size: 11px;
     letter-spacing: 0.8px;
     font-family: "Lato";
-}
 
+}
 
 td {
     text-transform: uppercase;
@@ -167,36 +167,10 @@ td {
 
 }
 
-td > div {
+td{
     white-space: nowrap;   
     overflow: hidden;       
     text-overflow: ellipsis; 
-}
-
-
-tr:hover .creatorNameText{
-    color: #ce8f8f;
-}
-
-tr:hover .date, tr:hover .meetingRoomText, tr:hover div{
-    color: #900000;
-}
-
-tr:hover .actionBtn, tr:hover #meetingCamIcon {
-    fill: #900000;
-}
-
-.meetingRoomText{
-    display: inline-block; 
-    text-transform:lowercase; 
-    cursor:pointer; 
-    color:black;
-}
-
-.creatorNameText{
-    color: #9f9f9f;
-    font-size: 8px;
-    letter-spacing: 1.5px;
 }
 
 
@@ -209,35 +183,20 @@ tr:hover .actionBtn, tr:hover #meetingCamIcon {
     outline-offset: 0cap;
 }
 
-.submitWithoutScroll, .updateWithoutScroll{
-    z-index: 9999;
-    position: fixed;
-    background: no-repeat;
-    border: none;
-    color: black;
-    font-family: 'Lato';
-    letter-spacing: 1px;
-    float: right;
-    padding: 0px;
-    top: 335px;
-    right: 25px;
-    cursor: pointer;
-}
 
 .submit, .update{
-    /* z-index: 99; */
-    display: none;
+    z-index: 99;
     color: black;
-    padding: 0px;
+    padding: 6px;
     font-size: 14px;
     letter-spacing: 2px;
     border: none;
     cursor: pointer;
     background: none;
-    /* float: right; */
+    float: right;
     text-transform: uppercase;
-    /* position: relative;
-    top: -25px; */
+    position: relative;
+    top: -25px;
     font-family: "Lato";
 
 }
@@ -248,7 +207,7 @@ tr:hover .actionBtn, tr:hover #meetingCamIcon {
     padding: 6px;
     font-size: 14px;
     font-family: "Lato";
-    letter-spacing: 1px;
+    letter-spacing: 2px;
     border: none;
     cursor: pointer;
     background: none;
@@ -302,14 +261,13 @@ label{
 
 }
 
-#notesContainer, #edit-notes-container{
+#notesContainer, #editNotesContainer{
     color: black;
     width: 70%;
     font-size: 10px;
-    /* padding-bottom: 6px; */
+    padding-bottom: 6px;
     letter-spacing: 1px;
     text-transform: uppercase;
-    
 }
 
 .imageInputField{
@@ -361,25 +319,19 @@ p{
 }
 .createModalContainer, .editModalContainer{
     max-height: 220px;
-    overflow-y: auto;
-    overflow-x: hidden;
+    overflow: auto;
     padding-right: 20px;
     scrollbar-color: auto !important;
     scrollbar-width: auto !important;
 }
 .notes-container, .edit-notes-container {
-    /* width: 455px;
+    width: 455px;
     max-width: 100%; 
     height: 80px; 
     display: flex;
     align-items: flex-start;
     word-wrap: break-word; 
-    overflow-wrap: break-word;  */
-    width: 465px;
-    display: flex;
-    overflow-wrap: break-word;
-    flex-direction: column;
-    align-items: flex-end;
+    overflow-wrap: break-word; 
 }
 
 .notePoints, .editNotePoints{
@@ -396,8 +348,7 @@ p{
 .actionBtn{
     display: flex; 
     justify-content: flex-end; 
-    margin-bottom: 10px;
-    margin: 0px;
+    margin: 10px 0px;
 }
 .detailsHeading{
     margin: 0;
