@@ -14,8 +14,7 @@ const btnImage = document.createElement('img');
 btnImage.setAttribute("src", "https://firebasestorage.googleapis.com/v0/b/zimo-b9759.appspot.com/o/zimomeet_live%2Fmeeting_notes%2Flogos%2FZM%20Notes%20W.png?alt=media&token=8a571dcc-e3c1-4796-bd2f-f6593c991a84");
 btnImage.style.width ="30px";
 
-var name = document.getElementById('localDisplayName').innerText;
-console.log(name);
+ 
  
 // first modal
 function showFirstModal() {
