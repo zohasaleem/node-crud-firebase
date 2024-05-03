@@ -1,3 +1,7 @@
+
+var name = document.getElementById('localDisplayName').innerText;
+console.log(name);
+
 // popover modal button
 const button = document.createElement('div');
 button.style.float = 'right';

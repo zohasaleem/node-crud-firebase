@@ -93,7 +93,6 @@ function showFirstModal() {
 
 }
 
-showFirstModal();
 
 // add button
 function addCreateButton(tbody){
@@ -233,14 +232,6 @@ $(document).on('click', '#firstModalBtn', function(event){
 });
 
 
-// Get the largeVideoContainer div from zimo meet live
-const container = document.getElementById('largeVideoContainer');
-
-button.appendChild(btnImage);
-
-container.appendChild(button);
-
-
 
 // details data
 function showDetailsDataModal() {
@@ -329,109 +320,6 @@ function showDetailsDataModal() {
     });
 
 }
-
-showDetailsDataModal();
-
-
-// deatils Modal Btn
-$(document).on('click', '#detailsModalBtn', function(event){
-    event.preventDefault();
-    
-    document.getElementById('newDataModal').style.display = 'none';
-    document.getElementById('detailsDataModal').style.display = 'block';
-
-    var meetingNoteId = $(this).data('meeting-note-id');
-
-       
-    $.ajax({
-        url: 'https://backend.zimomeet.com/api/get-meeting-note?id='+meetingNoteId,
-        type: 'GET',
-        headers: {
-            "api-key": "786ZM786"
-        },
-        success: function(response){
-            console.log(response);
-
-            document.getElementById("detailsTitle").textContent = response.meeting_note.title;
-            document.getElementById("detailsCreator").textContent = response.meeting_note.creator_name;
-            document.getElementById("details_meeting_subject").textContent = response.meeting_note.meeting_subject;
-            document.getElementById("detailsDay").textContent = response.meeting_note.day;
-            document.getElementById("detailsDate").textContent = response.meeting_note.date;
-            document.getElementById("detailsTime").textContent = response.meeting_note.time;
-            document.getElementById("detailsMeetingLink").textContent = response.meeting_note.meeting_link;
-            
-            var deatilsNotesContainer = document.getElementById("details-notes-container");
-            var notesArray = response.meeting_note.notes.split('\n');
-
-            
-            notesArray.forEach(function(note, index){
-                var p = document.createElement('p');
-                p.textContent = note.trim();
-                p.classList.add('detailsNotes');
-
-                deatilsNotesContainer.appendChild(p);
- 
-            });
-
-            const inputField = document.getElementById('editNotes');
-            const notesContainer = document.getElementById('edit-notes-container');
-            let noteBullets;
-            
-            const editModalContainer = document.querySelector('.editModalContainer');
-            const updateButton = document.getElementById('update');
-            const topUpdateButton = document.getElementById('topUpdateBtn');
-
-            var lastBulletNumber = 1;
-            var lastNoteElement = deatilsNotesContainer.querySelector('.detailsNotes:last-child');
-            
-            if(lastNoteElement){
-                var lastNoteContent = lastNoteElement.textContent;
-                var match = lastNoteContent.match(/(\d+)\./);
-                if(match){
-                    lastBulletNumber = parseInt(match[1]); 
-                }
-            }
-            noteBullets = lastBulletNumber + 1;
-
-            inputField.addEventListener('keydown', function(event){
-                if(event.key === 'Enter'){
-                    console.log(document.getElementById('editNotes').value)
-                    event.preventDefault();
-                    const text = inputField.value.trim();
-                    if(text){
-                        const note = document.createElement('p');
-                        note.classList.add('detailsNotes')
-                        note.innerHTML = `<span class="bullets">${noteBullets}.</span>${text}`;
-                        notesContainer.appendChild(note);
-                        inputField.value = '';  
-                        noteBullets++;              
-                    }
-                }
-
-                // Function to check if scrollbar is visible
-                function isScrollbarVisible() {
-                    return editModalContainer.scrollHeight > editModalContainer.clientHeight;
-                }
-
-                if (isScrollbarVisible()){
-                    updateButton.style.display = "none";
-                    topUpdateButton.style.display = "block";
-                    topUpdateButton.setAttribute('id', 'update');
-                }
-
-            });
-
-        },
-        error: function(xhr, status, error){
-            console.error(error);
-        }
-    });
-
-
-});
-
-
-
 
 
 // create data modal
@@ -587,7 +475,245 @@ function showSaveDataModal() {
 
 }
 
-showSaveDataModal();
+
+
+// edit modal
+function showEditModal() {
+
+    const container = document.getElementById('largeVideoContainer');
+
+    // Create the modal
+    const modal = document.createElement('div');
+    modal.className = 'editModal modal';
+    modal.setAttribute('id', 'editModal');
+    modal.style.zIndex = "9999";
+    modal.style.display = 'none';
+
+    modal.innerHTML = `
+
+        <div class="edit-modal-content">
+            <div style=" display: flex; justify-content: space-between; align-items: flex-start;">
+                <div style="display: flex; align-items: center;">
+                    <img src="https://firebasestorage.googleapis.com/v0/b/uploadimage-6caaa.appspot.com/o/ZM%20Live%20Meeting%20Notes%20Icons%2FZM-B-200x200.png?alt=media&token=dc458912-71ba-4806-a9cb-1072041c7942" 
+                        style="width: 60px;" 
+                    />
+                    <img src="https://firebasestorage.googleapis.com/v0/b/uploadimage-6caaa.appspot.com/o/ZM%20Live%20Meeting%20Notes%20Icons%2FZM%20Notes%20B.png?alt=media&token=5fb239ec-80b6-48fa-ac7a-791e7de82601" 
+                        style="width: 25px; margin-left: 20px;" 
+                    />
+                </div>
+
+                <img src="https://firebasestorage.googleapis.com/v0/b/uploadimage-6caaa.appspot.com/o/ZM%20Live%20Meeting%20Notes%20Icons%2FZM%20%2B.png?alt=media&token=598d4421-7999-42de-8f73-38961161f319" 
+                    class=""
+                    style="width: 18px; margin-top: 22px;" 
+                />
+                <div style="display: flex; align-items: baseline;">
+                    <button id="topUpdateBtn" class="topUpdateBtn" type="button">UPDATE</button>
+                    <img src="https://firebasestorage.googleapis.com/v0/b/uploadimage-6caaa.appspot.com/o/ZM%20Live%20Meeting%20Notes%20Icons%2FZM%20Notes%20X.png?alt=media&token=fafaedde-2699-48cd-bc65-19460a0ad2c6" 
+                        style="width: 12px; margin-top: 10px; margin-left:15px;" 
+                        class="editClose"
+                    />
+                </div>
+            </div>
+           
+            <div style=" display: flex; justify-content: space-between; align-items: flex-start;">
+                <div style="display: flex; flex-direction: column;">
+                    <p class="addModalDate" id="editDay"></p>
+                    <p class="addModalDate" id="editDate"></p>
+                    <p class="addModalDate"  id="editTime"></p>
+                </div>
+
+                <div style="display: flex; align-items: center;">
+                    <img src="https://firebasestorage.googleapis.com/v0/b/uploadimage-6caaa.appspot.com/o/ZM%20Live%20Meeting%20Notes%20Icons%2FZIMO%20MEET.png?alt=media&amp;token=7425f0b8-b4c9-4244-ba0d-1dfccc164154" 
+                        alt="CAM_ICON" 
+                        class="camIcon"/>
+                    <p class="createModalLink" id="editMeetingLink" name="editMeetingLink"></p>
+
+                </div>
+            </div>
+
+            <input type="hidden" id="pointId" name="pointId">
+
+            <div style="clear:both; margin-top: 15px;">
+                <div class="editModalContainer">
+
+                    <div style="display:flex; align-items: flex-start;">
+                        <label for="edit_creator_name"> NAME:</label>
+                        <input type="text"  class="inputField" id="edit_creator_name" name="edit_creator_name" placeholder="NAME">
+                    </div>
+
+                    <div style="display:flex; align-items: flex-start; margin-top: 20px;">
+                        <label for="editTitle" >TITLE:</label>
+                        <input type="text"  class="inputField" id="editTitle" name="editTitle"  placeholder="TITLE">
+                    </div>
+
+                    <div style="display:flex; align-items: flex-start; margin-top: 20px;">
+                        <label for="editMeetingSubject" >MEETING SUBJECT:</label>
+                        <input type="text"  class="inputField" id="edit_meeting_subject" name="edit_meeting_subject"  placeholder="MEETING SUBJECT">
+                    </div>
+
+                    <div style="display:flex; align-items: flex-start; margin-top: 20px;">
+
+                        <label for="editNotes">NOTES:</label>                        
+                        <input type=text id="editNotes" class="inputField" name="neditNotes"  placeholder="NOTES..." style="border:none;">
+                    </div>
+                    <div class="edit-notes-container">
+                        <label for="editNotesContainer"></label>   
+                        <div id="edit-notes-container"></div>
+                    </div>
+
+                </div>
+                <button id="update" class="update" type="button">UPDATE</button>
+
+            </div>
+
+        </div>
+    `;
+
+    // Append the modal to the container
+    // container.appendChild(modal);
+    document.body.appendChild(modal);
+
+    // Add event listener to close the modal
+    const closeButton = modal.querySelector('.editClose');
+    closeButton.addEventListener('click', function() {
+        document.getElementById("pointId").value = '';
+        document.getElementById("edit_creator_name").value = '';
+        document.getElementById("editTitle").value = '';
+        document.getElementById("edit_meeting_subject").value = '';
+        document.getElementById("editDay").textContent = '';
+        document.getElementById("editDate").textContent = '';
+        document.getElementById("editTime").textContent = '';
+        document.getElementById("editMeetingLink").textContent = '';
+        
+        var editNotesContainer = document.getElementById("edit-notes-container");
+        editNotesContainer.innerHTML = ' '
+
+        modal.style.display = 'none';
+    });
+
+}
+
+
+
+$(document).ready(function() {
+    
+    var mobile = (/iphone|ipod|android|blackberry|mini|windows\sce|palm/i.test(navigator.userAgent.toLowerCase()));  
+console.log(mobile)
+   // Get the largeVideoContainer div from zimo meet live
+    const container = document.getElementById('largeVideoContainer');
+    button.appendChild(btnImage);
+    container.appendChild(button);
+
+    showFirstModal();
+
+    showDetailsDataModal();
+
+    showSaveDataModal();
+
+    showEditModal();
+
+});
+
+
+
+// deatils Modal Btn
+$(document).on('click', '#detailsModalBtn', function(event){
+    event.preventDefault();
+    
+    document.getElementById('newDataModal').style.display = 'none';
+    document.getElementById('detailsDataModal').style.display = 'block';
+
+    var meetingNoteId = $(this).data('meeting-note-id');
+
+       
+    $.ajax({
+        url: 'https://backend.zimomeet.com/api/get-meeting-note?id='+meetingNoteId,
+        type: 'GET',
+        headers: {
+            "api-key": "786ZM786"
+        },
+        success: function(response){
+            console.log(response);
+
+            document.getElementById("detailsTitle").textContent = response.meeting_note.title;
+            document.getElementById("detailsCreator").textContent = response.meeting_note.creator_name;
+            document.getElementById("details_meeting_subject").textContent = response.meeting_note.meeting_subject;
+            document.getElementById("detailsDay").textContent = response.meeting_note.day;
+            document.getElementById("detailsDate").textContent = response.meeting_note.date;
+            document.getElementById("detailsTime").textContent = response.meeting_note.time;
+            document.getElementById("detailsMeetingLink").textContent = response.meeting_note.meeting_link;
+            
+            var deatilsNotesContainer = document.getElementById("details-notes-container");
+            var notesArray = response.meeting_note.notes.split('\n');
+
+            
+            notesArray.forEach(function(note, index){
+                var p = document.createElement('p');
+                p.textContent = note.trim();
+                p.classList.add('detailsNotes');
+
+                deatilsNotesContainer.appendChild(p);
+ 
+            });
+
+            const inputField = document.getElementById('editNotes');
+            const notesContainer = document.getElementById('edit-notes-container');
+            let noteBullets;
+            
+            const editModalContainer = document.querySelector('.editModalContainer');
+            const updateButton = document.getElementById('update');
+            const topUpdateButton = document.getElementById('topUpdateBtn');
+
+            var lastBulletNumber = 1;
+            var lastNoteElement = deatilsNotesContainer.querySelector('.detailsNotes:last-child');
+            
+            if(lastNoteElement){
+                var lastNoteContent = lastNoteElement.textContent;
+                var match = lastNoteContent.match(/(\d+)\./);
+                if(match){
+                    lastBulletNumber = parseInt(match[1]); 
+                }
+            }
+            noteBullets = lastBulletNumber + 1;
+
+            inputField.addEventListener('keydown', function(event){
+                if(event.key === 'Enter'){
+                    console.log(document.getElementById('editNotes').value)
+                    event.preventDefault();
+                    const text = inputField.value.trim();
+                    if(text){
+                        const note = document.createElement('p');
+                        note.classList.add('detailsNotes')
+                        note.innerHTML = `<span class="bullets">${noteBullets}.</span>${text}`;
+                        notesContainer.appendChild(note);
+                        inputField.value = '';  
+                        noteBullets++;              
+                    }
+                }
+
+                // Function to check if scrollbar is visible
+                function isScrollbarVisible() {
+                    return editModalContainer.scrollHeight > editModalContainer.clientHeight;
+                }
+
+                if (isScrollbarVisible()){
+                    updateButton.style.display = "none";
+                    topUpdateButton.style.display = "block";
+                    topUpdateButton.setAttribute('id', 'update');
+                }
+
+            });
+
+        },
+        error: function(xhr, status, error){
+            console.error(error);
+        }
+    });
+
+
+});
+
+
 
 // new data Btn
 $(document).on('click', '#newDataBtn', function(event){
@@ -719,124 +845,6 @@ $(document).on('click', '#submit', function(event){
     }
 });
 
-
-// edit modal
-function showEditModal() {
-
-    const container = document.getElementById('largeVideoContainer');
-
-    // Create the modal
-    const modal = document.createElement('div');
-    modal.className = 'editModal modal';
-    modal.setAttribute('id', 'editModal');
-    modal.style.zIndex = "9999";
-    modal.style.display = 'none';
-
-    modal.innerHTML = `
-
-        <div class="edit-modal-content">
-            <div style=" display: flex; justify-content: space-between; align-items: flex-start;">
-                <div style="display: flex; align-items: center;">
-                    <img src="https://firebasestorage.googleapis.com/v0/b/uploadimage-6caaa.appspot.com/o/ZM%20Live%20Meeting%20Notes%20Icons%2FZM-B-200x200.png?alt=media&token=dc458912-71ba-4806-a9cb-1072041c7942" 
-                        style="width: 60px;" 
-                    />
-                    <img src="https://firebasestorage.googleapis.com/v0/b/uploadimage-6caaa.appspot.com/o/ZM%20Live%20Meeting%20Notes%20Icons%2FZM%20Notes%20B.png?alt=media&token=5fb239ec-80b6-48fa-ac7a-791e7de82601" 
-                        style="width: 25px; margin-left: 20px;" 
-                    />
-                </div>
-
-                <img src="https://firebasestorage.googleapis.com/v0/b/uploadimage-6caaa.appspot.com/o/ZM%20Live%20Meeting%20Notes%20Icons%2FZM%20%2B.png?alt=media&token=598d4421-7999-42de-8f73-38961161f319" 
-                    class=""
-                    style="width: 18px; margin-top: 22px;" 
-                />
-                <div style="display: flex; align-items: baseline;">
-                    <button id="topUpdateBtn" class="topUpdateBtn" type="button">UPDATE</button>
-                    <img src="https://firebasestorage.googleapis.com/v0/b/uploadimage-6caaa.appspot.com/o/ZM%20Live%20Meeting%20Notes%20Icons%2FZM%20Notes%20X.png?alt=media&token=fafaedde-2699-48cd-bc65-19460a0ad2c6" 
-                        style="width: 12px; margin-top: 10px; margin-left:15px;" 
-                        class="editClose"
-                    />
-                </div>
-            </div>
-           
-            <div style=" display: flex; justify-content: space-between; align-items: flex-start;">
-                <div style="display: flex; flex-direction: column;">
-                    <p class="addModalDate" id="editDay"></p>
-                    <p class="addModalDate" id="editDate"></p>
-                    <p class="addModalDate"  id="editTime"></p>
-                </div>
-
-                <div style="display: flex; align-items: center;">
-                    <img src="https://firebasestorage.googleapis.com/v0/b/uploadimage-6caaa.appspot.com/o/ZM%20Live%20Meeting%20Notes%20Icons%2FZIMO%20MEET.png?alt=media&amp;token=7425f0b8-b4c9-4244-ba0d-1dfccc164154" 
-                        alt="CAM_ICON" 
-                        class="camIcon"/>
-                    <p class="createModalLink" id="editMeetingLink" name="editMeetingLink"></p>
-
-                </div>
-            </div>
-
-            <input type="hidden" id="pointId" name="pointId">
-
-            <div style="clear:both; margin-top: 15px;">
-                <div class="editModalContainer">
-
-                    <div style="display:flex; align-items: flex-start;">
-                        <label for="edit_creator_name"> NAME:</label>
-                        <input type="text"  class="inputField" id="edit_creator_name" name="edit_creator_name" placeholder="NAME">
-                    </div>
-
-                    <div style="display:flex; align-items: flex-start; margin-top: 20px;">
-                        <label for="editTitle" >TITLE:</label>
-                        <input type="text"  class="inputField" id="editTitle" name="editTitle"  placeholder="TITLE">
-                    </div>
-
-                    <div style="display:flex; align-items: flex-start; margin-top: 20px;">
-                        <label for="editMeetingSubject" >MEETING SUBJECT:</label>
-                        <input type="text"  class="inputField" id="edit_meeting_subject" name="edit_meeting_subject"  placeholder="MEETING SUBJECT">
-                    </div>
-
-                    <div style="display:flex; align-items: flex-start; margin-top: 20px;">
-
-                        <label for="editNotes">NOTES:</label>                        
-                        <input type=text id="editNotes" class="inputField" name="neditNotes"  placeholder="NOTES..." style="border:none;">
-                    </div>
-                    <div class="edit-notes-container">
-                        <label for="editNotesContainer"></label>   
-                        <div id="edit-notes-container"></div>
-                    </div>
-
-                </div>
-                <button id="update" class="update" type="button">UPDATE</button>
-
-            </div>
-
-        </div>
-    `;
-
-    // Append the modal to the container
-    // container.appendChild(modal);
-    document.body.appendChild(modal);
-
-    // Add event listener to close the modal
-    const closeButton = modal.querySelector('.editClose');
-    closeButton.addEventListener('click', function() {
-        document.getElementById("pointId").value = '';
-        document.getElementById("edit_creator_name").value = '';
-        document.getElementById("editTitle").value = '';
-        document.getElementById("edit_meeting_subject").value = '';
-        document.getElementById("editDay").textContent = '';
-        document.getElementById("editDate").textContent = '';
-        document.getElementById("editTime").textContent = '';
-        document.getElementById("editMeetingLink").textContent = '';
-        
-        var editNotesContainer = document.getElementById("edit-notes-container");
-        editNotesContainer.innerHTML = ' '
-
-        modal.style.display = 'none';
-    });
-
-}
-
-showEditModal();
 
 $(document).on('click', '.editBtn', function(event){
     event.preventDefault();
@@ -981,9 +989,6 @@ $(document).on('click', '#update', function(event){
     });
 
 });
-
-
-
 
 
 // del data
