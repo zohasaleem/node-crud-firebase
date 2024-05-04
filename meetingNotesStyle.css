@@ -230,7 +230,7 @@ tr:hover .actionBtn, tr:hover #meetingCamIcon {
     color: black;
     padding: 0px;
     font-size: 14px;
-    letter-spacing: 2px;
+    letter-spacing: 1px;
     border: none;
     cursor: pointer;
     background: none;
@@ -383,12 +383,15 @@ p{
 }
 
 .notePoints, .editNotePoints{
+    width: 82%;
     font-size: 10px;
     letter-spacing: 1px;
     line-height: 20px;
     font-family: "Lato";
     text-transform: uppercase;
     color: black;
+    border: none;
+    outline: none;
 }
 .bullets{
     margin-right: 5px;

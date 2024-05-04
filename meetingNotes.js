@@ -19,10 +19,15 @@ btnImage.style.width ="30px";
 // first modal
 function showFirstModal() {
 
-    // Create the modal
+    // modal creation
     const modal = document.createElement('div');
     modal.className = 'modal';
     modal.setAttribute('id', 'firstModal');
+    
+    // modal hidden initially
+    modal.style.display = 'none';
+
+    // modal content
     modal.innerHTML = `
 
         <div class="modal-content">
@@ -72,11 +77,10 @@ function showFirstModal() {
         </div>
     `;
     
-
-    // Show the modal
-    modal.style.display = 'none';
-
+    // modal close button
     const closeButton = modal.querySelector('.close');
+
+    // close modal when clicked
     closeButton.addEventListener('click', function() {
         modal.style.display = 'none';
     });
@@ -95,7 +99,7 @@ function showFirstModal() {
 
 showFirstModal();
 
-// add button
+// create button
 function addCreateButton(tbody){
 
     var row = `
@@ -353,15 +357,14 @@ function showDetailsDataModal() {
 
     });
 
-        document.getElementById('copyDetailsMeetingLink').addEventListener('click', function (){
-            var meetingLink = document.getElementById('detailsMeetingLink');
-            var copiedText = meetingLink.innerText || meetingLink.textContent;
-            
-            navigator.clipboard.writeText(copiedText).catch(() => {
-                console.error('Failed to copy URL');
-            });
+    document.getElementById('copyDetailsMeetingLink').addEventListener('click', function (){
+        var meetingLink = document.getElementById('detailsMeetingLink');
+        var copiedText = meetingLink.innerText || meetingLink.textContent;
+        
+        navigator.clipboard.writeText(copiedText).catch(() => {
+            console.error('Failed to copy URL');
         });
-
+    });
 
 }
 
@@ -546,7 +549,7 @@ function showSaveDataModal() {
 
             
                 <div style="display: flex; align-items: baseline;">
-                    <button id="topSaveBtn" class="topSaveBtn" type="button">SAVE</button>
+                    <button id="topSaveBtn" class="topSaveBtn saveBtn" type="button">SAVE</button>
                     <img src="https://firebasestorage.googleapis.com/v0/b/uploadimage-6caaa.appspot.com/o/ZM%20Live%20Meeting%20Notes%20Icons%2FZM%20Notes%20X.png?alt=media&token=fafaedde-2699-48cd-bc65-19460a0ad2c6" 
                         style="width: 12px; margin-top: 10px; margin-left:15px;" 
                         class="newDataModalClose"
@@ -596,12 +599,12 @@ function showSaveDataModal() {
                     <div class="notes-container">
                     
                         <div type=text id="notesContainer" name="notesContainer"></div>
-                        <button id="submit" class="submit" type="button">SAVE</button>
+                        <button id="submitWithScroll" class="submit saveBtn" type="button">SAVE</button>
 
                     </div>
 
                 </div>
-                <button id="submit" class="submitWithoutScroll" type="button">SAVE</button>
+                <button id="submit" class="submitWithoutScroll saveBtn" type="button">SAVE</button>
 
 
             </div>
@@ -610,43 +613,7 @@ function showSaveDataModal() {
 
     document.body.appendChild(modal);
 
-    const notesInputField = document.getElementById('notes');
-    const notesContainer = document.getElementById('notesContainer');
-    let noteBullets = 1;
-    
-    const createModalContainer = document.querySelector('.createModalContainer');
-    const saveButton = document.getElementById('submit');
-    const topSaveButton = document.getElementById('topSaveBtn');
-
-
-    notesInputField.addEventListener('keydown', function(event){
-        if(event.key === 'Enter'){
-            event.preventDefault();
-            const text = notesInputField.value.trim();
-            if(text){
-                const note = document.createElement('p');
-                note.classList.add('notePoints')
-                note.innerHTML = `<span class="bullets">${noteBullets}.</span>${text}`;
-                notesContainer.appendChild(note);
-                notesInputField.value = '';  
-                noteBullets++;              
-            }
-        }
-
-        // Function to check if scrollbar is visible
-        function isScrollbarVisible() {
-            return createModalContainer.scrollHeight > createModalContainer.clientHeight;
-        }
-
-        if (isScrollbarVisible()){
-            document.querySelector('.submitWithoutScroll').style.display = "none";
-            saveButton.style.display = "block";
-            topSaveButton.style.display = "block";
-            topSaveButton.setAttribute('id', 'submit');
-        }
-
-    });
-
+   
   
     // Add event listener to close the modal
     const closeButton = modal.querySelector('.newDataModalClose');
@@ -667,9 +634,9 @@ function showSaveDataModal() {
         meetingSubjectInput.value = "";
         meetingSubjectInput.placeholder = 'MEETING SUBJECT';
 
-        // var notesInput = document.getElementById('notes');
-        notesInputField.classList.remove('placeholder-red');
-        notesInputField.placeholder = 'NOTES...';
+        var notesInput = document.getElementById('notes');
+        notesInput.classList.remove('placeholder-red');
+        notesInput.placeholder = 'NOTES...';
 
         notesContainer.innerHTML = "";
         
@@ -686,7 +653,6 @@ function showSaveDataModal() {
             console.error('Failed to copy URL');
         });
     });
-
 }
 
 
@@ -695,10 +661,43 @@ function showSaveDataModal() {
 
 showSaveDataModal();
 
+
+let noteBullets = 1; 
+
+// Function to register the notes input field listener
+function registerNoteListener() {
+    const notesInputField = document.getElementById('notes');
+    const notesContainer = document.getElementById('notesContainer');
+
+    
+    notesInputField.addEventListener('keydown', function(event){
+        if(event.key === 'Enter'){
+            event.preventDefault();
+            const text = notesInputField.value.trim();
+            if(text){
+                const note = document.createElement('p');
+                note.classList.add('notePoints');
+                note.innerHTML = `<span class="bullets">${noteBullets}.</span>${text}`;
+                notesContainer.appendChild(note);
+                notesInputField.value = '';  
+                noteBullets++;              
+            }
+        }
+    });
+    
+    console.log(noteBullets);
+
+}
+
+
 // new data Btn
 $(document).on('click', '#newDataBtn', function(event){
     event.preventDefault();
-    
+
+    $('#submit').prop('disabled', false);
+    $('#submitWithScroll').prop('disabled', false);
+    $('#topSaveBtn').prop('disabled', false);
+
     const newModal = document.getElementById('newDataModal');
 
     const dayDisplay = document.getElementById('dayDisplay');
@@ -706,17 +705,81 @@ $(document).on('click', '#newDataBtn', function(event){
     const timeField = document.getElementById('time');
 
     // fetch date, time & day
+
+    // Function to update the time display
+    function updateTime() {
+        const today = new Date();
+        const timeOptions = { hour: '2-digit', minute: '2-digit', hour12: false };
+        timeField.textContent = today.toLocaleTimeString('en-US', timeOptions);
+        
+        // Request the next animation frame
+        requestAnimationFrame(updateTime);
+    }
+
+    // Update the time display initially
+    updateTime();
+
+
+    // fetch date & day
     const today = new Date();
     const dayOptions = { weekday: 'long' };
     const dateOptions = { day: '2-digit', month: '2-digit', year: 'numeric' };
-    const timeOptions = { hour: '2-digit', minute: '2-digit', hour12: false };
 
     dayDisplay.textContent = today.toLocaleDateString('en-US', dayOptions);
     dateField.textContent = today.toLocaleDateString('en-US', dateOptions);
-    timeField.textContent = today.toLocaleTimeString('en-US', timeOptions);
+
+// // uper to nechhy
+//     const notesInputField = document.getElementById('notes');
+//     const notesContainer = document.getElementById('notesContainer');
+//     let noteBullets = 1;
+    
+//     const createModalContainer = document.querySelector('.createModalContainer');
+//     const saveButton = document.getElementById('submit');
+//     const topSaveButton = document.getElementById('topSaveBtn');
+
+
+    // notesInputField.addEventListener('keydown', function(event){
+    //     if(event.key === 'Enter'){
+    //         event.preventDefault();
+    //         const text = notesInputField.value.trim();
+    //         if(text){
+    //             const note = document.createElement('p');
+    //             note.classList.add('notePoints')
+    //             note.innerHTML = `<span class="bullets">${noteBullets}.</span>${text}`;
+    //             notesContainer.appendChild(note);
+    //             notesInputField.value = '';  
+    //             noteBullets++;              
+    //         }
+    //     }
+
+    //     // Function to check if scrollbar is visible
+    //     function isScrollbarVisible() {
+    //         return createModalContainer.scrollHeight > createModalContainer.clientHeight;
+    //     }
+
+    //     if (isScrollbarVisible()){
+    //         document.querySelector('.submitWithoutScroll').style.display = "none";
+    //         saveButton.style.display = "block";
+    //         topSaveButton.style.display = "block";
+    //         topSaveButton.setAttribute('id', 'submit');
+    //     }
+
+    // });
+
+
+
+
+
+
+
 
 
     // fetch meeting link
+    
+    
+    registerNoteListener();
+
+    
     const meetingLinkField = document.getElementById('meetingLink');
     meetingLinkField.textContent = "";
     // meetingLinkField.textContent = window.location.href;
@@ -728,9 +791,14 @@ $(document).on('click', '#newDataBtn', function(event){
 
 
 // save data
-$(document).on('click', '#submit', function(event){
+$(document).on('click', '#submit, #submitWithScroll ,#topSaveBtn', function(event){
     event.preventDefault();
     console.log('Form submitted');
+
+    $('#submit').prop('disabled', true);
+    $('#submitWithScroll').prop('disabled', true);
+    $('#topSaveBtn').prop('disabled', true);
+    
 
     var date = document.getElementById("date").textContent;
     var currentDay = document.getElementById("dayDisplay").textContent;
@@ -828,7 +896,11 @@ $(document).on('click', '#submit', function(event){
                 notes: notes.join('\n')
             },
             success: function(response){
+
+                noteBullets = 1;
+                console.log("after success : "+noteBullets);
                 console.log(response);
+
             },
             error: function(xhr, status, error){
                 console.error(error);
@@ -976,6 +1048,7 @@ function showEditModal() {
 
 showEditModal();
 
+
 $(document).on('click', '.editBtn', function(event){
     event.preventDefault();
 
@@ -1005,54 +1078,28 @@ $(document).on('click', '.editBtn', function(event){
             
             var editNotesContainer = document.getElementById("edit-notes-container");
             var notesArray = response.meeting_note.notes.split('\n');
-
+          
             
             notesArray.forEach(function(note, index){
-                var p = document.createElement('p');
-                p.textContent = note.trim();
-                p.classList.add('editNotePoints');
+                var input = document.createElement('input');
+                input.type = "text";
+                input.value = note.trim();
+                console.log(note.trim());
+                input.classList.add('editNotePoints');
 
-                editNotesContainer.appendChild(p);
+                editNotesContainer.appendChild(input);
  
             });
 
             const inputField = document.getElementById('editNotes');
-            const notesContainer = document.getElementById('edit-notes-container');
-            let noteBullets;
+            // const notesContainer = document.getElementById('edit-notes-container');
+            // let noteBullets;
             
             const editModalContainer = document.querySelector('.editModalContainer');
             const updateButton = document.getElementById('update');
             const topUpdateButton = document.getElementById('topUpdateBtn');
 
-            var lastBulletNumber = 1;
-            var lastNoteElement = editNotesContainer.querySelector('.editNotePoints:last-child');
-            
-            if(lastNoteElement){
-                var lastNoteContent = lastNoteElement.textContent;
-                var match = lastNoteContent.match(/(\d+)\./);
-                if(match){
-                    lastBulletNumber = parseInt(match[1]); 
-                }
-            }
-            noteBullets = lastBulletNumber + 1;
-
-            inputField.addEventListener('keydown', function(event){
-                if(event.key === 'Enter'){
-                    console.log(document.getElementById('editNotes').value)
-                    event.preventDefault();
-                    const text = inputField.value.trim();
-                    if(text){
-                        const note = document.createElement('p');
-                        note.classList.add('editNotePoints')
-                        note.innerHTML = `<span class="bullets">${noteBullets}.</span>${text}`;
-                        notesContainer.appendChild(note);
-                        inputField.value = '';  
-                        noteBullets++;              
-                    }
-                }
-
-
-                // Function to check if scrollbar is visible
+            //   Function to check if scrollbar is visible
                 function isScrollbarVisible() {
                     return editModalContainer.scrollHeight > editModalContainer.clientHeight;
                 }
@@ -1061,11 +1108,105 @@ $(document).on('click', '.editBtn', function(event){
                 if (isScrollbarVisible()){
                     document.querySelector('.updateWithoutScroll').style.display = "none";
                     updateButton.style.display = "block";
-                    topUpdateButton.style.display = "block";
-                    topUpdateButton.setAttribute('id', 'update');
+                    // topUpdateButton.style.display = "block";
+                    // topUpdateButton.setAttribute('id', 'update');
                 }
 
+            // var lastBulletNumber = 1;
+            // var lastNoteElement = editNotesContainer.querySelector('.editNotePoints:last-child');
+            
+            // if(lastNoteElement){
+            //     var lastNoteContent = lastNoteElement.value;
+            //     var match = lastNoteContent.match(/(\d+)\./);
+            //     if(match){
+            //         lastBulletNumber = parseInt(match[1]); 
+            //     }
+            // }
+            // noteBullets = lastBulletNumber + 1;
+
+            // inputField.addEventListener('keydown', function(event){
+            //     if(event.key === 'Enter'){
+            //         console.log(document.getElementById('editNotes').value)
+            //         event.preventDefault();
+            //         const text = inputField.value.trim();
+            //         if(text){
+            //             const note = document.createElement('input');
+            //             note.type = "text",
+            //             note.classList.add('editNotePoints');
+            //             note.value = noteBullets+ ". " +text;
+            //             // note.innerHTML = `<span class="bullets">${noteBullets}.</span>${text}`;
+            //             editNotesContainer.appendChild(note);
+            //             inputField.value = '';  
+            //             noteBullets++;              
+            //         }
+            //     }
+
+            //     // Function to check if scrollbar is visible
+            //     function isScrollbarVisible() {
+            //         return editModalContainer.scrollHeight > editModalContainer.clientHeight;
+            //     }
+            //     console.log(isScrollbarVisible());
+
+            //     if (isScrollbarVisible()){
+            //         document.querySelector('.updateWithoutScroll').style.display = "none";
+            //         updateButton.style.display = "block";
+            //         topUpdateButton.style.display = "block";
+            //         topUpdateButton.setAttribute('id', 'update');
+            //     }
+
+            // });
+
+                
+            // Function to renumber all bullets sequentially
+            function renumberAllBullets() {
+                let bulletNumber = 1;
+                document.querySelectorAll('.editNotePoints').forEach(function(input) {
+                    input.value = `${bulletNumber}. ${input.value.trim().substring(input.value.indexOf(' ') + 1)}`;
+                    bulletNumber++;
+                });
+            }
+
+            // Function to remove empty input fields
+            function removeEmptyInputs() {
+                document.querySelectorAll('.editNotePoints').forEach(function(input) {
+                    if (input.value.trim() === '') {
+                        input.remove();
+                    }
+                });
+                renumberAllBullets(); // Update bullets after removing empty inputs
+            }
+
+            // Listen for keyup event to remove empty inputs
+            editNotesContainer.addEventListener('keyup', function(event) {
+                if (event.target.classList.contains('editNotePoints')) {
+                    removeEmptyInputs();
+                }
             });
+
+            // Listen for keydown event on inputField
+            inputField.addEventListener('keydown', function(event) {
+                if (event.key === 'Enter') {
+                    event.preventDefault();
+                    const text = inputField.value.trim();
+                    if (text) {
+                        const note = document.createElement('input');
+                        note.type = "text";
+                        note.classList.add('editNotePoints');
+                        note.value = `${noteBullets}. ${text}`;
+                        editNotesContainer.appendChild(note);
+                        inputField.value = '';
+                        noteBullets++;
+                        renumberAllBullets(); // Update bullets after adding a new note
+                    }
+                }
+            });
+
+            // Call renumberAllBullets initially to set the correct bullets for existing notes
+            renumberAllBullets();
+
+
+
+
 
             
             // Function to check if scrollbar is visible
@@ -1077,8 +1218,8 @@ $(document).on('click', '.editBtn', function(event){
             if (isScrollbarVisible()){
                 document.querySelector('.updateWithoutScroll').style.display = "none";
                 updateButton.style.display = "block";
-                topUpdateButton.style.display = "block";
-                topUpdateButton.setAttribute('id', 'update');
+                // topUpdateButton.style.display = "block";
+                // topUpdateButton.setAttribute('id', 'update');
             }
 
         },
@@ -1104,7 +1245,7 @@ $(document).on('click', '#update', function(event){
     var editNotes = [];
 
     document.querySelectorAll('.editNotePoints').forEach(function(note){
-        editNotes.push(note.textContent);
+        editNotes.push(note.value);
     });
 
 
@@ -1171,7 +1312,10 @@ $(document).on('click', '#permanentDelBtn', function(event){
 
     var pointId = $(this).attr('data-id');
 
-      
+    var $row = $(this).closest('tr');
+    $row.remove();
+ 
+
     $.ajax({
         url: 'https://backend.zimomeet.com/api/delete-meeting-note?id='+ pointId,
         type: 'DELETE',
@@ -1186,7 +1330,6 @@ $(document).on('click', '#permanentDelBtn', function(event){
         },
         complete: function(){
 
-            loadTable();
         }
 
     });
