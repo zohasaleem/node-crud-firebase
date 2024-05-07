@@ -4,6 +4,7 @@ button.style.float = 'right';
 button.style.margin = '0px';
 button.style.padding = '0px';
 button.style.cursor = 'pointer';
+button.style.zIndex = '9999';
 button.style.top = "24px";
 button.style.right= "22px";
 button.style.position= "fixed";
