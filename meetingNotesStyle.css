@@ -33,24 +33,24 @@
     position: relative;
     background-color: #fefefe;
     margin: 15% auto;
-    padding: 0px 15px 15px 15px;
+    padding: 15px 2px 15px 15px;
     width: 55%;
     height: 65%;
-    border-radius: 30px;
+    border-radius: 20px;
     top: -100px;
     animation: fadeIn 0.5s ease-in-out forwards, scaleIn 0.5s ease-in-out forwards;
 }
 
 
 .new-modal-content, .edit-modal-content {
-    padding: 15px 20px;
+    padding: 20px 9px 10px 17px;
     position: relative;
     background-color: #fefefe;
     margin: 15% auto;
     width: 35%;
-    height: 55%;
-    border-radius: 30px;
-    top: -75px;
+    height: 50%;
+    border-radius: 20px;
+    top: -52px;
     animation: fadeIn 0.5s ease-in-out forwards, scaleIn 0.5s ease-in-out forwards;
 }
 
@@ -73,21 +73,16 @@
     cursor: pointer;
 }
 
-.heading{
-    margin: 0;
-    font-size: 13px;
-    letter-spacing: 2px;
-    padding: 5px;
-    font-weight: 600;
-    font-family: "Lato";
-    color: black;
+.notes-heading{
+    width: 56px;
+    margin-top: 21px;
 }
 /* table css */ 
 
 .table-container {
     max-height: 275px;
+    padding-right: 14px;
     overflow: auto;
-    padding-right: 15px;
     scrollbar-color: auto !important;
     scrollbar-width: auto !important;
 }
@@ -158,7 +153,7 @@ th {
 td {
     text-transform: uppercase;
     font-size: 9px;
-    padding: 5px 5px 5px 0px;
+    padding: 7px 5px 7px 0px;
     letter-spacing: 1px;
     line-height: 10px;
     border-bottom: 1px solid #000000;
@@ -194,9 +189,9 @@ tr:hover .actionBtn, tr:hover #meetingCamIcon {
 }
 
 .creatorNameText{
-    color: #9f9f9f;
+    color: #898888;
     font-size: 8px;
-    letter-spacing: 1.5px;
+    letter-spacing: 1px;
 }
 
 
@@ -209,58 +204,58 @@ tr:hover .actionBtn, tr:hover #meetingCamIcon {
     outline-offset: 0cap;
 }
 
-.submitWithoutScroll, .updateWithoutScroll{
-    z-index: 9999;
+.topSaveBtn{
+    display: none;
+    cursor: pointer;
+    float: right;
+    padding-right: 20px;
+    width: 38px;
+}
+
+.submitWithoutScroll{
+    float: right;
+    display: block;
+    cursor: pointer;
+    width: 36px;
     position: fixed;
-    background: no-repeat;
-    border: none;
-    color: black;
-    font-family: 'Lato';
-    letter-spacing: 1px;
-    float: right;
-    padding: 0px;
-    top: 335px;
-    right: 25px;
-    cursor: pointer;
+    right: 18px;
+    bottom: 22px;
+
 }
 
-.submit, .update{
-    /* z-index: 99; */
+.submitWithScroll{
     display: none;
-    color: black;
-    padding: 0px;
-    font-size: 14px;
-    letter-spacing: 1px;
-    border: none;
     cursor: pointer;
-    background: none;
-    /* float: right; */
-    text-transform: uppercase;
-    /* position: relative;
-    top: -25px; */
-    font-family: "Lato";
+    width: 36px;
+    padding: 7px 0px;
 
 }
 
-.topSaveBtn, .topUpdateBtn{
-    display: none;
-    color: black;
-    padding: 6px;
-    font-size: 14px;
-    font-family: "Lato";
-    letter-spacing: 1px;
-    border: none;
-    cursor: pointer;
-    background: none;
-    float: right;
-    text-transform: uppercase;
-}
 
 .newDataBtn {
     float: right;
-    padding: 5px;
+    padding: 5px 0px 5px 5px;
     cursor: pointer;
 }
+
+
+.updateBtn{
+    color: black; 
+    font-size: 13px;
+    font-family: "Lato";
+    letter-spacing: 1px;
+    border: none;
+    cursor: pointer;
+    background: none;
+    float: right;
+}
+
+#updateWithoutScroll{
+    position: fixed;
+    right: 18px;
+    bottom: 22px;
+}
+
 
 .editBtn{
     width: 8px;
@@ -276,7 +271,7 @@ tr:hover .actionBtn, tr:hover #meetingCamIcon {
 label{
     text-transform: uppercase;
     font-size: 9px;
-    padding: 5px 0px;
+    margin: 3px 0px;
     letter-spacing: 1px;
     line-height: 10px;
     text-align: left;
@@ -360,26 +355,23 @@ p{
 
 }
 .createModalContainer, .editModalContainer{
-    max-height: 220px;
+    clear:both; 
+    margin-top: 15px;
+    margin-left:10px; 
+    max-height: 188px;
     overflow-y: auto;
     overflow-x: hidden;
-    padding-right: 20px;
+    /* padding-right: 20px; */
     scrollbar-color: auto !important;
     scrollbar-width: auto !important;
 }
 .notes-container, .edit-notes-container {
-    /* width: 455px;
-    max-width: 100%; 
-    height: 80px; 
-    display: flex;
-    align-items: flex-start;
-    word-wrap: break-word; 
-    overflow-wrap: break-word;  */
-    width: 465px;
+    overflow-wrap: break-word;
     display: flex;
     overflow-wrap: break-word;
     flex-direction: column;
     align-items: flex-end;
+
 }
 
 .notePoints, .editNotePoints{
@@ -392,6 +384,7 @@ p{
     color: black;
     border: none;
     outline: none;
+    /* margin-left: 139px; */
 }
 .bullets{
     margin-right: 5px;
@@ -399,8 +392,7 @@ p{
 .actionBtn{
     display: flex; 
     justify-content: flex-end; 
-    margin-bottom: 10px;
-    margin: 0px;
+    margin-bottom: 11px;
 }
 .detailsHeading{
     margin: 0;
@@ -470,8 +462,97 @@ p{
     cursor: pointer;
 }
 .detailsDataModalClose{
-    width: 18px; 
-    margin-top: 10px; 
+    width: 13px; 
+    margin-top: 7px; 
     margin-left:30px; 
     cursor:pointer;
+}
+
+
+/* loader */
+
+.loader {
+    width: 20px;
+    height: 20px;
+    border: 5px solid #ddd;
+    border-radius: 50%;
+    position: relative;
+    transform: rotate(45deg);
+  }
+  
+  .loader::before {
+    content: "";
+    position: absolute;
+    inset: -5px;
+    border-radius: 50%;
+    border: 5px solid #020202;
+    animation: l18 2s infinite linear;
+  }
+  
+  @keyframes l18 {
+    0%   { clip-path: polygon(50% 50%, 0 0, 0 0, 0 0, 0 0, 0 0); }
+    25%  { clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 0, 100% 0, 100% 0); }
+    50%  { clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 100% 100%, 100% 100%); }
+    75%  { clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 0 100%, 0 100%); }
+    100% { clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 100%, 0 100%, 0 0); }
+  }
+  
+
+  #topLoader, #editTopLoader{
+    display: none;
+    left: 0px;
+    bottom: 0px;
+  }
+
+  #loaderWithScroll,  #editLoaderWithScroll{
+    display: none;
+  }
+
+  #loaderWithoutScroll, #editLoaderWithoutScroll{
+    display: none;
+    position: absolute;
+    right: 20px;
+    bottom: 15px;
+  }
+
+
+  .custom-tooltip {
+    font-size: 10px;
+    letter-spacing: 0.5px;
+    margin-left: 40px;
+    padding: 2px 4px 3px 4px;
+    background-color: #e5e3e3df;
+    border-radius: 4px;
+    color: #080808;
+    font-weight: 600;
+    animation: fadeInOut 1s ease-in-out;
+}
+
+#custom-tooltip, #edit-custom-tooltip{
+    display: none;
+    position: fixed;
+    top: 49px;
+    right: 15px;
+}
+
+#details-custom-tooltip{
+    display: none;
+    position: fixed;
+    left: 152px;
+    top: 140px
+}
+
+@keyframes fadeInOut {
+    0% {
+        opacity: 0;
+    }
+    25% {
+        opacity: 1;
+    }
+    75% {
+        opacity: 1;
+    }
+    100% {
+        opacity: 0;
+    }
 }

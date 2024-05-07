@@ -4,9 +4,9 @@ button.style.float = 'right';
 button.style.margin = '0px';
 button.style.padding = '0px';
 button.style.cursor = 'pointer';
-button.style.zIndex = '9999';
-button.style.top = "-285px";
-button.style.left= "-15px";
+// button.style.zIndex = '9999';
+// button.style.top = "-285px";
+// button.style.left= "-15px";
 button.style.position= "relative";
 button.setAttribute('id', 'firstModalBtn');
 
@@ -23,60 +23,64 @@ function showFirstModal() {
     const modal = document.createElement('div');
     modal.className = 'modal';
     modal.setAttribute('id', 'firstModal');
-    
-    // modal hidden initially
-    modal.style.display = 'none';
-
+  
     // modal content
     modal.innerHTML = `
 
         <div class="modal-content">
-
-            <div style=" display: flex; justify-content: space-between; align-items: flex-start;">
-                <div>
-                    <img src="https://firebasestorage.googleapis.com/v0/b/zimo-b9759.appspot.com/o/zimomeet_live%2Fmeeting_notes%2Flogos%2FZM-B-200x200.png?alt=media&token=0ff103b8-a4f2-46c4-b941-4d2c339cd8d9" 
-                        style="width: 80px;" 
+            <div style="padding: 5px;">
+                <div style=" display: flex; justify-content: space-between; align-items: flex-start;">
+                    <div style="display: flex; flex-direction: column; align-items: flex-start;">
+                        <img src="https://firebasestorage.googleapis.com/v0/b/zimo-b9759.appspot.com/o/zimomeet_live%2Fmeeting_notes%2Flogos%2FZigM.svg?alt=media&token=91fab9c4-451f-43dd-9efb-817b63d19fa1" 
+                            style="width: 80px;" 
+                        />
+                        <img src="https://firebasestorage.googleapis.com/v0/b/zimo-b9759.appspot.com/o/zimomeet_live%2Fmeeting_notes%2Flogos%2FNotes%20Text.svg?alt=media&token=e35e9086-6a45-4cc0-aab9-9e7531549760" 
+                            class="notes-heading" 
+                        />
+                    </div>
+                    
+                    <img src="https://firebasestorage.googleapis.com/v0/b/zimo-b9759.appspot.com/o/zimomeet_live%2Fmeeting_notes%2Flogos%2FZM%20Notes%20B.svg?alt=media&token=27db0d8b-923e-44ad-b0db-012b49cf963e" 
+                        style="width: 38px;" 
                     />
-                    <h6 class="heading">NOTES</h6>
+                    <img src="https://firebasestorage.googleapis.com/v0/b/zimo-b9759.appspot.com/o/zimomeet_live%2Fmeeting_notes%2Flogos%2FZM%20Notes%20X.svg?alt=media&token=3e9d200b-cd77-4be0-8e3d-24b656d4ddf1" 
+                        style="width: 15px; padding-right: 15px;" 
+                        class="close"
+                    />
                 </div>
-                <img src="https://firebasestorage.googleapis.com/v0/b/zimo-b9759.appspot.com/o/zimomeet_live%2Fmeeting_notes%2Flogos%2FZM%20Notes%20B.png?alt=media&token=1a71c15c-1aed-44e3-85bd-e85c4174cc75" 
-                    style="width: 30px; margin-top: 20px;" 
-                />
-                <img src="https://firebasestorage.googleapis.com/v0/b/zimo-b9759.appspot.com/o/zimomeet_live%2Fmeeting_notes%2Flogos%2FZM%20Notes%20X.png?alt=media&token=81b70d07-f814-4d45-b1d8-722b9f9f1380" 
-                    style="width: 13px; margin-top: 20px;" 
-                    class="close"
-                />
-            </div>
 
-            <div style="clear: both; margin: 12px 5px 0px 5px;"> 
+                <div style="clear: both; margin-top: 25px;"> 
 
-                <div class="table-container">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th style="width: 13%;">DATE</th>
-                                <th style="width: 15%;">TITLE</th>
-                                <th style="width: 17%;">LINK</th>
-                                <th style="width: 20%;">MEETING SUBJECT</th>
-                                <th style="width: 22%;">NOTES</th>
-                                <th>
-                                    <img src="https://firebasestorage.googleapis.com/v0/b/zimo-b9759.appspot.com/o/zimomeet_live%2Fmeeting_notes%2Flogos%2FZM%20%2B.png?alt=media&token=e87729a3-f8e3-4540-ac1d-55302b916272"
-                                        style="width: 15px;" id="newDataBtn" class="newDataBtn"
-                                    />
-                                </th>
-                            </tr>
-                        </thead>
+                    <div class="table-container">
+                        <table>
+                            <thead>
+                                <tr>
+                                    <th style="width: 13%;">DATE</th>
+                                    <th style="width: 15%;">TITLE</th>
+                                    <th style="width: 17%;">LINK</th>
+                                    <th style="width: 20%;">MEETING SUBJECT</th>
+                                    <th style="width: 22%;">NOTES</th>
+                                    <th>
+                                        <img src="https://firebasestorage.googleapis.com/v0/b/zimo-b9759.appspot.com/o/zimomeet_live%2Fmeeting_notes%2Flogos%2FZM%20%2B.svg?alt=media&token=b8558a25-0713-438d-b6da-6bbeabbcf563"
+                                            style="width: 15px;" id="newDataBtn" class="newDataBtn"
+                                        />
+                                    </th>
+                                </tr>
+                            </thead>
 
-                        <tbody id="meetingData">
-                            
-                        </tbody>
+                            <tbody id="meetingData">
+                                
+                            </tbody>
 
-                    </table>
+                        </table>
+                    </div>
                 </div>
             </div>
         </div>
     `;
     
+    // modal hidden initially
+    modal.style.display = 'none';
+
     // modal close button
     const closeButton = modal.querySelector('.close');
 
@@ -97,20 +101,21 @@ function showFirstModal() {
 
 }
 
+
+// show first modal
 showFirstModal();
 
-// create button
+//create button fucntion --  when no data or a row exits
 function addCreateButton(tbody){
 
     var row = `
         <tr>
             <td colspan="6" style="text-align: center; border:none;">
                 <div style="display: inline-block; padding: 10px; cursor: pointer; " id="newDataBtn">
-                    <img src="https://firebasestorage.googleapis.com/v0/b/zimo-b9759.appspot.com/o/zimomeet_live%2Fmeeting_notes%2Flogos%2FZM%20Notes%20Create%20%2B.png?alt=media&token=2fc0f662-ca0b-4c75-b482-1ef61314c0d9" 
+                    <img src="https://firebasestorage.googleapis.com/v0/b/zimo-b9759.appspot.com/o/zimomeet_live%2Fmeeting_notes%2Flogos%2FZM%20Notes%20Create%20A%20Note%20%2B.svg?alt=media&token=f26770e4-4c66-4a5e-989b-968bf3988776" 
                         alt="addIcon"
-                        style="width: 47px; padding:20px 15px 15px 15px;"
+                        style="width: 85px; padding:30px 15px 15px 15px;"
                     />
-                    <p style="text-transform: uppercase;letter-spacing: 1.5px;font-size: 11px;">CREATE A NOTE</p>
                 </div>
             </td>
         </tr>
@@ -120,7 +125,7 @@ function addCreateButton(tbody){
 
 }
  
-//  function for table
+// function for generating rows for table
 function loadTable(){
     $.ajax({
         url: "https://backend.zimomeet.com/api/get-meeting-notes",
@@ -162,13 +167,7 @@ function loadTable(){
                             </td>
                             
                             <td>
-                                <div id="detailsModalBtn" data-meeting-note-id="${meeting_note.id}">
-                                    
-                                    <!-- <img src="https://firebasestorage.googleapis.com/v0/b/zimo-b9759.appspot.com/o/zimomeet_live%2Fmeeting_notes%2Flogos%2FZIMO%20MEET.png?alt=media&token=5d68415d-17b6-40e0-805a-338590ec4ae4"
-                                        alt="CAM_ICON"
-                                        class="camIcon"
-                                        style="display: inline-block; color:black;"
-                                    /> -->
+                                <div id="detailsModalBtn" style="margin-bottom: 5px;" data-meeting-note-id="${meeting_note.id}">
                                     <svg id="meetingCamIcon" 
                                         alt="CAM_ICON"
                                         class="camIcon"
@@ -198,7 +197,7 @@ function loadTable(){
                                 </div>
                             </td>
 
-                            <td>
+                            <td style="padding: 0px;">
                                 <div style="display: flex; flex-direction: column; align-items: flex-end;">
                                     <p class="creatorNameText greyText">
                                         ${meeting_note.creator_name}
@@ -249,7 +248,7 @@ function loadTable(){
     });
 }
  
-// listener for opening first modal
+// listener for opening first modal --  loadTable fucntion is called here
 $(document).on('click', '#firstModalBtn', function(event){
     event.preventDefault();
     console.log('Modal Open');
@@ -261,16 +260,16 @@ $(document).on('click', '#firstModalBtn', function(event){
 });
 
 
-// Get the largeVideoContainer div from zimo meet live
+// get the largeVideoContainer div from zimo meet live
 const container = document.getElementById('largeVideoContainer');
 
-button.appendChild(btnImage);
+button.appendChild(btnImage);   //appended buttonImage in its parent container created above 
 
-container.appendChild(button);
+container.appendChild(button);   //appended button in large video container 
 
 
 
-// details data
+//fucntion for details modal
 function showDetailsDataModal() {
 
     const container = document.getElementById('largeVideoContainer');
@@ -284,21 +283,21 @@ function showDetailsDataModal() {
 
     modal.innerHTML = `
 
-        <div class="modal-content" style="padding-top: 5px;">
-            <div style=" display: flex; justify-content: space-between; align-items: center;">
-                <div style="display: flex; align-items: center;">
-                    <img src="https://firebasestorage.googleapis.com/v0/b/uploadimage-6caaa.appspot.com/o/ZM%20Live%20Meeting%20Notes%20Icons%2FZM-B-200x200.png?alt=media&token=dc458912-71ba-4806-a9cb-1072041c7942" 
-                        style="width: 102px;" 
+        <div class="modal-content" style="padding-right: 5px;">
+            <div style=" display: flex; justify-content: space-between; align-items: flex-start;">
+                <div style="display: flex; align-items: center; padding: 6px;">
+                    <img src="https://firebasestorage.googleapis.com/v0/b/zimo-b9759.appspot.com/o/zimomeet_live%2Fmeeting_notes%2Flogos%2FZigM.svg?alt=media&token=91fab9c4-451f-43dd-9efb-817b63d19fa1" 
+                        style="width: 80px;" 
                     />
-                    <img src="https://firebasestorage.googleapis.com/v0/b/uploadimage-6caaa.appspot.com/o/ZM%20Live%20Meeting%20Notes%20Icons%2FZM%20Notes%20B.png?alt=media&token=5fb239ec-80b6-48fa-ac7a-791e7de82601" 
-                        style="width: 42px; margin-left: 20px;" 
+                    <img src="https://firebasestorage.googleapis.com/v0/b/zimo-b9759.appspot.com/o/zimomeet_live%2Fmeeting_notes%2Flogos%2FZM%20Notes%20B.svg?alt=media&token=27db0d8b-923e-44ad-b0db-012b49cf963e" 
+                        style="width: 40px; margin-left: 20px;" 
                     />
                 </div>
 
-                <h6 id="detailsTitle" class="detailsHeading"></h6> 
+                <h6 id="detailsTitle" class="detailsHeading" style="padding-top: 18px;"></h6> 
 
                 <div style="display: flex; flex-direction: column; align-items: center;">
-                    <img src="https://firebasestorage.googleapis.com/v0/b/uploadimage-6caaa.appspot.com/o/ZM%20Live%20Meeting%20Notes%20Icons%2FZM%20Notes%20X.png?alt=media&token=fafaedde-2699-48cd-bc65-19460a0ad2c6"  
+                    <img src="https://firebasestorage.googleapis.com/v0/b/zimo-b9759.appspot.com/o/zimomeet_live%2Fmeeting_notes%2Flogos%2FZM%20Notes%20X.svg?alt=media&token=3e9d200b-cd77-4be0-8e3d-24b656d4ddf1"  
                         class="detailsDataModalClose"
                     />
                     <div style="display: flex; flex-direction: column; align-items: flex-end; margin-top: 25px; margin-right: 10px;">
@@ -308,22 +307,24 @@ function showDetailsDataModal() {
                     </div>
                 </div>
             </div>
-            <div>
 
-                <div style="display: flex; flex-direction: column;">
-                    <h6 class="detailsHeading">NOTES</h6>
-                    <h6 class="detailsCreator" id="detailsCreator"></h6>
-                </div>
+            <div style="display: flex; flex-direction: column; margin-top: -35px">
+                <img src="https://firebasestorage.googleapis.com/v0/b/zimo-b9759.appspot.com/o/zimomeet_live%2Fmeeting_notes%2Flogos%2FNotes%20Text.svg?alt=media&amp;token=e35e9086-6a45-4cc0-aab9-9e7531549760" 
+                    class="notes-heading"
+                    style="padding-left: 10px; width: 57px;"
+                />                    
+                <h6 class="detailsCreator" id="detailsCreator"></h6>
             </div>
 
             <div style="padding: 5px 0px 10px 10px;">
                 
                 <div id="copyDetailsMeetingLink" style="display: flex; align-items: center; margin: 15px 0px; cursor: pointer;">
-                    <img src="https://firebasestorage.googleapis.com/v0/b/uploadimage-6caaa.appspot.com/o/ZM%20Live%20Meeting%20Notes%20Icons%2FZIMO%20MEET.png?alt=media&amp;token=7425f0b8-b4c9-4244-ba0d-1dfccc164154" 
+                    <img src="https://firebasestorage.googleapis.com/v0/b/zimo-b9759.appspot.com/o/zimomeet_live%2Fmeeting_notes%2Flogos%2FZIMO%20MEET%20Cam%20Logo.svg?alt=media&token=bd0597e6-0336-43be-94c8-ef4c5e4a2c75" 
                         alt="CAM_ICON" 
                         class="camIcon"
                     />
                     <p class="detailsModalMeetingLink" id="detailsMeetingLink"></p>
+                    <span class="custom-tooltip" id="details-custom-tooltip">copied!</sapn>
 
                 </div>
                 
@@ -333,8 +334,8 @@ function showDetailsDataModal() {
                     <div style="flex: 1; overflow-y: auto;" class="detailsNotesContainer" id="details-notes-container">
                     </div> 
                 </div>
-                <div style="position: absolute; bottom: 25px; right: 25px;">
-                    <img src="https://firebasestorage.googleapis.com/v0/b/zimo-b9759.appspot.com/o/zimomeet_live%2Fmeeting_notes%2Flogos%2FZM%20Notes%20ZiDoc%20Download%20PDF.png?alt=media&token=9563e0b8-6255-491b-ab02-b0d25a58a80b" 
+                <div style="position: absolute; bottom: 25px; right: 17px;">
+                    <img src="https://firebasestorage.googleapis.com/v0/b/zimo-b9759.appspot.com/o/zimomeet_live%2Fmeeting_notes%2Flogos%2FZM%20Notes%20ZiDoc%20Download%20PDF.svg?alt=media&token=80df85bd-01b4-46a6-a0e6-16c6b7209ac4" 
                         alt="zimoDoc-icon"
                         style="width: 50px; float: right; cursor:pointer;"
                         id="downloadPdfBtn"
@@ -347,7 +348,7 @@ function showDetailsDataModal() {
 
     document.body.appendChild(modal);
 
-    // Add event listener to close the modal
+    // event listener to close the modal
     const closeButton = modal.querySelector('.detailsDataModalClose');
     closeButton.addEventListener('click', function() {
         modal.style.display = 'none';
@@ -357,20 +358,31 @@ function showDetailsDataModal() {
 
     });
 
+
+    // click event for copying meeting link in details modal 
     document.getElementById('copyDetailsMeetingLink').addEventListener('click', function (){
         var meetingLink = document.getElementById('detailsMeetingLink');
         var copiedText = meetingLink.innerText || meetingLink.textContent;
         
-        navigator.clipboard.writeText(copiedText).catch(() => {
+        navigator.clipboard.writeText(copiedText).then(function() {
+            document.getElementById("details-custom-tooltip").style.display = "block";
+            setTimeout( function() {
+                document.getElementById("details-custom-tooltip").style.display = "none";
+            }, 1000);
+        }).catch(() => {
+            // Failed to copy text
             console.error('Failed to copy URL');
         });
     });
 
 }
 
+// show details modal
 showDetailsDataModal();
 
-// deatils Modal Btn
+
+
+// on click event for opening details modal 
 $(document).on('click', '#detailsModalBtn', function(event){
     event.preventDefault();
     
@@ -451,7 +463,7 @@ $(document).on('click', '#detailsModalBtn', function(event){
                     }
                 }
 
-                // Function to check if scrollbar is visible
+                // function to check if scrollbar is visible
                 function isScrollbarVisible() {
                     return editModalContainer.scrollHeight > editModalContainer.clientHeight;
                 }
@@ -475,7 +487,7 @@ $(document).on('click', '#detailsModalBtn', function(event){
 
 
 
-// download pdf
+// download pdf  
 $(document).on('click', '#downloadPdfBtn', function(event){
 
     creator_name = $(this).attr('data-creator-name');
@@ -494,9 +506,7 @@ $(document).on('click', '#downloadPdfBtn', function(event){
         },
         success: function(response){
             console.log(response);
-            // var blob = new Blob([response], { type: 'application/pdf' }); // Create a Blob object
-            // var url = URL.createObjectURL(blob); // Create a URL for the Blob
-            // window.open(url);
+   
            var blob = new Blob([response], { type: 'application/pdf' });
             var url = URL.createObjectURL(blob);
 
@@ -522,7 +532,7 @@ $(document).on('click', '#downloadPdfBtn', function(event){
 });
 
 
-// create data modal
+// create modal
 function showSaveDataModal() {
 
     const container = document.getElementById('largeVideoContainer');
@@ -538,87 +548,106 @@ function showSaveDataModal() {
 
         <div class="new-modal-content">
             <div style=" display: flex; justify-content: space-between; align-items: flex-start;">
-                <div style="display: flex; align-items: center;">
-                    <img src="https://firebasestorage.googleapis.com/v0/b/uploadimage-6caaa.appspot.com/o/ZM%20Live%20Meeting%20Notes%20Icons%2FZM-B-200x200.png?alt=media&token=dc458912-71ba-4806-a9cb-1072041c7942" 
-                        style="width: 64px;" 
+                <div style="display: flex; align-items: center; margin-left:5px; padding: 5px;">
+                    <img src="https://firebasestorage.googleapis.com/v0/b/zimo-b9759.appspot.com/o/zimomeet_live%2Fmeeting_notes%2Flogos%2FZigM.svg?alt=media&token=91fab9c4-451f-43dd-9efb-817b63d19fa1" 
+                        style="width: 56px;" 
                     />
-                    <img src="https://firebasestorage.googleapis.com/v0/b/zimo-b9759.appspot.com/o/zimomeet_live%2Fmeeting_notes%2Flogos%2FZM%20Notes%20Create%20%2B%20(1).png?alt=media&token=bd894b14-9762-4457-aed1-db8f4933b706" 
+                    <img src="https://firebasestorage.googleapis.com/v0/b/zimo-b9759.appspot.com/o/zimomeet_live%2Fmeeting_notes%2Flogos%2FZM%20Notes%20Create%20%2B.svg?alt=media&token=bfee8b4a-b78f-4dd2-8ff2-02e2d13b9163" 
                         style="width: 26px; margin-left: 15px;" 
                     />
                 </div>
 
             
-                <div style="display: flex; align-items: baseline;">
-                    <button id="topSaveBtn" class="topSaveBtn saveBtn" type="button">SAVE</button>
-                    <img src="https://firebasestorage.googleapis.com/v0/b/uploadimage-6caaa.appspot.com/o/ZM%20Live%20Meeting%20Notes%20Icons%2FZM%20Notes%20X.png?alt=media&token=fafaedde-2699-48cd-bc65-19460a0ad2c6" 
-                        style="width: 12px; margin-top: 10px; margin-left:15px;" 
+                <div style="display: flex; align-items: baseline; padding-right: 8px;">
+                    <div class="loader" id="topLoader"></div>
+                    <img src="https://firebasestorage.googleapis.com/v0/b/zimo-b9759.appspot.com/o/zimomeet_live%2Fmeeting_notes%2Flogos%2FZM%20Notes%20SAVE.svg?alt=media&token=948e6d91-3d0a-4f1f-b430-9099b1381fea"
+                        id="topSaveBtn" 
+                        class="topSaveBtn"
+                    />
+                    <img src="https://firebasestorage.googleapis.com/v0/b/zimo-b9759.appspot.com/o/zimomeet_live%2Fmeeting_notes%2Flogos%2FZM%20Notes%20X.svg?alt=media&token=3e9d200b-cd77-4be0-8e3d-24b656d4ddf1" 
+                        style="width: 12px;" 
                         class="newDataModalClose"
                     />
                 </div>
             </div>
 
-            <div style=" display: flex; justify-content: space-between; align-items: flex-start;">
+            <div style=" display: flex; justify-content: space-between; align-items: flex-start; margin-left:10px; margin-top: 10px;">
                 <div style="display: flex; flex-direction: column;">
                     <p class="addModalDate" id="dayDisplay"></p>
                     <p class="addModalDate" id="date"></p>
                     <p class="addModalDate"  id="time"></p>
                 </div>
 
-                <div id="copyMeetingLink" style="display: flex; align-items: center; cursor:pointer;">
-                    <img src="https://firebasestorage.googleapis.com/v0/b/uploadimage-6caaa.appspot.com/o/ZM%20Live%20Meeting%20Notes%20Icons%2FZIMO%20MEET.png?alt=media&amp;token=7425f0b8-b4c9-4244-ba0d-1dfccc164154" 
+                <div id="copyMeetingLink" style="display: flex; align-items: center; cursor:pointer; padding-right: 8px;">
+                    <img src="https://firebasestorage.googleapis.com/v0/b/zimo-b9759.appspot.com/o/zimomeet_live%2Fmeeting_notes%2Flogos%2FZIMO%20MEET%20Cam%20Logo.svg?alt=media&token=bd0597e6-0336-43be-94c8-ef4c5e4a2c75" 
                         alt="CAM_ICON" 
                         class="camIcon"/>
                     <p class="createModalLink" id="meetingLink" style="color:black;"></p>
+                    <span class="custom-tooltip"  id="custom-tooltip">copied!</sapn>
 
                 </div>
             </div>
-        
-            <div style="clear:both; margin-top: 15px;">
-                <div class="createModalContainer">
 
+            <div class="createModalContainer">
+        
+                <div style="padding-right: 8px;" >
                     <div style="display:flex; align-items: flex-start;">
-                        <label for="creator_name"> NAME:</label>
+                        <label for="creator_name"> NAME</label>
                         <input type="text"  class="inputField" id="creator_name" name="creator_name" placeholder="NAME" required>
                     </div>
 
                     <div style="display:flex; align-items: flex-start; margin-top: 20px;">
-                        <label for="title" >TITLE:</label>
+                        <label for="title" >TITLE</label>
                         <input type="text"  class="inputField" id="title" name="title"  placeholder="TITLE" required>
                     </div>
 
                     <div style="display:flex; align-items: flex-start; margin-top: 20px;">
-                        <label for="meetingSubject" >MEETING SUBJECT:</label>
+                        <label for="meetingSubject" >MEETING SUBJECT</label>
                         <input type="text"  class="inputField" id="meeting_subject" name="meeting_subject"  placeholder="MEETING SUBJECT" required>
                     </div>
 
                     <div style="display:flex; align-items: flex-start; margin-top: 20px;">
 
-                        <label for="notes">NOTES:</label>                        
+                        <label for="notes">NOTES</label>                        
                         <input type=text id="notes" class="inputField" name="notes"  placeholder="NOTES..." style="border:none;" required>
                     </div>
-                    <div class="notes-container">
                     
-                        <div type=text id="notesContainer" name="notesContainer"></div>
-                        <button id="submitWithScroll" class="submit saveBtn" type="button">SAVE</button>
+                    <div style="display: flex; justify-content: space-between;"
+                        <div class="notes-container">
+                            
+                            <div id="notesContainer"></div>
+                            <img src="https://firebasestorage.googleapis.com/v0/b/zimo-b9759.appspot.com/o/zimomeet_live%2Fmeeting_notes%2Flogos%2FZM%20Notes%20SAVE.svg?alt=media&token=948e6d91-3d0a-4f1f-b430-9099b1381fea"
+                                id="submitWithScroll"                            
+                                class="submitWithScroll"
+                            />
+                            <div class="loader" id="loaderWithScroll"></div>
 
-                    </div>
+                        </div>
 
+                        <img src="https://firebasestorage.googleapis.com/v0/b/zimo-b9759.appspot.com/o/zimomeet_live%2Fmeeting_notes%2Flogos%2FZM%20Notes%20SAVE.svg?alt=media&token=948e6d91-3d0a-4f1f-b430-9099b1381fea"
+                            id="submitWithoutScroll"                            
+                            class="submitWithoutScroll"
+                        />
+                        <div class="loader" id="loaderWithoutScroll"></div>
+
+                    
                 </div>
-                <button id="submit" class="submitWithoutScroll saveBtn" type="button">SAVE</button>
-
-
             </div>
         </div>
+
     `;
 
     document.body.appendChild(modal);
 
    
   
-    // Add event listener to close the modal
+    // event listener to close the modal
     const closeButton = modal.querySelector('.newDataModalClose');
     closeButton.addEventListener('click', function() {
         modal.style.display = 'none';
+
+        // resetting place holders and removing validation class ----- code starts here
+
         var creatorNameInput = document.getElementById('creator_name');
         creatorNameInput.classList.remove('placeholder-red');
         creatorNameInput.value = "";
@@ -640,48 +669,121 @@ function showSaveDataModal() {
 
         notesContainer.innerHTML = "";
         
+        // resetting place holders and removing validation class ----- code ends here
+
+
+        // set bullets count to 1 when modal closed
         noteBullets = 1;
 
+        // show the save button for no vertical scroll
+        document.getElementById('submitWithoutScroll').style.display = "block"; 
+
+        // hide the save button for vertical scroll
+        document.getElementById('submitWithScroll').style.display = "none";
+
+        // hide the top save button
+        document.getElementById('topSaveBtn').style.display = "none";
+
     });
+
 
     // for copying meeting link in create modal
     document.getElementById('copyMeetingLink').addEventListener('click', function (){
         var meetingLink = document.getElementById('meetingLink');
         var copiedText = meetingLink.innerText || meetingLink.textContent;
 
-        navigator.clipboard.writeText(copiedText).catch(() => {
+        navigator.clipboard.writeText(copiedText).then(function() {
+            document.getElementById("custom-tooltip").style.display = "block";
+            setTimeout( function() {
+                document.getElementById("custom-tooltip").style.display = "none";
+            }, 1000);
+        }).catch(() => {
+            // Failed to copy text
             console.error('Failed to copy URL');
         });
     });
+
 }
 
 
-
-
-
+// show create modal
 showSaveDataModal();
 
 
+// globally defined noteBullets
 let noteBullets = 1; 
 
-// Function to register the notes input field listener
+
+
+        
+// function to check if scrollbar is visible
+function isScrollbarVisible() {
+    const createModalContainer = document.querySelector('.createModalContainer');
+    return createModalContainer.scrollHeight > createModalContainer.clientHeight;
+}
+
+// function to register the notes input field listener
 function registerNoteListener() {
     const notesInputField = document.getElementById('notes');
     const notesContainer = document.getElementById('notesContainer');
 
-    
+
+    // const createModalContainer = document.querySelector('.createModalContainer');
+
+    // Function to remove empty input fields
+    function removeEmptyInputs() {
+        let index = 1;
+        document.querySelectorAll('.notePoints').forEach(function(input) {
+            if (input.value.trim() === '') {
+                input.remove();
+                if(!isScrollbarVisible()){
+                    console.log(isScrollbarVisible());
+                    document.getElementById('submitWithoutScroll').style.display = "block"; 
+                    document.getElementById('submitWithScroll').style.display = "none";
+                    document.getElementById('topSaveBtn').style.display = "none";
+                }
+            } else {
+                input.value = `${index}. ${input.value.trim().substring(input.value.indexOf('.') + 2)}`;
+                index++;
+            }
+        });
+        noteBullets = index;    
+    }
+
+    // Listen for keyup event to remove empty inputs
+    notesContainer.addEventListener('keyup', function(event) {
+        if (event.target.classList.contains('notePoints') && event.key !== ' ') {
+            removeEmptyInputs();
+        }
+    });
+
+    //  listener for adding points
     notesInputField.addEventListener('keydown', function(event){
         if(event.key === 'Enter'){
             event.preventDefault();
             const text = notesInputField.value.trim();
             if(text){
-                const note = document.createElement('p');
+                const note = document.createElement('input');
+                note.type = "text";
                 note.classList.add('notePoints');
-                note.innerHTML = `<span class="bullets">${noteBullets}.</span>${text}`;
+                note.value = `${noteBullets}. ${text}`;
                 notesContainer.appendChild(note);
-                notesInputField.value = '';  
-                noteBullets++;              
+                notesInputField.value = '';
+                noteBullets++;
+                      
             }
+        }
+
+        if (isScrollbarVisible()){
+            // hide the save button which is shown when there is no vertical scroll
+            document.getElementById('submitWithoutScroll').style.display = "none"; 
+
+            // show the save button which is shown when there is vertical scroll
+            document.getElementById('submitWithScroll').style.display = "block";
+
+            // show the top save button when there is vertical scroll
+            document.getElementById('topSaveBtn').style.display = "block";
+
         }
     });
     
@@ -690,13 +792,15 @@ function registerNoteListener() {
 }
 
 
-// new data Btn
+// click event for opening create data modal
 $(document).on('click', '#newDataBtn', function(event){
     event.preventDefault();
 
-    $('#submit').prop('disabled', false);
+    $('#submitWithoutScroll').prop('disabled', false);
     $('#submitWithScroll').prop('disabled', false);
     $('#topSaveBtn').prop('disabled', false);
+
+
 
     const newModal = document.getElementById('newDataModal');
 
@@ -706,17 +810,17 @@ $(document).on('click', '#newDataBtn', function(event){
 
     // fetch date, time & day
 
-    // Function to update the time display
+    // function to update the time display
     function updateTime() {
         const today = new Date();
         const timeOptions = { hour: '2-digit', minute: '2-digit', hour12: false };
         timeField.textContent = today.toLocaleTimeString('en-US', timeOptions);
         
-        // Request the next animation frame
+        // request the next animation frame
         requestAnimationFrame(updateTime);
     }
 
-    // Update the time display initially
+    // update the time display initially
     updateTime();
 
 
@@ -728,7 +832,7 @@ $(document).on('click', '#newDataBtn', function(event){
     dayDisplay.textContent = today.toLocaleDateString('en-US', dayOptions);
     dateField.textContent = today.toLocaleDateString('en-US', dateOptions);
 
-// // uper to nechhy
+// // switched this from bottom to top  
 //     const notesInputField = document.getElementById('notes');
 //     const notesContainer = document.getElementById('notesContainer');
 //     let noteBullets = 1;
@@ -767,38 +871,28 @@ $(document).on('click', '#newDataBtn', function(event){
     // });
 
 
-
-
-
-
-
-
-
-    // fetch meeting link
-    
-    
     registerNoteListener();
 
-    
+    // fetch meeting link from browser
     const meetingLinkField = document.getElementById('meetingLink');
     meetingLinkField.textContent = "";
-    // meetingLinkField.textContent = window.location.href;
+    // meetingLinkField.textContent = window.location.href;                 //commented for local
     meetingLinkField.textContent = "https://zimomeet.live/dev-test";
-
     newModal.style.display = 'block';
 });
 
 
 
-// save data
-$(document).on('click', '#submit, #submitWithScroll ,#topSaveBtn', function(event){
+// save data on clicking btn 
+$(document).on('click', '#submitWithScroll, #submitWithoutScroll ,#topSaveBtn', function(event){
     event.preventDefault();
     console.log('Form submitted');
 
-    $('#submit').prop('disabled', true);
+    $('#submitWithoutScroll').prop('disabled', true);
     $('#submitWithScroll').prop('disabled', true);
     $('#topSaveBtn').prop('disabled', true);
-    
+
+
 
     var date = document.getElementById("date").textContent;
     var currentDay = document.getElementById("dayDisplay").textContent;
@@ -810,8 +904,9 @@ $(document).on('click', '#submit, #submitWithScroll ,#topSaveBtn', function(even
     var notes = [];
 
     document.querySelectorAll('.notePoints').forEach(function(note){
-        notes.push(note.textContent);
+        notes.push(note.value);
     });
+    console.log(notes);
 
 
     var isValid = true;
@@ -820,6 +915,8 @@ $(document).on('click', '#submit, #submitWithScroll ,#topSaveBtn', function(even
     var meetingSubjectInput = document.getElementById('meeting_subject');
     var notesInput = document.getElementById('notes');
 
+
+    // resetting place holders and removing validation class to the input fields when the user starts typing after validation errors  ---- start
     creatorNameInput.addEventListener('input', function() {
         if (creatorNameInput.value.trim()) {
             creatorNameInput.classList.remove('placeholder-red');
@@ -847,30 +944,48 @@ $(document).on('click', '#submit, #submitWithScroll ,#topSaveBtn', function(even
             notesInput.placeholder = 'NOTES...';
         }
     });
-    
+    // resetting place holders and removing validation class to the input fields when the user starts typing after validation errors  ---- end
+
 
    // Validate required fields
     if (!creator_name.trim()) {
-        creatorNameInput.placeholder = 'NAME IS REQUIRED.';
+        creatorNameInput.placeholder = 'NAME IS REQUIRED';
         creatorNameInput.classList.add('placeholder-red');
         isValid = false;
     } 
     
     if (!title.trim()) {
-        titleInput.placeholder = 'TITLE IS REQUIRED.';
+        titleInput.placeholder = 'TITLE IS REQUIRED';
         titleInput.classList.add('placeholder-red');  
         isValid = false;
     }
 
     if (!meeting_subject.trim()) {
-        meetingSubjectInput.placeholder = 'MEETING SUBJECT IS REQUIRED.';
+        meetingSubjectInput.placeholder = 'MEETING SUBJECT IS REQUIRED';
         meetingSubjectInput.classList.add('placeholder-red');  
         isValid = false;
 
     }
 
+    // if (notesInput.value.trim()) {
+    //     notes.push(notesInput.value.trim());
+    //     notesInput.value = ''; // Clear the input field after adding to array
+    // }
+
+    const text = notesInput.value.trim();
+    if(text){
+        const note = document.createElement('input');
+        note.type = "text";
+        note.classList.add('notePoints');
+        note.value = `${noteBullets}. ${text}`;
+        document.getElementById('notesContainer').appendChild(note);
+        notes.push(notesInput.value.trim());
+        notesInput.value = '';
+        noteBullets++;
+    }
+
     if (notes.length == 0) {
-        notesInput.placeholder = 'NOTES ARE REQUIRED.';
+        notesInput.placeholder = 'NOTES ARE REQUIRED';
         notesInput.classList.add('placeholder-red');  
         isValid = false;
 
@@ -878,45 +993,80 @@ $(document).on('click', '#submit, #submitWithScroll ,#topSaveBtn', function(even
 
     if(isValid){
 
+        console.log(isValid)
+
+        
+        if (isScrollbarVisible()){
+            document.getElementById('submitWithScroll').style.display = "none";
+            document.getElementById('loaderWithScroll').style.display = "block";
+
+            document.getElementById('topSaveBtn').style.display = "none";
+            document.querySelector('.newDataModalClose').style.display = "none";
+            document.getElementById('topLoader').style.display = "block";
+            
+        }
+        else{
+
+            document.getElementById('submitWithoutScroll').style.display = "none";
+            document.getElementById('loaderWithoutScroll').style.display = "block";
+        }
         // console.log(date + " " + day + meetingLink + " " + pointName + " "+ pointDescription);
-        $.ajax({
-            url: 'https://backend.zimomeet.com/api/save-meeting-notes',
-            type: 'POST',
-            headers:{
-                "api-key" : "786ZM786"
-            },
-            data: {
-                date: date,
-                day: currentDay,
-                time: time,
-                title: title,
-                creator_name:creator_name,
-                meetingLink: meetingLink,
-                meeting_subject: meeting_subject,
-                notes: notes.join('\n')
-            },
-            success: function(response){
+        setTimeout(function(){
+            console.log("1 sec")
 
-                noteBullets = 1;
-                console.log("after success : "+noteBullets);
-                console.log(response);
+            $.ajax({
+                url: 'https://backend.zimomeet.com/api/save-meeting-notes',
+                type: 'POST',
+                headers:{
+                    "api-key" : "786ZM786"
+                },
+                data: {
+                    date: date,
+                    day: currentDay,
+                    time: time,
+                    title: title,
+                    creator_name:creator_name,
+                    meetingLink: meetingLink,
+                    meeting_subject: meeting_subject,
+                    notes: notes.join('\n')
+                },
+                success: function(response){
 
-            },
-            error: function(xhr, status, error){
-                console.error(error);
-            },
-            complete: function(){
-                document.getElementById("title").value = '';
-                document.getElementById("notes").value = '';
-                document.getElementById("meeting_subject").value = '';
-                document.getElementById("creator_name").value = '';
-                document.getElementById("notesContainer").innerHTML = '';
+                    noteBullets = 1;
+                    console.log("after success : "+noteBullets);
+                    console.log(response);
 
-                $('#newDataModal').css('display', 'none');
+                },
+                error: function(xhr, status, error){
+                    console.error(error);
+                },
+                complete: function(){
+                    document.getElementById("title").value = '';
+                    document.getElementById("notes").value = '';
+                    document.getElementById("meeting_subject").value = '';
+                    document.getElementById("creator_name").value = '';
+                    document.getElementById("notesContainer").innerHTML = '';
 
-                loadTable();
-            }
-        });
+                    $('#newDataModal').css('display', 'none');
+
+                    document.getElementById('submitWithoutScroll').style.display = "block";
+                    document.querySelector('.newDataModalClose').style.display = "block";
+                    document.getElementById('loaderWithoutScroll').style.display = "none";
+
+                    document.getElementById('topSaveBtn').style.display = "none";
+                    document.getElementById('topLoader').style.display = "none";
+
+                    document.getElementById('submitWithScroll').style.display = "none";
+                    document.getElementById('loaderWithScroll').style.display = "none";
+                    
+
+
+                    loadTable();
+                }
+            });
+
+
+        }, 1000);
     }
 });
 
@@ -937,82 +1087,87 @@ function showEditModal() {
 
         <div class="edit-modal-content">
             <div style=" display: flex; justify-content: space-between; align-items: flex-start;">
-                <div style="display: flex; align-items: center;">
-                    <img src="https://firebasestorage.googleapis.com/v0/b/uploadimage-6caaa.appspot.com/o/ZM%20Live%20Meeting%20Notes%20Icons%2FZM-B-200x200.png?alt=media&token=dc458912-71ba-4806-a9cb-1072041c7942" 
-                        style="width: 64px;" 
+                <div style="display: flex; align-items: center;  margin-left:5px; padding: 5px;">
+                    <img src="https://firebasestorage.googleapis.com/v0/b/zimo-b9759.appspot.com/o/zimomeet_live%2Fmeeting_notes%2Flogos%2FZigM.svg?alt=media&token=91fab9c4-451f-43dd-9efb-817b63d19fa1" 
+                        style="width: 56px;" 
                     />
-                    <img src="https://firebasestorage.googleapis.com/v0/b/zimo-b9759.appspot.com/o/zimomeet_live%2Fmeeting_notes%2Flogos%2FZM%20Notes%20Create%20%2B%20(1).png?alt=media&token=bd894b14-9762-4457-aed1-db8f4933b706" 
+                    <img src="https://firebasestorage.googleapis.com/v0/b/zimo-b9759.appspot.com/o/zimomeet_live%2Fmeeting_notes%2Flogos%2FZM%20Notes%20Create%20%2B.svg?alt=media&token=bfee8b4a-b78f-4dd2-8ff2-02e2d13b9163" 
                         style="width: 26px; margin-left: 15px;" 
                     />
                 </div>
 
-                <div style="display: flex; align-items: baseline;">
-                    <button id="topUpdateBtn" class="topUpdateBtn" type="button">UPDATE</button>
+                <div style="display: flex; align-items: baseline; padding-right: 8px;">
+                    <div class="loader" id="editTopLoader"></div>
+                    <button id="topUpdateBtn" class="updateBtn" type="button" style="display: none; padding-right: 15px;">UPDATE</button>
                     <img src="https://firebasestorage.googleapis.com/v0/b/uploadimage-6caaa.appspot.com/o/ZM%20Live%20Meeting%20Notes%20Icons%2FZM%20Notes%20X.png?alt=media&token=fafaedde-2699-48cd-bc65-19460a0ad2c6" 
-                        style="width: 12px; margin-top: 10px; margin-left:15px;" 
+                        style="width: 12px;" 
                         class="editClose"
                     />
                 </div>
             </div>
            
-            <div style=" display: flex; justify-content: space-between; align-items: flex-start;">
+            <div style=" display: flex; justify-content: space-between; align-items: flex-start; margin-left:10px; margin-top: 10px;"">
                 <div style="display: flex; flex-direction: column;">
                     <p class="addModalDate" id="editDay"></p>
                     <p class="addModalDate" id="editDate"></p>
                     <p class="addModalDate"  id="editTime"></p>
                 </div>
 
-                <div id="copyEditMeetingLink" style="display: flex; align-items: center; cursor: pointer;">
-                    <img src="https://firebasestorage.googleapis.com/v0/b/uploadimage-6caaa.appspot.com/o/ZM%20Live%20Meeting%20Notes%20Icons%2FZIMO%20MEET.png?alt=media&amp;token=7425f0b8-b4c9-4244-ba0d-1dfccc164154" 
+                <div id="copyEditMeetingLink" style="display: flex; align-items: center; cursor:pointer; padding-right: 8px;">
+                    <img src="https://firebasestorage.googleapis.com/v0/b/zimo-b9759.appspot.com/o/zimomeet_live%2Fmeeting_notes%2Flogos%2FZIMO%20MEET%20Cam%20Logo.svg?alt=media&token=bd0597e6-0336-43be-94c8-ef4c5e4a2c75" 
                         alt="CAM_ICON" 
                         class="camIcon"/>
                     <p class="createModalLink" id="editMeetingLink" name="editMeetingLink"></p>
+                    <span class="custom-tooltip" id="edit-custom-tooltip">copied!</sapn>
 
                 </div>
             </div>
 
             <input type="hidden" id="pointId" name="pointId">
 
-            <div style="clear:both; margin-top: 15px;">
-                <div class="editModalContainer">
+            <div class="editModalContainer">
+                <div style="padding-right: 8px;">
 
                     <div style="display:flex; align-items: flex-start;">
-                        <label for="edit_creator_name"> NAME:</label>
+                        <label for="edit_creator_name"> NAME</label>
                         <input type="text"  class="inputField" id="edit_creator_name" name="edit_creator_name" placeholder="NAME">
                     </div>
 
                     <div style="display:flex; align-items: flex-start; margin-top: 20px;">
-                        <label for="editTitle" >TITLE:</label>
+                        <label for="editTitle" >TITLE</label>
                         <input type="text"  class="inputField" id="editTitle" name="editTitle"  placeholder="TITLE">
                     </div>
 
                     <div style="display:flex; align-items: flex-start; margin-top: 20px;">
-                        <label for="editMeetingSubject" >MEETING SUBJECT:</label>
+                        <label for="editMeetingSubject" >MEETING SUBJECT</label>
                         <input type="text"  class="inputField" id="edit_meeting_subject" name="edit_meeting_subject"  placeholder="MEETING SUBJECT">
                     </div>
 
                     <div style="display:flex; align-items: flex-start; margin-top: 20px;">
 
-                        <label for="editNotes">NOTES:</label>                        
+                        <label for="editNotes">NOTES</label>                        
                         <input type=text id="editNotes" class="inputField" name="neditNotes"  placeholder="NOTES..." style="border:none;">
                     </div>
+
                     <div class="edit-notes-container">
                         <div id="edit-notes-container"></div>
-                        <button id="update" class="update" type="button">UPDATE</button>
+                        <button id="updateWithScroll" class="updateBtn" type="button" style="display: none;">UPDATE</button>
+                        <div class="loader" id="editLoaderWithScroll"></div>
+    
                     </div>
 
-                </div>
-                <button id="update" class="updateWithoutScroll" type="button">UPDATE</button>
-
+                    <button id="updateWithoutScroll" class="updateBtn" type="button">UPDATE</button>
+                    <div class="loader" id="editLoaderWithoutScroll"></div>
+    
+                </div>    
             </div>
-
         </div>
     `;
 
-    // Append the modal to the container
+    // append the modal to the container
     document.body.appendChild(modal);
 
-    // Add event listener to close the modal
+    // event listener to close the modal
     const closeButton = modal.querySelector('.editClose');
 
     closeButton.addEventListener('click', function() {
@@ -1038,7 +1193,13 @@ function showEditModal() {
         var meetingLink = document.getElementById('editMeetingLink');
         var copiedText = meetingLink.innerText || meetingLink.textContent;
         
-        navigator.clipboard.writeText(copiedText).catch(() => {
+        navigator.clipboard.writeText(copiedText).then(function() {
+            document.getElementById("edit-custom-tooltip").style.display = "block";
+            setTimeout( function() {
+                document.getElementById("edit-custom-tooltip").style.display = "none";
+            }, 1000);
+        }).catch(() => {
+            // Failed to copy text
             console.error('Failed to copy URL');
         });
     });
@@ -1048,15 +1209,132 @@ function showEditModal() {
 
 showEditModal();
 
+       
+// function to check if scrollbar is visible
+function isEditScrollbarVisible() {
+    const editModalContainer = document.querySelector('.editModalContainer');
+    return editModalContainer.scrollHeight > editModalContainer.clientHeight;
+}
+
+// function to register the notes input field listener for edit/update
+function registerEditNoteListener(lastIndex) {
+    const editNotesInputField = document.getElementById('editNotes');
+    const editNotesContainer = document.getElementById('edit-notes-container');
+
+
+    if (isEditScrollbarVisible()){
+        console.log("scrollbar in edit is: "+isEditScrollbarVisible());
+        // hide the save button which is shown when there is no vertical scroll
+        document.getElementById('updateWithoutScroll').style.display = "none"; 
+
+        // show the save button which is shown when there is vertical scroll
+        document.getElementById('updateWithScroll').style.display = "block";
+
+        // show the top save button when there is vertical scroll
+        document.getElementById('topUpdateBtn').style.display = "block";
+
+    }
+    else{
+
+        document.getElementById('updateWithoutScroll').style.display = "block"; 
+        document.getElementById('updateWithScroll').style.display = "none";
+        document.getElementById('topUpdateBtn').style.display = "none";
+
+    }
+
+
+    // Function to remove empty input fields
+    function removeEditEmptyInputs() {
+        let index = 1;
+        document.querySelectorAll('.editNotePoints').forEach(function(input) {
+            if (input.value.trim() == '') {
+                input.remove();
+                if(!isEditScrollbarVisible()){
+                    console.log("is not available: "+!isEditScrollbarVisible())
+                    console.log(isScrollbarVisible());
+                    document.getElementById('updateWithoutScroll').style.display = "block"; 
+                    document.getElementById('updateWithScroll').style.display = "none";
+                    document.getElementById('topUpdateBtn').style.display = "none";
+                }
+            } else {
+                input.value = `${index}. ${input.value.trim().substring(input.value.indexOf('.') + 2)}`;
+                index++;
+            }
+        });
+        noteBullets = index;    
+    }
+
+    // Listen for keyup event to remove empty inputs
+    editNotesContainer.addEventListener('keyup', function(event) {
+        if (event.target.classList.contains('editNotePoints') && event.key !== ' ') {
+            removeEditEmptyInputs();
+        }
+    });
+
+    //  listener for adding points
+    editNotesInputField.addEventListener('keydown', function(event){
+        if(event.key === 'Enter'){
+            event.preventDefault();
+            const editText = editNotesInputField.value.trim();
+            if(editText){
+                const note = document.createElement('input');
+                note.type = "text";
+                note.classList.add('editNotePoints');
+                note.value = `${noteBullets}. ${editText}`;
+                editNotesContainer.appendChild(note);
+                editNotesInputField.value = '';
+                // console.log("before increment: "+lastIndex);
+
+                noteBullets++;
+                // console.log("after increment: "+lastIndex);
+  
+            }
+        }
+
+      
+    });
+    
+}
+
+
+
 
 $(document).on('click', '.editBtn', function(event){
     event.preventDefault();
 
     const editModal = document.getElementById('editModal');
-    editModal.style.display = "block";
     var pointId = $(this).attr('data-id');
 
 
+    const editDay = document.getElementById('editDay');
+    const editDate = document.getElementById('editDate');
+    const editTime = document.getElementById('editTime');
+
+    // fetch date, time & day
+
+    // function to update the time display
+    function updateTime() {
+        const today = new Date();
+        const timeOptions = { hour: '2-digit', minute: '2-digit', hour12: false };
+        editTime.textContent = today.toLocaleTimeString('en-US', timeOptions);
+        
+        // request the next animation frame
+        requestAnimationFrame(updateTime);
+    }
+
+    // update the time display initially
+    updateTime();
+
+
+    // fetch date & day
+    const today = new Date();
+    const dayOptions = { weekday: 'long' };
+    const dateOptions = { day: '2-digit', month: '2-digit', year: 'numeric' };
+
+    editDay.textContent = today.toLocaleDateString('en-US', dayOptions);
+    editDate.textContent = today.toLocaleDateString('en-US', dateOptions);
+
+    editModal.style.display = "block";
 
     $.ajax({
         url: 'https://backend.zimomeet.com/api/get-meeting-note?id='+pointId,
@@ -1083,34 +1361,33 @@ $(document).on('click', '.editBtn', function(event){
             notesArray.forEach(function(note, index){
                 var input = document.createElement('input');
                 input.type = "text";
-                input.value = note.trim();
-                console.log(note.trim());
+                
+                var match = note.match(/^\d+/);
+                var noteNumber = match ? match[0] : '';
+                
+                var textWithoutNumbering = note.replace(/^\d+\.\s*/, '');
+                
+                input.value = `${noteNumber}. ${textWithoutNumbering}`;
+                console.log(input.value);
                 input.classList.add('editNotePoints');
 
                 editNotesContainer.appendChild(input);
- 
+                
+                noteBullets++;
+               
             });
+            
 
-            const inputField = document.getElementById('editNotes');
+            registerEditNoteListener(noteBullets);
+            
+
+            // const inputField = document.getElementById('editNotes');
             // const notesContainer = document.getElementById('edit-notes-container');
             // let noteBullets;
             
-            const editModalContainer = document.querySelector('.editModalContainer');
-            const updateButton = document.getElementById('update');
-            const topUpdateButton = document.getElementById('topUpdateBtn');
-
-            //   Function to check if scrollbar is visible
-                function isScrollbarVisible() {
-                    return editModalContainer.scrollHeight > editModalContainer.clientHeight;
-                }
-                console.log(isScrollbarVisible());
-
-                if (isScrollbarVisible()){
-                    document.querySelector('.updateWithoutScroll').style.display = "none";
-                    updateButton.style.display = "block";
-                    // topUpdateButton.style.display = "block";
-                    // topUpdateButton.setAttribute('id', 'update');
-                }
+            // const editModalContainer = document.querySelector('.editModalContainer');
+            // const updateButton = document.getElementById('update');
+            // const topUpdateButton = document.getElementById('topUpdateBtn');
 
             // var lastBulletNumber = 1;
             // var lastNoteElement = editNotesContainer.querySelector('.editNotePoints:last-child');
@@ -1156,71 +1433,70 @@ $(document).on('click', '.editBtn', function(event){
 
             // });
 
-                
-            // Function to renumber all bullets sequentially
-            function renumberAllBullets() {
-                let bulletNumber = 1;
-                document.querySelectorAll('.editNotePoints').forEach(function(input) {
-                    input.value = `${bulletNumber}. ${input.value.trim().substring(input.value.indexOf(' ') + 1)}`;
-                    bulletNumber++;
-                });
-            }
+            // function to check if scrollbar is visible
+            // function isEditScrollbarVisible() {
+            //     const editModalContainer = document.querySelector('.editModalContainer ');
+            //     return editModalContainer.scrollHeight > editModalContainer.clientHeight;
+            // }
 
-            // Function to remove empty input fields
-            function removeEmptyInputs() {
-                document.querySelectorAll('.editNotePoints').forEach(function(input) {
-                    if (input.value.trim() === '') {
-                        input.remove();
-                    }
-                });
-                renumberAllBullets(); // Update bullets after removing empty inputs
-            }
+           // Function to remove empty input fields
+            // function removeEditEmptyInputs() {
+            //     let index = 1;
+            //     document.querySelectorAll('.editNotePoints').forEach(function(input) {
+            //         if (input.value.trim() === '') {
+            //             input.remove();
+            //             if(!isEditScrollbarVisible()){
+            //                 console.log(isScrollbarVisible());
+            //                 document.getElementById('updateWithoutScroll').style.display = "block"; 
+            //                 document.getElementById('updateWithScroll').style.display = "none";
+            //                 document.getElementById('topUpdateBtn').style.display = "none";
+            //             }
+            //         } else {
+            //             input.value = `${index}. ${input.value.trim().substring(input.value.indexOf('.') + 2)}`;
+            //             index++;
+            //         }
+            //     });
+            //     noteBullets = index;    
+            // }
 
             // Listen for keyup event to remove empty inputs
-            editNotesContainer.addEventListener('keyup', function(event) {
-                if (event.target.classList.contains('editNotePoints')) {
-                    removeEmptyInputs();
-                }
-            });
+            // editNotesContainer.addEventListener('keyup', function(event) {
+            //     if (event.target.classList.contains('editNotePoints')  && event.key !== ' ') {
+            //         removeEditEmptyInputs();
+            //     }
+            // });
 
             // Listen for keydown event on inputField
-            inputField.addEventListener('keydown', function(event) {
-                if (event.key === 'Enter') {
-                    event.preventDefault();
-                    const text = inputField.value.trim();
-                    if (text) {
-                        const note = document.createElement('input');
-                        note.type = "text";
-                        note.classList.add('editNotePoints');
-                        note.value = `${noteBullets}. ${text}`;
-                        editNotesContainer.appendChild(note);
-                        inputField.value = '';
-                        noteBullets++;
-                        renumberAllBullets(); // Update bullets after adding a new note
-                    }
-                }
-            });
+            // inputField.addEventListener('keydown', function(event) {
+            //     if (event.key === 'Enter') {
+            //         event.preventDefault();
+            //         const text = inputField.value.trim();
+            //         if (text) {
+            //             const note = document.createElement('input');
+            //             note.type = "text";
+            //             note.classList.add('editNotePoints');
+            //             note.value = `${noteBullets}. ${text}`;
+            //             editNotesContainer.appendChild(note);
+            //             inputField.value = '';
+            //             noteBullets++;
 
-            // Call renumberAllBullets initially to set the correct bullets for existing notes
-            renumberAllBullets();
+            //         }
+            //     }
+            // });
 
 
+            // console.log(isEditScrollbarVisible());
 
+            // if (isEditScrollbarVisible()){
+            //     // hide the save button which is shown when there is no vertical scroll
+            //     document.getElementById('updateWithoutScroll').style.display = "none"; 
 
+            //     // show the save button which is shown when there is vertical scroll
+            //     document.getElementById('updateWithScroll').style.display = "block";
 
-            
-            // Function to check if scrollbar is visible
-            function isScrollbarVisible() {
-                return editModalContainer.scrollHeight > editModalContainer.clientHeight;
-            }
-            console.log(isScrollbarVisible());
-
-            if (isScrollbarVisible()){
-                document.querySelector('.updateWithoutScroll').style.display = "none";
-                updateButton.style.display = "block";
-                // topUpdateButton.style.display = "block";
-                // topUpdateButton.setAttribute('id', 'update');
-            }
+            //     // show the top save button when there is vertical scroll
+            //     document.getElementById('topUpdateBtn').style.display = "block";
+            // }
 
         },
         error: function(xhr, status, error){
@@ -1231,7 +1507,7 @@ $(document).on('click', '.editBtn', function(event){
 });
 
 
-$(document).on('click', '#update', function(event){
+$(document).on('click', '#updateWithoutScroll, #updateWithScroll, #topUpdateBtn', function(event){
     event.preventDefault();
 
     var pointId = document.getElementById("pointId").value;
@@ -1248,35 +1524,67 @@ $(document).on('click', '#update', function(event){
         editNotes.push(note.value);
     });
 
+     
+    if (isEditScrollbarVisible()){
+        document.getElementById('updateWithScroll').style.display = "none";
+        document.getElementById('editLoaderWithScroll').style.display = "block";
 
-    $.ajax({
-        url: 'https://backend.zimomeet.com/api/update-meeting-note?id='+ pointId,
-        type: 'POST',
-        headers: {
-            "api-key" : "786ZM786"
-        },
-        data: {
-            title: title,
-            creator_name: creator_name,
-            day: day,
-            date: date,
-            time: time,
-            meeting_subject: meeting_subject,
-            meetingLink: updateMeetingLink,
-            notes: editNotes.join('\n')
-        },
-        success: function(response){
-            console.log(response);
+        document.getElementById('topUpdateBtn').style.display = "none";
+        document.querySelector('.editClose').style.display = "none";
+        document.getElementById('editTopLoader').style.display = "block";
+        
+    }
+    else{
 
-        },
-        error: function(xhr, status, error){
-            console.error(error);
-        },
-        complete: function(){
-            $('#editModal').css('display', 'none');  
-            loadTable();                  
-        }
-    });
+        document.getElementById('updateWithoutScroll').style.display = "none";
+        document.getElementById('editLoaderWithoutScroll').style.display = "block";
+    }
+
+    setTimeout(function(){
+        console.log("1 sec")
+
+        $.ajax({
+            url: 'https://backend.zimomeet.com/api/update-meeting-note?id='+ pointId,
+            type: 'POST',
+            headers: {
+                "api-key" : "786ZM786"
+            },
+            data: {
+                title: title,
+                creator_name: creator_name,
+                day: day,
+                date: date,
+                time: time,
+                meeting_subject: meeting_subject,
+                meetingLink: updateMeetingLink,
+                notes: editNotes.join('\n')
+            },
+            success: function(response){
+                console.log(response);
+
+            },
+            error: function(xhr, status, error){
+                console.error(error);
+            },
+            complete: function(){
+                $('#editModal').css('display', 'none');
+
+                document.getElementById('edit-notes-container').innerHTML = "";
+                document.getElementById('updateWithoutScroll').style.display = "block";
+                document.querySelector('.editClose').style.display = "block";
+                document.getElementById('editLoaderWithoutScroll').style.display = "none";
+
+                document.getElementById('topUpdateBtn').style.display = "none";
+                document.getElementById('editTopLoader').style.display = "none";
+
+                document.getElementById('updateWithScroll').style.display = "none";
+                document.getElementById('editLoaderWithScroll').style.display = "none";
+
+                loadTable();                  
+            }
+        });
+
+    }, 1000);
 
 });
 
@@ -1289,6 +1597,7 @@ $(document).on('click', '#update', function(event){
         event.preventDefault();
 
         var $row = $(this).closest('tr'); 
+        $row.attr('data-greyed-out', 'true'); 
 
         var permanentDelBtn = $row.find('#permanentDelBtn')[0];
         permanentDelBtn.style.display = "block";
@@ -1305,7 +1614,25 @@ $(document).on('click', '#update', function(event){
         $row.find('td .date, td .greyText, td div').css('color', '#bfbfbf');
         editIcon.style.fill = '#bfbfbf';
         meetingCamIcon.style.fill = '#bfbfbf';
+
+        
     });
+
+    document.addEventListener('click', function(event) {
+        var row = document.querySelector('tr[data-greyed-out="true"]');
+    
+        if (row && !event.target.closest('tr[data-greyed-out="true"]') && !event.target.matches('#permanentDelBtn')) {
+            Array.from(row.querySelectorAll('.date, .greyText, div')).forEach(function(element) {
+                element.style.color = ''; 
+            });
+            row.querySelector('#deleteIcon').style.fill = '';
+            row.querySelector('#editIcon').style.fill = '';
+            row.querySelector('#meetingCamIcon').style.fill = '';
+            row.querySelector('#permanentDelBtn').style.display = 'none'; 
+            row.removeAttribute('data-greyed-out');
+        }
+    });
+    
 
 $(document).on('click', '#permanentDelBtn', function(event){
     event.preventDefault();
@@ -1335,3 +1662,7 @@ $(document).on('click', '#permanentDelBtn', function(event){
     });
 
 });
+
+
+
+
