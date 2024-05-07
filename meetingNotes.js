@@ -734,7 +734,7 @@ function registerNoteListener() {
     function removeEmptyInputs() {
         let index = 1;
         document.querySelectorAll('.notePoints').forEach(function(input) {
-            if (input.value.trim() === '') {
+            if (input.value.trim() === `${index}.`) {
                 input.remove();
                 if(!isScrollbarVisible()){
                     console.log(isScrollbarVisible());
@@ -742,13 +742,24 @@ function registerNoteListener() {
                     document.getElementById('submitWithScroll').style.display = "none";
                     document.getElementById('topSaveBtn').style.display = "none";
                 }
-            } else {
+            } 
+            else if (input.value.trim() === '') {
+                input.remove();
+                if(!isScrollbarVisible()){
+                    console.log(isScrollbarVisible());
+                    document.getElementById('submitWithoutScroll').style.display = "block"; 
+                    document.getElementById('submitWithScroll').style.display = "none";
+                    document.getElementById('topSaveBtn').style.display = "none";
+                }
+            } 
+            else {
                 input.value = `${index}. ${input.value.trim().substring(input.value.indexOf('.') + 2)}`;
                 index++;
             }
         });
         noteBullets = index;    
     }
+    
 
     // Listen for keyup event to remove empty inputs
     notesContainer.addEventListener('keyup', function(event) {
@@ -775,6 +786,7 @@ function registerNoteListener() {
         }
 
         if (isScrollbarVisible()){
+
             // hide the save button which is shown when there is no vertical scroll
             document.getElementById('submitWithoutScroll').style.display = "none"; 
 
@@ -837,8 +849,8 @@ $(document).on('click', '#newDataBtn', function(event){
     // fetch meeting link from browser
     const meetingLinkField = document.getElementById('meetingLink');
     meetingLinkField.textContent = "";
-    // meetingLinkField.textContent = window.location.href;                 //commented for local
-    meetingLinkField.textContent = "https://zimomeet.live/dev-test";
+    meetingLinkField.textContent = window.location.href;                 //commented for local
+    // meetingLinkField.textContent = "https://zimomeet.live/dev-test";
     newModal.style.display = 'block';
 });
 
@@ -1209,7 +1221,7 @@ function registerEditNoteListener(noteBullets) {
     function removeEditEmptyInputs() {
         let index = 1;
         document.querySelectorAll('.editNotePoints').forEach(function(input) {
-            if (input.value.trim() == '') {
+            if (input.value.trim() === `${index}.`) {
                 input.remove();
                 if(!isEditScrollbarVisible()){
                     console.log("is not available: "+!isEditScrollbarVisible())
@@ -1218,7 +1230,18 @@ function registerEditNoteListener(noteBullets) {
                     document.getElementById('updateWithScroll').style.display = "none";
                     document.getElementById('topUpdateBtn').style.display = "none";
                 }
-            } else {
+            } 
+            else if (input.value.trim() === '') {
+                input.remove();
+                if(!isEditScrollbarVisible()){
+                    console.log("is not available: "+!isEditScrollbarVisible())
+                    console.log(isScrollbarVisible());
+                    document.getElementById('updateWithoutScroll').style.display = "block"; 
+                    document.getElementById('updateWithScroll').style.display = "none";
+                    document.getElementById('topUpdateBtn').style.display = "none";
+                }
+            }
+            else {
                 input.value = `${index}. ${input.value.trim().substring(input.value.indexOf('.') + 2)}`;
                 index++;
             }

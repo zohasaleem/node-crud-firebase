@@ -556,3 +556,36 @@ p{
         opacity: 0;
     }
 }
+
+
+
+
+@media only screen and (min-width: 1920px){
+
+    .modal-content{
+        width: 55%;
+        height: 45%;
+        top: -20px;
+    }
+    .table-container{
+        max-height: 390px;
+    }
+
+
+    .new-modal-content, .edit-modal-content{
+        width: 30%;
+        height: 30%;
+        top: 57px;
+    }
+
+    #notesContainer, #edit-notes-container{
+        width: 75%;
+    }
+
+    .createModalContainer, .editModalContainer{
+        max-height: 220px;
+    }
+
+    
+}
+
