@@ -832,45 +832,6 @@ $(document).on('click', '#newDataBtn', function(event){
     dayDisplay.textContent = today.toLocaleDateString('en-US', dayOptions);
     dateField.textContent = today.toLocaleDateString('en-US', dateOptions);
 
-// // switched this from bottom to top  
-//     const notesInputField = document.getElementById('notes');
-//     const notesContainer = document.getElementById('notesContainer');
-//     let noteBullets = 1;
-    
-//     const createModalContainer = document.querySelector('.createModalContainer');
-//     const saveButton = document.getElementById('submit');
-//     const topSaveButton = document.getElementById('topSaveBtn');
-
-
-    // notesInputField.addEventListener('keydown', function(event){
-    //     if(event.key === 'Enter'){
-    //         event.preventDefault();
-    //         const text = notesInputField.value.trim();
-    //         if(text){
-    //             const note = document.createElement('p');
-    //             note.classList.add('notePoints')
-    //             note.innerHTML = `<span class="bullets">${noteBullets}.</span>${text}`;
-    //             notesContainer.appendChild(note);
-    //             notesInputField.value = '';  
-    //             noteBullets++;              
-    //         }
-    //     }
-
-    //     // Function to check if scrollbar is visible
-    //     function isScrollbarVisible() {
-    //         return createModalContainer.scrollHeight > createModalContainer.clientHeight;
-    //     }
-
-    //     if (isScrollbarVisible()){
-    //         document.querySelector('.submitWithoutScroll').style.display = "none";
-    //         saveButton.style.display = "block";
-    //         topSaveButton.style.display = "block";
-    //         topSaveButton.setAttribute('id', 'submit');
-    //     }
-
-    // });
-
-
     registerNoteListener();
 
     // fetch meeting link from browser
@@ -1217,7 +1178,8 @@ function isEditScrollbarVisible() {
 }
 
 // function to register the notes input field listener for edit/update
-function registerEditNoteListener(lastIndex) {
+function registerEditNoteListener(noteBullets) {
+    console.log("i am in")
     const editNotesInputField = document.getElementById('editNotes');
     const editNotesContainer = document.getElementById('edit-notes-container');
 
@@ -1289,6 +1251,19 @@ function registerEditNoteListener(lastIndex) {
                 // console.log("after increment: "+lastIndex);
   
             }
+        }
+
+        if (isEditScrollbarVisible()){
+            console.log("scrollbar in edit is: "+isEditScrollbarVisible());
+            // hide the save button which is shown when there is no vertical scroll
+            document.getElementById('updateWithoutScroll').style.display = "none"; 
+    
+            // show the save button which is shown when there is vertical scroll
+            document.getElementById('updateWithScroll').style.display = "block";
+    
+            // show the top save button when there is vertical scroll
+            document.getElementById('topUpdateBtn').style.display = "block";
+    
         }
 
       
@@ -1377,126 +1352,7 @@ $(document).on('click', '.editBtn', function(event){
                
             });
             
-
             registerEditNoteListener(noteBullets);
-            
-
-            // const inputField = document.getElementById('editNotes');
-            // const notesContainer = document.getElementById('edit-notes-container');
-            // let noteBullets;
-            
-            // const editModalContainer = document.querySelector('.editModalContainer');
-            // const updateButton = document.getElementById('update');
-            // const topUpdateButton = document.getElementById('topUpdateBtn');
-
-            // var lastBulletNumber = 1;
-            // var lastNoteElement = editNotesContainer.querySelector('.editNotePoints:last-child');
-            
-            // if(lastNoteElement){
-            //     var lastNoteContent = lastNoteElement.value;
-            //     var match = lastNoteContent.match(/(\d+)\./);
-            //     if(match){
-            //         lastBulletNumber = parseInt(match[1]); 
-            //     }
-            // }
-            // noteBullets = lastBulletNumber + 1;
-
-            // inputField.addEventListener('keydown', function(event){
-            //     if(event.key === 'Enter'){
-            //         console.log(document.getElementById('editNotes').value)
-            //         event.preventDefault();
-            //         const text = inputField.value.trim();
-            //         if(text){
-            //             const note = document.createElement('input');
-            //             note.type = "text",
-            //             note.classList.add('editNotePoints');
-            //             note.value = noteBullets+ ". " +text;
-            //             // note.innerHTML = `<span class="bullets">${noteBullets}.</span>${text}`;
-            //             editNotesContainer.appendChild(note);
-            //             inputField.value = '';  
-            //             noteBullets++;              
-            //         }
-            //     }
-
-            //     // Function to check if scrollbar is visible
-            //     function isScrollbarVisible() {
-            //         return editModalContainer.scrollHeight > editModalContainer.clientHeight;
-            //     }
-            //     console.log(isScrollbarVisible());
-
-            //     if (isScrollbarVisible()){
-            //         document.querySelector('.updateWithoutScroll').style.display = "none";
-            //         updateButton.style.display = "block";
-            //         topUpdateButton.style.display = "block";
-            //         topUpdateButton.setAttribute('id', 'update');
-            //     }
-
-            // });
-
-            // function to check if scrollbar is visible
-            // function isEditScrollbarVisible() {
-            //     const editModalContainer = document.querySelector('.editModalContainer ');
-            //     return editModalContainer.scrollHeight > editModalContainer.clientHeight;
-            // }
-
-           // Function to remove empty input fields
-            // function removeEditEmptyInputs() {
-            //     let index = 1;
-            //     document.querySelectorAll('.editNotePoints').forEach(function(input) {
-            //         if (input.value.trim() === '') {
-            //             input.remove();
-            //             if(!isEditScrollbarVisible()){
-            //                 console.log(isScrollbarVisible());
-            //                 document.getElementById('updateWithoutScroll').style.display = "block"; 
-            //                 document.getElementById('updateWithScroll').style.display = "none";
-            //                 document.getElementById('topUpdateBtn').style.display = "none";
-            //             }
-            //         } else {
-            //             input.value = `${index}. ${input.value.trim().substring(input.value.indexOf('.') + 2)}`;
-            //             index++;
-            //         }
-            //     });
-            //     noteBullets = index;    
-            // }
-
-            // Listen for keyup event to remove empty inputs
-            // editNotesContainer.addEventListener('keyup', function(event) {
-            //     if (event.target.classList.contains('editNotePoints')  && event.key !== ' ') {
-            //         removeEditEmptyInputs();
-            //     }
-            // });
-
-            // Listen for keydown event on inputField
-            // inputField.addEventListener('keydown', function(event) {
-            //     if (event.key === 'Enter') {
-            //         event.preventDefault();
-            //         const text = inputField.value.trim();
-            //         if (text) {
-            //             const note = document.createElement('input');
-            //             note.type = "text";
-            //             note.classList.add('editNotePoints');
-            //             note.value = `${noteBullets}. ${text}`;
-            //             editNotesContainer.appendChild(note);
-            //             inputField.value = '';
-            //             noteBullets++;
-
-            //         }
-            //     }
-            // });
-
-
-            // console.log(isEditScrollbarVisible());
-
-            // if (isEditScrollbarVisible()){
-            //     // hide the save button which is shown when there is no vertical scroll
-            //     document.getElementById('updateWithoutScroll').style.display = "none"; 
-
-            //     // show the save button which is shown when there is vertical scroll
-            //     document.getElementById('updateWithScroll').style.display = "block";
-
-            //     // show the top save button when there is vertical scroll
-            //     document.getElementById('topUpdateBtn').style.display = "block";
-            // }
 
         },
         error: function(xhr, status, error){
