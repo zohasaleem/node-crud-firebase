@@ -409,7 +409,7 @@ p{
     line-height: 20px;
     font-size: 12px;
     letter-spacing: 1.3px;
-    margin: 0;
+    margin: 2px 0px 0px 0px;
     font-weight: 500;
     padding: 0px 10px;
     font-family: "Lato";
@@ -542,6 +542,21 @@ p{
     top: 120px;
 }
 
+.detailsZMLogo{
+    width: 80px;
+}
+
+.detailsNoteLogo{
+    width: 40px; 
+    margin-left: 20px;
+}
+
+#downloadPdfBtn{
+    width: 50px; 
+    float: right; 
+    cursor:pointer;
+}
+
 @keyframes fadeInOut {
     0% {
         opacity: 0;
@@ -556,9 +571,23 @@ p{
         opacity: 0;
     }
 }
+#edit-loader{
+    display: none;
+    width: 60px;
+    aspect-ratio: 2;
+    --_g: no-repeat radial-gradient(circle closest-side,#000 90%,#0000);
+    background: 
+      var(--_g) 0%   50%,
+      var(--_g) 50%  50%,
+      var(--_g) 100% 50%;
+    background-size: calc(100%/3) 50%;
+    animation: l3 1s infinite linear;
+    position: fixed;
+    left: 240px;
+    bottom: 145px;
+}
 
-
-#table-loader {
+#table-loader{
     display: none;
     width: 60px;
     aspect-ratio: 2;
@@ -581,7 +610,59 @@ p{
   }
 
 
-@media only screen and (min-width: 1920px){
+@media only screen and (max-width: 1024px) {
+    .modal-content{
+        width: 60%;
+        height: 55%;
+        top: -50px;
+    }
+
+    .new-modal-content, .edit-modal-content{
+        width: 40%;
+        height: 42%;
+        border-radius: 20px;
+        top: -10px;
+    }
+
+    .notePoints, .editNotePoints{
+        margin-left: 15px;
+        font-size: 9px;
+    }
+
+    .createModalContainer, .editModalContainer{
+        max-height: 142px;
+    }
+
+    .inputField, .detailsNotes, .detailsModalDate {
+        font-size: 9px;
+    }
+
+    #downloadPdfBtn{
+        width: 40px;
+    }
+
+    .detailsCreator{
+        font-size: 11px;
+    }
+    .detailsSubject{
+        font-size: 11px;
+    }
+
+    .detailsHeading{
+        font-size: 14px;
+    }
+
+    .detailsZMLogo{
+        width: 73px;
+    }
+
+    .detailsNoteLogo{
+        width: 40px; 
+    }
+}
+
+
+@media only screen and (min-width: 1440px){
 
     .modal-content{
         width: 55%;
@@ -616,3 +697,27 @@ p{
     
 }
 
+@media only screen and (min-width: 1920px){
+    #downloadPdfBtn{
+        width: 50px;
+    }
+
+    .detailsNotes {
+        font-size: 11px;
+        line-height: 17px;
+    }
+
+    .detailsModalDate {
+        font-size: 11px;
+        letter-spacing: 1px;
+    }
+
+    .detailsSubject{
+        margin-bottom: 50px;
+    }
+
+    .notePoints, .editNotePoints{
+        margin-left: 0px;
+    }
+    
+}

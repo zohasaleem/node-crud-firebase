@@ -134,6 +134,7 @@ function loadTable(){
     if (tbody.children().length > 0) {
         document.getElementById('table-loader').style.display = "none";
     }
+
     
     $.ajax({
         url: "https://backend.zimomeet.com/api/get-meeting-notes",
@@ -145,7 +146,7 @@ function loadTable(){
             document.getElementById('table-loader').style.display = "none";
 
             console.log(response);
-            var tbody = $('#meetingData');
+            // var tbody = $('#meetingData');
             tbody.empty();
             
             if(response.error == true){
@@ -245,15 +246,22 @@ function loadTable(){
 
                     tbody.append(row);
 
+                    // if(tbody.children().length == 0){
+                    //     addCreateButton(tbody);
+                    // }
                     if (response.meeting_notes.length == 1) {
                         addCreateButton(tbody);
                     }
                 });
 
             }
+            else{
+                document.getElementById('table-loader').style.display = "block";
+            }
 
         },
         error: function(xhr, status, error){
+            document.getElementById('table-loader').style.display = "block";
             console.error(error);
         }
 
@@ -303,10 +311,10 @@ function showDetailsDataModal() {
             <div style=" display: flex; justify-content: space-between; align-items: flex-start;">
                 <div style="display: flex; align-items: center; padding: 6px;">
                     <img src="https://firebasestorage.googleapis.com/v0/b/zimo-b9759.appspot.com/o/zimomeet_live%2Fmeeting_notes%2Flogos%2FZigM.svg?alt=media&token=91fab9c4-451f-43dd-9efb-817b63d19fa1" 
-                        style="width: 80px;" 
+                        class="detailsZMLogo" 
                     />
                     <img src="https://firebasestorage.googleapis.com/v0/b/zimo-b9759.appspot.com/o/zimomeet_live%2Fmeeting_notes%2Flogos%2FZM%20Notes%20B.svg?alt=media&token=27db0d8b-923e-44ad-b0db-012b49cf963e" 
-                        style="width: 40px; margin-left: 20px;" 
+                        class="detailsNoteLogo" 
                     />
                 </div>
 
@@ -353,7 +361,6 @@ function showDetailsDataModal() {
                 <div style="position: absolute; bottom: 25px; right: 17px;">
                     <img src="https://firebasestorage.googleapis.com/v0/b/zimo-b9759.appspot.com/o/zimomeet_live%2Fmeeting_notes%2Flogos%2FZM%20Notes%20ZiDoc%20Download%20PDF.svg?alt=media&token=80df85bd-01b4-46a6-a0e6-16c6b7209ac4" 
                         alt="zimoDoc-icon"
-                        style="width: 50px; float: right; cursor:pointer;"
                         id="downloadPdfBtn"
                     />
                 </div>
@@ -826,7 +833,7 @@ $(document).on('click', '#newDataBtn', function(event){
     event.preventDefault();
 
     noteBullets = 1;
-
+    
     $('#submitWithoutScroll').prop('disabled', false);
     $('#submitWithScroll').prop('disabled', false);
     $('#topSaveBtn').prop('disabled', false);
@@ -845,7 +852,7 @@ $(document).on('click', '#newDataBtn', function(event){
     function updateTime() {
         const today = new Date();
         const timeOptions = { hour: '2-digit', minute: '2-digit', hour12: false };
-        timeField.textContent = today.toLocaleTimeString('en-US', timeOptions);
+        timeField.textContent = today.toLocaleTimeString('en-GB', timeOptions);
         
         // request the next animation frame
         requestAnimationFrame(updateTime);
@@ -860,8 +867,8 @@ $(document).on('click', '#newDataBtn', function(event){
     const dayOptions = { weekday: 'long' };
     const dateOptions = { day: '2-digit', month: '2-digit', year: 'numeric' };
 
-    dayDisplay.textContent = today.toLocaleDateString('en-US', dayOptions);
-    dateField.textContent = today.toLocaleDateString('en-US', dateOptions);
+    dayDisplay.textContent = today.toLocaleDateString('en-GB', dayOptions);
+    dateField.textContent = today.toLocaleDateString('en-GB', dateOptions);
 
     registerNoteListener();
 
@@ -1078,6 +1085,7 @@ function showEditModal() {
     modal.innerHTML = `
 
         <div class="edit-modal-content">
+
             <div style=" display: flex; justify-content: space-between; align-items: flex-start;">
                 <div style="display: flex; align-items: center;  margin-left:5px; padding: 5px;">
                     <img src="https://firebasestorage.googleapis.com/v0/b/zimo-b9759.appspot.com/o/zimomeet_live%2Fmeeting_notes%2Flogos%2FZigM.svg?alt=media&token=91fab9c4-451f-43dd-9efb-817b63d19fa1" 
@@ -1097,61 +1105,68 @@ function showEditModal() {
                     />
                 </div>
             </div>
-           
-            <div style=" display: flex; justify-content: space-between; align-items: flex-start; margin-left:10px; margin-top: 10px;"">
-                <div style="display: flex; flex-direction: column;">
-                    <p class="addModalDate" id="editDay"></p>
-                    <p class="addModalDate" id="editDate"></p>
-                    <p class="addModalDate"  id="editTime"></p>
+
+            <div id="edit-loader" style="display: block;" ></div> 
+
+            
+            <div id="editModalContent" style="display: none;" >
+
+                <div style=" display: flex; justify-content: space-between; align-items: flex-start; margin-left:10px; margin-top: 10px;"">
+                    <div style="display: flex; flex-direction: column;">
+                        <p class="addModalDate" id="editDay"></p>
+                        <p class="addModalDate" id="editDate"></p>
+                        <p class="addModalDate"  id="editTime"></p>
+                    </div>
+
+                    <div id="copyEditMeetingLink" style="display: flex; align-items: center; cursor:pointer; padding-right: 8px;">
+                        <img src="https://firebasestorage.googleapis.com/v0/b/zimo-b9759.appspot.com/o/zimomeet_live%2Fmeeting_notes%2Flogos%2FZIMO%20MEET%20Cam%20Logo.svg?alt=media&token=bd0597e6-0336-43be-94c8-ef4c5e4a2c75" 
+                            alt="CAM_ICON" 
+                            class="camIcon"/>
+                        <p class="createModalLink" id="editMeetingLink" name="editMeetingLink"></p>
+                        <span class="custom-tooltip" id="edit-custom-tooltip">copied!</sapn>
+
+                    </div>
                 </div>
 
-                <div id="copyEditMeetingLink" style="display: flex; align-items: center; cursor:pointer; padding-right: 8px;">
-                    <img src="https://firebasestorage.googleapis.com/v0/b/zimo-b9759.appspot.com/o/zimomeet_live%2Fmeeting_notes%2Flogos%2FZIMO%20MEET%20Cam%20Logo.svg?alt=media&token=bd0597e6-0336-43be-94c8-ef4c5e4a2c75" 
-                        alt="CAM_ICON" 
-                        class="camIcon"/>
-                    <p class="createModalLink" id="editMeetingLink" name="editMeetingLink"></p>
-                    <span class="custom-tooltip" id="edit-custom-tooltip">copied!</sapn>
+                <input type="hidden" id="pointId" name="pointId">
 
+
+                <div class="editModalContainer">
+                    <div style="padding-right: 8px;">
+
+                        <div style="display:flex; align-items: flex-start;">
+                            <label for="edit_creator_name"> NAME</label>
+                            <input type="text"  class="inputField" id="edit_creator_name" name="edit_creator_name" placeholder="NAME">
+                        </div>
+
+                        <div style="display:flex; align-items: flex-start; margin-top: 12px;">
+                            <label for="editTitle" >TITLE</label>
+                            <input type="text"  class="inputField" id="editTitle" name="editTitle"  placeholder="TITLE">
+                        </div>
+
+                        <div style="display:flex; align-items: flex-start; margin-top: 12px;">
+                            <label for="editMeetingSubject" >MEETING SUBJECT</label>
+                            <input type="text"  class="inputField" id="edit_meeting_subject" name="edit_meeting_subject"  placeholder="MEETING SUBJECT">
+                        </div>
+
+                        <div style="display:flex; align-items: flex-start; margin-top: 12px;">
+
+                            <label for="editNotes">NOTES</label>                        
+                            <input type=text id="editNotes" class="inputField" name="neditNotes"  placeholder="NOTES..." style="border:none;">
+                        </div>
+
+                        <div class="edit-notes-container">
+                            <div id="edit-notes-container"></div>
+                            <button id="updateWithScroll" class="updateBtn" type="button" style="display: none;">UPDATE</button>
+                            <div class="loader" id="editLoaderWithScroll"></div>
+        
+                        </div>
+
+                        <button id="updateWithoutScroll" class="updateBtn" type="button">UPDATE</button>
+                        <div class="loader" id="editLoaderWithoutScroll"></div>
+        
+                    </div>    
                 </div>
-            </div>
-
-            <input type="hidden" id="pointId" name="pointId">
-
-            <div class="editModalContainer">
-                <div style="padding-right: 8px;">
-
-                    <div style="display:flex; align-items: flex-start;">
-                        <label for="edit_creator_name"> NAME</label>
-                        <input type="text"  class="inputField" id="edit_creator_name" name="edit_creator_name" placeholder="NAME">
-                    </div>
-
-                    <div style="display:flex; align-items: flex-start; margin-top: 12px;">
-                        <label for="editTitle" >TITLE</label>
-                        <input type="text"  class="inputField" id="editTitle" name="editTitle"  placeholder="TITLE">
-                    </div>
-
-                    <div style="display:flex; align-items: flex-start; margin-top: 12px;">
-                        <label for="editMeetingSubject" >MEETING SUBJECT</label>
-                        <input type="text"  class="inputField" id="edit_meeting_subject" name="edit_meeting_subject"  placeholder="MEETING SUBJECT">
-                    </div>
-
-                    <div style="display:flex; align-items: flex-start; margin-top: 12px;">
-
-                        <label for="editNotes">NOTES</label>                        
-                        <input type=text id="editNotes" class="inputField" name="neditNotes"  placeholder="NOTES..." style="border:none;">
-                    </div>
-
-                    <div class="edit-notes-container">
-                        <div id="edit-notes-container"></div>
-                        <button id="updateWithScroll" class="updateBtn" type="button" style="display: none;">UPDATE</button>
-                        <div class="loader" id="editLoaderWithScroll"></div>
-    
-                    </div>
-
-                    <button id="updateWithoutScroll" class="updateBtn" type="button">UPDATE</button>
-                    <div class="loader" id="editLoaderWithoutScroll"></div>
-    
-                </div>    
             </div>
         </div>
     `;
@@ -1174,6 +1189,8 @@ function showEditModal() {
         
         var editNotesContainer = document.getElementById("edit-notes-container");
         editNotesContainer.innerHTML = ' ';
+
+        // document.getElementById('editModalContent').style.display = "none";
 
 
         modal.style.display = 'none';
@@ -1333,7 +1350,7 @@ $(document).on('click', '.editBtn', function(event){
     function updateTime() {
         const today = new Date();
         const timeOptions = { hour: '2-digit', minute: '2-digit', hour12: false };
-        editTime.textContent = today.toLocaleTimeString('en-US', timeOptions);
+        editTime.textContent = today.toLocaleTimeString('en-GB', timeOptions);
         
         // request the next animation frame
         requestAnimationFrame(updateTime);
@@ -1348,59 +1365,63 @@ $(document).on('click', '.editBtn', function(event){
     const dayOptions = { weekday: 'long' };
     const dateOptions = { day: '2-digit', month: '2-digit', year: 'numeric' };
 
-    editDay.textContent = today.toLocaleDateString('en-US', dayOptions);
-    editDate.textContent = today.toLocaleDateString('en-US', dateOptions);
+    editDay.textContent = today.toLocaleDateString('en-GB', dayOptions);
+    editDate.textContent = today.toLocaleDateString('en-GB', dateOptions);
 
     editModal.style.display = "block";
 
-    $.ajax({
-        url: 'https://backend.zimomeet.com/api/get-meeting-note?id='+pointId,
-        type: 'GET',
-        headers: {
-            "api-key": "786ZM786"
-        },
-        success: function(response){
-            console.log(response);
+    document.getElementById('edit-loader').style.display = "block";
 
-            document.getElementById("pointId").value = pointId;
-            document.getElementById("edit_creator_name").value = response.meeting_note.creator_name;
-            document.getElementById("editTitle").value = response.meeting_note.title;
-            document.getElementById("edit_meeting_subject").value = response.meeting_note.meeting_subject;
-            document.getElementById("editDay").textContent = response.meeting_note.day;
-            document.getElementById("editDate").textContent = response.meeting_note.date;
-            document.getElementById("editTime").textContent = response.meeting_note.time;
-            document.getElementById("editMeetingLink").textContent = response.meeting_note.meeting_link;
-            
-            var editNotesContainer = document.getElementById("edit-notes-container");
-            var notesArray = response.meeting_note.notes.split('\n');
-          
-            
-            notesArray.forEach(function(note, index){
-                var input = document.createElement('input');
-                input.type = "text";
-                
-                var match = note.match(/^\d+/);
-                var noteNumber = match ? match[0] : '';
-                
-                var textWithoutNumbering = note.replace(/^\d+\.\s*/, '');
-                
-                input.value = `${noteNumber}. ${textWithoutNumbering}`;
-                console.log(input.value);
-                input.classList.add('editNotePoints');
+        $.ajax({
+            url: 'https://backend.zimomeet.com/api/get-meeting-note?id='+pointId,
+            type: 'GET',
+            headers: {
+                "api-key": "786ZM786"
+            },
+            success: function(response){
+                console.log(response);
 
-                editNotesContainer.appendChild(input);
+                document.getElementById("pointId").value = pointId;
+                document.getElementById("edit_creator_name").value = response.meeting_note.creator_name;
+                document.getElementById("editTitle").value = response.meeting_note.title;
+                document.getElementById("edit_meeting_subject").value = response.meeting_note.meeting_subject;
+                document.getElementById("editDay").textContent = response.meeting_note.day;
+                document.getElementById("editDate").textContent = response.meeting_note.date;
+                document.getElementById("editTime").textContent = response.meeting_note.time;
+                document.getElementById("editMeetingLink").textContent = response.meeting_note.meeting_link;
                 
-                noteBullets++;
-               
-            });
+                var editNotesContainer = document.getElementById("edit-notes-container");
+                var notesArray = response.meeting_note.notes.split('\n');
             
-            registerEditNoteListener(noteBullets);
+                
+                notesArray.forEach(function(note, index){
+                    var input = document.createElement('input');
+                    input.type = "text";
+                    
+                    var match = note.match(/^\d+/);
+                    var noteNumber = match ? match[0] : '';
+                    
+                    var textWithoutNumbering = note.replace(/^\d+\.\s*/, '');
+                    
+                    input.value = `${noteNumber}. ${textWithoutNumbering}`;
+                    console.log(input.value);
+                    input.classList.add('editNotePoints');
 
-        },
-        error: function(xhr, status, error){
-            console.error(error);
-        }
-    });
+                    editNotesContainer.appendChild(input);
+                    
+                    noteBullets++;
+                
+                });
+                
+                registerEditNoteListener(noteBullets);
+
+                document.getElementById('edit-loader').style.display = "none";
+                document.getElementById('editModalContent').style.display = "block";
+            },
+            error: function(xhr, status, error){
+                console.error(error);
+            }
+        });
 
 });
 
@@ -1478,6 +1499,8 @@ $(document).on('click', '#updateWithoutScroll, #updateWithScroll, #topUpdateBtn'
                 document.getElementById('updateWithScroll').style.display = "none";
                 document.getElementById('editLoaderWithScroll').style.display = "none";
 
+                document.getElementById('editModalContent').style.display = "none";
+
                 loadTable();                  
             }
         });
@@ -1549,6 +1572,7 @@ $(document).on('click', '#permanentDelBtn', function(event){
         },
         success: function(response){
             console.log(response)
+            loadTable();
         },
         error: function(xhr, status, error){
             console.error(error);
