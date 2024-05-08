@@ -80,7 +80,7 @@
 /* table css */ 
 
 .table-container {
-    max-height: 303px;
+    max-height: 275px;
     padding-right: 14px;
     overflow: auto;
     scrollbar-color: auto !important;
@@ -153,7 +153,7 @@ th {
 td {
     text-transform: uppercase;
     font-size: 9px;
-    padding: 5px 5px 7px 0px;
+    padding: 7px 5px 7px 0px;
     letter-spacing: 1px;
     line-height: 10px;
     border-bottom: 1px solid #000000;
@@ -301,7 +301,7 @@ label{
     color: black;
     width: 70%;
     font-size: 10px;
-    padding-bottom: 10px;
+    /* padding-bottom: 6px; */
     letter-spacing: 1px;
     text-transform: uppercase;
     
@@ -378,7 +378,7 @@ p{
     width: 82%;
     font-size: 10px;
     letter-spacing: 1px;
-    line-height: 16px;
+    line-height: 20px;
     font-family: "Lato";
     text-transform: uppercase;
     color: black;
@@ -558,27 +558,6 @@ p{
 }
 
 
-#table-loader {
-    display: none;
-    width: 60px;
-    aspect-ratio: 2;
-    --_g: no-repeat radial-gradient(circle closest-side,#000 90%,#0000);
-    background: 
-      var(--_g) 0%   50%,
-      var(--_g) 50%  50%,
-      var(--_g) 100% 50%;
-    background-size: calc(100%/3) 50%;
-    animation: l3 1s infinite linear;
-    position: fixed;
-    left: 370px;
-    bottom: 145px;
-  }
-  @keyframes l3 {
-      20%{background-position:0%   0%, 50%  50%,100%  50%}
-      40%{background-position:0% 100%, 50%   0%,100%  50%}
-      60%{background-position:0%  50%, 50% 100%,100%   0%}
-      80%{background-position:0%  50%, 50%  50%,100% 100%}
-  }
 
 
 @media only screen and (min-width: 1920px){
@@ -591,6 +570,7 @@ p{
     .table-container{
         max-height: 390px;
     }
+
 
     .new-modal-content, .edit-modal-content{
         width: 30%;
@@ -606,13 +586,6 @@ p{
         max-height: 220px;
     }
 
-    td{
-        padding: 5px 5px 7px 0px;
-    }
-
-    #detailsNotesContainer{
-        height: 265px !important;
-    }
     
 }
 
