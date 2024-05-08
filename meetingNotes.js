@@ -825,6 +825,8 @@ function registerNoteListener() {
 $(document).on('click', '#newDataBtn', function(event){
     event.preventDefault();
 
+    noteBullets = 1;
+
     $('#submitWithoutScroll').prop('disabled', false);
     $('#submitWithScroll').prop('disabled', false);
     $('#topSaveBtn').prop('disabled', false);
