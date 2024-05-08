@@ -680,6 +680,7 @@ function showSaveDataModal() {
         meetingSubjectInput.placeholder = 'MEETING SUBJECT';
 
         var notesInput = document.getElementById('notes');
+        notesInput.value = "";
         notesInput.classList.remove('placeholder-red');
         notesInput.placeholder = 'NOTES...';
 
