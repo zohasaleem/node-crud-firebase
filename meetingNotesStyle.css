@@ -539,7 +539,7 @@ p{
     display: none;
     position: fixed;
     left: 152px;
-    top: 140px
+    top: 120px;
 }
 
 @keyframes fadeInOut {
