@@ -1,4 +1,15 @@
 /* Modal styles */
+
+#firstModalBtn{
+    top : 135px;
+    left: 45px;
+}
+
+.notesBtn{
+    width: 35px;
+    height: 36px;
+}
+
 .modal {
     display: none;
     position: fixed;
@@ -28,15 +39,19 @@
     }
 }
 
+.mt{
+    margin-top: 9px;
+}
+
 /* Modal content styles */
 .modal-content {
     position: relative;
     background-color: #fefefe;
     margin: 15% auto;
     padding: 15px 2px 15px 15px;
-    width: 55%;
-    height: 65%;
-    border-radius: 20px;
+    width: 671px;
+    height: 377px;
+    border-radius: 30px;
     top: -100px;
     animation: fadeIn 0.5s ease-in-out forwards, scaleIn 0.5s ease-in-out forwards;
 }
@@ -47,19 +62,28 @@
     position: relative;
     background-color: #fefefe;
     margin: 15% auto;
-    width: 35%;
-    height: 50%;
+    width: 434px;
+    height: 244px;
     border-radius: 20px;
-    top: -52px;
+    top: -30px;
     animation: fadeIn 0.5s ease-in-out forwards, scaleIn 0.5s ease-in-out forwards;
 }
 
 /* Close button styles */
-.close , .editClose, .newDataModalClose{
-    color: #aaa;
+.close {
     float: right;
     font-size: 28px;
     font-weight: bold;
+    width: 14px; 
+    padding-right: 15px;
+}
+
+.newDataModalClose, .editClose{
+    width: 12px;
+    float: right;
+    font-size: 28px;
+    font-weight: bold;
+    /* width: 10px;  */
 }
 
 .close:hover,
@@ -74,17 +98,27 @@
 }
 
 .notes-heading{
-    width: 56px;
+    /* width: 56px; */
     margin-top: 21px;
+    width: 52px;
+    height: 10px;
 }
 /* table css */ 
 
 .table-container {
-    max-height: 303px;
+    max-height: 285px;
     padding-right: 14px;
     overflow: auto;
     scrollbar-color: auto !important;
     scrollbar-width: auto !important;
+}
+
+#detailsNotesContainer{
+    width: 655px;
+    display: flex;
+    flex-direction: column;
+    height: 151px;
+    overflow-y: auto;
 }
 
 .detailsNotesContainer,
@@ -130,32 +164,32 @@
     background-color: #555 !important; 
 }
 
-table {
+.notesTable {
     border-collapse: collapse;
     width: 100%;
     color: black;
     table-layout: fixed;
 }
 
-tbody {
+.notesTableBody {
     color: black;
 }
 
-th {
+.notesTableHeading {
     border-bottom: 1px solid #000000;
     text-align: left;
-    font-size: 11px;
+    font-size: 10px;
     letter-spacing: 0.8px;
     font-family: "Lato";
 }
 
 
-td {
+.notesTableData {
     text-transform: uppercase;
-    font-size: 9px;
+    font-size: 8px;
     padding: 5px 5px 7px 0px;
     letter-spacing: 1px;
-    line-height: 10px;
+    line-height: 8px;
     border-bottom: 1px solid #000000;
     text-align: left;
     font-family: "Lato";
@@ -186,6 +220,7 @@ tr:hover .actionBtn, tr:hover #meetingCamIcon {
     text-transform:lowercase; 
     cursor:pointer; 
     color:black;
+    vertical-align: super;
 }
 
 .creatorNameText{
@@ -205,56 +240,40 @@ tr:hover .actionBtn, tr:hover #meetingCamIcon {
 }
 
 .topSaveBtn{
-    display: none;
+    /* display: none; */
     cursor: pointer;
     float: right;
     padding-right: 20px;
-    width: 38px;
-}
-
-.submitWithoutScroll{
-    float: right;
-    display: block;
-    cursor: pointer;
-    width: 36px;
-    position: fixed;
-    right: 18px;
-    bottom: 22px;
-
-}
-
-.submitWithScroll{
-    display: none;
-    cursor: pointer;
-    width: 36px;
-    padding: 7px 0px;
-
+    width: 30px;
 }
 
 
 .newDataBtn {
+    width: 14px;
+    height: 14px;
     float: right;
     padding: 5px 0px 5px 5px;
     cursor: pointer;
 }
 
+.dynamicCreateBtn{
+    width: 77px;
+    padding: 30px 15px 15px 15px;
+    height: 59px;
+}
+
 
 .updateBtn{
     color: black; 
-    font-size: 13px;
+    font-size: 10px;
     font-family: "Lato";
-    letter-spacing: 1px;
+    letter-spacing: 0.5px;
     border: none;
     cursor: pointer;
     background: none;
     float: right;
 }
 
-#updateWithoutScroll{
-    position: fixed;
-    right: 18px;
-    bottom: 22px;
-}
 
 
 .editBtn{
@@ -270,9 +289,9 @@ tr:hover .actionBtn, tr:hover #meetingCamIcon {
 
 label{
     text-transform: uppercase;
-    font-size: 9px;
-    margin: 3px 0px;
-    letter-spacing: 1px;
+    font-size: 8px;
+    margin: 2px 0px;
+    letter-spacing: 0.8px;
     line-height: 10px;
     text-align: left;
     color: black;
@@ -286,11 +305,11 @@ label{
     border-bottom: 1px solid black;
     border-top: none;
     width: 70%;
-    font-size: 10px;
+    font-size: 8px;
     border-left: none;
     border-right: none;
     padding-bottom: 6px;
-    letter-spacing: 1px;
+    letter-spacing: 0.8px;
     text-transform: uppercase;
     outline: none;
     font-family: "Lato";
@@ -315,14 +334,22 @@ p{
     margin: 0;
 }
 
+.tableCamIcon{
+    width: 28px;
+    margin-right: 5px;
+    margin-top: 2px;
+}
+
 .camIcon{
-    width: 35px;
+    width: 28px;
     margin-right: 5px;
 }
 
+
 .detailsCamIcon{
-    width: 46px;
-    margin-right: 5px;
+    width: 32px;
+    margin-top: 2px;
+    height: 14px;
 }
 
 .date{
@@ -331,16 +358,15 @@ p{
 
 .addModalDate{
     text-transform: uppercase;
-    font-size: 9px;
+    font-size: 8px;
     padding: 5px 0px;
     letter-spacing: 1px;
-    line-height: 5px;
+    line-height: 2px;
     font-family: "Lato";
-
 }
 
 .detailsModalMeetingLink{
-    font-size: 10px;
+    font-size: 9px;
     letter-spacing: 1px;
     font-family: "Lato";
     color: black;
@@ -348,8 +374,8 @@ p{
 }
 
 .createModalLink{
-    font-size: 9px;
-    letter-spacing: 0.7px;
+    font-size: 8px;
+    letter-spacing: 0.6px;
     font-family: "Lato";
     color: black;
 
@@ -357,8 +383,8 @@ p{
 .createModalContainer, .editModalContainer{
     clear:both; 
     margin-top: 15px;
-    margin-left:10px; 
-    max-height: 203px;
+    margin-left:5px; 
+    max-height: 162px;
     overflow-y: auto;
     overflow-x: hidden;
     /* padding-right: 20px; */
@@ -376,15 +402,15 @@ p{
 
 .notePoints, .editNotePoints{
     width: 82%;
-    font-size: 10px;
+    font-size: 8px;
     letter-spacing: 1px;
-    line-height: 16px;
+    line-height: 10px;
     font-family: "Lato";
     text-transform: uppercase;
     color: black;
     border: none;
     outline: none;
-    /* margin-left: 139px; */
+    /* margin-left: 8px; */
 }
 .bullets{
     margin-right: 5px;
@@ -392,14 +418,17 @@ p{
 .actionBtn{
     display: flex; 
     justify-content: flex-end; 
-    margin-bottom: 11px;
+    /* margin-bottom: 11px; */
 }
 .detailsHeading{
+
+    padding-right: 78px;
+    padding-top: 18px;
     margin: 0;
-    font-size: 15px;
-    letter-spacing: 1.5px;
-    padding: 0px 10px;
-    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 1.3px;
+    /* padding: 0px 10px; */
+    font-weight: 800;
     font-family: "Lato";
     text-transform: uppercase;
     color: black;
@@ -407,19 +436,27 @@ p{
 
 .detailsCreator{
     line-height: 20px;
-    font-size: 12px;
+    font-size: 10px;
     letter-spacing: 1.3px;
     margin: 2px 0px 0px 0px;
-    font-weight: 500;
+    font-weight: 600;
     padding: 0px 10px;
     font-family: "Lato";
     text-transform: uppercase;
     color: black;
 }
 
+.detailsModalDateContainer{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+    margin-top: 25px;
+    margin-right: 17px;
+}
+
 .detailsModalDate{
     text-transform: uppercase;
-    font-size: 10px;
+    font-size: 9px;
     padding: 5px 0px;
     letter-spacing: 0.8px;
     line-height: 4px;
@@ -430,18 +467,19 @@ p{
 }
 
 .detailsSubject{
-    font-size: 12px;
+    font-size: 11px;
     text-decoration: underline;
     text-underline-offset: 4px;
     letter-spacing: 1px;
     font-weight: 600;
-    margin: 20px 0px 30px 0px;
+    margin: 20px 0px 45px 0px;
     font-family: "Lato";
     text-transform: uppercase;
     color: black;
 }
 
 .detailsNotes{
+    width: 90%;
     font-size: 10px;
     text-transform: uppercase;
     letter-spacing: 1.5px;
@@ -462,9 +500,8 @@ p{
     cursor: pointer;
 }
 .detailsDataModalClose{
-    width: 13px; 
-    margin-top: 7px; 
-    margin-left:30px; 
+    width: 14px; 
+    margin: 7px 0px 0px 22px;
     cursor:pointer;
 }
 
@@ -472,8 +509,8 @@ p{
 /* loader */
 
 .loader {
-    width: 20px;
-    height: 20px;
+    width: 15px;
+    height: 15px;
     border: 5px solid #ddd;
     border-radius: 50%;
     position: relative;
@@ -489,6 +526,7 @@ p{
     animation: l18 2s infinite linear;
   }
   
+
   @keyframes l18 {
     0%   { clip-path: polygon(50% 50%, 0 0, 0 0, 0 0, 0 0, 0 0); }
     25%  { clip-path: polygon(50% 50%, 0 0, 100% 0, 100% 0, 100% 0, 100% 0); }
@@ -517,10 +555,10 @@ p{
 
 
   .custom-tooltip {
-    font-size: 10px;
-    letter-spacing: 0.5px;
+    font-size: 8.5px;
+    letter-spacing: 1px;
     margin-left: 40px;
-    padding: 2px 4px 3px 4px;
+    padding: 1px 2px 2px 3px;
     background-color: #e5e3e3df;
     border-radius: 4px;
     color: #080808;
@@ -531,7 +569,7 @@ p{
 #custom-tooltip, #edit-custom-tooltip{
     display: none;
     position: fixed;
-    top: 49px;
+    top: 42px;
     right: 15px;
 }
 
@@ -543,18 +581,41 @@ p{
 }
 
 .detailsZMLogo{
-    width: 80px;
+    width: 71px;
 }
 
 .detailsNoteLogo{
-    width: 40px; 
+    width: 35px; 
     margin-left: 20px;
 }
 
 #downloadPdfBtn{
-    width: 50px; 
+    width: 41px; 
     float: right; 
     cursor:pointer;
+    position: relative;
+    bottom: 43px;
+    right: 16px;
+}
+
+#permanentDelBtn{
+    position: fixed;
+    top: 187px;
+}
+
+/* .creatorNameText{
+    position: fixed;
+    top: 146px;
+} */
+
+
+.createZMLogo{
+    width: 43px;
+}
+
+.createNotePadLogo{
+    width: 20px;
+    margin-left: 15px;
 }
 
 @keyframes fadeInOut {
@@ -587,6 +648,14 @@ p{
     bottom: 145px;
 }
 
+.ZMLogo{
+    width: 72px;
+}
+
+.notePadLogo{
+    width: 34px;
+}
+
 #table-loader{
     display: none;
     width: 60px;
@@ -599,7 +668,7 @@ p{
     background-size: calc(100%/3) 50%;
     animation: l3 1s infinite linear;
     position: fixed;
-    left: 370px;
+    left: 313px;
     bottom: 145px;
   }
   @keyframes l3 {
@@ -662,11 +731,11 @@ p{
 }
 
 
-@media only screen and (min-width: 1440px){
+@media only screen and (min-width: 1920px){
 
     .modal-content{
-        width: 55%;
-        height: 45%;
+        width: 960px;
+        height: 540px;
         top: -20px;
     }
     .table-container{
