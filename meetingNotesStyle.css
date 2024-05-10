@@ -731,20 +731,72 @@ p{
 }
 
 
+
 @media only screen and (min-width: 1920px){
 
+    #firstModalBtn{
+        top : 135px;
+    }
+    .notesBtn{
+        width: 50px;
+        height: 52.5px;
+    }
     .modal-content{
         width: 960px;
         height: 540px;
         top: -20px;
     }
+    .ZMLogo{
+        width: 102px;
+        height: 50px;
+    }
+    .notes-heading{
+        margin-top: 21px;
+        width: 73px;
+        height: 14px;
+    }
+    .close, .newDataBtn{
+        width: 20px;
+        height: 20px;
+    }
+    .dynamicCreateBtn{
+        width: 109px;
+        height: 83px;
+    }
+    .notesTableHeading{
+        font-size: 11px;
+    }
+    .notesTableData {
+        font-size: 10px;
+        letter-spacing: 2px;
+        line-height: 12px;
+    }
+    .tableCamIcon {
+        width: 31px;
+        height: 13px;
+    }
     .table-container{
-        max-height: 390px;
+        max-height: 415px;
+    }
+    .editBtn{
+        width: 11px;
+    }
+    .delBtn{
+        width: 13px;
+    }
+    .creatorNameText{
+        font-size: 10px;
+        letter-spacing: 2px;
+    }
+    
+    td{
+        padding: 5px 5px 7px 0px;
     }
 
+
     .new-modal-content, .edit-modal-content{
-        width: 30%;
-        height: 30%;
+        width: 622px;
+        height: 350px;
         top: 57px;
     }
 
@@ -756,9 +808,6 @@ p{
         max-height: 220px;
     }
 
-    td{
-        padding: 5px 5px 7px 0px;
-    }
 
     #detailsNotesContainer{
         height: 265px !important;
