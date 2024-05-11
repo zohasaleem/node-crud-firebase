@@ -10,15 +10,28 @@
     height: 36px;
 }
 
+.modal-overlay{
+    width: 693px;
+    height: 415px;
+    position: relative;
+    top: 101px;
+    background: #08080899;
+    left: 339px;
+    border-radius: 30px;
+    border: none;
+}
+
 .modal {
     display: none;
     position: fixed;
     z-index: 1;
     left: 0;
     top: 0px;
+    /* left: 337px;
+    top: 100px; */
     width: 100%;
     height: 100%;
-    background-color: #08080899; 
+    /* background-color: #08080899;  */
 }
 
 @keyframes fadeIn {
@@ -61,11 +74,13 @@
     padding: 20px 9px 10px 17px;
     position: relative;
     background-color: #fefefe;
-    margin: 15% auto;
+    /* margin: 15% auto; */
     width: 434px;
     height: 244px;
     border-radius: 20px;
-    top: -30px;
+    /* top: -30px; */
+    top: 70px;
+    left: 113px;
     animation: fadeIn 0.5s ease-in-out forwards, scaleIn 0.5s ease-in-out forwards;
 }
 
@@ -661,6 +676,7 @@ p{
 
 .notePadLogo{
     width: 34px;
+    margin-right: 57px;
 }
 
 #table-loader{
@@ -775,6 +791,7 @@ p{
     }
     .notePadLogo{
         width: 47px;
+        margin-right: 79px;
     }
     .dynamicCreateBtn{
         width: 109px;

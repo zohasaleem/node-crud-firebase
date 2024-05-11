@@ -88,14 +88,18 @@ function showFirstModal() {
     // close modal when clicked
     closeButton.addEventListener('click', function() {
         modal.style.display = 'none';
+        document.getElementById('firstModalBtn').disabled = false;
+        document.querySelector('.notesBtn').style.opacity = "100%";
     });
 
-    // Close the modal when the user clicks outside of it
-    window.addEventListener('click', function(event) {
-        if (event.target === modal) {
-            modal.style.display = 'none';
-        }
-    });
+    // // Close the modal when the user clicks outside of it
+    // window.addEventListener('click', function(event) {
+    //     if (event.target == modal) {
+    //         modal.style.display = 'none';
+    //         document.getElementById('firstModalBtn').disabled = false;
+    //         document.querySelector('.notesBtn').style.opacity = "100%";
+    //     }
+    // });
 
     // Append the modal to the container
     document.body.appendChild(modal);
@@ -276,6 +280,8 @@ function loadTable(){
 $(document).on('click', '#firstModalBtn', function(event){
     event.preventDefault();
     console.log('Modal Open');
+    document.getElementById('firstModalBtn').disabled = true;
+    document.querySelector('.notesBtn').style.opacity = "50%";
 
     document.getElementById('table-loader').style.display = "block";
 
@@ -532,8 +538,9 @@ function showSaveDataModal() {
     modal.style.zIndex = "9999"
 
     modal.innerHTML = `
-
+    <div class="modal-overlay">
         <div class="new-modal-content">
+        
             <div style=" display: flex; justify-content: space-between; align-items: flex-start;">
                 <div style="display: flex; align-items: center; margin-left:5px; padding: 0px;">
                     <img src="https://firebasestorage.googleapis.com/v0/b/zimo-b9759.appspot.com/o/zimomeet_live%2Fmeeting_notes%2Flogos%2FZigM.svg?alt=media&token=91fab9c4-451f-43dd-9efb-817b63d19fa1" 
@@ -605,7 +612,7 @@ function showSaveDataModal() {
                 </div>
             </div>
         </div>
-
+    </div>
     `;
 
     document.body.appendChild(modal);
@@ -1012,6 +1019,7 @@ function showEditModal() {
     modal.style.display = 'none';
 
     modal.innerHTML = `
+    <div class="modal-overlay">
 
         <div class="edit-modal-content">
 
@@ -1090,6 +1098,7 @@ function showEditModal() {
                 </div>
             </div>
         </div>
+    </div>
     `;
 
     // append the modal to the container
