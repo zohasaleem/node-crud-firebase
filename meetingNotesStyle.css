@@ -784,10 +784,98 @@ p{
     }
 }
 
-@media only screen  and (max-width: 1440px){
+@media only screen  and (min-width: 1440px){
     .modal{
         left: 381px;
         top: 170px;
+    }
+}
+
+
+
+@media only screen and (min-width: 1680px){
+    .notesBtn{
+        width: 44px;
+        height: 46px;
+    } 
+
+    .watermark {
+        height: 88px !important;
+        width: 98px !important;
+    }
+    .zimoGroupLogo{
+        width: 131px;
+        height: 31px;
+    }
+    /* #firstModalBtn{
+        top : 140px;
+        left: 40px;
+    } */
+    .ztfrLogo{
+        width: 91px;
+        height: 31px;
+        left: 235px;
+    }
+    .modal{
+        left: 470px; /*change*/
+        top: 306px;
+    }
+    .modal-content{
+        width: 866px;
+        height: 487px;
+        top: -120px;  /*change*/
+    }
+    .modal-overlay{
+        width: 866px;
+        height: 487px;
+        top: -120px;  /*change*/
+        left: 0px;  /*change*/
+    }
+    .ZMLogo{
+        width: 94px;
+        height: 46px;
+    }
+    .notes-heading{
+        margin-top: 21px;
+        width: 67px;
+        height: 13px;
+    }
+    .close, .newDataBtn{
+        width: 18px;
+        height: 18px;
+    }
+    .notePadLogo{
+        width: 43px;
+        margin-right: 79px; /*change*/
+    }
+    .dynamicCreateBtn{
+        width: 100px;
+        height: 77px;
+    }
+    .notesTableHeading{
+        font-size: 10px;
+    }
+    .notesTableData {
+        font-size: 9px;
+        letter-spacing: 1.3px;
+        line-height: 11px;
+    }
+    .tableCamIcon {
+        width: 28px;
+        height: 12px;
+    }
+    .table-container{
+        max-height: 400px;
+        margin-top: 0px;
+    }
+    .meetingRoomText{
+        vertical-align: super;
+    }
+    .editBtn{
+        width: 9px;
+    }
+    .delBtn{
+        width: 10px;
     }
 }
 
@@ -879,6 +967,7 @@ p{
     }
     .meetingRoomText{
         vertical-align: super;
+        margin-top: 5px;
     }
     .editBtn{
         width: 10px;
@@ -1052,27 +1141,3 @@ p{
     
 }
 
-@media only screen and (min-width: 2000px){
-    #downloadPdfBtn{
-        width: 50px;
-    }
-
-    .detailsNotes {
-        font-size: 11px;
-        line-height: 17px;
-    }
-
-    .detailsModalDate {
-        font-size: 11px;
-        letter-spacing: 1px;
-    }
-
-    .detailsSubject{
-        margin-bottom: 50px;
-    }
-
-    .notePoints, .editNotePoints{
-        margin-left: 0px;
-    }
-    
-}
