@@ -784,6 +784,13 @@ p{
     }
 }
 
+@media only screen  and (max-width: 1440px){
+    .modal{
+        left: 381px;
+        top: 170px;
+    }
+}
+
 
 @media only screen and (min-width: 1920px){
 
