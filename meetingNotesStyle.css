@@ -740,12 +740,20 @@ p{
 
 @media only screen and (min-width: 1920px){
 
-    #firstModalBtn{
+    /* #firstModalBtn{
         top : 135px;
     }
     .notesBtn{
         width: 50px;
         height: 52.5px;
+    } */
+    #firstModalBtn{
+        top : 135px;
+        left: 40px;
+    }
+    .notesBtn {
+        width: 42px;
+        height: 45.5px;
     }
     .modal-content{
         width: 960px;
@@ -823,7 +831,7 @@ p{
     }
     .createNotePadLogo{
         width: 28px;
-        height: 29px;
+        height: 33px;
     }
     .topSaveBtn{
         width: 38px;
