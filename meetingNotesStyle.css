@@ -91,12 +91,12 @@
 .modal-content {
     position: relative;
     background-color: #fefefe;
-    margin: 15% auto;
+    /* margin: 15% auto; */
     padding: 15px 2px 15px 15px;
     width: 671px;
     height: 377px;
     border-radius: 30px;
-    top: -100px;
+    /* top: -100px; */
     animation: fadeIn 0.5s ease-in-out forwards, scaleIn 0.5s ease-in-out forwards;
 }
 
@@ -110,8 +110,8 @@
     height: 244px;
     border-radius: 20px;
     /* top: -30px; */
-    top: 70px;
-    left: 113px;
+    top: 52px;
+    left: 100px;
     animation: fadeIn 0.5s ease-in-out forwards, scaleIn 0.5s ease-in-out forwards;
 }
 
@@ -437,7 +437,7 @@ p{
     clear:both; 
     margin-top: 15px;
     margin-left:5px; 
-    max-height: 162px;
+    max-height: 156px;
     overflow-y: auto;
     overflow-x: hidden;
     /* padding-right: 20px; */
