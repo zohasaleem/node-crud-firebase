@@ -771,10 +771,17 @@ p{
         width: 42px;
         height: 45.5px;
     }
+    .modal-overlay{
+        width: 981px;
+        height: 585px;
+        top: 165px;
+        left: 469px;
+    }
+    
     .modal-content{
         width: 960px;
         height: 540px;
-        top: -20px;
+        top: -120px;
     }
     .ZMLogo{
         width: 102px;
@@ -802,7 +809,7 @@ p{
     }
     .notesTableData {
         font-size: 10px;
-        letter-spacing: 2px;
+        letter-spacing: 1.5px;
         line-height: 12px;
     }
     .tableCamIcon {
@@ -811,6 +818,10 @@ p{
     }
     .table-container{
         max-height: 415px;
+        margin-top: 0px;
+    }
+    .meetingRoomText{
+        vertical-align: top;
     }
     .editBtn{
         width: 10px;
@@ -840,7 +851,8 @@ p{
         width: 622px;
         height: 350px;
         padding: 20px 12px 9px 20px;
-        top: 82px;
+        top: 96px;
+        left: 166px;
     }
     .createZMLogo{
         width: 61px;
@@ -889,8 +901,15 @@ p{
         letter-spacing: 2px;
         margin-left: 40px;
     }
-    .inputField, #notesContainer, #edit-notes-container{
+    .inputField, #edit-notes-container{
         width: 70%;
+    }
+    #edit-notes-container, #notesContainer{
+        width: 77%;
+    }
+
+    #notes, #editNotes{
+        width: 91%;
     }
 
     .notePoints, .editNotePoints {
