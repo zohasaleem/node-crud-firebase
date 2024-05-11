@@ -306,9 +306,9 @@ const container = document.getElementById('largeVideoContainer');
 
 button.appendChild(btnImage);   //appended buttonImage in its parent container created above 
 
-container.appendChild(button);   //appended button in large video container 
+document.body.appendChild(button);   //appended button in large video container 
 
-container.appendChild(zimoGroupLink);  //appended zimo group logo  in large video container 
+document.body.appendChild(zimoGroupLink);  //appended zimo group logo  in large video container 
 
 
 
