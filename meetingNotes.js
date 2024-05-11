@@ -557,7 +557,7 @@ function showSaveDataModal() {
                 </div>
             </div>
 
-            <div style=" display: flex; justify-content: space-between; align-items: flex-start; margin-left:5px; margin-top: 12px;">
+            <div class="addDateContainer">
                 <div style="display: flex; flex-direction: column;">
                     <p class="addModalDate" id="dayDisplay"></p>
                     <p class="addModalDate" id="date"></p>
@@ -578,23 +578,23 @@ function showSaveDataModal() {
         
                 <div style="padding-right: 8px;" >
                     <div style="display:flex; align-items: flex-start;">
-                        <label for="creator_name"> NAME</label>
+                        <label for="creator_name" class="notesLabel"> NAME</label>
                         <input type="text"  class="inputField" id="creator_name" name="creator_name" placeholder="NAME" required>
                     </div>
 
                     <div class="mt" style="display:flex; align-items: flex-start;">
-                        <label for="title" >TITLE</label>
+                        <label for="title"  class="notesLabel">TITLE</label>
                         <input type="text"  class="inputField" id="title" name="title"  placeholder="TITLE" required>
                     </div>
 
                     <div class="mt" style="display:flex; align-items: flex-start;">
-                        <label for="meetingSubject" >MEETING SUBJECT</label>
+                        <label for="meetingSubject"  class="notesLabel">MEETING SUBJECT</label>
                         <input type="text"  class="inputField" id="meeting_subject" name="meeting_subject"  placeholder="MEETING SUBJECT" required>
                     </div>
 
                     <div class="mt" style="display:flex; align-items: flex-start;">
 
-                        <label for="notes">NOTES</label>   
+                        <label for="notes"  class="notesLabel">NOTES</label>   
                         <div id="notesContainer">
                             <input type=text id="notes" class="inputField" name="notes"  placeholder="NOTES..." style="border:none;" required>
 
@@ -602,8 +602,6 @@ function showSaveDataModal() {
 
                     </div>
         
-                            
-
                 </div>
             </div>
         </div>
@@ -642,6 +640,7 @@ function showSaveDataModal() {
         notesInput.placeholder = 'NOTES...';
 
         notesContainer.innerHTML = "";
+        notesContainer.innerHTML = '<input type=text id="notes" class="inputField" name="notes"  placeholder="NOTES..." style="border:none;" required>';
         
         // resetting place holders and removing validation class ----- code ends here
 
@@ -981,6 +980,8 @@ $(document).on('click', '#topSaveBtn', function(event){
                     document.getElementById("creator_name").value = '';
                     document.getElementById("notesContainer").innerHTML = '';
 
+                    document.getElementById("notesContainer").innerHTML = '<input type=text id="notes" class="inputField" name="notes"  placeholder="NOTES..." style="border:none;" >';
+
                     $('#newDataModal').css('display', 'none');
 
                     document.querySelector('.newDataModalClose').style.display = "block";
@@ -1026,7 +1027,7 @@ function showEditModal() {
 
                 <div style="display: flex; align-items: center; padding-right: 8px;">
                     <div class="loader" id="editTopLoader"></div>
-                    <button id="topUpdateBtn" class="updateBtn" type="button" style="padding-right: 15px;">UPDATE</button>
+                    <button id="topUpdateBtn" class="updateBtn" type="button">UPDATE</button>
                     <img src="https://firebasestorage.googleapis.com/v0/b/uploadimage-6caaa.appspot.com/o/ZM%20Live%20Meeting%20Notes%20Icons%2FZM%20Notes%20X.png?alt=media&token=fafaedde-2699-48cd-bc65-19460a0ad2c6" 
                         class="editClose"
                     />
@@ -1038,7 +1039,7 @@ function showEditModal() {
             
             <div id="editModalContent" style="display: none;" >
 
-                <div style=" display: flex; justify-content: space-between; align-items: flex-start; margin-left:5px; margin-top: 12px;">
+                <div class="editDateContainer">
                     <div style="display: flex; flex-direction: column;">
                         <p class="addModalDate" id="editDay"></p>
                         <p class="addModalDate" id="editDate"></p>
@@ -1061,24 +1062,24 @@ function showEditModal() {
                 <div class="editModalContainer">
                     <div style="padding-right: 8px;">
 
-                        <div style="display:flex; align-items: flex-start;">
-                            <label for="edit_creator_name"> NAME</label>
+                        <div class="mt" style="display:flex; align-items: flex-start;">
+                            <label for="edit_creator_name" class="notesLabel"> NAME</label>
                             <input type="text"  class="inputField" id="edit_creator_name" name="edit_creator_name" placeholder="NAME">
                         </div>
 
                         <div class="mt" style="display:flex; align-items: flex-start;">
-                            <label for="editTitle" >TITLE</label>
+                            <label for="editTitle"  class="notesLabel">TITLE</label>
                             <input type="text"  class="inputField" id="editTitle" name="editTitle"  placeholder="TITLE">
                         </div>
 
                         <div class="mt" style="display:flex; align-items: flex-start;">
-                            <label for="editMeetingSubject" >MEETING SUBJECT</label>
+                            <label for="editMeetingSubject"  class="notesLabel">MEETING SUBJECT</label>
                             <input type="text"  class="inputField" id="edit_meeting_subject" name="edit_meeting_subject"  placeholder="MEETING SUBJECT">
                         </div>
 
                         <div class="mt" style="display:flex; align-items: flex-start;">
 
-                            <label for="editNotesLabel">NOTES</label>      
+                            <label for="editNotesLabel"  class="notesLabel">NOTES</label>      
                             <div id="edit-notes-container">
                                 <input type=text id="editNotes" class="inputField" name="editNotes"  placeholder="NOTES..." style="border:none;">
                             </div>        
@@ -1462,6 +1463,24 @@ $(document).on('click', '.delBtn', function(event){
 
 });
 
+// document.addEventListener('click', function(event) {
+//     var row = document.querySelector('tr[data-greyed-out="true"]');
+
+//     if (row && !event.target.closest('tr[data-greyed-out="true"]') ){
+
+//         const id = row.getAttribute('data-id');
+//         console.log('Data ID:', id);
+//         Array.from(row.querySelectorAll('.date, .greyText, div')).forEach(function(element) {
+//             element.style.color = ''; 
+//         });
+
+//         row.querySelector('#deleteIcon').style.fill = '';
+//         row.querySelector('#editIcon').style.fill = '';
+//         row.querySelector('#meetingCamIcon').style.fill = '';
+//         row.querySelector(`#permanentDelBtn-${id}`).style.display = 'none'; 
+//         row.removeAttribute('data-greyed-out');
+//     }
+// });
 
 
 
