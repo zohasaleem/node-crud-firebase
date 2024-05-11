@@ -1003,7 +1003,7 @@ $(document).on('click', '#topSaveBtn', function(event){
 
                     document.querySelector('.newDataModalClose').style.display = "block";
 
-                    document.getElementById('topSaveBtn').style.display = "none";
+                    document.getElementById('topSaveBtn').style.display = "block";
                     document.getElementById('topLoader').style.display = "none";
                 
                     loadTable();
