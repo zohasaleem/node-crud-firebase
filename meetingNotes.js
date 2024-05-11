@@ -10,20 +10,32 @@ button.setAttribute('id', 'firstModalBtn');
 
 const btnImage = document.createElement('img');
 btnImage.classList.add("notesBtn")
-btnImage.setAttribute("src", "https://firebasestorage.googleapis.com/v0/b/zimo-b9759.appspot.com/o/zimomeet_live%2Fmeeting_notes%2Flogos%2FZM%20Notes%20W.png?alt=media&token=8a571dcc-e3c1-4796-bd2f-f6593c991a84");
+btnImage.setAttribute("src", "https://firebasestorage.googleapis.com/v0/b/zimo-b9759.appspot.com/o/zimomeet_live%2Fmeeting_notes%2Flogos%2FZM%20Notes%20W.svg?alt=media&token=9d671e06-1f29-4b80-a6ea-57470a584ed8");
 
 
 const zimoGroupLink = document.createElement('a');
-zimoGroupLink.href = "https://zimo.team";
+zimoGroupLink.href = "https://zimogroup.org/";
 zimoGroupLink.target = "_blank";
 
 const zimoGroupLogo = document.createElement('img');
 zimoGroupLogo.className = "zimoGroupLogo";
 zimoGroupLogo.src= "https://firebasestorage.googleapis.com/v0/b/zimo-b9759.appspot.com/o/zimomeet_live%2Fmeeting_notes%2Flogos%2Fzg%2Bzig%20w.svg?alt=media&amp;token=d99fb544-a89b-412d-bf48-2136c4b10a8e";
 
-
 zimoGroupLink.appendChild(zimoGroupLogo);
  
+
+const ztfrLink = document.createElement('a');
+ztfrLink.href = "https://zitransfer.com/";
+ztfrLink.target = "_blank";
+
+const ztfrLogo = document.createElement('img');
+ztfrLogo.className = "ztfrLogo";
+ztfrLogo.src= "https://firebasestorage.googleapis.com/v0/b/zimo-b9759.appspot.com/o/zimomeet_live%2Fmeeting_notes%2Flogos%2FZTFR%20w%20(1).svg?alt=media&token=48badcb6-26aa-4dc0-bf66-17ea3d1fbca0";
+
+ztfrLink.appendChild(ztfrLogo);
+
+
+
 // first modal
 function showFirstModal() {
 
@@ -306,9 +318,12 @@ const container = document.getElementById('largeVideoContainer');
 
 button.appendChild(btnImage);   //appended buttonImage in its parent container created above 
 
-document.body.appendChild(button);   //appended button in large video container 
+document.body.appendChild(button);   //appended button in body
 
-document.body.appendChild(zimoGroupLink);  //appended zimo group logo  in large video container 
+document.body.appendChild(zimoGroupLink);  //appended zimo group logo  in body
+
+document.body.appendChild(ztfrLink);  //appended ztfr logo  in body
+
 
 
 

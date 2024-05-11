@@ -1,13 +1,13 @@
 /* Modal styles */
 
 .watermark {
-    height: 80px !important;
     width: 72px !important;
+    height: 80px !important;
 }
 
 .zimoGroupLogo{
-    width: 106px;
-    height: 25px;
+    width: 104px;
+    height: 24px;
     margin: 0px;
     padding: 0px;
     cursor: pointer;
@@ -17,6 +17,18 @@
     bottom: 26px;
 }
 
+
+.ztfrLogo{
+    width: 71px;
+    height: 23px;
+    margin: 0px;
+    padding: 0px;
+    cursor: pointer;
+    z-index: 9999;
+    position: fixed;
+    left: 174px;
+    bottom: 28px;
+}
 
 #firstModalBtn{
     top : 135px;
@@ -791,8 +803,13 @@ p{
         height: 35px;
     }
     #firstModalBtn{
-        top : 135px;
+        top : 140px;
         left: 40px;
+    }
+    .ztfrLogo{
+        width: 103px;
+        height: 35px;
+        left: 235px;
     }
     /* .notesBtn {
         width: 42px;
