@@ -772,10 +772,10 @@ p{
         height: 45.5px;
     }
     .modal-overlay{
-        width: 981px;
-        height: 585px;
-        top: 165px;
-        left: 469px;
+        width: 977px;
+        height: 571px;
+        top: 167px;
+        left: 472px;
     }
     
     .modal-content{
@@ -905,11 +905,11 @@ p{
         width: 70%;
     }
     #edit-notes-container, #notesContainer{
-        width: 77%;
+        width: 70%;
     }
 
     #notes, #editNotes{
-        width: 91%;
+        width: 100%;
     }
 
     .notePoints, .editNotePoints {
