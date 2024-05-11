@@ -41,27 +41,28 @@
 }
 
 .modal-overlay{
-    width: 693px;
-    height: 415px;
+    width: 671px;
+    height: 377px;
     position: relative;
-    top: 101px;
+    top: 0px;
     background: #08080899;
-    left: 339px;
+    left: 0px;
     border-radius: 30px;
     border: none;
+    padding: 15px 2px 15px 15px;
 }
 
 .modal {
     display: none;
     position: fixed;
     z-index: 1;
-    left: 0;
-    top: 0px;
-    /* left: 337px;
-    top: 100px; */
-    width: 100%;
-    height: 100%;
-    /* background-color: #08080899;  */
+    /* left: 0; */
+    /* top: 0px; */
+    /* width: 100%; */
+    /* height: 100%; */
+    /* background-color: #08080899; */
+    left: 336px;
+    top: 106px;
 }
 
 @keyframes fadeIn {
