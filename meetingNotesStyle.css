@@ -1,5 +1,23 @@
 /* Modal styles */
 
+.watermark {
+    height: 80px !important;
+    width: 72px !important;
+}
+
+.zimoGroupLogo{
+    width: 106px;
+    height: 25px;
+    margin: 0px;
+    padding: 0px;
+    cursor: pointer;
+    z-index: 9999;
+    position: fixed;
+    left: 32px;
+    bottom: 26px;
+}
+
+
 #firstModalBtn{
     top : 135px;
     left: 45px;
@@ -758,19 +776,28 @@ p{
 
     /* #firstModalBtn{
         top : 135px;
-    }
+    }*/
     .notesBtn{
         width: 50px;
         height: 52.5px;
-    } */
+    } 
+
+    .watermark {
+        height: 100px !important;
+        width: 110px !important;
+    }
+    .zimoGroupLogo{
+        width: 147px;
+        height: 35px;
+    }
     #firstModalBtn{
         top : 135px;
         left: 40px;
     }
-    .notesBtn {
+    /* .notesBtn {
         width: 42px;
         height: 45.5px;
-    }
+    } */
     .modal-overlay{
         width: 977px;
         height: 571px;

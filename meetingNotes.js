@@ -13,8 +13,16 @@ btnImage.classList.add("notesBtn")
 btnImage.setAttribute("src", "https://firebasestorage.googleapis.com/v0/b/zimo-b9759.appspot.com/o/zimomeet_live%2Fmeeting_notes%2Flogos%2FZM%20Notes%20W.png?alt=media&token=8a571dcc-e3c1-4796-bd2f-f6593c991a84");
 
 
+const zimoGroupLink = document.createElement('a');
+zimoGroupLink.href = "https://zimo.team";
+zimoGroupLink.target = "_blank";
 
- 
+const zimoGroupLogo = document.createElement('img');
+zimoGroupLogo.className = "zimoGroupLogo";
+zimoGroupLogo.src= "https://firebasestorage.googleapis.com/v0/b/zimo-b9759.appspot.com/o/zimomeet_live%2Fmeeting_notes%2Flogos%2Fzg%2Bzig%20w.svg?alt=media&amp;token=d99fb544-a89b-412d-bf48-2136c4b10a8e";
+
+
+zimoGroupLink.appendChild(zimoGroupLogo);
  
 // first modal
 function showFirstModal() {
@@ -299,6 +307,8 @@ const container = document.getElementById('largeVideoContainer');
 button.appendChild(btnImage);   //appended buttonImage in its parent container created above 
 
 container.appendChild(button);   //appended button in large video container 
+
+container.appendChild(zimoGroupLink);  //appended zimo group logo  in large video container 
 
 
 
