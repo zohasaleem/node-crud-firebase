@@ -926,6 +926,7 @@ p{
     .detailsCamIcon {
         width: 44px;
         height: 20px;
+        margin-top: 0px;
     }
     .detailsModalMeetingLink {
         font-size: 12px;
@@ -945,11 +946,11 @@ p{
     }
     #detailsNotesContainer{
         height: 265px !important;
-        width: 932px;
+        width: 944px;
     }
     #downloadPdfBtn {
         width: 50px;
-        bottom: 47px;
+        bottom: 48px;
     }
     #details-custom-tooltip {
         left: 202px;
