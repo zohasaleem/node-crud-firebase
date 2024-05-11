@@ -816,11 +816,16 @@ p{
         width: 42px;
         height: 45.5px;
     } */
+
+    .modal{
+        left: 470px;
+        top: 306px;
+    }
     .modal-overlay{
-        width: 977px;
-        height: 571px;
-        top: 167px;
-        left: 472px;
+        width: 960px;
+        height: 540px;
+        top: -120px;
+        left: 0px;
     }
     
     .modal-content{
@@ -866,7 +871,7 @@ p{
         margin-top: 0px;
     }
     .meetingRoomText{
-        vertical-align: top;
+        vertical-align: super;
     }
     .editBtn{
         width: 10px;
@@ -970,7 +975,7 @@ p{
     }
 
     .createModalContainer, .editModalContainer{
-        max-height: 232px;
+        max-height: 218px;
     }
 
     .editDateContainer, .addDateContainer{
