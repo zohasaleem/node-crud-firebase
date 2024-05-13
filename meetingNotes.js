@@ -368,7 +368,7 @@ function showDetailsDataModal() {
 
             <div style="display: flex; flex-direction: column; margin-top: -35px">
                 <img src="https://firebasestorage.googleapis.com/v0/b/zimo-b9759.appspot.com/o/zimomeet_live%2Fmeeting_notes%2Flogos%2FNotes%20Text.svg?alt=media&amp;token=e35e9086-6a45-4cc0-aab9-9e7531549760" 
-                    class="notes-heading"
+                    class="notes-heading detailsNotesHeading"
                     style="padding-left: 10px;"
                 />                    
                 <h6 class="detailsCreator" id="detailsCreator"></h6>

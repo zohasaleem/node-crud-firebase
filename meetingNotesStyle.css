@@ -492,7 +492,7 @@ p{
     font-size: 10px;
     letter-spacing: 1.3px;
     margin: 2px 0px 0px 0px;
-    font-weight: 600;
+    font-weight: 500;
     padding: 0px 10px;
     font-family: "Lato";
     text-transform: uppercase;
@@ -749,7 +749,7 @@ p{
     
     .modal{
         left: 226px;
-        top: 168px;
+        top: 115px;
     }
 
     .modal-content{
@@ -782,7 +782,7 @@ p{
     .notesTableData {
         font-size: 7px;
         padding: 2px 4px 5px 0px;
-        letter-spacing: 0.8px;
+        letter-spacing: 1px;
     }
     .tableCamIcon {
         width: 26px;
@@ -809,9 +809,17 @@ p{
         padding-right: 12px;
     }
 
+    #table-loader{
+        left: 262px;
+    }
+
 
     /* details */
 
+    #details-custom-tooltip {
+        left: 121px;
+        top: 108px;
+    }
     .detailsZMLogo {
         width: 62px;
     }
@@ -820,7 +828,7 @@ p{
         margin-left: 18px;
     }
     .detailsHeading {
-        padding-top: 13px;
+        padding-top: 15px !important;
         font-size: 11px;
         padding-right: 55px;
     }
@@ -838,11 +846,11 @@ p{
         font-size: 8px;
         line-height: 3px;
     }
-    .notes-heading {
+    .detailsNotesHeading {
         margin-top: 17px;
         width: 41px;
         height: 8px;
-        padding-left: 7px;
+        padding-left: 7px !important;
     }
     .detailsCreator {
         line-height: 16px;
@@ -852,7 +860,7 @@ p{
     }
     .detailsCamIcon {
         width: 30px;
-        margin-top: -1px;
+        margin-top: 0px;
         height: 12px;
     }
     .detailsModalMeetingLink {
@@ -860,7 +868,7 @@ p{
         letter-spacing: 1px;
     }
     .detailsNotesContainer{
-        padding: 5px 0px 8px 7px;
+        padding: 5px 0px 8px 7px !important;
     }
     .detailsSubject {
         font-size: 9px;
@@ -872,14 +880,42 @@ p{
     }
     .detailsNotes {
         width: 88%;
-        font-size: 9px;
+        font-size: 8px;
         letter-spacing: 1px;
         line-height: 15px;
+        margin-left: -6px;
     }
     #downloadPdfBtn {
         width: 40px;
         bottom: 39px;
         right: 13px;
+    }
+
+    /* add & edit */
+    #custom-tooltip, #edit-custom-tooltip {
+        top: 37px;
+    }
+    #edit-loader{
+        left: 167px;
+        bottom: 104px;
+    }
+
+    .new-modal-content, .edit-modal-content {
+        padding: 15px 8px 9px 12px !important;
+        width: 369px;
+        height: 227px;
+        top: 50px;
+        left: 75px;
+    }
+    .createModalContainer, .editModalContainer {
+        max-height: 139px;
+    }
+    .newDataModalClose, .editClose {
+        width: 11px;
+    }
+
+    .modal-overlay{
+        border-radius: 25px;
     }
     /* .modal-content{
         width: 60%;
