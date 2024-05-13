@@ -856,8 +856,8 @@ $(document).on('click', '#newDataBtn', function(event){
     // fetch meeting link from browser
     const meetingLinkField = document.getElementById('meetingLink');
     meetingLinkField.textContent = "";
-    // meetingLinkField.textContent = window.location.href;                 
-    meetingLinkField.textContent = "https://zimomeet.live/dev-test";
+    meetingLinkField.textContent = window.location.href;                 
+    // meetingLinkField.textContent = "https://zimomeet.live/dev-test";
     newModal.style.display = 'block';
 });
 
