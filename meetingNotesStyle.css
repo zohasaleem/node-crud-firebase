@@ -709,19 +709,17 @@ p{
 
 #table-loader{
     display: none;
-    width: 60px;
+    width: 50px;
     aspect-ratio: 2;
     --_g: no-repeat radial-gradient(circle closest-side,#000 90%,#0000);
-    background: 
-      var(--_g) 0%   50%,
-      var(--_g) 50%  50%,
-      var(--_g) 100% 50%;
-    background-size: calc(100%/3) 50%;
+    background: var(--_g) 0% 50%, var(--_g) 50% 50%, var(--_g) 100% 50%;
+    background-size: calc(100% / 3) 50%;
     animation: l3 1s infinite linear;
     position: fixed;
-    left: 313px;
-    bottom: 145px;
+    left: 321px;
+    bottom: 168px;
   }
+
   @keyframes l3 {
       20%{background-position:0%   0%, 50%  50%,100%  50%}
       40%{background-position:0% 100%, 50%   0%,100%  50%}
@@ -814,19 +812,17 @@ p{
         left: 235px;
     }
     .modal{
-        top: 306px;
-        right: 72px;
+        top: 240px;
+        left: 400px;
     }
     .modal-content{
         width: 866px;
         height: 487px;
-        top: -120px;  /*change*/
     }
     .modal-overlay{
         width: 866px;
         height: 487px;
-        top: -120px;  /*change*/
-        left: 0px;  /*change*/
+        left: 0px; 
     }
     .ZMLogo{
         width: 94px;
@@ -858,8 +854,8 @@ p{
         line-height: 11px;
     }
     .tableCamIcon {
-        width: 28px;
-        height: 12px;
+        width: 30px;
+        height: 13px;
     }
     .table-container{
         max-height: 400px;
@@ -874,6 +870,18 @@ p{
     .delBtn{
         width: 10px;
     }
+
+
+    /* new and edit */
+
+    .new-modal-content, .edit-modal-content{
+        width: 555px;
+        height: 318px;
+        top: 70px;
+        left: 134px;
+    }
+
+    
 }
 
 
