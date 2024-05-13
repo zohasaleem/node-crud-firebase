@@ -374,7 +374,7 @@ function showDetailsDataModal() {
                 <h6 class="detailsCreator" id="detailsCreator"></h6>
             </div>
 
-            <div style="padding: 5px 0px 10px 10px;">
+            <div class="detailsNotesContainer" style="padding: 5px 0px 10px 10px;">
                 
                 <div id="copyDetailsMeetingLink" style="display: flex; align-items: center; margin: 15px 0px; cursor: pointer;">
                     <img src="https://firebasestorage.googleapis.com/v0/b/zimo-b9759.appspot.com/o/zimomeet_live%2Fmeeting_notes%2Flogos%2FZIMO%20MEET%20Cam%20Logo.svg?alt=media&token=bd0597e6-0336-43be-94c8-ef4c5e4a2c75" 
