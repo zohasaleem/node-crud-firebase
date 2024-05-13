@@ -729,7 +729,7 @@ p{
 
 
 @media only screen and (max-width: 1024px) {
-    .modal-content{
+    /* .modal-content{
         width: 60%;
         height: 55%;
         top: -50px;
@@ -776,8 +776,27 @@ p{
 
     .detailsNoteLogo{
         width: 40px; 
-    }
+    } */
 }
+
+
+@media screen and (min-width: 1280px) and (max-width: 1280px) and (min-height: 800px) and (max-height: 800px){
+    .modal{
+        top: 162px;
+        left: 299px;
+    }
+    .table-container {
+        max-height: 273px;
+    }
+    #downloadPdfBtn {
+        bottom: 40px;
+        right: 17px;
+    }
+    .createModalContainer, .editModalContainer {
+        max-height: 153px;
+    }
+  }
+  
 
 @media only screen  and (min-width: 1440px){
     .modal{
@@ -785,7 +804,6 @@ p{
         top: 170px;
     }
 }
-
 
 
 @media only screen and (min-width: 1680px){
