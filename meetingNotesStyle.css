@@ -814,8 +814,8 @@ p{
         left: 235px;
     }
     .modal{
-        left: 470px; /*change*/
         top: 306px;
+        right: 72px;
     }
     .modal-content{
         width: 866px;
