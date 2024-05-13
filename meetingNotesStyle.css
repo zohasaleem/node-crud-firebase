@@ -687,18 +687,15 @@ p{
 }
 #edit-loader{
     display: none;
-    width: 60px;
+    width: 50px;
     aspect-ratio: 2;
     --_g: no-repeat radial-gradient(circle closest-side,#000 90%,#0000);
-    background: 
-      var(--_g) 0%   50%,
-      var(--_g) 50%  50%,
-      var(--_g) 100% 50%;
-    background-size: calc(100%/3) 50%;
+    background: var(--_g) 0% 50%, var(--_g) 50% 50%, var(--_g) 100% 50%;
+    background-size: calc(100% / 3) 50%;
     animation: l3 1s infinite linear;
     position: fixed;
-    left: 240px;
-    bottom: 145px;
+    left: 208px;
+    bottom: 118px;
 }
 
 .ZMLogo{
@@ -991,7 +988,8 @@ p{
     }
     #edit-loader{
         width: 75px;
-        left: 322px;
+        left: 290px;
+        bottom: 170px;
     }
     .new-modal-content, .edit-modal-content{
         width: 622px;
@@ -1086,9 +1084,9 @@ p{
         width: 47px;
     }
     .detailsHeading{
-        font-size: 14px;
+        font-size: 15px;
         letter-spacing: 2px;
-        padding-right: 53px;
+        padding-right: 81px;
     }
     .detailsDataModalClose{
         width: 20px;

@@ -1148,7 +1148,7 @@ function showEditModal() {
         editNotesContainer.innerHTML = '<input type="text" id="editNotes" class="inputField" name="editNotes" placeholder="NOTES..." style="border:none;">';
 
 
-        // document.getElementById('editModalContent').style.display = "none";
+        document.getElementById('editModalContent').style.display = "none";
 
 
         modal.style.display = 'none';
