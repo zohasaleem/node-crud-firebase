@@ -858,17 +858,17 @@ p{
         height: 13px;
     }
     .table-container{
-        max-height: 400px;
+        max-height: 368px;
         margin-top: 0px;
     }
     .meetingRoomText{
         vertical-align: super;
     }
     .editBtn{
-        width: 9px;
+        width: 8px;
     }
     .delBtn{
-        width: 10px;
+        width: 9px;
     }
 
 
@@ -881,6 +881,112 @@ p{
         left: 134px;
     }
 
+    .createZMLogo{
+        width: 56px;
+        height: 27px;
+    }
+    .createNotePadLogo{
+        width: 26px;
+        height: 29px;
+    }
+    .topSaveBtn{
+        width: 32px;
+        height: 16px;
+        padding-right: 30px;
+    }
+    .updateBtn {
+        letter-spacing: 1px;
+        padding-right: 30px;
+    }
+    .newDataModalClose, .editClose {
+        width: 13px;
+        height: 13px;
+    }
+    .camIcon{
+        width: 28px;
+        height: 12px;
+        margin-right: 7px;
+    }
+    /* #custom-tooltip, #edit-custom-tooltip {
+        top: 48px;
+        right: 18px;
+    } */
+    .createModalLink{
+        font-size: 8.5px;
+        letter-spacing: 1px;    
+    }
+
+    .addModalDate {
+        font-size: 9px;
+        letter-spacing: 1.2px;
+        line-height: 5px;
+    }
+    .createModalContainer, .editModalContainer{
+        max-height: 195px;
+    }
+
+    .editDateContainer, .addDateContainer{
+        margin-top: 25px;
+    }
+    .notesLabel{
+        font-size: 8px;
+        letter-spacing: 1px;
+    }
+    .inputField{
+        font-size: 8px;
+        letter-spacing: 1px;
+    }
+    .inputField, #edit-notes-container{
+        width: 73%;
+    }
+    #edit-notes-container, #notesContainer{
+        width: 73%;
+    }
+
+    #notes, #editNotes{
+        width: 100%;
+    }
+
+    .notePoints, .editNotePoints {
+        font-size: 8px;
+        letter-spacing: 1px;
+        line-height: 12px;
+    }
+
+    .mt{
+        margin-top: 11px;
+    }
+
+    .addDateContainer, .editDateContainer{
+        margin-top: 20px;
+    }
+
+    /* details */
+
+
+    .detailsZMLogo {
+        width: 92px;
+        height: 45px;
+    }
+    .detailsNoteLogo {
+        width: 43px;
+        margin-left: 30px;
+        height: 45px;
+    }
+    .detailsHeading {
+        padding-right: 117px;
+        font-size: 15px;
+        letter-spacing: 1.5px;
+    }
+    .detailsDataModalClose{
+        width: 18px;
+        height: 18px;
+    }
+    .detailsModalDate {
+        font-size: 10px;
+        letter-spacing: 2px;
+        line-height: 6px;
+    }
     
 }
 
