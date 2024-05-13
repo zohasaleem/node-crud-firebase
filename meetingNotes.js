@@ -596,7 +596,7 @@ function showSaveDataModal() {
                     <p class="addModalDate"  id="time"></p>
                 </div>
 
-                <div id="copyMeetingLink" style="display: flex; align-items: center; cursor:pointer; padding-right: 26px;">
+                <div id="copyMeetingLink" style="display: flex; align-items: center; cursor:pointer; padding-right: 8px;">
                     <img src="https://firebasestorage.googleapis.com/v0/b/zimo-b9759.appspot.com/o/zimomeet_live%2Fmeeting_notes%2Flogos%2FZIMO%20MEET%20Cam%20Logo.svg?alt=media&token=bd0597e6-0336-43be-94c8-ef4c5e4a2c75" 
                         alt="CAM_ICON" 
                         class="camIcon"/>
