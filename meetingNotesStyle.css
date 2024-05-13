@@ -730,6 +730,7 @@ p{
 
 @media only screen and (max-width: 1024px) {
 
+    
     .watermark {
         width: 67px !important;
         height: 67px !important;
@@ -739,7 +740,13 @@ p{
         height: 22px;
         bottom: 18px;
     }
-
+    .ztfrLogo {
+        width: 59px;
+        height: 24px;
+        left: 159px;
+        bottom: 18px;
+    }
+    
     .modal{
         left: 226px;
         top: 168px;
@@ -800,6 +807,79 @@ p{
     .table-container {
         max-height: 261px;
         padding-right: 12px;
+    }
+
+
+    /* details */
+
+    .detailsZMLogo {
+        width: 62px;
+    }
+    .detailsNoteLogo {
+        width: 28px;
+        margin-left: 18px;
+    }
+    .detailsHeading {
+        padding-top: 13px;
+        font-size: 11px;
+        padding-right: 55px;
+    }
+
+    .detailsDataModalClose {
+        width: 12px;
+        margin: 7px 0px 0px 30px;
+    }
+    .detailsModalDateContainer {
+        margin-top: 22px;
+        margin-right: 10px;
+    }
+    .detailsModalDate {
+        letter-spacing: 1px;
+        font-size: 8px;
+        line-height: 3px;
+    }
+    .notes-heading {
+        margin-top: 17px;
+        width: 41px;
+        height: 8px;
+        padding-left: 7px;
+    }
+    .detailsCreator {
+        line-height: 16px;
+        font-size: 9px;
+        letter-spacing: 1px;
+        padding: 0px 7px;
+    }
+    .detailsCamIcon {
+        width: 30px;
+        margin-top: -1px;
+        height: 12px;
+    }
+    .detailsModalMeetingLink {
+        font-size: 8px;
+        letter-spacing: 1px;
+    }
+    .detailsNotesContainer{
+        padding: 5px 0px 8px 7px;
+    }
+    .detailsSubject {
+        font-size: 9px;
+        margin: 20px 0px 39px 0px;
+    }
+    #detailsNotesContainer {
+        width: 545px;
+        height: 160px;
+    }
+    .detailsNotes {
+        width: 88%;
+        font-size: 9px;
+        letter-spacing: 1px;
+        line-height: 15px;
+    }
+    #downloadPdfBtn {
+        width: 40px;
+        bottom: 39px;
+        right: 13px;
     }
     /* .modal-content{
         width: 60%;
