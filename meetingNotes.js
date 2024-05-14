@@ -715,25 +715,6 @@ function registerNoteListener() {
     const notesContainer = document.getElementById('notesContainer');
 
     // Function to remove empty input fields
-    // function removeEmptyInputs() {
-    //     let index = 1;
-    //     document.querySelectorAll('.notePoints').forEach(function(input) {
-    //         if (input.value.trim() === `${index}.`) {
-    //             input.remove();
-    //         } 
-    //         else if (input.value.trim() === '') {
-    //             input.remove();
-    //         } 
-    //         else {
-    //             input.value = `${index}. ${input.value.trim().substring(input.value.indexOf('.') + 2)}`;
-    //             index++;
-    //         }
-    //     });
-    //     noteBullets = index;    
-    // }
-    
-
-    // Function to remove empty input fields
     function removeEmptyInputs() {
         let index = 1;
         let prevInput = null;
@@ -820,7 +801,7 @@ $(document).on('click', '#newDataBtn', function(event){
 
     noteBullets = 1;
     
-    $('#topSaveBtn').prop('disabled', false);
+    document.getElementById('topSaveBtn').disabled = false;
 
 
     const newModal = document.getElementById('newDataModal');
@@ -856,8 +837,8 @@ $(document).on('click', '#newDataBtn', function(event){
     // fetch meeting link from browser
     const meetingLinkField = document.getElementById('meetingLink');
     meetingLinkField.textContent = "";
-    meetingLinkField.textContent = window.location.href;                 
-    // meetingLinkField.textContent = "https://zimomeet.live/dev-test";
+    // meetingLinkField.textContent = window.location.href;                 
+    meetingLinkField.textContent = "https://zimomeet.live/dev-test";
     newModal.style.display = 'block';
 });
 
@@ -968,7 +949,7 @@ $(document).on('click', '#topSaveBtn', function(event){
     } 
 
     if(isValid){
-        $('#topSaveBtn').prop('disabled', true);
+        document.getElementById('topSaveBtn').disabled = true;
 
         console.log(isValid)
 
@@ -1497,27 +1478,6 @@ $(document).on('click', '.delBtn', function(event){
 
 });
 
-// document.addEventListener('click', function(event) {
-//     var row = document.querySelector('tr[data-greyed-out="true"]');
-
-//     if (row && !event.target.closest('tr[data-greyed-out="true"]') ){
-
-//         const id = row.getAttribute('data-id');
-//         console.log('Data ID:', id);
-//         Array.from(row.querySelectorAll('.date, .greyText, div')).forEach(function(element) {
-//             element.style.color = ''; 
-//         });
-
-//         row.querySelector('#deleteIcon').style.fill = '';
-//         row.querySelector('#editIcon').style.fill = '';
-//         row.querySelector('#meetingCamIcon').style.fill = '';
-//         row.querySelector(`#permanentDelBtn-${id}`).style.display = 'none'; 
-//         row.removeAttribute('data-greyed-out');
-//     }
-// });
-
-
-
 document.addEventListener('click', function(event) {
     var clickedRow = event.target.closest('tr[data-greyed-out="true"]');
     var rows = document.querySelectorAll('tr[data-greyed-out="true"]');
@@ -1591,3 +1551,26 @@ function deleteRow(pointId){
 
     });
 }
+
+
+const toolbarButtons = document.querySelectorAll('.toolbar-button-with-badge');
+const lastToolbarButton = toolbarButtons[toolbarButtons.length - 1];
+const childButton = lastToolbarButton.querySelector('.toolbox-button');
+
+lastToolbarButton.addEventListener('click', function() {
+    var isOpen = childButton.getAttribute('aria-pressed');
+    console.log("aria-pressed: " + isOpen);
+    if(isOpen == 'false'){
+        if(window.innerWidth == 1024){
+            document.querySelector('.zimoGroupLogo').style.display = "none";
+            document.querySelector('.ztfrLogo').style.display = "none";
+        }
+    }
+    if(isOpen == 'true'){
+        if(window.innerWidth == 1024){
+            document.querySelector('.zimoGroupLogo').style.display = "block";
+            document.querySelector('.ztfrLogo').style.display = "block";                
+        }
+
+    }
+});
