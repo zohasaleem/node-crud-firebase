@@ -1248,11 +1248,11 @@ p{
     }
     #detailsNotesContainer{
         width: 852px;
-        height: 227px;
+        height: 175px;
     }
     #downloadPdfBtn {
         width: 50px;
-        bottom: 49px;
+        bottom: px;
     }
     #details-custom-tooltip {
         left: 189px;
@@ -1511,12 +1511,12 @@ p{
         line-height: 18px;
     }
     #detailsNotesContainer{
-        height: 265px !important;
+        height: 222px !important;
         width: 944px;
     }
     #downloadPdfBtn {
         width: 50px;
-        bottom: 48px;
+        bottom: 5px;
     }
     #details-custom-tooltip {
         left: 202px;
