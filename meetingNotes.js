@@ -392,12 +392,13 @@ function showDetailsDataModal() {
                     <div style="flex: 1; overflow-y: auto;" class="detailsNotesContainer" id="details-notes-container">
                     </div> 
                 </div>
-                <img src="https://firebasestorage.googleapis.com/v0/b/zimo-b9759.appspot.com/o/zimomeet_live%2Fmeeting_notes%2Flogos%2FZM%20Notes%20ZiDoc%20Download%20PDF.svg?alt=media&token=80df85bd-01b4-46a6-a0e6-16c6b7209ac4" 
-                    alt="zimoDoc-icon"
-                    id="downloadPdfBtn"
-                />
+               
             
             </div>
+            <img src="https://firebasestorage.googleapis.com/v0/b/zimo-b9759.appspot.com/o/zimomeet_live%2Fmeeting_notes%2Flogos%2FZM%20Notes%20ZiDoc%20Download%20PDF.svg?alt=media&token=80df85bd-01b4-46a6-a0e6-16c6b7209ac4" 
+                alt="zimoDoc-icon"
+                id="downloadPdfBtn"
+            />
         </div>
     `;
 
@@ -467,6 +468,9 @@ $(document).on('click', '#detailsModalBtn', function(event){
             // download pdf 
             document.getElementById("downloadPdfBtn").setAttribute('data-note-id', response.meeting_note.id);
             document.getElementById("downloadPdfBtn").setAttribute('data-meeting-title', response.meeting_note.title);
+            document.getElementById("downloadPdfBtn").setAttribute('data-meeting-date', response.meeting_note.date);
+            document.getElementById("downloadPdfBtn").setAttribute('data-meeting-time', response.meeting_note.time);
+
 
             
             var deatilsNotesContainer = document.getElementById("details-notes-container");
@@ -511,6 +515,16 @@ $(document).on('click', '#downloadPdfBtn', function(event){
 
     note_id = $(this).attr('data-note-id');
     meeting_title = $(this).attr('data-meeting-title');
+    meeting_date = $(this).attr('data-meeting-date');
+    meeting_time = $(this).attr('data-meeting-time');
+
+    var parts = meeting_date.split('/');
+    // Rearrange the parts and join them using '.' as separator
+    var formattedDate = parts[0] + '.' + parts[1] + '.' + parts[2];
+
+    console.log(formattedDate);
+
+
 
     console.log(creator_name + " "+ note_id)
     $.ajax({
@@ -524,13 +538,15 @@ $(document).on('click', '#downloadPdfBtn', function(event){
         },
         success: function(response){
             console.log(response);
+            console.log(meeting_date);
+            console.log(meeting_time);
    
            var blob = new Blob([response], { type: 'application/pdf' });
             var url = URL.createObjectURL(blob);
 
             var a = document.createElement('a');
             a.href = url;
-            a.download =  meeting_title + " Notes.pdf"; 
+            a.download =  "ZM Notes "+ formattedDate + " | "+ meeting_time + " - "+meeting_title + ".pdf"; 
             document.body.appendChild(a);
 
             a.click();
@@ -738,6 +754,13 @@ function registerNoteListener() {
             prevInput = input; // Save the current input for the next iteration
         });
         noteBullets = index;    
+
+
+        if (noteBullets > 50) {
+            notesInputField.style.display = 'none';
+        } else {
+            notesInputField.style.display = 'block';
+        }
     }
 
 
@@ -750,34 +773,54 @@ function registerNoteListener() {
         }
     });
 
+
+    // Listener for adding points
+    notesInputField.addEventListener('input', function(event){
+        const text = notesInputField.value.trim();
+        if (text.length > 130) { // Check if trimmed text length exceeds 130 characters
+            notesInputField.value = text.substring(0, 130); // Trim the input to 130 characters
+            event.preventDefault(); // Prevent further input
+        }
+    });
+
     //  listener for adding points
     notesInputField.addEventListener('keydown', function(event){
         if(event.key === 'Enter'){
             event.preventDefault();
-            const text = notesInputField.value.trim();
-            if(text){
-                const note = document.createElement('input');
-                note.type = "text";
-                note.classList.add('notePoints');
-                note.value = `${noteBullets}. ${text}`;
-                notesContainer.insertBefore(note, notesInputField)
-                // note.focus();
-                // notesContainer.appendChild(note);
+            if (noteBullets <= 50){   //check for only 50 points
+                const text = notesInputField.value.trim();
+                if(text){
+                    const note = document.createElement('input');
+                    note.type = "text";
+                    note.classList.add('notePoints');
+                    note.value = `${noteBullets}. ${text}`;
+                    notesContainer.insertBefore(note, notesInputField)
+                    // note.focus();
+                    // notesContainer.appendChild(note);
 
-                note.addEventListener('keydown', function(event){
-                    if(event.key == 'Enter'){
-                        event.preventDefault();
-                        const currentIndex = Array.from(notesContainer.children).indexOf(note);
-                        const nextNote = notesContainer.children[currentIndex + 1];
-                        if (nextNote) {
-                            nextNote.focus();
+                    note.addEventListener('keydown', function(event){
+                        if(event.key == 'Enter'){
+                            event.preventDefault();
+
+
+                            const currentIndex = Array.from(notesContainer.children).indexOf(note);
+                            const nextNote = notesContainer.children[currentIndex + 1];
+                            if (nextNote) {
+                                nextNote.focus();
+                            }
+                            
                         }
-                        
+                    });
+                    notesInputField.value = '';
+                    noteBullets++;      
+                    
+                    if (noteBullets > 50) {
+                        notesInputField.style.display = 'none';
                     }
-                });
-                notesInputField.value = '';
-                noteBullets++;          
+                }
             }
+            
+           
         }
         else if(event.key === 'Backspace' && notesInputField.value === '') {
             const currentIndex = Array.from(notesContainer.children).indexOf(notesInputField);
@@ -1190,7 +1233,13 @@ function registerEditNoteListener(noteBullets) {
 
             prevInput = input;
         });
-        noteBullets = index;    
+        noteBullets = index;  
+        
+        if (noteBullets > 50) {
+            editNotesInputField.style.display = 'none';
+        } else {
+            editNotesInputField.style.display = 'block';
+        }
     }
 
     // Listen for keyup event to remove empty inputs
@@ -1200,35 +1249,53 @@ function registerEditNoteListener(noteBullets) {
         }
     });
 
+
+    // Listener for editing points
+    editNotesInputField.addEventListener('input', function(event){
+        const text = editNotesInputField.value.trim();
+        if (text.length > 130) { // Check if trimmed text length exceeds 130 characters
+            editNotesInputField.value = text.substring(0, 130); // Trim the input to 130 characters
+            event.preventDefault(); // Prevent further input
+        }
+    });
+
+
     if(editNotesInputField){
         //  listener for adding points
         editNotesInputField.addEventListener('keydown', function(event){
             if(event.key == 'Enter'){
                 event.preventDefault();
-                const editText = editNotesInputField.value.trim();
-                if(editText){
-                    const editNote = document.createElement('input');
-                    editNote.type = "text";
-                    editNote.classList.add('editNotePoints');
-                    editNote.value = `${noteBullets}. ${editText}`;
-                    // editNotesContainer.appendChild(note);
-                    editNotesContainer.insertBefore(editNote, editNotesInputField);
+                if (noteBullets <= 50){   //check for only 50 points
 
-                    editNote.addEventListener('keydown', function(event){
-                        if(event.key == 'Enter'){
-                            event.preventDefault();
-                            const currentIndex = Array.from(editNotesContainer.children).indexOf(editNote);
-                            const nextNote = editNotesContainer.children[currentIndex + 1];
-                            if (nextNote) {
-                                nextNote.focus();
+                    const editText = editNotesInputField.value.trim();
+                    if(editText){
+                        const editNote = document.createElement('input');
+                        editNote.type = "text";
+                        editNote.classList.add('editNotePoints');
+                        editNote.value = `${noteBullets}. ${editText}`;
+                        // editNotesContainer.appendChild(note);
+                        editNotesContainer.insertBefore(editNote, editNotesInputField);
+
+                        editNote.addEventListener('keydown', function(event){
+                            if(event.key == 'Enter'){
+                                event.preventDefault();
+                                const currentIndex = Array.from(editNotesContainer.children).indexOf(editNote);
+                                const nextNote = editNotesContainer.children[currentIndex + 1];
+                                if (nextNote) {
+                                    nextNote.focus();
+                                }
+                                
                             }
-                            
-                        }
-                    });
-                    editNotesInputField.value = '';
+                        });
+                        editNotesInputField.value = '';
 
-                    noteBullets++;
-    
+                        noteBullets++;
+
+                        if (noteBullets > 50) {
+                            editNotesInputField.style.display = 'none';
+                        }
+        
+                    }
                 }
             }
             else if(event.key === 'Backspace' && editNotesInputField.value === '') {

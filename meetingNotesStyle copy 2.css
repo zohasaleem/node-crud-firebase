@@ -163,10 +163,8 @@
     width: 655px;
     display: flex;
     flex-direction: column;
-    /* height: 151px; */
-    height: 111px;
+    height: 151px;
     overflow-y: auto;
-    white-space: nowrap !important;
 }
 
 .detailsNotesContainer,
@@ -182,8 +180,6 @@
 .detailsNotesContainer::-webkit-scrollbar,
 .editModalContainer::-webkit-scrollbar{
     width: 2px !important;
-    height: 2px !important;
-
 }
 
 .table-container::-webkit-scrollbar-track,
@@ -647,18 +643,12 @@ p{
 }
 
 #downloadPdfBtn{
-    /* width: 41px; 
+    width: 41px; 
     float: right; 
     cursor:pointer;
     position: relative;
     bottom: 43px;
-    right: 16px; */
-    width: 41px;
-    float: right;
-    cursor: pointer;
-    position: relative;
-    bottom: 7px;
-    right: 11px;
+    right: 16px;
 }
 
 #permanentDelBtn{
