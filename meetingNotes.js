@@ -1678,39 +1678,43 @@ lastToolbarButton.addEventListener('click', function() {
     }
 });
 
-
-const toolbarButtonChat = document.querySelector('.toolbar-button-with-badge');
-const toolbarButtonChatLabel  = toolbarButtonChat .querySelector('.toolbox-button');
-toolbarButtonChat.addEventListener('click', function() {
-    var isOpen = toolbarButtonChatLabel.getAttribute('aria-pressed');
-    const chatCloseBtn = document.querySelector('.chat-header');
-    console.log(chatCloseBtn);
+document.addEventListener('DOMContentLoaded', function() {
 
 
-    console.log("aria-pressed: " + isOpen);
-    if(isOpen == 'false'){
-        console.log("okay");
-        document.getElementById("firstModalBtn").style.display = "none";
-        document.querySelector(".zimoGroupLogo").style.display = "none";
-        document.querySelector(".ztfrLogo").style.display = "none";
+    const toolbarButtonChat = document.querySelector('.toolbar-button-with-badge');
+    const toolbarButtonChatLabel  = toolbarButtonChat .querySelector('.toolbox-button');
+    toolbarButtonChat.addEventListener('click', function() {
+        var isOpen = toolbarButtonChatLabel.getAttribute('aria-pressed');
+        const chatCloseBtn = document.querySelector('.chat-header');
+        console.log(chatCloseBtn);
 
 
-        if(chatCloseBtn){
-            console.log(chatCloseLabel);
-            chatCloseBtn.addEventListener('click', function() {
-                document.getElementById("firstModalBtn").style.display = "block";
-                document.querySelector(".zimoGroupLogo").style.display = "block";
-                document.querySelector(".ztfrLogo").style.display = "block";
-            });
+        console.log("aria-pressed: " + isOpen);
+        if(isOpen == 'false'){
+            console.log("okay");
+            document.getElementById("firstModalBtn").style.display = "none";
+            document.querySelector(".zimoGroupLogo").style.display = "none";
+            document.querySelector(".ztfrLogo").style.display = "none";
+
+
+            if(chatCloseBtn){
+                console.log(chatCloseLabel);
+                chatCloseBtn.addEventListener('click', function() {
+                    document.getElementById("firstModalBtn").style.display = "block";
+                    document.querySelector(".zimoGroupLogo").style.display = "block";
+                    document.querySelector(".ztfrLogo").style.display = "block";
+                });
+            }
+
+
         }
+        else if(isOpen == "true"){
+            document.getElementById("firstModalBtn").style.display = "block";
+            document.querySelector(".zimoGroupLogo").style.display = "block";
+            document.querySelector(".ztfrLogo").style.display = "block";
+        }
+    });
 
-
-    }
-    else if(isOpen == "true"){
-        document.getElementById("firstModalBtn").style.display = "block";
-        document.querySelector(".zimoGroupLogo").style.display = "block";
-        document.querySelector(".ztfrLogo").style.display = "block";
-    }
 });
 
 
