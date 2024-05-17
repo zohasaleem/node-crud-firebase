@@ -365,6 +365,7 @@ function showDetailsDataModal() {
                         <p class="detailsModalDate" id="detailsDate"></p>
                         <p class="detailsModalDate" id="detailsTime"></p>
                     </div>
+                    
                 </div>
             </div>
 
@@ -394,13 +395,13 @@ function showDetailsDataModal() {
                     <div style="flex: 1; overflow-y: auto;" class="detailsNotesContainer" id="details-notes-container">
                     </div> 
                 </div>
-               
-            
+             
+                <img src="https://firebasestorage.googleapis.com/v0/b/zimo-b9759.appspot.com/o/zimomeet_live%2Fmeeting_notes%2Flogos%2FZM%20Notes%20ZiDoc%20Download%20PDF.svg?alt=media&token=80df85bd-01b4-46a6-a0e6-16c6b7209ac4" 
+                    alt="zimoDoc-icon"
+                    id="downloadPdfBtn"
+                />
             </div>
-            <img src="https://firebasestorage.googleapis.com/v0/b/zimo-b9759.appspot.com/o/zimomeet_live%2Fmeeting_notes%2Flogos%2FZM%20Notes%20ZiDoc%20Download%20PDF.svg?alt=media&token=80df85bd-01b4-46a6-a0e6-16c6b7209ac4" 
-                alt="zimoDoc-icon"
-                id="downloadPdfBtn"
-            />
+           
         </div>
     `;
 
@@ -986,8 +987,11 @@ $(document).on('click', '#topSaveBtn', function(event){
         note.type = "text";
         note.classList.add('notePoints');
         note.value = `${noteBullets}. ${text}`;
-        document.getElementById('notesContainer').appendChild(note);
-        notes.push(notesInput.value.trim());
+
+        // document.getElementById('notesContainer').appendChildi(note);
+        document.getElementById('notesContainer').insertBefore(note, notesInput);
+
+        notes.push(note.value.trim());
         notesInput.value = '';
         noteBullets++;
     }
@@ -1475,6 +1479,44 @@ $(document).on('click', '#topUpdateBtn', function(event){
     });
 
 
+
+    const appendPointWithoutEnter = document.getElementById("editNotes");
+    if(appendPointWithoutEnter.value != ""){
+        const editNotePoints = document.querySelectorAll('#edit-notes-container .editNotePoints');
+        const lastEditNotePoint = editNotePoints[editNotePoints.length - 1];
+        const lastEditNotePointValue = lastEditNotePoint.value;
+
+        console.log(lastEditNotePointValue+ " lastEditNotePointValue");
+        const parts = lastEditNotePointValue.split('.');
+        const bulletNumberEdit = parseInt(parts[0].trim()) + 1;
+
+        console.log(bulletNumberEdit+ " bulletNumberEdit");
+
+        const editText = appendPointWithoutEnter.value.trim();
+        if(editText){
+            const note = document.createElement('input');
+            note.type = "text";
+            note.classList.add('editNotePoints');
+            note.value = `${bulletNumberEdit}. ${editText}`;
+
+            console.log(bulletNumberEdit+ " bulletNumberEdit");
+
+            document.getElementById('edit-notes-container').insertBefore(note, appendPointWithoutEnter);
+
+            // document.getElementById('edit-notes-container').appendChild(note);
+            editNotes.push(note.value.trim());
+            appendPointWithoutEnter.value = '';
+        }
+
+
+        console.log("bulletNumberEdit "+ bulletNumberEdit);
+        // noteBullets = bulletNumberEdit;
+        console.log("notes bullet: "+ noteBullets);
+        noteBullets = 1;
+      
+    }
+
+
     document.getElementById('topUpdateBtn').style.display = "none";
     document.querySelector('.editClose').style.display = "none";
     document.getElementById('editTopLoader').style.display = "block";
@@ -1715,14 +1757,3 @@ lastToolbarButton.addEventListener('click', function() {
         }
     });
 
-
-
-// const chatCloseBtn = document.querySelector('.chat-header');
-// if(chatCloseBtn){
-//     console.log(chatCloseLabel);
-//     chatCloseBtn.addEventListener('click', function() {
-//         document.getElementById("firstModalBtn").style.display = "block";
-//         document.querySelector(".zimoGroupLogo").style.display = "block";
-//         document.querySelector(".ztfrLogo").style.display = "block";
-//     });
-// }
