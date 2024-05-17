@@ -1683,6 +1683,10 @@ const toolbarButtonChat = document.querySelector('.toolbar-button-with-badge');
 const toolbarButtonChatLabel  = toolbarButtonChat .querySelector('.toolbox-button');
 toolbarButtonChat.addEventListener('click', function() {
     var isOpen = toolbarButtonChatLabel.getAttribute('aria-pressed');
+    const chatCloseBtn = document.querySelector('.chat-header');
+    console.log(chatCloseBtn);
+
+
     console.log("aria-pressed: " + isOpen);
     if(isOpen == 'false'){
         console.log("okay");
@@ -1690,8 +1694,6 @@ toolbarButtonChat.addEventListener('click', function() {
         document.querySelector(".zimoGroupLogo").style.display = "none";
         document.querySelector(".ztfrLogo").style.display = "none";
 
-        const chatCloseBtn = document.querySelector('.chat-header');
-        console.log(chatCloseBtn);
 
         if(chatCloseBtn){
             console.log(chatCloseLabel);
