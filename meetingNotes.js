@@ -1411,7 +1411,6 @@ $(document).on('click', '.editBtn', function(event){
                 // console.log(input.value);
                 input.classList.add('editNotePoints');
 
-                console.log(noteNumber);
                 if(noteNumber == 50){
                     inputFieldEdit.style.display = "none";
                 }
@@ -1681,8 +1680,6 @@ lastToolbarButton.addEventListener('click', function() {
     }
 });
 
-document.addEventListener('DOMContentLoaded', function() {
-
 
     const toolbarButtonChat = document.querySelector('.toolbar-button-with-badge');
     const toolbarButtonChatLabel  = toolbarButtonChat .querySelector('.toolbox-button');
@@ -1718,7 +1715,6 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
-});
 
 
 // const chatCloseBtn = document.querySelector('.chat-header');
