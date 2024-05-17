@@ -1689,16 +1689,15 @@ document.addEventListener('DOMContentLoaded', function() {
     toolbarButtonChat.addEventListener('click', function() {
         var isOpen = toolbarButtonChatLabel.getAttribute('aria-pressed');
 
-        // console.log("aria-pressed: " + isOpen);
-        // if(isOpen == 'false'){
+        console.log("aria-pressed: " + isOpen);
+        if(isOpen == 'false'){
             console.log("okay");
             document.getElementById("firstModalBtn").style.display = "none";
             document.querySelector(".zimoGroupLogo").style.display = "none";
             document.querySelector(".ztfrLogo").style.display = "none";
 
-        // }
-        // else if(isOpen == "true"){
-        if(isOpen == "true"){
+        }
+        else if(isOpen == "true"){
             document.getElementById("firstModalBtn").style.display = "block";
             document.querySelector(".zimoGroupLogo").style.display = "block";
             document.querySelector(".ztfrLogo").style.display = "block";
