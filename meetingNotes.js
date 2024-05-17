@@ -172,11 +172,11 @@ function loadTable(){
             // var tbody = $('#meetingData');
             tbody.empty();
             
-            if(response.error == true){
-                addCreateButton(tbody);
-            }
-            else if(response.error == false){
-
+            // if(response.error == true){
+            //     addCreateButton(tbody);
+            // }
+            // else if(response.error == false){
+            if(response.error == false){
 
                 response.meeting_notes.forEach(function(meeting_note){
                     
@@ -276,14 +276,16 @@ function loadTable(){
                     // if(tbody.children().length == 0){
                     //     addCreateButton(tbody);
                     // }
-                    if (response.meeting_notes.length == 1) {
-                        addCreateButton(tbody);
-                    }
+                    // if (response.meeting_notes.length == 1) {
+                    //     addCreateButton(tbody);
+                    // }
                 });
 
+                addCreateButton(tbody);
             }
+            // }
             else{
-                document.getElementById('table-loader').style.display = "block";
+                addCreateButton(tbody);
             }
 
         },
@@ -518,11 +520,19 @@ $(document).on('click', '#downloadPdfBtn', function(event){
     meeting_date = $(this).attr('data-meeting-date');
     meeting_time = $(this).attr('data-meeting-time');
 
+    meeting_time = meeting_time.replace(':', '.');
+
+    meeting_title = meeting_title.toLowerCase().replace(/\b\w/g, function(char) {
+        return char.toUpperCase();
+    });
+    console.log(meeting_title);
+    console.log(meeting_time);
+    console.log(meeting_title);
+
     var parts = meeting_date.split('/');
     // Rearrange the parts and join them using '.' as separator
     var formattedDate = parts[0] + '.' + parts[1] + '.' + parts[2];
 
-    console.log(formattedDate);
 
 
 
@@ -538,15 +548,13 @@ $(document).on('click', '#downloadPdfBtn', function(event){
         },
         success: function(response){
             console.log(response);
-            console.log(meeting_date);
-            console.log(meeting_time);
-   
+
            var blob = new Blob([response], { type: 'application/pdf' });
             var url = URL.createObjectURL(blob);
 
             var a = document.createElement('a');
             a.href = url;
-            a.download =  "ZM Notes "+ formattedDate + " | "+ meeting_time + " - "+meeting_title + ".pdf"; 
+            a.download =  "ZM Notes "+ formattedDate + " "+ meeting_time + " - "+meeting_title + ".pdf"; 
             document.body.appendChild(a);
 
             a.click();
@@ -777,8 +785,8 @@ function registerNoteListener() {
     // Listener for adding points
     notesInputField.addEventListener('input', function(event){
         const text = notesInputField.value.trim();
-        if (text.length > 130) { // Check if trimmed text length exceeds 130 characters
-            notesInputField.value = text.substring(0, 130); // Trim the input to 130 characters
+        if (text.length > 119) { // Check if trimmed text length exceeds 119 characters
+            notesInputField.value = text.substring(0, 119); // Trim the input to 119 characters
             event.preventDefault(); // Prevent further input
         }
     });
@@ -1020,7 +1028,10 @@ $(document).on('click', '#topSaveBtn', function(event){
                     notes: notes.join('\n')
                 },
                 success: function(response){
-
+                    console.log(noteBullets);
+                    if(noteBullets > 50){
+                        document.getElementById("editNotes").style.display = "none";
+                    }
                     noteBullets = 1;
                     console.log("after success : "+noteBullets);
                     console.log(response);
@@ -1205,7 +1216,7 @@ showEditModal();
 function registerEditNoteListener(noteBullets) {
     console.log("i am in edit")
     const editNotesInputField = document.getElementById('editNotes');
-    console.log(editNotesInputField);
+    // console.log(editNotesInputField);
     const editNotesContainer = document.getElementById('edit-notes-container');
 
 
@@ -1235,6 +1246,7 @@ function registerEditNoteListener(noteBullets) {
         });
         noteBullets = index;  
         
+        console.log(noteBullets)
         if (noteBullets > 50) {
             editNotesInputField.style.display = 'none';
         } else {
@@ -1253,8 +1265,8 @@ function registerEditNoteListener(noteBullets) {
     // Listener for editing points
     editNotesInputField.addEventListener('input', function(event){
         const text = editNotesInputField.value.trim();
-        if (text.length > 130) { // Check if trimmed text length exceeds 130 characters
-            editNotesInputField.value = text.substring(0, 130); // Trim the input to 130 characters
+        if (text.length > 119) { // Check if trimmed text length exceeds 119 characters
+            editNotesInputField.value = text.substring(0, 119); // Trim the input to 130 characters
             event.preventDefault(); // Prevent further input
         }
     });
@@ -1274,8 +1286,11 @@ function registerEditNoteListener(noteBullets) {
                         editNote.classList.add('editNotePoints');
                         editNote.value = `${noteBullets}. ${editText}`;
                         // editNotesContainer.appendChild(note);
+
+                   
                         editNotesContainer.insertBefore(editNote, editNotesInputField);
 
+                        
                         editNote.addEventListener('keydown', function(event){
                             if(event.key == 'Enter'){
                                 event.preventDefault();
@@ -1290,6 +1305,7 @@ function registerEditNoteListener(noteBullets) {
                         editNotesInputField.value = '';
 
                         noteBullets++;
+                        console.log(noteBullets)
 
                         if (noteBullets > 50) {
                             editNotesInputField.style.display = 'none';
@@ -1366,7 +1382,8 @@ $(document).on('click', '.editBtn', function(event){
             "api-key": "786ZM786"
         },
         success: function(response){
-            console.log(response);
+            // console.log(response);
+            console.log("noteBullets: "+noteBullets);
 
             document.getElementById("pointId").value = pointId;
             document.getElementById("edit_creator_name").value = response.meeting_note.creator_name;
@@ -1391,8 +1408,27 @@ $(document).on('click', '.editBtn', function(event){
                 var textWithoutNumbering = note.replace(/^\d+\.\s*/, '');
                 
                 input.value = `${noteNumber}. ${textWithoutNumbering}`;
-                console.log(input.value);
+                // console.log(input.value);
                 input.classList.add('editNotePoints');
+
+
+                // Listener for editing points
+                    input.addEventListener('input', function(event){
+                    console.log("testing");
+                    let text = input.value.trim();
+                    const prefixMatch = text.match(/^\d+\.\s/); // Matches any number followed by a period and space
+                    let prefix = "";
+                    if (prefixMatch) {
+                        prefix = prefixMatch[0];
+                        text = text.substring(prefix.length); 
+                    }
+                    if (text.length > 119) { // Check if trimmed text length exceeds 119 characters
+                        input.value = text.substring(0, 119); // Trim the input to 130 characters
+                        event.preventDefault(); // Prevent further input
+                    }
+
+            });
+                    
 
                 editNotesContainer.insertBefore(input, inputFieldEdit);
                 // editNotesContainer.appendChild(input);
@@ -1641,3 +1677,34 @@ lastToolbarButton.addEventListener('click', function() {
 
     }
 });
+
+
+const toolbarButtonChat = document.querySelector('.toolbar-button-with-badge');
+const toolbarButtonChatLabel  = toolbarButtonChat .querySelector('.toolbox-button');
+toolbarButtonChat.addEventListener('click', function() {
+    var isOpen = toolbarButtonChatLabel.getAttribute('aria-pressed');
+    console.log("aria-pressed: " + isOpen);
+    if(isOpen == 'false'){
+        console.log("okay");
+        document.getElementById("firstModalBtn").style.display = "none";
+        document.querySelector(".zimoGroupLogo").style.display = "none";
+        document.querySelector(".ztfrLogo").style.display = "none";
+
+    }
+    else if(isOpen == "true"){
+        document.getElementById("firstModalBtn").style.display = "block";
+        document.querySelector(".zimoGroupLogo").style.display = "block";
+        document.querySelector(".ztfrLogo").style.display = "block";
+    }
+});
+
+
+const chatCloseBtn = document.querySelector('.chat-header');
+if(chatCloseBtn){
+    console.log(chatCloseLabel);
+    chatCloseBtn.addEventListener('click', function() {
+        document.getElementById("firstModalBtn").style.display = "block";
+        document.querySelector(".zimoGroupLogo").style.display = "block";
+        document.querySelector(".ztfrLogo").style.display = "block";
+    });
+}

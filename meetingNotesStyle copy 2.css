@@ -163,8 +163,10 @@
     width: 655px;
     display: flex;
     flex-direction: column;
-    height: 151px;
+    /* height: 151px; */
+    height: 111px;
     overflow-y: auto;
+    white-space: nowrap !important;
 }
 
 .detailsNotesContainer,
@@ -180,6 +182,8 @@
 .detailsNotesContainer::-webkit-scrollbar,
 .editModalContainer::-webkit-scrollbar{
     width: 2px !important;
+    height: 2px !important;
+
 }
 
 .table-container::-webkit-scrollbar-track,
@@ -643,12 +647,18 @@ p{
 }
 
 #downloadPdfBtn{
-    width: 41px; 
+    /* width: 41px; 
     float: right; 
     cursor:pointer;
     position: relative;
     bottom: 43px;
-    right: 16px;
+    right: 16px; */
+    width: 41px;
+    float: right;
+    cursor: pointer;
+    position: relative;
+    bottom: 7px;
+    right: 11px;
 }
 
 #permanentDelBtn{
@@ -876,7 +886,7 @@ p{
     }
     #detailsNotesContainer {
         width: 545px;
-        height: 160px;
+        height: 120px;
     }
     .detailsNotes {
         width: 88%;
@@ -887,8 +897,8 @@ p{
     }
     #downloadPdfBtn {
         width: 40px;
-        bottom: 39px;
-        right: 13px;
+        bottom: 4px;
+        right: 9px;
     }
 
     /* add & edit */
@@ -1238,11 +1248,11 @@ p{
     }
     #detailsNotesContainer{
         width: 852px;
-        height: 227px;
+        height: 175px;
     }
     #downloadPdfBtn {
         width: 50px;
-        bottom: 49px;
+        bottom: 5px;
     }
     #details-custom-tooltip {
         left: 189px;
@@ -1501,12 +1511,12 @@ p{
         line-height: 18px;
     }
     #detailsNotesContainer{
-        height: 265px !important;
+        height: 222px !important;
         width: 944px;
     }
     #downloadPdfBtn {
         width: 50px;
-        bottom: 48px;
+        bottom: 5px;
     }
     #details-custom-tooltip {
         left: 202px;
