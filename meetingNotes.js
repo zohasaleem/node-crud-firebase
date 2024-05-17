@@ -1524,6 +1524,8 @@ $(document).on('click', '#topUpdateBtn', function(event){
 
                 document.getElementById('editTopLoader').style.display = "none";
 
+                document.getElementById('topUpdateBtn').style.display = "block";
+
                 document.getElementById('editModalContent').style.display = "none";
 
                 loadTable();                  
