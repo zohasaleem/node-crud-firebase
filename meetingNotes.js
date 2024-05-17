@@ -1688,6 +1688,9 @@ document.addEventListener('DOMContentLoaded', function() {
     const toolbarButtonChatLabel  = toolbarButtonChat .querySelector('.toolbox-button');
     toolbarButtonChat.addEventListener('click', function() {
         var isOpen = toolbarButtonChatLabel.getAttribute('aria-pressed');
+        const chatCloseBtn = document.querySelector('.chat-header');
+        console.log(chatCloseBtn);
+
 
         console.log("aria-pressed: " + isOpen);
         if(isOpen == 'false'){
@@ -1695,6 +1698,17 @@ document.addEventListener('DOMContentLoaded', function() {
             document.getElementById("firstModalBtn").style.display = "none";
             document.querySelector(".zimoGroupLogo").style.display = "none";
             document.querySelector(".ztfrLogo").style.display = "none";
+
+
+            if(chatCloseBtn){
+                console.log(chatCloseLabel);
+                chatCloseBtn.addEventListener('click', function() {
+                    document.getElementById("firstModalBtn").style.display = "block";
+                    document.querySelector(".zimoGroupLogo").style.display = "block";
+                    document.querySelector(".ztfrLogo").style.display = "block";
+                });
+            }
+
 
         }
         else if(isOpen == "true"){
