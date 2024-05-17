@@ -1700,7 +1700,8 @@ lastToolbarButton.addEventListener('click', function() {
                 console.log(chatCloseBtn);
                 
                 if(chatCloseBtn){
-                    console.log(chatCloseLabel);
+                    console.log(chatCloseBtn);
+
                     chatCloseBtn.addEventListener('click', function() {
                         document.getElementById("firstModalBtn").style.display = "block";
                         document.querySelector(".zimoGroupLogo").style.display = "block";
