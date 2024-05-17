@@ -1416,20 +1416,13 @@ $(document).on('click', '.editBtn', function(event){
                 }
                 // Listener for editing points
                 input.addEventListener('input', function(event){
-                console.log("testing");
-                let text = input.value.trim();
-                const prefixMatch = text.match(/^\d+\.\s/); // Matches any number followed by a period and space
-                let prefix = "";
-                if (prefixMatch) {
-                    prefix = prefixMatch[0];
-                    text = text.substring(prefix.length); 
-                }
-                if (text.length > 119) { // Check if trimmed text length exceeds 119 characters
-                    input.value = text.substring(0, 119); // Trim the input to 130 characters
-                    event.preventDefault(); // Prevent further input
-                }
-
-            });
+                    console.log("character limit");
+                    let text = input.value.trim();
+                    if (text.length > 123) { // Check if trimmed text length exceeds 123 characters
+                        input.value = text.substring(0, 123); // Trim the input to 123 characters
+                        event.preventDefault(); // Prevent further input
+                    }
+                });
                     
 
                 editNotesContainer.insertBefore(input, inputFieldEdit);
