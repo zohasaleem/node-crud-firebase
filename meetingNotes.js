@@ -1698,16 +1698,16 @@ lastToolbarButton.addEventListener('click', function() {
             setTimeout(function() {
                 const chatCloseBtn = document.querySelector('.chat-header');
                 console.log(chatCloseBtn);
+                
+                if(chatCloseBtn){
+                    console.log(chatCloseLabel);
+                    chatCloseBtn.addEventListener('click', function() {
+                        document.getElementById("firstModalBtn").style.display = "block";
+                        document.querySelector(".zimoGroupLogo").style.display = "block";
+                        document.querySelector(".ztfrLogo").style.display = "block";
+                    });
+                }
             }, 2000);
-
-            if(chatCloseBtn){
-                console.log(chatCloseLabel);
-                chatCloseBtn.addEventListener('click', function() {
-                    document.getElementById("firstModalBtn").style.display = "block";
-                    document.querySelector(".zimoGroupLogo").style.display = "block";
-                    document.querySelector(".ztfrLogo").style.display = "block";
-                });
-            }
 
 
         // }
