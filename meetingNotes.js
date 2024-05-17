@@ -1690,6 +1690,17 @@ toolbarButtonChat.addEventListener('click', function() {
         document.querySelector(".zimoGroupLogo").style.display = "none";
         document.querySelector(".ztfrLogo").style.display = "none";
 
+        const chatCloseBtn = document.querySelector('.chat-header');
+        if(chatCloseBtn){
+            console.log(chatCloseLabel);
+            chatCloseBtn.addEventListener('click', function() {
+                document.getElementById("firstModalBtn").style.display = "block";
+                document.querySelector(".zimoGroupLogo").style.display = "block";
+                document.querySelector(".ztfrLogo").style.display = "block";
+            });
+        }
+
+
     }
     else if(isOpen == "true"){
         document.getElementById("firstModalBtn").style.display = "block";
@@ -1699,12 +1710,12 @@ toolbarButtonChat.addEventListener('click', function() {
 });
 
 
-const chatCloseBtn = document.querySelector('.chat-header');
-if(chatCloseBtn){
-    console.log(chatCloseLabel);
-    chatCloseBtn.addEventListener('click', function() {
-        document.getElementById("firstModalBtn").style.display = "block";
-        document.querySelector(".zimoGroupLogo").style.display = "block";
-        document.querySelector(".ztfrLogo").style.display = "block";
-    });
-}
+// const chatCloseBtn = document.querySelector('.chat-header');
+// if(chatCloseBtn){
+//     console.log(chatCloseLabel);
+//     chatCloseBtn.addEventListener('click', function() {
+//         document.getElementById("firstModalBtn").style.display = "block";
+//         document.querySelector(".zimoGroupLogo").style.display = "block";
+//         document.querySelector(".ztfrLogo").style.display = "block";
+//     });
+// }
