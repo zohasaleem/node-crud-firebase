@@ -1691,6 +1691,8 @@ toolbarButtonChat.addEventListener('click', function() {
         document.querySelector(".ztfrLogo").style.display = "none";
 
         const chatCloseBtn = document.querySelector('.chat-header');
+        console.log(chatCloseBtn);
+
         if(chatCloseBtn){
             console.log(chatCloseLabel);
             chatCloseBtn.addEventListener('click', function() {
