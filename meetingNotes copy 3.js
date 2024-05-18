@@ -203,9 +203,13 @@ function loadTable(){
             document.getElementById('table-loader').style.display = "none";
 
             console.log(response);
+            // var tbody = $('#meetingData');
             tbody.empty();
             
-        
+            // if(response.error == true){
+            //     addCreateButton(tbody);
+            // }
+            // else if(response.error == false){
             if(response.error == false){
 
                 response.meeting_notes.forEach(function(meeting_note){
@@ -303,7 +307,12 @@ function loadTable(){
 
                     tbody.append(row);
 
-               
+                    // if(tbody.children().length == 0){
+                    //     addCreateButton(tbody);
+                    // }
+                    // if (response.meeting_notes.length == 1) {
+                    //     addCreateButton(tbody);
+                    // }
                 });
 
                 addCreateButton(tbody);
@@ -678,7 +687,7 @@ function showSaveDataModal() {
 
                         <label for="notes"  class="notesLabel">NOTES</label>   
                         <div id="notesContainer">
-                            <input type=text id="notes" class="inputField" name="notes" maxlength="110" placeholder="Notes..." style="border:none; width: 100%;" required>
+                            <input type=text id="notes" class="inputField" name="notes"  placeholder="Notes..." style="border:none; width: 100%;" required>
 
                         </div>
 
@@ -722,7 +731,7 @@ function showSaveDataModal() {
         notesInput.placeholder = 'NOTES...';
 
         notesContainer.innerHTML = "";
-        notesContainer.innerHTML = '<input type=text id="notes" class="inputField" name="notes" maxlength="110" placeholder="NOTES..." style="border:none;" required>';
+        notesContainer.innerHTML = '<input type=text id="notes" class="inputField" name="notes"  placeholder="NOTES..." style="border:none;" required>';
         
         // resetting place holders and removing validation class ----- code ends here
 
@@ -808,6 +817,22 @@ function registerNoteListener() {
     });
 
 
+    // Listener for adding points
+    notesInputField.addEventListener('input', function(event){
+        const text = notesInputField.value.trim();
+        if (text.length > 110) { // Check if trimmed text length exceeds 110 characters
+            notesInputField.addEventListener('keypress', function ( event ) {  
+                var key = event.keyCode;
+                if (key === 32) {
+                    event.preventDefault();
+                }
+            });
+            notesInputField.value = text.substring(0, 110); // Trim the input to 110 characters
+            event.preventDefault(); // Prevent further input
+
+        }
+    });
+
     //  listener for adding points
     notesInputField.addEventListener('keydown', function(event){
         if(event.key === 'Enter'){
@@ -817,12 +842,31 @@ function registerNoteListener() {
                 if(text){
                     const note = document.createElement('input');
                     note.type = "text";
-                    note.maxLength = "113";
                     note.classList.add('notePoints');
                     note.value = `${noteBullets}. ${text}`;
-                    notesContainer.insertBefore(note, notesInputField);
+                    notesContainer.insertBefore(note, notesInputField)
                     notesInputField.focus();
+                    // notesContainer.appendChild(note);
 
+                    // Listener for editing points
+                    note.addEventListener('input', function(event){
+                        console.log("character limit");
+                        let text = note.value.trim();
+                        console.log("text "+ text);
+
+                        if (text.length > 113) { // Check if trimmed text length exceeds 110 characters
+
+                            note.addEventListener('keypress', function ( event ) {  
+                                console.log("length: "+text.length)
+                                var key = event.keyCode;
+                                if (key === 32) {
+                                    event.preventDefault();
+                                }
+                            });
+                            note.value = text.substring(0, 113); // Trim thze input to 110 characters
+                            event.preventDefault(); // Prevent further input
+                        }
+                    });
 
                     note.addEventListener('keydown', function(event){
                         if(event.key == 'Enter'){
@@ -993,15 +1037,19 @@ $(document).on('click', '#topSaveBtn', function(event){
 
     }
 
+    // if (notesInput.value.trim()) {
+    //     notes.push(notesInput.value.trim());
+    //     notesInput.value = ''; // Clear the input field after adding to array
+    // }
 
     const text = notesInput.value.trim();
     if(text){
         const note = document.createElement('input');
         note.type = "text";
-        note.maxLength = "113";
         note.classList.add('notePoints');
         note.value = `${noteBullets}. ${text}`;
 
+        // document.getElementById('notesContainer').appendChildi(note);
         document.getElementById('notesContainer').insertBefore(note, notesInput);
 
         notes.push(note.value.trim());
@@ -1167,7 +1215,7 @@ function showEditModal() {
 
                             <label for="editNotesLabel"  class="notesLabel">NOTES</label>      
                             <div id="edit-notes-container">
-                                <input type=text id="editNotes" class="inputField" name="editNotes" maxlength="110" placeholder="Notes..." style="border:none; width: 100%;">
+                                <input type=text id="editNotes" class="inputField" name="editNotes"  placeholder="Notes..." style="border:none; width: 100%;">
                             </div>        
                   
                         </div>
@@ -1198,7 +1246,7 @@ function showEditModal() {
         var editNotesContainer = document.getElementById("edit-notes-container");
         editNotesContainer.innerHTML = ' ';
         
-        editNotesContainer.innerHTML = '<input type="text" id="editNotes" class="inputField" name="editNotes" maxlength="110" placeholder="NOTES..." style="border:none;">';
+        editNotesContainer.innerHTML = '<input type="text" id="editNotes" class="inputField" name="editNotes" placeholder="NOTES..." style="border:none;">';
 
 
         document.getElementById('editModalContent').style.display = "none";
@@ -1237,6 +1285,7 @@ function registerEditNoteListener(noteBullets) {
     const editNotesInputField = document.getElementById('editNotes');
     const editNotesContainer = document.getElementById('edit-notes-container');
 
+    // console.log("listener bullets: " + noteBullets);
 
     // Function to remove empty input fields
     function removeEditEmptyInputs() {
@@ -1280,6 +1329,14 @@ function registerEditNoteListener(noteBullets) {
     });
 
 
+    // Listener for editing points
+    editNotesInputField.addEventListener('input', function(event){
+        const text = editNotesInputField.value.trim();
+        if (text.length > 100) { // Check if trimmed text length exceeds 119 characters
+            editNotesInputField.value = text.substring(0, 100); // Trim the input to 130 characters
+            event.preventDefault(); // Prevent further input
+        }
+    });
 
 
     if(editNotesInputField){
@@ -1293,7 +1350,6 @@ function registerEditNoteListener(noteBullets) {
                     if(editText){
                         const editNote = document.createElement('input');
                         editNote.type = "text";
-                        editNote.maxLength = "113";
                         editNote.classList.add('editNotePoints');
                         editNote.value = `${noteBullets}. ${editText}`;
                         // editNotesContainer.appendChild(note);
@@ -1421,15 +1477,31 @@ $(document).on('click', '.editBtn', function(event){
                 var textWithoutNumbering = note.replace(/^\d+\.\s*/, '');
                 
                 input.value = `${noteNumber}. ${textWithoutNumbering}`;
-                input.maxLength = "113";
+                
                 input.classList.add('editNotePoints');
 
                 if(noteNumber == 50){
                     inputFieldEdit.style.display = "none";
                 }
-              
+                // Listener for editing points
+                input.addEventListener('input', function(event){
+                    console.log("character limit");
+                    let text = input.value.trim();
+                    if (text.length > 114) { // Check if trimmed text length exceeds 123 characters
+                        input.addEventListener('keypress', function ( event ) {  
+                            var key = event.keyCode;
+                            if (key === 32) {
+                                event.preventDefault();
+                            }
+                        });
+                        input.value = text.substring(0, 114); // Trim the input to 123 characters
+                        event.preventDefault(); // Prevent further input
+                    }
+                });
+                    
 
                 editNotesContainer.insertBefore(input, inputFieldEdit);
+                // editNotesContainer.appendChild(input);
                 input.addEventListener('keydown', function(event){
                     if(event.key == 'Enter'){
                         event.preventDefault();
@@ -1442,6 +1514,9 @@ $(document).on('click', '.editBtn', function(event){
                     }
                 });
 
+                // console.log("note number: "+ noteNumber);
+
+                // noteBullets++;
             
             });
 
@@ -1483,24 +1558,32 @@ $(document).on('click', '#topUpdateBtn', function(event){
     console.log("notes bullets before enter: "+ noteBullets);
     const appendPointWithoutEnter = document.getElementById("editNotes");
     if(appendPointWithoutEnter.value != ""){
+        // const editNotePoints = document.querySelectorAll('#edit-notes-container .editNotePoints');
+        // const lastEditNotePoint = editNotePoints[editNotePoints.length - 1];
+        // const lastEditNotePointValue = lastEditNotePoint.value;
+
+        // const parts = lastEditNotePointValue.split('.');
+        // const noteBullets = parseInt(parts[0].trim()) + 1;
+
 
         const editText = appendPointWithoutEnter.value.trim();
         if(editText){
             const note = document.createElement('input');
             note.type = "text";
-            note.maxLength = "113";
             note.classList.add('editNotePoints');
             note.value = `${noteBullets}. ${editText}`;
 
             document.getElementById('edit-notes-container').insertBefore(note, appendPointWithoutEnter);
 
+            // document.getElementById('edit-notes-container').appendChild(note);
             editNotes.push(note.value.trim());
             appendPointWithoutEnter.value = '';
         }
         console.log("notes bullets after enter: "+ noteBullets);
 
         noteBullets++;
-      
+        // noteBullets = bulletNumberEdit;
+        // noteBullets = 1;
       
     }
 
@@ -1712,8 +1795,9 @@ toolbarButtonChat.addEventListener('click', function(){
     var isOpen = toolbarButtonChatLabel.getAttribute('aria-pressed');
 
 
-        console.log("aria-pressed: " + isOpen);
-
+    console.log("aria-pressed: " + isOpen);
+    // if(isOpen == 'false'){
+        console.log("okay");
         document.getElementById("firstModalBtn").style.display = "none";
         document.querySelector(".zimoGroupLogo").style.display = "none";
         document.querySelector(".ztfrLogo").style.display = "none";
@@ -1721,9 +1805,10 @@ toolbarButtonChat.addEventListener('click', function(){
         
         setTimeout(function() {
             const chatCloseBtn = document.querySelector('.chat-header');
-            // console.log(chatCloseBtn);
+            console.log(chatCloseBtn);
             
             if(chatCloseBtn){
+                console.log(chatCloseBtn);
 
                 chatCloseBtn.addEventListener('click', function() {
                     document.getElementById("firstModalBtn").style.display = "block";
@@ -1734,6 +1819,8 @@ toolbarButtonChat.addEventListener('click', function(){
         }, 2000);
 
 
+    // }
+    // else if(isOpen == "true"){
     if(isOpen == "true"){
         document.getElementById("firstModalBtn").style.display = "block";
         document.querySelector(".zimoGroupLogo").style.display = "block";
