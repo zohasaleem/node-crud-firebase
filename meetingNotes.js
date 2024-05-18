@@ -1,3 +1,33 @@
+let sessionId = '';
+
+function generateSessionId() {
+    const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789'; 
+    const length = 20; 
+    let generatedId = '';
+
+    for (let i = 0; i < length; i++) {
+        const randomIndex = Math.floor(Math.random() * characters.length);
+        generatedId += characters[randomIndex];
+    }
+
+    localStorage.setItem('session_id', generatedId);
+    return generatedId;
+}
+
+function getSessionId() {
+    return localStorage.getItem("session_id");
+}
+
+function setSessionId() {
+    sessionId = getSessionId();
+    if (!sessionId) {
+        sessionId = generateSessionId();
+    }
+}
+
+setSessionId();
+
+
 // popover modal button
 const button = document.createElement('div');
 button.style.float = 'right';
@@ -164,6 +194,9 @@ function loadTable(){
         type: "GET",
         headers: {
             "api-key": "786ZM786"
+        },
+        data: {
+            session_id: sessionId
         },
         success: function(response){
             document.getElementById('table-loader').style.display = "none";
@@ -1022,6 +1055,7 @@ $(document).on('click', '#topSaveBtn', function(event){
                     "api-key" : "786ZM786"
                 },
                 data: {
+                    session_id: sessionId,
                     date: date,
                     day: currentDay,
                     time: time,
