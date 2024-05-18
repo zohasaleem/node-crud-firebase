@@ -196,7 +196,8 @@ function loadTable(){
             "api-key": "786ZM786"
         },
         data: {
-            session_id: sessionId
+            session_id: sessionId,
+            meeting_link: window.location.href
         },
         success: function(response){
             document.getElementById('table-loader').style.display = "none";
