@@ -363,12 +363,12 @@ tr:hover .actionBtn, tr:hover #meetingCamIcon {
     border-bottom: 1px solid black;
     border-top: none;
     width: 70%;
-    font-size: 8px;
+    font-size: 9px;
     border-left: none;
     border-right: none;
     padding-bottom: 6px;
     letter-spacing: 0.8px;
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
     outline: none;
     font-family: "Lato";
 
@@ -380,7 +380,7 @@ tr:hover .actionBtn, tr:hover #meetingCamIcon {
     font-size: 10px;
     padding-bottom: 10px;
     letter-spacing: 1px;
-    text-transform: uppercase;
+    /* text-transform: uppercase; */
     
 }
 
@@ -464,7 +464,7 @@ p{
     letter-spacing: 1px;
     line-height: 10px;
     font-family: "Lato";
-    text-transform: uppercase;
+    /* text-transform: uppercase;/ */
     color: black;
     border: none;
     outline: none;
@@ -1172,7 +1172,7 @@ p{
         letter-spacing: 1px;
     }
     .inputField{
-        font-size: 8px;
+        font-size: 9px;
         letter-spacing: 1px;
     }
     .inputField, #edit-notes-container{
@@ -1433,7 +1433,7 @@ p{
         letter-spacing: 2px;
     }
     .inputField{
-        font-size: 10px;
+        font-size: 11px;
         letter-spacing: 2px;
         margin-left: 40px;
     }

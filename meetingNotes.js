@@ -670,24 +670,24 @@ function showSaveDataModal() {
                 <div style="padding-right: 8px;" >
                     <div style="display:flex; align-items: flex-start;">
                         <label for="creator_name" class="notesLabel"> NAME</label>
-                        <input type="text"  class="inputField" id="creator_name" name="creator_name" placeholder="NAME" required>
+                        <input type="text"  class="inputField" id="creator_name" name="creator_name" placeholder="Name" required>
                     </div>
 
                     <div class="mt" style="display:flex; align-items: flex-start;">
                         <label for="title"  class="notesLabel">TITLE</label>
-                        <input type="text"  class="inputField" id="title" name="title"  placeholder="TITLE" required>
+                        <input type="text"  class="inputField" id="title" name="title"  placeholder="Title" required>
                     </div>
 
                     <div class="mt" style="display:flex; align-items: flex-start;">
                         <label for="meetingSubject"  class="notesLabel">MEETING SUBJECT</label>
-                        <input type="text"  class="inputField" id="meeting_subject" name="meeting_subject"  placeholder="MEETING SUBJECT" required>
+                        <input type="text"  class="inputField" id="meeting_subject" name="meeting_subject"  placeholder="Meeting Subject" required>
                     </div>
 
                     <div class="mt" style="display:flex; align-items: flex-start;">
 
                         <label for="notes"  class="notesLabel">NOTES</label>   
                         <div id="notesContainer">
-                            <input type=text id="notes" class="inputField" name="notes"  placeholder="NOTES..." style="border:none; width: 100%;" required>
+                            <input type=text id="notes" class="inputField" name="notes"  placeholder="Notes..." style="border:none; width: 100%;" required>
 
                         </div>
 
@@ -820,8 +820,8 @@ function registerNoteListener() {
     // Listener for adding points
     notesInputField.addEventListener('input', function(event){
         const text = notesInputField.value.trim();
-        if (text.length > 119) { // Check if trimmed text length exceeds 119 characters
-            notesInputField.value = text.substring(0, 119); // Trim the input to 119 characters
+        if (text.length > 100) { // Check if trimmed text length exceeds 119 characters
+            notesInputField.value = text.substring(0, 100); // Trim the input to 119 characters
             event.preventDefault(); // Prevent further input
         }
     });
@@ -838,7 +838,7 @@ function registerNoteListener() {
                     note.classList.add('notePoints');
                     note.value = `${noteBullets}. ${text}`;
                     notesContainer.insertBefore(note, notesInputField)
-                    // note.focus();
+                    notesInputField.focus();
                     // notesContainer.appendChild(note);
 
                     note.addEventListener('keydown', function(event){
@@ -963,28 +963,28 @@ $(document).on('click', '#topSaveBtn', function(event){
     creatorNameInput.addEventListener('input', function() {
         if (creatorNameInput.value.trim()) {
             creatorNameInput.classList.remove('placeholder-red');
-            creatorNameInput.placeholder = 'NAME';
+            creatorNameInput.placeholder = 'Name';
         }
     });
     
     titleInput.addEventListener('input', function() {
         if (titleInput.value.trim()) {
             titleInput.classList.remove('placeholder-red');
-            titleInput.placeholder = 'TITLE';
+            titleInput.placeholder = 'Title';
         }
     });
     
     meetingSubjectInput.addEventListener('input', function() {
         if (meetingSubjectInput.value.trim()) {
             meetingSubjectInput.classList.remove('placeholder-red');
-            meetingSubjectInput.placeholder = 'MEETING SUBJECT';
+            meetingSubjectInput.placeholder = 'Meeting Subject';
         }
     });
     
     notesInput.addEventListener('input', function() {
         if (notesInput.value.trim()) {
             notesInput.classList.remove('placeholder-red');
-            notesInput.placeholder = 'NOTES...';
+            notesInput.placeholder = 'Notes...';
         }
     });
     // resetting place holders and removing validation class to the input fields when the user starts typing after validation errors  ---- end
@@ -992,19 +992,19 @@ $(document).on('click', '#topSaveBtn', function(event){
 
    // Validate required fields
     if (!creator_name.trim()) {
-        creatorNameInput.placeholder = 'NAME IS REQUIRED';
+        creatorNameInput.placeholder = 'Name is required';
         creatorNameInput.classList.add('placeholder-red');
         isValid = false;
     } 
     
     if (!title.trim()) {
-        titleInput.placeholder = 'TITLE IS REQUIRED';
+        titleInput.placeholder = 'Title is required';
         titleInput.classList.add('placeholder-red');  
         isValid = false;
     }
 
     if (!meeting_subject.trim()) {
-        meetingSubjectInput.placeholder = 'MEETING SUBJECT IS REQUIRED';
+        meetingSubjectInput.placeholder = 'Meeting Subject is required';
         meetingSubjectInput.classList.add('placeholder-red');  
         isValid = false;
 
@@ -1031,7 +1031,7 @@ $(document).on('click', '#topSaveBtn', function(event){
     }
 
     if (notes.length == 0) {
-        notesInput.placeholder = 'NOTES ARE REQUIRED';
+        notesInput.placeholder = 'Notes are required';
         notesInput.classList.add('placeholder-red');  
         isValid = false;
 
@@ -1171,24 +1171,24 @@ function showEditModal() {
 
                         <div class="mt" style="display:flex; align-items: flex-start;">
                             <label for="edit_creator_name" class="notesLabel"> NAME</label>
-                            <input type="text"  class="inputField" id="edit_creator_name" name="edit_creator_name" placeholder="NAME">
+                            <input type="text"  class="inputField" id="edit_creator_name" name="edit_creator_name" placeholder="Name">
                         </div>
 
                         <div class="mt" style="display:flex; align-items: flex-start;">
                             <label for="editTitle"  class="notesLabel">TITLE</label>
-                            <input type="text"  class="inputField" id="editTitle" name="editTitle"  placeholder="TITLE">
+                            <input type="text"  class="inputField" id="editTitle" name="editTitle"  placeholder="Title">
                         </div>
 
                         <div class="mt" style="display:flex; align-items: flex-start;">
                             <label for="editMeetingSubject"  class="notesLabel">MEETING SUBJECT</label>
-                            <input type="text"  class="inputField" id="edit_meeting_subject" name="edit_meeting_subject"  placeholder="MEETING SUBJECT">
+                            <input type="text"  class="inputField" id="edit_meeting_subject" name="edit_meeting_subject"  placeholder="Meeting Subject">
                         </div>
 
                         <div class="mt" style="display:flex; align-items: flex-start;">
 
                             <label for="editNotesLabel"  class="notesLabel">NOTES</label>      
                             <div id="edit-notes-container">
-                                <input type=text id="editNotes" class="inputField" name="editNotes"  placeholder="NOTES..." style="border:none; width: 100%;">
+                                <input type=text id="editNotes" class="inputField" name="editNotes"  placeholder="Notes..." style="border:none; width: 100%;">
                             </div>        
                   
                         </div>
@@ -1305,8 +1305,8 @@ function registerEditNoteListener(noteBullets) {
     // Listener for editing points
     editNotesInputField.addEventListener('input', function(event){
         const text = editNotesInputField.value.trim();
-        if (text.length > 119) { // Check if trimmed text length exceeds 119 characters
-            editNotesInputField.value = text.substring(0, 119); // Trim the input to 130 characters
+        if (text.length > 100) { // Check if trimmed text length exceeds 119 characters
+            editNotesInputField.value = text.substring(0, 100); // Trim the input to 130 characters
             event.preventDefault(); // Prevent further input
         }
     });
@@ -1460,8 +1460,8 @@ $(document).on('click', '.editBtn', function(event){
                 input.addEventListener('input', function(event){
                     console.log("character limit");
                     let text = input.value.trim();
-                    if (text.length > 123) { // Check if trimmed text length exceeds 123 characters
-                        input.value = text.substring(0, 123); // Trim the input to 123 characters
+                    if (text.length > 104) { // Check if trimmed text length exceeds 123 characters
+                        input.value = text.substring(0, 104); // Trim the input to 123 characters
                         event.preventDefault(); // Prevent further input
                     }
                 });
