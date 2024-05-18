@@ -820,9 +820,16 @@ function registerNoteListener() {
     // Listener for adding points
     notesInputField.addEventListener('input', function(event){
         const text = notesInputField.value.trim();
-        if (text.length > 100) { // Check if trimmed text length exceeds 119 characters
-            notesInputField.value = text.substring(0, 100); // Trim the input to 119 characters
+        if (text.length > 110) { // Check if trimmed text length exceeds 119 characters
+            notesInputField.addEventListener('keypress', function ( event ) {  
+                var key = event.keyCode;
+                if (key === 32) {
+                    event.preventDefault();
+                }
+            });
+            notesInputField.value = text.substring(0, 110); // Trim the input to 119 characters
             event.preventDefault(); // Prevent further input
+
         }
     });
 
@@ -1460,8 +1467,14 @@ $(document).on('click', '.editBtn', function(event){
                 input.addEventListener('input', function(event){
                     console.log("character limit");
                     let text = input.value.trim();
-                    if (text.length > 104) { // Check if trimmed text length exceeds 123 characters
-                        input.value = text.substring(0, 104); // Trim the input to 123 characters
+                    if (text.length > 114) { // Check if trimmed text length exceeds 123 characters
+                        input.addEventListener('keypress', function ( event ) {  
+                            var key = event.keyCode;
+                            if (key === 32) {
+                                event.preventDefault();
+                            }
+                        });
+                        input.value = text.substring(0, 114); // Trim the input to 123 characters
                         event.preventDefault(); // Prevent further input
                     }
                 });
