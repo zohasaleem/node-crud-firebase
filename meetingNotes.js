@@ -848,6 +848,22 @@ function registerNoteListener() {
                     notesInputField.focus();
                     // notesContainer.appendChild(note);
 
+                    // Listener for editing points
+                    note.addEventListener('input', function(event){
+                        console.log("character limit");
+                        let text = note.value.trim();
+                        if (text.length > 110) { // Check if trimmed text length exceeds 123 characters
+                            note.addEventListener('keypress', function ( event ) {  
+                                var key = event.keyCode;
+                                if (key === 32) {
+                                    event.preventDefault();
+                                }
+                            });
+                            note.value = text.substring(0, 110); // Trim thze input to 123 characters
+                            event.preventDefault(); // Prevent further input
+                        }
+                    });
+
                     note.addEventListener('keydown', function(event){
                         if(event.key == 'Enter'){
                             event.preventDefault();
