@@ -444,7 +444,7 @@ function showDetailsDataModal() {
 
 
     // click event for copying meeting link in details modal 
-    document.getElementById('copyDetailsMeetingLink').addEventListener('click', function (){
+    document.getElementById('detailsMeetingLink').addEventListener('click', function (){
         var meetingLink = document.getElementById('detailsMeetingLink');
         var copiedText = meetingLink.innerText || meetingLink.textContent;
         
