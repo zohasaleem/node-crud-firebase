@@ -922,8 +922,8 @@ $(document).on('click', '#newDataBtn', function(event){
     // fetch meeting link from browser
     const meetingLinkField = document.getElementById('meetingLink');
     meetingLinkField.textContent = "";
-    // meetingLinkField.textContent = window.location.href;                 
-    meetingLinkField.textContent = "https://zimomeet.live/dev-test";
+    meetingLinkField.textContent = window.location.href;                 
+    // meetingLinkField.textContent = "https://zimomeet.live/dev-test";
     newModal.style.display = 'block';
 });
 
@@ -1252,11 +1252,12 @@ showEditModal();
 
 // function to register the notes input field listener for edit/update
 function registerEditNoteListener(noteBullets) {
-    console.log("i am in edit")
+    console.log("i am in edit listener");
+
     const editNotesInputField = document.getElementById('editNotes');
-    // console.log(editNotesInputField);
     const editNotesContainer = document.getElementById('edit-notes-container');
 
+    // console.log("listener bullets: " + noteBullets);
 
     // Function to remove empty input fields
     function removeEditEmptyInputs() {
@@ -1421,7 +1422,7 @@ $(document).on('click', '.editBtn', function(event){
         },
         success: function(response){
             // console.log(response);
-            console.log("noteBullets: "+noteBullets);
+            console.log("noteBullets when edit clicked again : "+noteBullets);
 
             document.getElementById("pointId").value = pointId;
             document.getElementById("edit_creator_name").value = response.meeting_note.creator_name;
@@ -1436,17 +1437,19 @@ $(document).on('click', '.editBtn', function(event){
             var notesArray = response.meeting_note.notes.split('\n');
         
             var inputFieldEdit = document.getElementById('editNotes');
+
+            var noteNumber;
+
             notesArray.forEach(function(note, index){
                 var input = document.createElement('input');
                 input.type = "text";
                 
                 var match = note.match(/^\d+/);
-                var noteNumber = match ? match[0] : '';
-                
+                noteNumber = match ? match[0] : '';
                 var textWithoutNumbering = note.replace(/^\d+\.\s*/, '');
                 
                 input.value = `${noteNumber}. ${textWithoutNumbering}`;
-                // console.log(input.value);
+                
                 input.classList.add('editNotePoints');
 
                 if(noteNumber == 50){
@@ -1477,10 +1480,15 @@ $(document).on('click', '.editBtn', function(event){
                     }
                 });
 
-                
-                noteBullets++;
+                // console.log("note number: "+ noteNumber);
+
+                // noteBullets++;
             
             });
+
+            noteBullets = noteNumber ;
+            noteBullets++;
+
             
             registerEditNoteListener(noteBullets);
 
@@ -1513,27 +1521,23 @@ $(document).on('click', '#topUpdateBtn', function(event){
     });
 
 
-
+    console.log("notes bullets before enter: "+ noteBullets);
     const appendPointWithoutEnter = document.getElementById("editNotes");
     if(appendPointWithoutEnter.value != ""){
-        const editNotePoints = document.querySelectorAll('#edit-notes-container .editNotePoints');
-        const lastEditNotePoint = editNotePoints[editNotePoints.length - 1];
-        const lastEditNotePointValue = lastEditNotePoint.value;
+        // const editNotePoints = document.querySelectorAll('#edit-notes-container .editNotePoints');
+        // const lastEditNotePoint = editNotePoints[editNotePoints.length - 1];
+        // const lastEditNotePointValue = lastEditNotePoint.value;
 
-        console.log(lastEditNotePointValue+ " lastEditNotePointValue");
-        const parts = lastEditNotePointValue.split('.');
-        const bulletNumberEdit = parseInt(parts[0].trim()) + 1;
+        // const parts = lastEditNotePointValue.split('.');
+        // const noteBullets = parseInt(parts[0].trim()) + 1;
 
-        console.log(bulletNumberEdit+ " bulletNumberEdit");
 
         const editText = appendPointWithoutEnter.value.trim();
         if(editText){
             const note = document.createElement('input');
             note.type = "text";
             note.classList.add('editNotePoints');
-            note.value = `${bulletNumberEdit}. ${editText}`;
-
-            console.log(bulletNumberEdit+ " bulletNumberEdit");
+            note.value = `${noteBullets}. ${editText}`;
 
             document.getElementById('edit-notes-container').insertBefore(note, appendPointWithoutEnter);
 
@@ -1541,12 +1545,11 @@ $(document).on('click', '#topUpdateBtn', function(event){
             editNotes.push(note.value.trim());
             appendPointWithoutEnter.value = '';
         }
+        console.log("notes bullets after enter: "+ noteBullets);
 
-
-        console.log("bulletNumberEdit "+ bulletNumberEdit);
+        noteBullets++;
         // noteBullets = bulletNumberEdit;
-        console.log("notes bullet: "+ noteBullets);
-        noteBullets = 1;
+        // noteBullets = 1;
       
     }
 
@@ -1752,42 +1755,42 @@ lastToolbarButton.addEventListener('click', function() {
 });
 
 
-    const toolbarButtonChat = document.querySelector('.toolbar-button-with-badge');
-    const toolbarButtonChatLabel  = toolbarButtonChat .querySelector('.toolbox-button');
-    toolbarButtonChat.addEventListener('click', function(){
-        var isOpen = toolbarButtonChatLabel.getAttribute('aria-pressed');
+const toolbarButtonChat = document.querySelector('.toolbar-button-with-badge');
+const toolbarButtonChatLabel  = toolbarButtonChat .querySelector('.toolbox-button');
+toolbarButtonChat.addEventListener('click', function(){
+    var isOpen = toolbarButtonChatLabel.getAttribute('aria-pressed');
 
 
-        console.log("aria-pressed: " + isOpen);
-        // if(isOpen == 'false'){
-            console.log("okay");
-            document.getElementById("firstModalBtn").style.display = "none";
-            document.querySelector(".zimoGroupLogo").style.display = "none";
-            document.querySelector(".ztfrLogo").style.display = "none";
+    console.log("aria-pressed: " + isOpen);
+    // if(isOpen == 'false'){
+        console.log("okay");
+        document.getElementById("firstModalBtn").style.display = "none";
+        document.querySelector(".zimoGroupLogo").style.display = "none";
+        document.querySelector(".ztfrLogo").style.display = "none";
 
+        
+        setTimeout(function() {
+            const chatCloseBtn = document.querySelector('.chat-header');
+            console.log(chatCloseBtn);
             
-            setTimeout(function() {
-                const chatCloseBtn = document.querySelector('.chat-header');
+            if(chatCloseBtn){
                 console.log(chatCloseBtn);
-                
-                if(chatCloseBtn){
-                    console.log(chatCloseBtn);
 
-                    chatCloseBtn.addEventListener('click', function() {
-                        document.getElementById("firstModalBtn").style.display = "block";
-                        document.querySelector(".zimoGroupLogo").style.display = "block";
-                        document.querySelector(".ztfrLogo").style.display = "block";
-                    });
-                }
-            }, 2000);
+                chatCloseBtn.addEventListener('click', function() {
+                    document.getElementById("firstModalBtn").style.display = "block";
+                    document.querySelector(".zimoGroupLogo").style.display = "block";
+                    document.querySelector(".ztfrLogo").style.display = "block";
+                });
+            }
+        }, 2000);
 
 
-        // }
-        // else if(isOpen == "true"){
-        if(isOpen == "true"){
-            document.getElementById("firstModalBtn").style.display = "block";
-            document.querySelector(".zimoGroupLogo").style.display = "block";
-            document.querySelector(".ztfrLogo").style.display = "block";
-        }
-    });
+    // }
+    // else if(isOpen == "true"){
+    if(isOpen == "true"){
+        document.getElementById("firstModalBtn").style.display = "block";
+        document.querySelector(".zimoGroupLogo").style.display = "block";
+        document.querySelector(".ztfrLogo").style.display = "block";
+    }
+});
 
