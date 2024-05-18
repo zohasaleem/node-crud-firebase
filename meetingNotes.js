@@ -686,7 +686,7 @@ function showSaveDataModal() {
 
                         <label for="notes"  class="notesLabel">NOTES</label>   
                         <div id="notesContainer">
-                            <input type=text id="notes" class="inputField" name="notes"  placeholder="NOTES..." style="border:none;" required>
+                            <input type=text id="notes" class="inputField" name="notes"  placeholder="NOTES..." style="border:none; width: 100%;" required>
 
                         </div>
 
@@ -1187,7 +1187,7 @@ function showEditModal() {
 
                             <label for="editNotesLabel"  class="notesLabel">NOTES</label>      
                             <div id="edit-notes-container">
-                                <input type=text id="editNotes" class="inputField" name="editNotes"  placeholder="NOTES..." style="border:none;">
+                                <input type=text id="editNotes" class="inputField" name="editNotes"  placeholder="NOTES..." style="border:none; width: 100%;">
                             </div>        
                   
                         </div>
