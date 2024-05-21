@@ -303,7 +303,7 @@ function loadTable(){
                                             <path id="bin" class="cls-1" d="M4.72,66.43c.61,2.94,2.95,5.21,5.91,5.73H46.07c2.96-.52,5.3-2.79,5.91-5.73V20.61H4.72v45.81ZM56.69,7.55h-12.6L37.79,0H18.87l-6.27,7.55H0v7.55H56.69V7.55Z"/>
                                         </svg>
                                     </div>
-                                    <p style="display:none; color: black; font-size: 8px; cursor: pointer; font-weight: 600;letter-spacing: 0.7px;" 
+                                    <p style="display:none; color: black; font-size: 8px; cursor: pointer; font-weight: 600; letter-spacing: 0.7px; text-align:right;" 
                                         id="permanentDelBtn-${meeting_note.id}" 
                                         class="permanentDelBtn"
                                         data-id="${meeting_note.id}">
