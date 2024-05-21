@@ -746,6 +746,7 @@ function showSaveDataModal() {
 
         notesContainer.innerHTML = "";
         notesContainer.innerHTML = '<input type=text id="notes" class="inputField" name="notes" maxlength="110" placeholder="Notes..." style="border:none; width: 100%;" required>';
+        document.getElementById('notes').addEventListener('input', restrictEmojis);
         
         // resetting place holders and removing validation class ----- code ends here
 
@@ -1097,7 +1098,8 @@ $(document).on('click', '#topSaveBtn', function(event){
                     document.getElementById("creator_name").value = '';
                     document.getElementById("notesContainer").innerHTML = '';
 
-                    document.getElementById("notesContainer").innerHTML = '<input type=text id="notes" class="inputField" name="notes"  placeholder="Notes..." style="border:none;" >';
+                    document.getElementById("notesContainer").innerHTML = '<input type=text id="notes" class="inputField" name="notes"  placeholder="Notes..." style="border:none; width:100%;" >';
+                    document.getElementById('notes').addEventListener('input', restrictEmojis);
 
                     $('#newDataModal').css('display', 'none');
 
@@ -1235,6 +1237,7 @@ function showEditModal() {
         editNotesContainer.innerHTML = ' ';
         
         editNotesContainer.innerHTML = '<input type="text" id="editNotes" class="inputField" name="editNotes" maxlength="110" placeholder="Notes..." style="border:none; width: 100%;">';
+        document.getElementById('editNotes').addEventListener('input', restrictEmojis);
 
 
         document.getElementById('editModalContent').style.display = "none";
@@ -1402,7 +1405,6 @@ $(document).on('click', '.editBtn', function(event){
         },
         success: function(response){
             // console.log(response);
-            console.log("noteBullets when edit clicked again : "+noteBullets);
 
             document.getElementById("pointId").value = pointId;
             document.getElementById("edit_creator_name").value = response.meeting_note.creator_name;
@@ -1552,7 +1554,9 @@ $(document).on('click', '#topUpdateBtn', function(event){
                 $('#editModal').css('display', 'none');
 
                 document.getElementById('edit-notes-container').innerHTML = "";
-                document.getElementById('edit-notes-container').innerHTML = '<input type="text" id="editNotes" class="inputField" name="editNotes" placeholder="NOTES..." style="border:none;">';
+                document.getElementById('edit-notes-container').innerHTML = '<input type="text" id="editNotes" class="inputField" name="editNotes" placeholder="Notes..." style="border:none; width:100%;">';
+
+                document.getElementById('editNotes').addEventListener('input', restrictEmojis);
 
                 
                 document.querySelector('.editClose').style.display = "block";
