@@ -692,7 +692,7 @@ function showSaveDataModal() {
 
                         <label for="notes"  class="notesLabel">NOTES</label>   
                         <div id="notesContainer">
-                            <input type=text id="notes" class="inputField" name="notes" maxlength="110" placeholder="Notes..." style="border:none; width: 100%;" required>
+                            <input type=text id="notes" class="inputField" name="notes" maxlength="115" placeholder="Notes..." style="border:none; width: 100%;" required>
 
                         </div>
 
@@ -745,7 +745,7 @@ function showSaveDataModal() {
         notesInput.placeholder = 'Notes...';
 
         notesContainer.innerHTML = "";
-        notesContainer.innerHTML = '<input type=text id="notes" class="inputField" name="notes" maxlength="110" placeholder="Notes..." style="border:none; width: 100%;" required>';
+        notesContainer.innerHTML = '<input type=text id="notes" class="inputField" name="notes" maxlength="115" placeholder="Notes..." style="border:none; width: 100%;" required>';
         document.getElementById('notes').addEventListener('input', restrictEmojis);
         
         // resetting place holders and removing validation class ----- code ends here
@@ -848,7 +848,7 @@ function registerNoteListener() {
                 if(text){
                     const note = document.createElement('input');
                     note.type = "text";
-                    note.maxLength = noteBullets > 9 ? "114" : "113"; 
+                    note.maxLength = noteBullets > 9 ? "119" : "118"; 
                     note.classList.add('notePoints');
                     note.value = `${noteBullets}. ${text}`;
                     notesContainer.insertBefore(note, notesInputField);
@@ -1031,7 +1031,7 @@ $(document).on('click', '#topSaveBtn', function(event){
     if(text){
         const note = document.createElement('input');
         note.type = "text";
-        note.maxLength = noteBullets > 9 ? "114" : "113"; 
+        note.maxLength = noteBullets > 9 ? "119" : "118"; 
         note.classList.add('notePoints');
         note.value = `${noteBullets}. ${text}`;
 
@@ -1198,7 +1198,7 @@ function showEditModal() {
 
                             <label for="editNotesLabel"  class="notesLabel">NOTES</label>      
                             <div id="edit-notes-container">
-                                <input type=text id="editNotes" class="inputField" name="editNotes" maxlength="110" placeholder="Notes..." style="border:none; width: 100%;">
+                                <input type=text id="editNotes" class="inputField" name="editNotes" maxlength="115" placeholder="Notes..." style="border:none; width: 100%;">
                             </div>        
                   
                         </div>
@@ -1236,7 +1236,7 @@ function showEditModal() {
         var editNotesContainer = document.getElementById("edit-notes-container");
         editNotesContainer.innerHTML = ' ';
         
-        editNotesContainer.innerHTML = '<input type="text" id="editNotes" class="inputField" name="editNotes" maxlength="110" placeholder="Notes..." style="border:none; width: 100%;">';
+        editNotesContainer.innerHTML = '<input type="text" id="editNotes" class="inputField" name="editNotes" maxlength="115" placeholder="Notes..." style="border:none; width: 100%;">';
         document.getElementById('editNotes').addEventListener('input', restrictEmojis);
 
 
@@ -1331,7 +1331,7 @@ function registerEditNoteListener(noteBullets) {
                     if(editText){
                         const editNote = document.createElement('input');
                         editNote.type = "text";
-                        editNote.maxLength = noteBullets > 9 ? "114" : "113"; 
+                        editNote.maxLength = noteBullets > 9 ? "119" : "118"; 
                         editNote.classList.add('editNotePoints');
                         editNote.value = `${noteBullets}. ${editText}`;                   
                         editNotesContainer.insertBefore(editNote, editNotesInputField);
@@ -1431,7 +1431,7 @@ $(document).on('click', '.editBtn', function(event){
                 var textWithoutNumbering = note.replace(/^\d+\.\s*/, '');
                 
                 input.value = `${noteNumber}. ${textWithoutNumbering}`;
-                input.maxLength = noteNumber > 9 ? "114" : "113"; 
+                input.maxLength = noteNumber > 9 ? "119" : "118"; 
                 input.classList.add('editNotePoints');
 
                 if(noteNumber == 50){
@@ -1504,7 +1504,7 @@ $(document).on('click', '#topUpdateBtn', function(event){
         if(editText){
             const note = document.createElement('input');
             note.type = "text";
-            note.maxLength = lastNoteValue > 9 ? "114" : "113"; 
+            note.maxLength = lastNoteValue > 9 ? "119" : "118"; 
             note.classList.add('editNotePoints');
             note.value = `${lastNoteValue}. ${editText}`;
 
