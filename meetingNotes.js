@@ -728,7 +728,7 @@ function showSaveDataModal() {
         notesInput.placeholder = 'Notes...';
 
         notesContainer.innerHTML = "";
-        notesContainer.innerHTML = '<input type=text id="notes" class="inputField" name="notes" maxlength="110" placeholder="Notes..." style="border:none;" required>';
+        notesContainer.innerHTML = '<input type=text id="notes" class="inputField" name="notes" maxlength="110" placeholder="Notes..." style="border:none; width: 100%;" required>';
         
         // resetting place holders and removing validation class ----- code ends here
 
@@ -1197,7 +1197,7 @@ function showEditModal() {
         var editNotesContainer = document.getElementById("edit-notes-container");
         editNotesContainer.innerHTML = ' ';
         
-        editNotesContainer.innerHTML = '<input type="text" id="editNotes" class="inputField" name="editNotes" maxlength="110" placeholder="Notes..." style="border:none;">';
+        editNotesContainer.innerHTML = '<input type="text" id="editNotes" class="inputField" name="editNotes" maxlength="110" placeholder="Notes..." style="border:none; width: 100%;">';
 
 
         document.getElementById('editModalContent').style.display = "none";
