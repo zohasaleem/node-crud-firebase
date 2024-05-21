@@ -1392,16 +1392,16 @@ p{
     }
     .createModalLink{
         font-size: 10px;
-        letter-spacing: 2px;
+        letter-spacing: 1.3px;
     }
     .addModalDate {
         font-size: 10px;
         line-height: 8px;
-        letter-spacing: 2px;
+        letter-spacing: 1.3px;
     }
     .notesLabel{
         font-size: 10px;
-        letter-spacing: 2px;
+        letter-spacing: 1.3px;
     }
     .inputField{
         font-size: 10px;
