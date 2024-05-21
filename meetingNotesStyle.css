@@ -1404,8 +1404,8 @@ p{
         letter-spacing: 2px;
     }
     .inputField{
-        font-size: 11px;
-        letter-spacing: 2px;
+        font-size: 10px;
+        letter-spacing: 1.3px;
         margin-left: 40px;
     }
     .inputField, #edit-notes-container{
@@ -1422,7 +1422,7 @@ p{
     .notePoints, .editNotePoints {
         width: 100%;
         font-size: 10px;
-        letter-spacing: 2px;
+        letter-spacing: 1.1px;
         line-height: 14px;
         padding-bottom: 4px;
         margin-left: 40px;
