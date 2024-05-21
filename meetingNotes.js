@@ -603,6 +603,15 @@ $(document).on('click', '#downloadPdfBtn', function(event){
 });
 
 
+// function for restricting emojis in input field
+function restrictEmojis(event) {
+    const inputValue = event.target.value;
+    const emojiRegex = /[\uD800-\uDFFF]./g;
+    if (emojiRegex.test(inputValue)) {
+        event.target.value = inputValue.replace(emojiRegex, '');
+    }
+}
+
 // globally defined noteBullets
 let noteBullets = 1; 
 
@@ -698,6 +707,14 @@ function showSaveDataModal() {
     document.body.appendChild(modal);
 
   
+    // listeners for restricting emojis
+    document.getElementById('creator_name').addEventListener('input', restrictEmojis);
+    document.getElementById('title').addEventListener('input', restrictEmojis);
+    document.getElementById('meeting_subject').addEventListener('input', restrictEmojis);
+    document.getElementById('notes').addEventListener('input', restrictEmojis);
+
+
+
     // event listener to close the modal
     const closeButton = modal.querySelector('.newDataModalClose');
     closeButton.addEventListener('click', function() {
@@ -763,6 +780,8 @@ function showSaveDataModal() {
 showSaveDataModal();
 
 
+
+
     
 // function to register the notes input field listener
 function registerNoteListener() {
@@ -815,6 +834,10 @@ function registerNoteListener() {
     });
 
 
+    // // listener added on notes input field
+    // notesInputField.addEventListener('input', restrictEmojis);
+
+
     //  listener for adding points
     notesInputField.addEventListener('keydown', function(event){
         if(event.key === 'Enter'){
@@ -832,6 +855,10 @@ function registerNoteListener() {
 
                     // scrolls to bottom of the container when focuses new input field
                     createModalContainer.scrollTop = createModalContainer.scrollHeight;
+
+                    // listener added on points field
+                    note.addEventListener('input', restrictEmojis);
+
 
                     note.addEventListener('keydown', function(event){
                         if(event.key == 'Enter'){
@@ -1006,6 +1033,9 @@ $(document).on('click', '#topSaveBtn', function(event){
         note.maxLength = noteBullets > 9 ? "114" : "113"; 
         note.classList.add('notePoints');
         note.value = `${noteBullets}. ${text}`;
+
+        // listener
+        note.addEventListener('input', restrictEmojis);
 
         document.getElementById('notesContainer').insertBefore(note, notesInput);
 
@@ -1184,6 +1214,13 @@ function showEditModal() {
     // event listener to close the modal
     const closeButton = modal.querySelector('.editClose');
 
+
+    document.getElementById("edit_creator_name").addEventListener('input', restrictEmojis);
+    document.getElementById("editTitle").addEventListener('input', restrictEmojis);
+    document.getElementById("edit_meeting_subject").addEventListener('input', restrictEmojis);
+    document.getElementById("editNotes").addEventListener('input', restrictEmojis);
+
+
     closeButton.addEventListener('click', function() {
         document.getElementById("pointId").value = '';
         document.getElementById("edit_creator_name").value = '';
@@ -1263,7 +1300,6 @@ function registerEditNoteListener(noteBullets) {
         });
         noteBullets = index;  
         
-        console.log(noteBullets)
         if (noteBullets > 50) {
             editNotesInputField.style.display = 'none';
         } else {
@@ -1300,6 +1336,8 @@ function registerEditNoteListener(noteBullets) {
                         editNotesInputField.focus();
                         // scrolls to bottom of the container when focuses new input field
                         editModalContainer.scrollTop = editModalContainer.scrollHeight;
+
+                        editNote.addEventListener('input', restrictEmojis);
                         
                         editNote.addEventListener('keydown', function(event){
                             if(event.key == 'Enter'){
@@ -1399,6 +1437,8 @@ $(document).on('click', '.editBtn', function(event){
                 }
               
 
+                input.addEventListener('input', restrictEmojis);
+
                 editNotesContainer.insertBefore(input, inputFieldEdit);
                 input.addEventListener('keydown', function(event){
                     if(event.key == 'Enter'){
@@ -1453,13 +1493,18 @@ $(document).on('click', '#topUpdateBtn', function(event){
     const appendPointWithoutEnter = document.getElementById("editNotes");
     if(appendPointWithoutEnter.value != ""){
 
+        const editNotePoints = document.querySelectorAll('.editNotePoints');
+        const lastEditNotePoint = Array.from(editNotePoints).pop();
+        const lastNoteValue = parseInt(lastEditNotePoint.value) + 1;
+
+
         const editText = appendPointWithoutEnter.value.trim();
         if(editText){
             const note = document.createElement('input');
             note.type = "text";
-            note.maxLength = noteBullets > 9 ? "114" : "113"; 
+            note.maxLength = lastNoteValue > 9 ? "114" : "113"; 
             note.classList.add('editNotePoints');
-            note.value = `${noteBullets}. ${editText}`;
+            note.value = `${lastNoteValue}. ${editText}`;
 
             document.getElementById('edit-notes-container').insertBefore(note, appendPointWithoutEnter);
 
@@ -1467,7 +1512,7 @@ $(document).on('click', '#topUpdateBtn', function(event){
             appendPointWithoutEnter.value = '';
         }
 
-        noteBullets++;
+        // noteBullets++;
       
       
     }
