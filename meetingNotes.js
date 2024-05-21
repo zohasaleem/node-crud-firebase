@@ -278,7 +278,7 @@ function loadTable(){
                             </td>
 
                             <td class="notesTableData" style="vertical-align: baseline; padding-right: 0px;">
-                                <div style="display: flex; flex-direction: column; align-items: flex-end;">
+                                <div style="display: flex; flex-direction: column;">
                                     <p class="creatorNameText greyText">
                                         ${meeting_note.creator_name}
                                     </p>
