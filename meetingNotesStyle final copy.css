@@ -56,6 +56,11 @@
     display: none;
     position: fixed;
     z-index: 1;
+    /* left: 0; */
+    /* top: 0px; */
+    /* width: 100%; */
+    /* height: 100%; */
+    /* background-color: #08080899; */
     left: 336px;
     top: 106px;
 }
@@ -86,10 +91,12 @@
 .modal-content {
     position: relative;
     background-color: #fefefe;
+    /* margin: 15% auto; */
     padding: 15px 2px 15px 15px;
     width: 671px;
     height: 377px;
     border-radius: 30px;
+    /* top: -100px; */
     animation: fadeIn 0.5s ease-in-out forwards, scaleIn 0.5s ease-in-out forwards;
 }
 
@@ -98,9 +105,11 @@
     padding: 20px 9px 10px 17px;
     position: relative;
     background-color: #fefefe;
+    /* margin: 15% auto; */
     width: 434px;
     height: 244px;
     border-radius: 20px;
+    /* top: -30px; */
     top: 52px;
     left: 100px;
     animation: fadeIn 0.5s ease-in-out forwards, scaleIn 0.5s ease-in-out forwards;
@@ -120,6 +129,7 @@
     float: right;
     font-size: 28px;
     font-weight: bold;
+    /* width: 10px;  */
 }
 
 .close:hover,
@@ -134,14 +144,13 @@
 }
 
 .notes-heading{
+    /* width: 56px; */
     margin-top: 21px;
     width: 52px;
     height: 10px;
 }
-
-
-
 /* table css */ 
+
 .table-container {
     max-height: 276px;
     padding-right: 14px;
@@ -154,6 +163,8 @@
     width: 655px;
     display: flex;
     flex-direction: column;
+    /* height: 151px; */
+    /* height: 111px; */
     height: 148px; 
     overflow-y: auto;
     white-space: nowrap !important;
@@ -220,7 +231,7 @@
     text-align: left;
     font-size: 10px;
     letter-spacing: 0.8px;
-    font-family: "Arial";
+    font-family: "Lato";
 }
 
 
@@ -232,7 +243,7 @@
     line-height: 8px;
     border-bottom: 1px solid #000000;
     text-align: left;
-    font-family: "Arial";
+    font-family: "Lato";
 
 }
 
@@ -280,6 +291,7 @@ tr:hover .actionBtn, tr:hover #meetingCamIcon {
 }
 
 .topSaveBtn{
+    /* display: none; */
     cursor: pointer;
     float: right;
     padding-right: 20px;
@@ -305,7 +317,7 @@ tr:hover .actionBtn, tr:hover #meetingCamIcon {
 .updateBtn{
     color: black; 
     font-size: 10px;
-    font-family: "Arial";
+    font-family: "Lato";
     letter-spacing: 0.5px;
     border: none;
     cursor: pointer;
@@ -342,12 +354,12 @@ tr:hover .actionBtn, tr:hover #meetingCamIcon {
     text-align: left;
     color: black;
     width: 140px;
-    font-family: "Arial";
+    font-family: "Lato";
 
 }
 
 .inputField, textarea{
-    font-family: "Arial";
+    font-family: "Lato";
     border-bottom: 1px solid black;
     border-top: none;
     width: 70%;
@@ -358,7 +370,7 @@ tr:hover .actionBtn, tr:hover #meetingCamIcon {
     letter-spacing: 0.8px;
     /* text-transform: uppercase; */
     outline: none;
-    font-family: "Arial";
+    font-family: "Lato";
 
 }
 
@@ -408,13 +420,13 @@ p{
     padding: 5px 0px;
     letter-spacing: 1px;
     line-height: 2px;
-    font-family: "Arial";
+    font-family: "Lato";
 }
 
 .detailsModalMeetingLink{
     font-size: 9px;
     letter-spacing: 1px;
-    font-family: "Arial";
+    font-family: "Lato";
     color: black;
     margin-left: 10px;
 }
@@ -422,7 +434,7 @@ p{
 .createModalLink{
     font-size: 8px;
     letter-spacing: 0.6px;
-    font-family: "Arial";
+    font-family: "Lato";
     color: black;
 
 }
@@ -433,6 +445,7 @@ p{
     max-height: 156px;
     overflow-y: auto;
     overflow-x: hidden;
+    /* padding-right: 20px; */
     scrollbar-color: auto !important;
     scrollbar-width: auto !important;
 }
@@ -447,14 +460,15 @@ p{
 
 .notePoints, .editNotePoints{
     width: 98%;
-    font-size: 9px;
+    font-size: 8px;
     letter-spacing: 1px;
     line-height: 10px;
-    font-family: "Arial";
+    font-family: "Lato";
     /* text-transform: uppercase;/ */
     color: black;
     border: none;
     outline: none;
+    /* margin-left: 8px; */
 }
 .bullets{
     margin-right: 5px;
@@ -472,8 +486,8 @@ p{
     font-size: 12px;
     letter-spacing: 1.3px;
     /* padding: 0px 10px; */
-    font-weight: 700;
-    font-family: "Arial";
+    font-weight: 800;
+    font-family: "Lato";
     text-transform: uppercase;
     color: black;
 }
@@ -485,7 +499,7 @@ p{
     margin: 2px 0px 0px 0px;
     font-weight: 500;
     padding: 0px 10px;
-    font-family: "Arial";
+    font-family: "Lato";
     text-transform: uppercase;
     color: black;
 }
@@ -505,7 +519,7 @@ p{
     letter-spacing: 0.8px;
     line-height: 4px;
     font-weight: 600;
-    font-family: "Arial";
+    font-family: "Lato";
     color: black;
 
 }
@@ -517,7 +531,7 @@ p{
     letter-spacing: 1px;
     font-weight: 600;
     margin: 20px 0px 45px 0px;
-    font-family: "Arial";
+    font-family: "Lato";
     text-transform: uppercase;
     color: black;
 }
@@ -528,7 +542,7 @@ p{
     /* text-transform: uppercase; */
     letter-spacing: 1px;
     line-height: 16px;
-    font-family: "Arial";
+    font-family: "Lato";
     color: black;
 }
 
@@ -634,18 +648,31 @@ p{
 }
 
 #downloadPdfBtn{
+    /* width: 41px; 
+    float: right; 
+    cursor:pointer;
+    position: relative;
+    bottom: 43px;
+    right: 16px; */
     width: 41px;
     float: right;
     cursor: pointer;
     position: relative;
     bottom: 258px;
     right: 17px;
+    /* bottom: 7px;
+    right: 11px; */
 }
 
 #permanentDelBtn{
     position: fixed;
     top: 187px;
 }
+
+/* .creatorNameText{
+    position: fixed;
+    top: 146px;
+} */
 
 
 .createZMLogo{
@@ -875,7 +902,8 @@ p{
         width: 40px;
         bottom: 251px;
         right: 10px;
-     
+        /* bottom: 39px;
+        right: 13px; */
     }
 
     /* add & edit */
@@ -1004,7 +1032,10 @@ p{
         width: 131px;
         height: 31px;
     }
-  
+    /* #firstModalBtn{
+        top : 140px;
+        left: 40px;
+    } */
     .ztfrLogo{
         width: 91px;
         height: 31px;

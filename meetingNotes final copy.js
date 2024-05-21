@@ -1,4 +1,3 @@
-// code for generating session id -- start 
 let sessionId = '';
 
 function generateSessionId() {
@@ -28,12 +27,8 @@ function setSessionId() {
 
 setSessionId();
 
-// code for generating session id -- start 
 
-
-
- 
-// first modal button  - for opening notes modal -
+// popover modal button
 const button = document.createElement('div');
 button.style.float = 'right';
 button.style.margin = '0px';
@@ -48,8 +43,6 @@ btnImage.classList.add("notesBtn")
 btnImage.setAttribute("src", "https://firebasestorage.googleapis.com/v0/b/zimo-b9759.appspot.com/o/zimomeet_live%2Fmeeting_notes%2Flogos%2FZM%20Notes%20W.svg?alt=media&token=9d671e06-1f29-4b80-a6ea-57470a584ed8");
 
 
-
-// zimo group logo 
 const zimoGroupLink = document.createElement('a');
 zimoGroupLink.href = "https://zimogroup.org/";
 zimoGroupLink.target = "_blank";
@@ -61,8 +54,6 @@ zimoGroupLogo.src= "https://firebasestorage.googleapis.com/v0/b/zimo-b9759.appsp
 zimoGroupLink.appendChild(zimoGroupLogo);
  
 
-
-// ztfr group logo 
 const ztfrLink = document.createElement('a');
 ztfrLink.href = "https://zitransfer.com/";
 ztfrLink.target = "_blank";
@@ -75,7 +66,7 @@ ztfrLink.appendChild(ztfrLogo);
 
 
 
-// first modal  - notes modal - 
+// first modal
 function showFirstModal() {
 
     // modal creation
@@ -144,13 +135,12 @@ function showFirstModal() {
     // modal close button
     const closeButton = modal.querySelector('.close');
 
-    // close modal when clicked on cross/close icon
+    // close modal when clicked
     closeButton.addEventListener('click', function() {
         modal.style.display = 'none';
         document.getElementById('firstModalBtn').disabled = false;
         document.querySelector('.notesBtn').style.opacity = "100%";
     });
-
 
     // // Close the modal when the user clicks outside of it
     // window.addEventListener('click', function(event) {
@@ -161,17 +151,16 @@ function showFirstModal() {
     //     }
     // });
 
-
     // Append the modal to the container
     document.body.appendChild(modal);
 
 }
 
 
-// funtion call for first modal 
+// show first modal
 showFirstModal();
 
-//create button fucntion --  to include in table
+//create button fucntion --  when no data or a row exits
 function addCreateButton(tbody){
 
     var row = `
@@ -191,8 +180,6 @@ function addCreateButton(tbody){
 
 }
  
-
-
 // function for generating rows for table
 function loadTable(){
     
@@ -210,13 +197,12 @@ function loadTable(){
         },
         data: {
             session_id: sessionId,
-            meeting_link: "https://zimomeet.live/dev-test"
-
-            // meeting_link: window.location.href
+            meeting_link: window.location.href
         },
         success: function(response){
             document.getElementById('table-loader').style.display = "none";
 
+            console.log(response);
             tbody.empty();
             
         
@@ -322,6 +308,7 @@ function loadTable(){
 
                 addCreateButton(tbody);
             }
+            // }
             else{
                 addCreateButton(tbody);
             }
@@ -339,7 +326,7 @@ function loadTable(){
 // listener for opening first modal --  loadTable fucntion is called here
 $(document).on('click', '#firstModalBtn', function(event){
     event.preventDefault();
-
+    console.log('Modal Open');
     document.getElementById('firstModalBtn').disabled = true;
     document.querySelector('.notesBtn').style.opacity = "50%";
 
@@ -352,7 +339,9 @@ $(document).on('click', '#firstModalBtn', function(event){
     
 });
 
-// const container = document.getElementById('largeVideoContainer');
+
+// get the largeVideoContainer div from zimo meet live
+const container = document.getElementById('largeVideoContainer');
 
 button.appendChild(btnImage);   //appended buttonImage in its parent container created above 
 
@@ -494,6 +483,7 @@ $(document).on('click', '#detailsModalBtn', function(event){
             "api-key": "786ZM786"
         },
         success: function(response){
+            console.log(response);
 
             document.getElementById("detailsTitle").textContent = response.meeting_note.title;
             document.getElementById("detailsCreator").textContent = response.meeting_note.creator_name;
@@ -561,12 +551,18 @@ $(document).on('click', '#downloadPdfBtn', function(event){
     meeting_title = meeting_title.toLowerCase().replace(/\b\w/g, function(char) {
         return char.toUpperCase();
     });
-  
+    console.log(meeting_title);
+    console.log(meeting_time);
+    console.log(meeting_title);
+
     var parts = meeting_date.split('/');
     // Rearrange the parts and join them using '.' as separator
     var formattedDate = parts[0] + '.' + parts[1] + '.' + parts[2];
 
 
+
+
+    console.log(creator_name + " "+ note_id)
     $.ajax({
         url: "https://backend.zimomeet.com/api/download-pdf-notes?note_id="+ note_id,
         type: 'GET',
@@ -577,6 +573,7 @@ $(document).on('click', '#downloadPdfBtn', function(event){
             responseType: 'blob' 
         },
         success: function(response){
+            console.log(response);
 
            var blob = new Blob([response], { type: 'application/pdf' });
             var url = URL.createObjectURL(blob);
@@ -603,12 +600,10 @@ $(document).on('click', '#downloadPdfBtn', function(event){
 });
 
 
-// globally defined noteBullets
-let noteBullets = 1; 
-
-
 // create modal
 function showSaveDataModal() {
+
+    const container = document.getElementById('largeVideoContainer');
 
     // Create the modal
     const modal = document.createElement('div');
@@ -697,50 +692,47 @@ function showSaveDataModal() {
 
     document.body.appendChild(modal);
 
+   
   
     // event listener to close the modal
     const closeButton = modal.querySelector('.newDataModalClose');
     closeButton.addEventListener('click', function() {
         modal.style.display = 'none';
 
-
-
         // resetting place holders and removing validation class ----- code starts here
-        
+
         var creatorNameInput = document.getElementById('creator_name');
         creatorNameInput.classList.remove('placeholder-red');
         creatorNameInput.value = "";
-        creatorNameInput.placeholder = 'Name';
+        creatorNameInput.placeholder = 'NAME';
 
         var titleInput = document.getElementById('title');
         titleInput.classList.remove('placeholder-red');
         titleInput.value = "";
-        titleInput.placeholder = 'Title';
+        titleInput.placeholder = 'TITLE';
 
         var meetingSubjectInput = document.getElementById('meeting_subject');
         meetingSubjectInput.classList.remove('placeholder-red');
         meetingSubjectInput.value = "";
-        meetingSubjectInput.placeholder = 'Meeting Subject';
+        meetingSubjectInput.placeholder = 'MEETING SUBJECT';
 
         var notesInput = document.getElementById('notes');
         notesInput.value = "";
         notesInput.classList.remove('placeholder-red');
-        notesInput.placeholder = 'Notes...';
+        notesInput.placeholder = 'NOTES...';
 
         notesContainer.innerHTML = "";
-        notesContainer.innerHTML = '<input type=text id="notes" class="inputField" name="notes" maxlength="110" placeholder="Notes..." style="border:none;" required>';
+        notesContainer.innerHTML = '<input type=text id="notes" class="inputField" name="notes" maxlength="110" placeholder="NOTES..." style="border:none;" required>';
         
         // resetting place holders and removing validation class ----- code ends here
 
-
-
-        // set bullets count to 1 when add/create modal closed
+        // set bullets count to 1 when modal closed
         noteBullets = 1;
 
     });
 
 
-    // for copying meeting link in add/create modal
+    // for copying meeting link in create modal
     document.getElementById('copyMeetingLink').addEventListener('click', function (){
         var meetingLink = document.getElementById('meetingLink');
         var copiedText = meetingLink.innerText || meetingLink.textContent;
@@ -763,13 +755,14 @@ function showSaveDataModal() {
 showSaveDataModal();
 
 
+// globally defined noteBullets
+let noteBullets = 1; 
+
     
 // function to register the notes input field listener
 function registerNoteListener() {
-    
     const notesInputField = document.getElementById('notes');
     const notesContainer = document.getElementById('notesContainer');
-
 
     // Function to remove empty input fields
     function removeEmptyInputs() {
@@ -778,13 +771,13 @@ function registerNoteListener() {
         document.querySelectorAll('.notePoints').forEach(function(input) {
             if (input.value.trim() === `${index}.`) {
                 if (prevInput) {
-                    prevInput.focus(); 
+                    prevInput.focus(); // Focus on the previous input
                 }
                 input.remove();
             } 
             else if (input.value.trim() === '') {
                 if (prevInput) {
-                    prevInput.focus(); 
+                    prevInput.focus(); // Focus on the previous input
                 }
                 input.remove();
             } 
@@ -803,6 +796,8 @@ function registerNoteListener() {
             notesInputField.style.display = 'block';
         }
     }
+
+
 
 
     // Listen for keyup event to remove empty inputs
@@ -863,6 +858,7 @@ function registerNoteListener() {
         }
     });
     
+    console.log(noteBullets);
 
 }
 
@@ -921,6 +917,8 @@ $(document).on('click', '#newDataBtn', function(event){
 $(document).on('click', '#topSaveBtn', function(event){
 
     event.preventDefault();
+    console.log('Form submitted');
+
 
     var date = document.getElementById("date").textContent;
     var currentDay = document.getElementById("dayDisplay").textContent;
@@ -934,6 +932,7 @@ $(document).on('click', '#topSaveBtn', function(event){
     document.querySelectorAll('.notePoints').forEach(function(note){
         notes.push(note.value);
     });
+    console.log(notes);
 
 
     var isValid = true;
@@ -1020,6 +1019,7 @@ $(document).on('click', '#topSaveBtn', function(event){
     if(isValid){
         document.getElementById('topSaveBtn').disabled = true;
 
+        console.log(isValid)
 
         document.getElementById('topSaveBtn').style.display = "none";
         document.querySelector('.newDataModalClose').style.display = "none";
@@ -1046,11 +1046,13 @@ $(document).on('click', '#topSaveBtn', function(event){
                     notes: notes.join('\n')
                 },
                 success: function(response){
+                    console.log(noteBullets);
                     if(noteBullets > 50){
                         document.getElementById("editNotes").style.display = "none";
                     }
                     noteBullets = 1;
-                 
+                    console.log("after success : "+noteBullets);
+                    console.log(response);
 
                 },
                 error: function(xhr, status, error){
@@ -1063,7 +1065,7 @@ $(document).on('click', '#topSaveBtn', function(event){
                     document.getElementById("creator_name").value = '';
                     document.getElementById("notesContainer").innerHTML = '';
 
-                    document.getElementById("notesContainer").innerHTML = '<input type=text id="notes" class="inputField" name="notes"  placeholder="Notes..." style="border:none;" >';
+                    document.getElementById("notesContainer").innerHTML = '<input type=text id="notes" class="inputField" name="notes"  placeholder="NOTES..." style="border:none;" >';
 
                     $('#newDataModal').css('display', 'none');
 
@@ -1076,6 +1078,7 @@ $(document).on('click', '#topSaveBtn', function(event){
                 }
             });
 
+
         }, 1000);
     }
 });
@@ -1083,6 +1086,8 @@ $(document).on('click', '#topSaveBtn', function(event){
 
 // edit modal
 function showEditModal() {
+
+    const container = document.getElementById('largeVideoContainer');
 
     // Create the modal
     const modal = document.createElement('div');
@@ -1193,7 +1198,7 @@ function showEditModal() {
         var editNotesContainer = document.getElementById("edit-notes-container");
         editNotesContainer.innerHTML = ' ';
         
-        editNotesContainer.innerHTML = '<input type="text" id="editNotes" class="inputField" name="editNotes" maxlength="110" placeholder="Notes..." style="border:none;">';
+        editNotesContainer.innerHTML = '<input type="text" id="editNotes" class="inputField" name="editNotes" maxlength="110" placeholder="NOTES..." style="border:none;">';
 
 
         document.getElementById('editModalContent').style.display = "none";
@@ -1227,6 +1232,7 @@ showEditModal();
 
 // function to register the notes input field listener for edit/update
 function registerEditNoteListener(noteBullets) {
+    console.log("i am in edit listener");
 
     const editNotesInputField = document.getElementById('editNotes');
     const editNotesContainer = document.getElementById('edit-notes-container');
@@ -1310,6 +1316,7 @@ function registerEditNoteListener(noteBullets) {
                         editNotesInputField.value = '';
 
                         noteBullets++;
+                        console.log(noteBullets)
 
                         if (noteBullets > 50) {
                             editNotesInputField.style.display = 'none';
@@ -1346,7 +1353,35 @@ $(document).on('click', '.editBtn', function(event){
     const editModal = document.getElementById('editModal');
     var pointId = $(this).attr('data-id');
 
-    
+
+    const editDay = document.getElementById('editDay');
+    const editDate = document.getElementById('editDate');
+    const editTime = document.getElementById('editTime');
+
+    // fetch date, time & day
+
+    // function to update the time display
+    function updateTime() {
+        const today = new Date();
+        const timeOptions = { hour: '2-digit', minute: '2-digit', hour12: false };
+        editTime.textContent = today.toLocaleTimeString('en-GB', timeOptions);
+        
+        // request the next animation frame
+        requestAnimationFrame(updateTime);
+    }
+
+    // update the time display initially
+    updateTime();
+
+
+    // fetch date & day
+    const today = new Date();
+    const dayOptions = { weekday: 'long' };
+    const dateOptions = { day: '2-digit', month: '2-digit', year: 'numeric' };
+
+    editDay.textContent = today.toLocaleDateString('en-GB', dayOptions);
+    editDate.textContent = today.toLocaleDateString('en-GB', dateOptions);
+
     editModal.style.display = "block";
 
     document.getElementById('edit-loader').style.display = "block";
@@ -1445,6 +1480,7 @@ $(document).on('click', '#topUpdateBtn', function(event){
     });
 
 
+    console.log("notes bullets before enter: "+ noteBullets);
     const appendPointWithoutEnter = document.getElementById("editNotes");
     if(appendPointWithoutEnter.value != ""){
 
@@ -1461,6 +1497,7 @@ $(document).on('click', '#topUpdateBtn', function(event){
             editNotes.push(note.value.trim());
             appendPointWithoutEnter.value = '';
         }
+        console.log("notes bullets after enter: "+ noteBullets);
 
         noteBullets++;
       
@@ -1493,6 +1530,7 @@ $(document).on('click', '#topUpdateBtn', function(event){
                 notes: editNotes.join('\n')
             },
             success: function(response){
+                console.log(response);
 
             },
             error: function(xhr, status, error){
@@ -1529,16 +1567,20 @@ $(document).on('click', '.delBtn', function(event){
         event.preventDefault();
 
         var $row = $(this).closest('tr'); 
+        console.log($row.attr('data-greyed-out')); 
         var pointId = $(this).attr('data-id');
 
         if($row.attr('data-greyed-out') == 'true'){
+            console.log("point id: "+ pointId)
             $row.remove();  
+
             deleteRow(pointId);
         }
         
             
         var permanentDelBtn = document.getElementById(`permanentDelBtn-${pointId}`);
         if(permanentDelBtn){
+            console.log(permanentDelBtn);
 
             permanentDelBtn.style.display = "block";
         }
@@ -1557,6 +1599,7 @@ $(document).on('click', '.delBtn', function(event){
       
         if($row.attr('data-greyed-out') == 'false'){
             var pointId = $(this).attr('data-id');
+            console.log("point id: "+ pointId)
             var $row = $(this).closest('tr');
             $row.remove();  
             
@@ -1625,6 +1668,7 @@ function deleteRow(pointId){
             "api-key" : "786ZM786"
         },
         success: function(response){
+            console.log(response)
             loadTable();
             clickCount = 0;
         },
@@ -1645,6 +1689,7 @@ const childButton = lastToolbarButton.querySelector('.toolbox-button');
 
 lastToolbarButton.addEventListener('click', function() {
     var isOpen = childButton.getAttribute('aria-pressed');
+    console.log("aria-pressed: " + isOpen);
     if(isOpen == 'false'){
         if(window.innerWidth == 1024){
             document.querySelector('.zimoGroupLogo').style.display = "none";
@@ -1665,6 +1710,9 @@ const toolbarButtonChat = document.querySelector('.toolbar-button-with-badge');
 const toolbarButtonChatLabel  = toolbarButtonChat .querySelector('.toolbox-button');
 toolbarButtonChat.addEventListener('click', function(){
     var isOpen = toolbarButtonChatLabel.getAttribute('aria-pressed');
+
+
+        console.log("aria-pressed: " + isOpen);
 
         document.getElementById("firstModalBtn").style.display = "none";
         document.querySelector(".zimoGroupLogo").style.display = "none";
