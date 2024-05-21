@@ -824,7 +824,7 @@ function registerNoteListener() {
                 if(text){
                     const note = document.createElement('input');
                     note.type = "text";
-                    note.maxLength = "113";
+                    note.maxLength = noteBullets > 9 ? "114" : "113"; 
                     note.classList.add('notePoints');
                     note.value = `${noteBullets}. ${text}`;
                     notesContainer.insertBefore(note, notesInputField);
@@ -1003,7 +1003,7 @@ $(document).on('click', '#topSaveBtn', function(event){
     if(text){
         const note = document.createElement('input');
         note.type = "text";
-        note.maxLength = "113";
+        note.maxLength = noteBullets > 9 ? "114" : "113"; 
         note.classList.add('notePoints');
         note.value = `${noteBullets}. ${text}`;
 
@@ -1292,7 +1292,7 @@ function registerEditNoteListener(noteBullets) {
                     if(editText){
                         const editNote = document.createElement('input');
                         editNote.type = "text";
-                        editNote.maxLength = "113";
+                        editNote.maxLength = noteBullets > 9 ? "114" : "113"; 
                         editNote.classList.add('editNotePoints');
                         editNote.value = `${noteBullets}. ${editText}`;                   
                         editNotesContainer.insertBefore(editNote, editNotesInputField);
@@ -1391,7 +1391,7 @@ $(document).on('click', '.editBtn', function(event){
                 var textWithoutNumbering = note.replace(/^\d+\.\s*/, '');
                 
                 input.value = `${noteNumber}. ${textWithoutNumbering}`;
-                input.maxLength = "113";
+                input.maxLength = noteNumber > 9 ? "114" : "113"; 
                 input.classList.add('editNotePoints');
 
                 if(noteNumber == 50){
@@ -1457,7 +1457,7 @@ $(document).on('click', '#topUpdateBtn', function(event){
         if(editText){
             const note = document.createElement('input');
             note.type = "text";
-            note.maxLength = "113";
+            note.maxLength = noteBullets > 9 ? "114" : "113"; 
             note.classList.add('editNotePoints');
             note.value = `${noteBullets}. ${editText}`;
 
