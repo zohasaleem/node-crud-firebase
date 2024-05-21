@@ -769,6 +769,8 @@ function registerNoteListener() {
     
     const notesInputField = document.getElementById('notes');
     const notesContainer = document.getElementById('notesContainer');
+    const createModalContainer = document.querySelector('.createModalContainer');
+
 
 
     // Function to remove empty input fields
@@ -828,6 +830,8 @@ function registerNoteListener() {
                     notesContainer.insertBefore(note, notesInputField);
                     notesInputField.focus();
 
+                    // scrolls to bottom of the container when focuses new input field
+                    createModalContainer.scrollTop = createModalContainer.scrollHeight;
 
                     note.addEventListener('keydown', function(event){
                         if(event.key == 'Enter'){
@@ -1230,6 +1234,7 @@ function registerEditNoteListener(noteBullets) {
 
     const editNotesInputField = document.getElementById('editNotes');
     const editNotesContainer = document.getElementById('edit-notes-container');
+    const editModalContainer = document.querySelector('.editModalContainer');
 
 
     // Function to remove empty input fields
@@ -1289,12 +1294,12 @@ function registerEditNoteListener(noteBullets) {
                         editNote.type = "text";
                         editNote.maxLength = "113";
                         editNote.classList.add('editNotePoints');
-                        editNote.value = `${noteBullets}. ${editText}`;
-                        // editNotesContainer.appendChild(note);
-
-                   
+                        editNote.value = `${noteBullets}. ${editText}`;                   
                         editNotesContainer.insertBefore(editNote, editNotesInputField);
 
+                        editNotesInputField.focus();
+                        // scrolls to bottom of the container when focuses new input field
+                        editModalContainer.scrollTop = editModalContainer.scrollHeight;
                         
                         editNote.addEventListener('keydown', function(event){
                             if(event.key == 'Enter'){
