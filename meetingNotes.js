@@ -210,8 +210,7 @@ function loadTable(){
         },
         data: {
             session_id: sessionId,
-            meeting_link: "https://zimomeet.live/dev-test"
-            // meeting_link: window.location.href
+            meeting_link: window.location.href
         },
         success: function(response){
             document.getElementById('table-loader').style.display = "none";
@@ -945,8 +944,8 @@ $(document).on('click', '#newDataBtn', function(event){
     // fetch meeting link from browser
     const meetingLinkField = document.getElementById('meetingLink');
     meetingLinkField.textContent = "";
-    // meetingLinkField.textContent = window.location.href;                 
-    meetingLinkField.textContent = "https://zimomeet.live/dev-test";
+    meetingLinkField.textContent = window.location.href;                 
+    // meetingLinkField.textContent = "https://zimomeet.live/dev-test";
     newModal.style.display = 'block';
 });
 
