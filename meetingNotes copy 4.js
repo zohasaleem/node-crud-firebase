@@ -211,6 +211,7 @@ function loadTable(){
         data: {
             session_id: sessionId,
             meeting_link: "https://zimomeet.live/dev-test"
+
             // meeting_link: window.location.href
         },
         success: function(response){
@@ -447,8 +448,6 @@ function showDetailsDataModal() {
     closeButton.addEventListener('click', function() {
         modal.style.display = 'none';
 
-        document.getElementById('firstModal').style.display = "block";
-
         document.getElementById("details-notes-container").innerHTML = " ";
 
 
@@ -483,9 +482,6 @@ $(document).on('click', '#detailsModalBtn', function(event){
     event.preventDefault();
     
     document.getElementById('newDataModal').style.display = 'none';
-
-    document.getElementById('firstModal').style.display = "none";
-
     document.getElementById('detailsDataModal').style.display = 'block';
 
     var meetingNoteId = $(this).data('meeting-note-id');
@@ -625,12 +621,14 @@ function showSaveDataModal() {
 
     // Create the modal
     const modal = document.createElement('div');
-    modal.className = 'new-modal-content';
+    modal.className = 'modal';
     modal.setAttribute('id', 'newDataModal');
     modal.style.display = 'none';
     modal.style.zIndex = "9999"
 
     modal.innerHTML = `
+    <div class="modal-overlay">
+        <div class="new-modal-content">
         
             <div style=" display: flex; justify-content: space-between; align-items: flex-start;">
                 <div style="display: flex; align-items: center; margin-left:5px; padding: 0px;">
@@ -702,6 +700,8 @@ function showSaveDataModal() {
         
                 </div>
             </div>
+        </div>
+    </div>
     `;
 
     document.body.appendChild(modal);
@@ -720,7 +720,6 @@ function showSaveDataModal() {
     closeButton.addEventListener('click', function() {
         modal.style.display = 'none';
 
-        document.getElementById('firstModal').style.display = "block";
 
 
         // resetting place holders and removing validation class ----- code starts here
@@ -905,8 +904,6 @@ function registerNoteListener() {
 $(document).on('click', '#newDataBtn', function(event){
     event.preventDefault();
 
-    document.getElementById('firstModal').style.display = "none";
-
     noteBullets = 1;
     
     document.getElementById('topSaveBtn').disabled = false;
@@ -945,8 +942,8 @@ $(document).on('click', '#newDataBtn', function(event){
     // fetch meeting link from browser
     const meetingLinkField = document.getElementById('meetingLink');
     meetingLinkField.textContent = "";
-    // meetingLinkField.textContent = window.location.href;                 
-    meetingLinkField.textContent = "https://zimomeet.live/dev-test";
+    meetingLinkField.textContent = window.location.href;                 
+    // meetingLinkField.textContent = "https://zimomeet.live/dev-test";
     newModal.style.display = 'block';
 });
 
@@ -978,7 +975,7 @@ $(document).on('click', '#topSaveBtn', function(event){
     var notesInput = document.getElementById('notes');
 
 
-    // resetting placeholders and removing validation class from the input fields when the user starts typing after validation errors  ---- start
+    // resetting place holders and removing validation class to the input fields when the user starts typing after validation errors  ---- start
     creatorNameInput.addEventListener('input', function() {
         if (creatorNameInput.value.trim()) {
             creatorNameInput.classList.remove('placeholder-red');
@@ -1006,7 +1003,7 @@ $(document).on('click', '#topSaveBtn', function(event){
             notesInput.placeholder = 'Notes...';
         }
     });
-    // resetting placeholders and removing validation class from the input fields when the user starts typing after validation errors  ---- end
+    // resetting place holders and removing validation class to the input fields when the user starts typing after validation errors  ---- end
 
 
    // Validate required fields
@@ -1084,8 +1081,6 @@ $(document).on('click', '#topSaveBtn', function(event){
                     notes: notes.join('\n')
                 },
                 success: function(response){
-
-                    document.getElementById('firstModal').style.display = "block";
                     if(noteBullets > 50){
                         document.getElementById("editNotes").style.display = "none";
                     }
@@ -1127,12 +1122,15 @@ function showEditModal() {
 
     // Create the modal
     const modal = document.createElement('div');
-    modal.className = 'edit-modal-content';
+    modal.className = 'editModal modal';
     modal.setAttribute('id', 'editModal');
     modal.style.zIndex = "9999";
     modal.style.display = 'none';
 
     modal.innerHTML = `
+    <div class="modal-overlay">
+
+        <div class="edit-modal-content">
 
             <div style=" display: flex; justify-content: space-between; align-items: flex-start;">
                 <div style="display: flex; align-items: center;  margin-left:5px;">
@@ -1208,7 +1206,8 @@ function showEditModal() {
                     </div>    
                 </div>
             </div>
-
+        </div>
+    </div>
     `;
 
     // append the modal to the container
@@ -1225,9 +1224,6 @@ function showEditModal() {
 
 
     closeButton.addEventListener('click', function() {
-
-        document.getElementById("firstModal").style.display = "block";
-
         document.getElementById("pointId").value = '';
         document.getElementById("edit_creator_name").value = '';
         document.getElementById("editTitle").value = '';
@@ -1388,8 +1384,6 @@ function registerEditNoteListener(noteBullets) {
 $(document).on('click', '.editBtn', function(event){
     event.preventDefault();
 
-    document.getElementById("firstModal").style.display = "none";
-
     var tbody = $('#meetingData');
     if (tbody.children().length > 0) {
         document.getElementById('table-loader').style.display = "none";
@@ -1483,73 +1477,28 @@ $(document).on('click', '.editBtn', function(event){
 $(document).on('click', '#topUpdateBtn', function(event){
     event.preventDefault();
 
-    var isUpdateValid = true;
-
     var pointId = document.getElementById("pointId").value;
     var day = document.getElementById("editDay").textContent;
     var date = document.getElementById("editDate").textContent;
     var time = document.getElementById("editTime").textContent;
+    var title = document.getElementById("editTitle").value;
+    var meeting_subject = document.getElementById("edit_meeting_subject").value;
     var updateMeetingLink = document.getElementById("editMeetingLink").textContent;
+    var creator_name = document.getElementById("edit_creator_name").value;
     var editNotes = [];
-
-    var editCreatorNameInput = document.getElementById('edit_creator_name');
-    var creator_name = editCreatorNameInput.value;
-
-    var editTitleInput = document.getElementById('editTitle');
-    var title = editTitleInput.value;
-
-    var editMeetingSubjectInput = document.getElementById('edit_meeting_subject');
-    var meeting_subject = editMeetingSubjectInput.value;
-
-    var editNotesInput = document.getElementById('editNotes');
-
-
-    editNotesInput.addEventListener('input', function() {
-        if (editNotesInput.value.trim()) {
-            editNotesInput.classList.remove('placeholder-red');
-            editNotesInput.placeholder = 'Notes...';
-        }
-    });
-
-    // Validate required fields
-    if (!creator_name.trim()) {
-        editCreatorNameInput.placeholder = 'Name is required';
-        editCreatorNameInput.classList.add('placeholder-red');
-        isUpdateValid = false;
-    } 
-
-    if (!title.trim()) {
-        editTitleInput.placeholder = 'Title is required';
-        editTitleInput.classList.add('placeholder-red');
-        isUpdateValid = false;
-    } 
-
-    if (!meeting_subject.trim()) {
-        editMeetingSubjectInput.placeholder = 'Meeting Subject is required';
-        editMeetingSubjectInput.classList.add('placeholder-red');
-        isUpdateValid = false;
-    } 
 
     document.querySelectorAll('.editNotePoints').forEach(function(note){
         editNotes.push(note.value);
     });
 
 
-    // add point if enter not pressed while updating
     const appendPointWithoutEnter = document.getElementById("editNotes");
     if(appendPointWithoutEnter.value != ""){
 
-        var lastNoteValue = 0;
-
         const editNotePoints = document.querySelectorAll('.editNotePoints');
-        if(editNotePoints.length > 0){
-            const lastEditNotePoint = Array.from(editNotePoints).pop();
-            lastNoteValue = parseInt(lastEditNotePoint.value) + 1;
-        }
-        else{
-            lastNoteValue = 1;
-        }
-        
+        const lastEditNotePoint = Array.from(editNotePoints).pop();
+        const lastNoteValue = parseInt(lastEditNotePoint.value) + 1;
+
 
         const editText = appendPointWithoutEnter.value.trim();
         if(editText){
@@ -1563,84 +1512,66 @@ $(document).on('click', '#topUpdateBtn', function(event){
 
             editNotes.push(note.value.trim());
             appendPointWithoutEnter.value = '';
-        }    
-    
-        lastNoteValue = 0;
+        }
 
+        // noteBullets++;
+      
+      
     }
 
 
-
-    if (editNotes.length == 0) {
-        editNotesInput.placeholder = 'Notes are required';
-        editNotesInput.classList.add('placeholder-red');  
-        isUpdateValid = false;
-
-    } 
-
-
-
-
-
-    if(isUpdateValid){
-
-        document.getElementById('topUpdateBtn').style.display = "none";
-        document.querySelector('.editClose').style.display = "none";
-        document.getElementById('editTopLoader').style.display = "block";
+    document.getElementById('topUpdateBtn').style.display = "none";
+    document.querySelector('.editClose').style.display = "none";
+    document.getElementById('editTopLoader').style.display = "block";
         
 
-        setTimeout(function(){
-            console.log("1 sec")
+    setTimeout(function(){
+        console.log("1 sec")
 
-            $.ajax({
-                url: 'https://backend.zimomeet.com/api/update-meeting-note?id='+ pointId,
-                type: 'POST',
-                headers: {
-                    "api-key" : "786ZM786"
-                },
-                data: {
-                    title: title,
-                    creator_name: creator_name,
-                    day: day,
-                    date: date,
-                    time: time,
-                    meeting_subject: meeting_subject,
-                    meetingLink: updateMeetingLink,
-                    notes: editNotes.join('\n')
-                },
-                success: function(response){
+        $.ajax({
+            url: 'https://backend.zimomeet.com/api/update-meeting-note?id='+ pointId,
+            type: 'POST',
+            headers: {
+                "api-key" : "786ZM786"
+            },
+            data: {
+                title: title,
+                creator_name: creator_name,
+                day: day,
+                date: date,
+                time: time,
+                meeting_subject: meeting_subject,
+                meetingLink: updateMeetingLink,
+                notes: editNotes.join('\n')
+            },
+            success: function(response){
 
-                },
-                error: function(xhr, status, error){
-                    console.error(error);
-                },
-                complete: function(){
-                    $('#editModal').css('display', 'none');
+            },
+            error: function(xhr, status, error){
+                console.error(error);
+            },
+            complete: function(){
+                $('#editModal').css('display', 'none');
 
-                    document.getElementById("firstModal").style.display = "block";
+                document.getElementById('edit-notes-container').innerHTML = "";
+                document.getElementById('edit-notes-container').innerHTML = '<input type="text" id="editNotes" class="inputField" name="editNotes" placeholder="Notes..." style="border:none; width:100%;">';
 
+                document.getElementById('editNotes').addEventListener('input', restrictEmojis);
 
-                    document.getElementById('edit-notes-container').innerHTML = "";
-                    document.getElementById('edit-notes-container').innerHTML = '<input type="text" id="editNotes" class="inputField" name="editNotes" placeholder="Notes..." style="border:none; width:100%;">';
+                
+                document.querySelector('.editClose').style.display = "block";
 
-                    document.getElementById('editNotes').addEventListener('input', restrictEmojis);
+                document.getElementById('editTopLoader').style.display = "none";
 
-                    
-                    document.querySelector('.editClose').style.display = "block";
+                document.getElementById('topUpdateBtn').style.display = "block";
 
-                    document.getElementById('editTopLoader').style.display = "none";
+                document.getElementById('editModalContent').style.display = "none";
 
-                    document.getElementById('topUpdateBtn').style.display = "block";
+                loadTable();                  
+            }
+        });
 
-                    document.getElementById('editModalContent').style.display = "none";
-
-                    loadTable();                  
-                }
-            });
-
-        }, 1000);
-
-    }
+    }, 1000);
 
 });
 
@@ -1762,36 +1693,32 @@ function deleteRow(pointId){
 }
 
 
+const toolbarButtons = document.querySelectorAll('.toolbar-button-with-badge');
+const lastToolbarButton = toolbarButtons[toolbarButtons.length - 1];
+const childButton = lastToolbarButton.querySelector('.toolbox-button');
 
-
-// for hiding/showing icons when chat pane opens or close
-setTimeout(function(){
-    const toolbarButtons = document.querySelectorAll('.toolbar-button-with-badge');
-    const lastToolbarButton = toolbarButtons[toolbarButtons.length - 1];
-    const childButton = lastToolbarButton.querySelector('.toolbox-button');
-
-    lastToolbarButton.addEventListener('click', function() {
-        var isOpen = childButton.getAttribute('aria-pressed');
-        if(isOpen == 'false'){
-            if(window.innerWidth == 1024){
-                document.querySelector('.zimoGroupLogo').style.display = "none";
-                document.querySelector('.ztfrLogo').style.display = "none";
-            }
+lastToolbarButton.addEventListener('click', function() {
+    var isOpen = childButton.getAttribute('aria-pressed');
+    if(isOpen == 'false'){
+        if(window.innerWidth == 1024){
+            document.querySelector('.zimoGroupLogo').style.display = "none";
+            document.querySelector('.ztfrLogo').style.display = "none";
         }
-        if(isOpen == 'true'){
-            if(window.innerWidth == 1024){
-                document.querySelector('.zimoGroupLogo').style.display = "block";
-                document.querySelector('.ztfrLogo').style.display = "block";                
-            }
-
+    }
+    if(isOpen == 'true'){
+        if(window.innerWidth == 1024){
+            document.querySelector('.zimoGroupLogo').style.display = "block";
+            document.querySelector('.ztfrLogo').style.display = "block";                
         }
-    });
+
+    }
+});
 
 
-    const toolbarButtonChat = document.querySelector('.toolbar-button-with-badge');
-    const toolbarButtonChatLabel  = toolbarButtonChat .querySelector('.toolbox-button');
-    toolbarButtonChat.addEventListener('click', function(){
-        var isOpen = toolbarButtonChatLabel.getAttribute('aria-pressed');
+const toolbarButtonChat = document.querySelector('.toolbar-button-with-badge');
+const toolbarButtonChatLabel  = toolbarButtonChat .querySelector('.toolbox-button');
+toolbarButtonChat.addEventListener('click', function(){
+    var isOpen = toolbarButtonChatLabel.getAttribute('aria-pressed');
 
         document.getElementById("firstModalBtn").style.display = "none";
         document.querySelector(".zimoGroupLogo").style.display = "none";
@@ -1813,16 +1740,10 @@ setTimeout(function(){
         }, 2000);
 
 
-        if(isOpen == "true"){
-            document.getElementById("firstModalBtn").style.display = "block";
-            document.querySelector(".zimoGroupLogo").style.display = "block";
-            document.querySelector(".ztfrLogo").style.display = "block";
-        }
-    });
-
-},3000);
-
-
-// disabling right click
-document.addEventListener('contextmenu', event => event.preventDefault());
+    if(isOpen == "true"){
+        document.getElementById("firstModalBtn").style.display = "block";
+        document.querySelector(".zimoGroupLogo").style.display = "block";
+        document.querySelector(".ztfrLogo").style.display = "block";
+    }
+});
 
